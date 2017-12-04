@@ -16,7 +16,7 @@ public class VUserMenuDDAO {
 		return sws;
 	}
 	public java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VUserMenuD> getArrayListEntityByUserId(Session session, String user_id) {
-		String hql = "from VUserMenuD where userId=:user_id order by id.orderId";
+		String hql = "from VUserMenuD where id.userId=:user_id order by id.orderId";
 
 		Query q = session.createQuery(hql);
 

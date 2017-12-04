@@ -10,7 +10,7 @@
 <script type="text/javascript" src='../js/jquery-ui-<s:property value="jquery_ui_version" />/jquery-ui.min.js'>
 	
 </script>
-<link rel="stylesheet" type="text/css" href="../js/jquery-ui-<s:property value="jquery_ui_version" />/themes/icon.css" />
+
 <link rel="stylesheet" type="text/css"
 	href="../js/jquery-easyui-<s:property value="easyi_version" />/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-<s:property value="easyi_version" />/themes/icon.css" />
@@ -97,7 +97,7 @@ function root(){
 	<tr>
 		<td>密码：
 		</td>
-		<td><input type="text" required="true" id ="password" name="pwd" label="密码" style="width 250px;"/>
+		<td><input type="password" required="true" id ="password" name="pwd" label="密码" style="width 250px;"/>
 		</td>
 	</tr>
 	</table>
