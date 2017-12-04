@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.contextClassLoaderSource">library</property>
+        <property name="hibernate.c3p0.dataSourceName">pg_bfkjs</property>
+        <property name="hibernate.c3p0.idle_test_period">120</property>
+        <property name="hibernate.c3p0.max_size">80</property>
+        <property name="hibernate.c3p0.max_statements">0</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.privilegeSpawnedThreads">true</property>
+        <property name="hibernate.c3p0.timeout">25000</property>
+        <property name="hibernate.connection.autocommit">false</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">Wang1980</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:33133/finance</property>
+        <property name="hibernate.connection.username">finance</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.MenuD"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysUser"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysPar"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.VUserMenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysRoleMenuD"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.VUserMenuD"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysRole"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysUserRole"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.MenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysLog"/>
+    </session-factory>
+</hibernate-configuration>
