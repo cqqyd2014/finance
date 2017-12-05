@@ -35,10 +35,16 @@ public class InitAction extends ActionSupport{
 	}
 
 	@Override
-	public String execute() throws Exception {
+	public String execute()  {
 		// TODO Auto-generated method stub
 		
-		return super.execute();
+		try {
+			return super.execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	public void init_js_par(Session session) {
 		gov.cqaudit.finance.hibernate.dao.SysParDAO spdao=new gov.cqaudit.finance.hibernate.dao.SysParDAO();

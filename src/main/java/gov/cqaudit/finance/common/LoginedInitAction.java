@@ -17,6 +17,28 @@ public class LoginedInitAction extends InitAction{
 	public String sys_role;
 	public Map<String,Object> session_http;
 
+	public Session session;
+	public Transaction tx;
+
+	public Session getSession() {
+		return session;
+	}
+
+
+	public void setSession(Session session) {
+		this.session = session;
+	}
+
+
+	public Transaction getTx() {
+		return tx;
+	}
+
+
+	public void setTx(Transaction tx) {
+		this.tx = tx;
+	}
+
 
 	public com.cqqyd2014.util.AjaxSuccessMessage getSm() {
 		return sm;
@@ -81,7 +103,7 @@ public class LoginedInitAction extends InitAction{
 
 
 	@Override
-	public String execute() throws Exception {
+	public String execute()  {
 		// TODO Auto-generated method stub
 		super.execute();
 		session_http= ActionContext.getContext().getSession();

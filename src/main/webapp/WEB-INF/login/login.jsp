@@ -32,7 +32,7 @@ function login(){
 				if (field.success){
 					//成功登录
 
-				window.location.href='../mainframe/main_frame.action';
+				window.location.href='../frame/main_frame.action';
 				}
 				else{
 					
@@ -81,6 +81,9 @@ function root(){
 		</td>
 		<td width="70%"><h1>地方银行数据查询系统</h1>
 		</td>
+	</tr>
+	<tr>
+		<td colspan='2' align="right" >重庆市审计局金融处2017.12</td>
 	</tr>
 	<tr>
 		<td width="30%">服务器时间：
