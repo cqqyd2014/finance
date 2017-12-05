@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 1:01:52 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -29,8 +29,7 @@ public class SysRoleMenuD implements java.io.Serializable {
 	@AttributeOverrides({
 			@AttributeOverride(name = "roleId", column = @Column(name = "role_id", nullable = false, length = 45)),
 			@AttributeOverride(name = "menuId", column = @Column(name = "menu_id", nullable = false, length = 4)),
-			@AttributeOverride(name = "menuDId", column = @Column(name = "menu_d_id", nullable = false, length = 4)),
-			@AttributeOverride(name = "comId", column = @Column(name = "com_id", nullable = false, length = 4)) })
+			@AttributeOverride(name = "menuDId", column = @Column(name = "menu_d_id", nullable = false, length = 4)) })
 	public SysRoleMenuDId getId() {
 		return this.id;
 	}

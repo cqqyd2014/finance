@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 1:01:52 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -28,8 +28,7 @@ public class SysUserRole implements java.io.Serializable {
 
 	@AttributeOverrides({
 			@AttributeOverride(name = "userId", column = @Column(name = "user_id", nullable = false, length = 45)),
-			@AttributeOverride(name = "roleId", column = @Column(name = "role_id", nullable = false, length = 45)),
-			@AttributeOverride(name = "comId", column = @Column(name = "com_id", nullable = false, length = 45)) })
+			@AttributeOverride(name = "roleId", column = @Column(name = "role_id", nullable = false, length = 45)) })
 	public SysUserRoleId getId() {
 		return this.id;
 	}

@@ -1,11 +1,9 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 1:01:52 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -15,27 +13,50 @@ import javax.persistence.Table;
 @Table(name = "menu_m", schema = "public")
 public class MenuM implements java.io.Serializable {
 
-	private MenuMId id;
+	private String menuId;
+	private String menuName;
+	private String desc;
 
 	public MenuM() {
 	}
 
-	public MenuM(MenuMId id) {
-		this.id = id;
+	public MenuM(String menuId) {
+		this.menuId = menuId;
 	}
 
-	@EmbeddedId
-
-	@AttributeOverrides({
-			@AttributeOverride(name = "menuId", column = @Column(name = "menu_id", nullable = false, length = 4)),
-			@AttributeOverride(name = "menuName", column = @Column(name = "menu_name", length = 45)),
-			@AttributeOverride(name = "desc", column = @Column(name = "desc", length = 45)) })
-	public MenuMId getId() {
-		return this.id;
+	public MenuM(String menuId, String menuName, String desc) {
+		this.menuId = menuId;
+		this.menuName = menuName;
+		this.desc = desc;
 	}
 
-	public void setId(MenuMId id) {
-		this.id = id;
+	@Id
+
+	@Column(name = "menu_id", unique = true, nullable = false, length = 4)
+	public String getMenuId() {
+		return this.menuId;
+	}
+
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+
+	@Column(name = "menu_name", length = 45)
+	public String getMenuName() {
+		return this.menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	@Column(name = "desc", length = 45)
+	public String getDesc() {
+		return this.desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 }

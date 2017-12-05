@@ -30,6 +30,9 @@
         <mapping class="gov.cqaudit.finance.hibernate.entites.VUserMenuD"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.SysRole"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.SysUserRole"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.BusinessSearchPar"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.MenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysCode"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysLog"/>
     </session-factory>
 </hibernate-configuration>

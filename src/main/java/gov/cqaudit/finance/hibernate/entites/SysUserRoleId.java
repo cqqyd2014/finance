@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 1:01:52 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -12,15 +12,13 @@ public class SysUserRoleId implements java.io.Serializable {
 
 	private String userId;
 	private String roleId;
-	private String comId;
 
 	public SysUserRoleId() {
 	}
 
-	public SysUserRoleId(String userId, String roleId, String comId) {
+	public SysUserRoleId(String userId, String roleId) {
 		this.userId = userId;
 		this.roleId = roleId;
-		this.comId = comId;
 	}
 
 	@Column(name = "user_id", nullable = false, length = 45)
@@ -41,15 +39,6 @@ public class SysUserRoleId implements java.io.Serializable {
 		this.roleId = roleId;
 	}
 
-	@Column(name = "com_id", nullable = false, length = 45)
-	public String getComId() {
-		return this.comId;
-	}
-
-	public void setComId(String comId) {
-		this.comId = comId;
-	}
-
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -62,9 +51,7 @@ public class SysUserRoleId implements java.io.Serializable {
 		return ((this.getUserId() == castOther.getUserId()) || (this.getUserId() != null
 				&& castOther.getUserId() != null && this.getUserId().equals(castOther.getUserId())))
 				&& ((this.getRoleId() == castOther.getRoleId()) || (this.getRoleId() != null
-						&& castOther.getRoleId() != null && this.getRoleId().equals(castOther.getRoleId())))
-				&& ((this.getComId() == castOther.getComId()) || (this.getComId() != null
-						&& castOther.getComId() != null && this.getComId().equals(castOther.getComId())));
+						&& castOther.getRoleId() != null && this.getRoleId().equals(castOther.getRoleId())));
 	}
 
 	public int hashCode() {
@@ -72,7 +59,6 @@ public class SysUserRoleId implements java.io.Serializable {
 
 		result = 37 * result + (getUserId() == null ? 0 : this.getUserId().hashCode());
 		result = 37 * result + (getRoleId() == null ? 0 : this.getRoleId().hashCode());
-		result = 37 * result + (getComId() == null ? 0 : this.getComId().hashCode());
 		return result;
 	}
 

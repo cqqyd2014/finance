@@ -1,6 +1,13 @@
 package gov.cqaudit.finance.system.model;
 
 public class MenuM {
+	java.util.ArrayList<gov.cqaudit.finance.system.model.MenuD> mds;
+	public java.util.ArrayList<gov.cqaudit.finance.system.model.MenuD> getMds() {
+		return mds;
+	}
+	public void setMds(java.util.ArrayList<gov.cqaudit.finance.system.model.MenuD> mds) {
+		this.mds = mds;
+	}
 	String m_desc;
 	public String getM_desc() {
 		return m_desc;

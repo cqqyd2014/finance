@@ -22,15 +22,18 @@
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.show_sql">false</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.VUserMenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysRoleMenuD"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysRole"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysUserRole"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.BusinessSearchPar"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.MenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysLog"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.MenuD"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.SysUser"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.SysPar"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entites.VUserMenuM"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entites.SysRoleMenuD"/>
         <mapping class="gov.cqaudit.finance.hibernate.entites.VUserMenuD"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entites.SysRole"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entites.SysUserRole"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entites.MenuM"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entites.SysLog"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.SysCode"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entites.VBusinessSearchPar"/>
     </session-factory>
 </hibernate-configuration>

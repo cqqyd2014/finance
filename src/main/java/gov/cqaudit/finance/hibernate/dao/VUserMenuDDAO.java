@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 public class VUserMenuDDAO {
 	public java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VUserMenuD> getArrayListEntityByIdUserId(Session session, String id,String user_id) {
-		String hql = "from VUserMenuD where id.menuId=:id and userId=:user_id order by id.orderId";
+		String hql = "from VUserMenuD where id.menuId=:id and id.userId=:user_id order by id.orderId";
 
 		Query q = session.createQuery(hql);
 		q.setParameter("id", id);

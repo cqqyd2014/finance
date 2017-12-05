@@ -1,62 +1,63 @@
-package gov.cqaudit.finance.system.ajax.action;
+package gov.cqaudit.finance.system.action;
+
 
 import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Actions;
 
-import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.hibernate.HibernateException;
 
-import com.cqqyd2014.annotation.Authority;
+
 
 import gov.cqaudit.finance.common.LoginedAjaxAction;
 import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 
 @SuppressWarnings("serial")
-@ParentPackage("bfkjs-json-default")
+@ParentPackage("bfkjs-default") 
 @Namespace("/system")
-public class SetUserOnlineAction extends LoginedAjaxAction {
-	String  interval_time;
-	String chinese_date;
-	
-	public String getInterval_time() {
-		return interval_time;
-	}
-	public String getChinese_date() {
-		return chinese_date;
-	}
-	public void setChinese_date(String chinese_date) {
-		this.chinese_date = chinese_date;
-	}
-	public void setInterval_time(String interval_time) {
-		this.interval_time = interval_time;
-	}
+public class ExitAction extends LoginedAjaxAction {
 
-	
-@Action(value = "set_user_online", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
-			
-			@InterceptorRef("defaultStack"),
-			@InterceptorRef("authorityInterceptor") })
-@Authority(module = "set_user_online", privilege = "*", error_url = "authority_ajax_error")
+
+	@Actions({
+
+		@Action( // 表示请求的Action及处理方法
+				value = "exit", // 表示action的请求名称
+				results = { // 表示结果跳转
+
+						/*
+						@Result(name = "success", params = { "actionName", "login_init", "namespace", "/login",
+								"method", "login_init" }, type = "chain")
+
+*/
+						@Result(name = "success",location="/", type = "redirect")
+				})
+
+})
 @Override
 public String execute() {
 // TODO Auto-generated method stub
+
 super.execute();
-sm.setAuth_success(true);
+if (user_id==null||user_id.equals("")) {
+	return "success";
+}
 		
 		 session = HibernateSessionFactory.getSession();
 		 tx = session.beginTransaction();
 		try {
 			super.init_js_par(session);
-			
 			gov.cqaudit.finance.hibernate.dao.SysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.SysUserDAO();
 			gov.cqaudit.finance.hibernate.entites.SysUser su=sudao.getEntityByUserId(session, user_id);
-			su.setOnline(true);
 			su.setLastOnlineTime(new java.util.Date());
+			su.setOnline(false);
 			session.saveOrUpdate(su);
+
 			tx.commit();
 			sm.setSuccess(true);
+			session_http.put("user_id", "");
+			session_http.put("user_name", "");
 		}
 
 		catch (HibernateException e) {

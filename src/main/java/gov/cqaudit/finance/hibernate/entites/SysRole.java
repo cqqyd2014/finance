@@ -1,11 +1,9 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 1:01:52 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -15,32 +13,30 @@ import javax.persistence.Table;
 @Table(name = "sys_role", schema = "public")
 public class SysRole implements java.io.Serializable {
 
-	private SysRoleId id;
+	private String roleId;
 	private String roleName;
 
 	public SysRole() {
 	}
 
-	public SysRole(SysRoleId id) {
-		this.id = id;
+	public SysRole(String roleId) {
+		this.roleId = roleId;
 	}
 
-	public SysRole(SysRoleId id, String roleName) {
-		this.id = id;
+	public SysRole(String roleId, String roleName) {
+		this.roleId = roleId;
 		this.roleName = roleName;
 	}
 
-	@EmbeddedId
+	@Id
 
-	@AttributeOverrides({
-			@AttributeOverride(name = "roleId", column = @Column(name = "role_id", nullable = false, length = 45)),
-			@AttributeOverride(name = "comId", column = @Column(name = "com_id", nullable = false, length = 45)) })
-	public SysRoleId getId() {
-		return this.id;
+	@Column(name = "role_id", unique = true, nullable = false, length = 45)
+	public String getRoleId() {
+		return this.roleId;
 	}
 
-	public void setId(SysRoleId id) {
-		this.id = id;
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 
 	@Column(name = "role_name", length = 45)

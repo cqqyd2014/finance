@@ -4,20 +4,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js">
-
-
-</script>
-<link rel="stylesheet" type="text/css"
-	href="../js/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="../js/themes/icon.css">
-<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-
-<script type="text/javascript" src="../js/qyd.js"></script>
+<jsp:include page="../common/include_js_css.jsp" flush="true" />
 
 <script language='javascript' type='text/javascript'>
 	function exit() {
-		window.parent.location = "../system/exit.action";
+		window.top.location = "../system/exit.action";
 	}
 	function homepage() {
 		self.parent.frames["mainFrame"].location = "center.action";
@@ -63,7 +54,7 @@
             dataType: "json",
 			success : function(data) {
 				var field=data.msg;
-				ajax_authority2(field);
+				ajax_authority(field);
 					
 					
 						$('#current_time').text(field.o);
@@ -84,7 +75,8 @@
 <table width="100%"  style="color:white;" >
 
 <tr>
-	<td rowspan="2" width="40%" align="left" ><img alt="" src="../img/audit.jpg" width="50px"><h1>地方银行数据查询系统</h1>
+	<td rowspan="2" width="40%" align="left" ><img alt="" src="../img/audit.jpg" width="40px">
+	<h2 style="display:inline;">地方银行数据查询系统</h2>
 	</td>
 	<td width="60%" align="right">
 	最后刷新时间：<span id="current_time"><s:property value="#request.chinese_date"/></span>登录用户：<s:property value="#request.user_name" />

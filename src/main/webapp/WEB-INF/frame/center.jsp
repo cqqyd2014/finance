@@ -14,12 +14,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<script type="text/javascript" src="../js/jquery-2.1.4.min.js">
-</script>
-<link rel="stylesheet" type="text/css"
-	href="../js/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="../js/themes/icon.css">
-<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+<jsp:include page="../common/include_js_css.jsp" flush="true" />
 
 <script language='javascript' type='text/javascript'>
 
@@ -31,9 +26,9 @@ function goods_list(){
 */
 <s:iterator value="javascrpits_method" status="st"> 
 
-function ${m_d_js_method}(){
-	frames["main"].location = '${m_d_js_url}';
-	$('#content').attr('title','${m_d_name}')
+function ${menu_d_js_method}(){
+	frames["main"].location = '${menu_d_js_url}';
+	$('#content').attr('title','${d_name}')
 }
 
 
@@ -61,9 +56,9 @@ function ${m_d_js_method}(){
 					
 
 					<ul>
-					<s:iterator value="menu_d" >
+					<s:iterator value="mds" >
 					
-					<li><a href="javascript:void(0)" onclick="javascript:${m_d_js_method}()">${ m_d_name}</a>
+					<li><a href="javascript:void(0)" onclick="javascript:${menu_d_js_method}()">${ d_name}</a>
 					</li>
 					 
 					</s:iterator>

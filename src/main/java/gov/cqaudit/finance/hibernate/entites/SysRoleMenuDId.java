@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 1:01:52 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -13,16 +13,14 @@ public class SysRoleMenuDId implements java.io.Serializable {
 	private String roleId;
 	private String menuId;
 	private String menuDId;
-	private String comId;
 
 	public SysRoleMenuDId() {
 	}
 
-	public SysRoleMenuDId(String roleId, String menuId, String menuDId, String comId) {
+	public SysRoleMenuDId(String roleId, String menuId, String menuDId) {
 		this.roleId = roleId;
 		this.menuId = menuId;
 		this.menuDId = menuDId;
-		this.comId = comId;
 	}
 
 	@Column(name = "role_id", nullable = false, length = 45)
@@ -52,15 +50,6 @@ public class SysRoleMenuDId implements java.io.Serializable {
 		this.menuDId = menuDId;
 	}
 
-	@Column(name = "com_id", nullable = false, length = 4)
-	public String getComId() {
-		return this.comId;
-	}
-
-	public void setComId(String comId) {
-		this.comId = comId;
-	}
-
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -75,9 +64,7 @@ public class SysRoleMenuDId implements java.io.Serializable {
 				&& ((this.getMenuId() == castOther.getMenuId()) || (this.getMenuId() != null
 						&& castOther.getMenuId() != null && this.getMenuId().equals(castOther.getMenuId())))
 				&& ((this.getMenuDId() == castOther.getMenuDId()) || (this.getMenuDId() != null
-						&& castOther.getMenuDId() != null && this.getMenuDId().equals(castOther.getMenuDId())))
-				&& ((this.getComId() == castOther.getComId()) || (this.getComId() != null
-						&& castOther.getComId() != null && this.getComId().equals(castOther.getComId())));
+						&& castOther.getMenuDId() != null && this.getMenuDId().equals(castOther.getMenuDId())));
 	}
 
 	public int hashCode() {
@@ -86,7 +73,6 @@ public class SysRoleMenuDId implements java.io.Serializable {
 		result = 37 * result + (getRoleId() == null ? 0 : this.getRoleId().hashCode());
 		result = 37 * result + (getMenuId() == null ? 0 : this.getMenuId().hashCode());
 		result = 37 * result + (getMenuDId() == null ? 0 : this.getMenuDId().hashCode());
-		result = 37 * result + (getComId() == null ? 0 : this.getComId().hashCode());
 		return result;
 	}
 

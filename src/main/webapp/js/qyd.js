@@ -24,37 +24,18 @@ function dialog_init_little(o){
 	//$('#'+o).panel("move",{top : $(document).scrollTop()+ ($(window).height() - dialog_height_little) * 0.5	});
 }
 
-//ajax未认证处理，中心框架用
+//ajax未认证处理
 
 function ajax_authority(field){
 	if (field==null){
 		return;
 	}
 	if (!field.auth_success){
-		window.parent.parent.frames.location.href="/Bfkjs";
+		window.top.location.href="/finance";
 	}
 	
 }
-//top框架使用
-function ajax_authority2(field){
-	if (field==null){
-		return;
-	}
-	if (!field.auth_success){
-		window.parent.frames.location.href="/Bfkjs";
-	}
-	
-}
-//无框架使用
-function ajax_authority2(field){
-	if (field==null){
-		return;
-	}
-	if (!field.auth_success){
-		window.location.href="/Bfkjs";
-	}
-	
-}
+
 
 //供使用者调用  
 function trim(s){  
