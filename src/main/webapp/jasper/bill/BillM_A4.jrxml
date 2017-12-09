@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BillM_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="62f1157c-66bd-4524-9567-c0e2a0352c85">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Bill-DataAdapter.xml"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="create_user_name" class="java.lang.String">
+		<fieldDescription><![CDATA[create_user_name]]></fieldDescription>
+	</field>
+	<field name="last_audit_dat_chinese_print" class="java.lang.String">
+		<fieldDescription><![CDATA[last_audit_dat_chinese_print]]></fieldDescription>
+	</field>
+	<field name="contract_tell" class="java.lang.String">
+		<fieldDescription><![CDATA[contract_tell]]></fieldDescription>
+	</field>
+	<field name="search_reason" class="java.lang.String">
+		<fieldDescription><![CDATA[search_reason]]></fieldDescription>
+	</field>
+	<field name="effective" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[effective]]></fieldDescription>
+	</field>
+	<field name="pics_num" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[pics_num]]></fieldDescription>
+	</field>
+	<field name="last_modify_dat" class="java.util.Date">
+		<fieldDescription><![CDATA[last_modify_dat]]></fieldDescription>
+	</field>
+	<field name="bill_uuid" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_uuid]]></fieldDescription>
+	</field>
+	<field name="download_dat_chinese_print" class="java.lang.String">
+		<fieldDescription><![CDATA[download_dat_chinese_print]]></fieldDescription>
+	</field>
+	<field name="download_user_id" class="java.lang.String">
+		<fieldDescription><![CDATA[download_user_id]]></fieldDescription>
+	</field>
+	<field name="create_user_id" class="java.lang.String">
+		<fieldDescription><![CDATA[create_user_id]]></fieldDescription>
+	</field>
+	<field name="last_audit_dat" class="java.util.Date">
+		<fieldDescription><![CDATA[last_audit_dat]]></fieldDescription>
+	</field>
+	<field name="dept_name" class="java.lang.String">
+		<fieldDescription><![CDATA[dept_name]]></fieldDescription>
+	</field>
+	<field name="contract_name" class="java.lang.String">
+		<fieldDescription><![CDATA[contract_name]]></fieldDescription>
+	</field>
+	<field name="bill_status" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_status]]></fieldDescription>
+	</field>
+	<field name="create_dat_chinese_print" class="java.lang.String">
+		<fieldDescription><![CDATA[create_dat_chinese_print]]></fieldDescription>
+	</field>
+	<field name="bds" class="java.util.ArrayList">
+		<fieldDescription><![CDATA[bds]]></fieldDescription>
+	</field>
+	<field name="download_user_name" class="java.lang.String">
+		<fieldDescription><![CDATA[download_user_name]]></fieldDescription>
+	</field>
+	<field name="audit_user_id" class="java.lang.String">
+		<fieldDescription><![CDATA[audit_user_id]]></fieldDescription>
+	</field>
+	<field name="download_uuid" class="java.lang.String">
+		<fieldDescription><![CDATA[download_uuid]]></fieldDescription>
+	</field>
+	<field name="create_dat" class="java.util.Date">
+		<fieldDescription><![CDATA[create_dat]]></fieldDescription>
+	</field>
+	<field name="contract_mail" class="java.lang.String">
+		<fieldDescription><![CDATA[contract_mail]]></fieldDescription>
+	</field>
+	<field name="audit_user_name" class="java.lang.String">
+		<fieldDescription><![CDATA[audit_user_name]]></fieldDescription>
+	</field>
+	<field name="dept_id" class="java.lang.String">
+		<fieldDescription><![CDATA[dept_id]]></fieldDescription>
+	</field>
+	<field name="last_modify_dat_chinese_print" class="java.lang.String">
+		<fieldDescription><![CDATA[last_modify_dat_chinese_print]]></fieldDescription>
+	</field>
+	<field name="download_dat" class="java.util.Date">
+		<fieldDescription><![CDATA[download_dat]]></fieldDescription>
+	</field>
+	<field name="pro_name" class="java.lang.String">
+		<fieldDescription><![CDATA[pro_name]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="21">
+			<componentElement>
+				<reportElement x="74" y="0" width="372" height="20" uuid="54e78c3e-7cea-412f-bb7e-4bb130d95e8d"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128A" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{bill_uuid}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="283" splitType="Prevent">
+			<subreport isUsingCache="true" runToBottom="true" overflowType="Stretch">
+				<reportElement x="-20" y="242" width="595" height="41" isPrintWhenDetailOverflows="true" uuid="5bdc4f7d-1176-4fd7-b998-fa44c1b1c141"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{bds})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "BillMSUB_A4.jasper"]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement x="4" y="241" width="540" height="1" uuid="100f76bd-c63f-404f-bef4-668a305e25d8"/>
+			</line>
+			<line>
+				<reportElement x="4" y="91" width="1" height="151" uuid="2a468c45-bae2-4a74-bcc6-628333eb8e59"/>
+			</line>
+			<line>
+				<reportElement x="4" y="90" width="539" height="1" uuid="bceb94e1-6c51-4e4a-9e21-1a503b9f6adb"/>
+			</line>
+			<line>
+				<reportElement x="543" y="90" width="1" height="151" uuid="6555ec81-4a80-43a7-a335-ac10e5fde374"/>
+			</line>
+			<staticText>
+				<reportElement x="143" y="66" width="57" height="19" uuid="3d90b12c-ccbd-4362-97ac-51f1aef854bd"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<text><![CDATA[联系人：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="200" y="66" width="50" height="19" uuid="1d242d61-6d9e-4e8a-af58-c282c566fe31"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contract_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="250" y="66" width="50" height="19" uuid="5b118db5-854b-4918-84ce-1393b9cec068"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<text><![CDATA[电话：]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="150" width="539" height="1" uuid="4d92a8f9-7c82-4bf4-86ff-793d1b538eed"/>
+			</line>
+			<line>
+				<reportElement x="143" y="90" width="1" height="151" uuid="df13cedc-df5e-4053-a1e0-7f51fb5a7654"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="110" width="110" height="20" uuid="a281cbf4-5b3e-4706-9620-6a87c15c0a61"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[审计项目名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="190" width="110" height="20" uuid="614c86c7-5913-4acd-9ff6-e3202fd45498"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[查询账户理由]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="153" y="100" width="380" height="40" uuid="2466069b-be3e-4efc-9913-413df13e98ef"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="160" width="380" height="70" uuid="bd9cda4c-5521-46ea-be2c-42dcc1c5c80b"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{search_reason}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="66" width="75" height="19" uuid="2c289fb9-8b68-48b3-b0f2-6eb1445608e2"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contract_tell}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="375" y="66" width="45" height="19" uuid="afcf774a-9f9a-4989-9ef1-b2bffe4b8db8"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<text><![CDATA[邮箱：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="420" y="66" width="124" height="19" uuid="3f93ef05-a537-4d48-a7bc-144fa51d042b"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contract_tell}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="155" y="10" width="240" height="40" uuid="1f0c346e-5650-44b7-b7f0-d803299a4e60"/>
+				<textElement>
+					<font fontName="fangsong" size="32" isBold="true"/>
+				</textElement>
+				<text><![CDATA[查询账户审批单]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="66" width="93" height="19" uuid="b90493db-d7af-426a-bf4c-f1988ad88971"/>
+				<textElement>
+					<font fontName="fangsong" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dept_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="66" width="46" height="19" uuid="79e02252-01be-44cd-bf64-75a2c5c3170a"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<text><![CDATA[单位：]]></text>
+			</staticText>
+		</band>
+		<band height="50" splitType="Prevent">
+			<staticText>
+				<reportElement x="210" y="10" width="100" height="30" uuid="f591c588-0ae9-4ac4-8fb7-571f0f4ac3a1"/>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+		</band>
+		<band height="342" splitType="Prevent">
+			<line>
+				<reportElement x="543" y="0" width="1" height="320" uuid="524594b6-f09f-4a85-ac19-3ced4e3f1212"/>
+			</line>
+			<line>
+				<reportElement x="4" y="0" width="539" height="1" uuid="74ef1351-a203-4c7d-bd3f-93edaf2ce803"/>
+			</line>
+			<line>
+				<reportElement x="4" y="0" width="1" height="320" uuid="08e52084-333c-4480-987b-b0604b6a68a6"/>
+			</line>
+			<line>
+				<reportElement x="143" y="0" width="1" height="320" uuid="61a56d4b-53e6-44e0-9cb4-e068171a7877"/>
+			</line>
+			<line>
+				<reportElement x="5" y="60" width="539" height="1" uuid="0c86cb25-fdcd-4606-a0ed-e28a490108a0"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="12" width="130" height="20" uuid="7a2b5ade-aec5-4182-8a0c-50b2ecabc1f0"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[审计组申请意见]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="40" width="250" height="20" uuid="f898e28f-db74-4673-94c8-7ce76c58602c"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[签名            年     月    日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="72" width="130" height="46" uuid="aaa3dec9-e738-4216-b0ae-fe887e1d0975"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[业务部门负责人意见]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="120" width="539" height="1" uuid="a7d2a3d3-2a54-4ee7-bdd7-38d202b85d39"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="101" width="250" height="20" uuid="1383f367-8106-425b-8f56-5a09e9025f2d"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[签名            年     月    日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="132" width="130" height="20" uuid="8382acb6-5050-4619-a131-b6937ed5c5a9"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[法规处意见]]></text>
+			</staticText>
+			<line>
+				<reportElement x="5" y="180" width="539" height="1" uuid="5945bdbd-6b25-4699-891e-8d2198792974"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="160" width="250" height="20" uuid="bdecda67-ecb3-4eba-add0-816d8bd4b45a"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[签名            年     月    日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="200" width="130" height="20" uuid="fd066357-2b43-4a3c-8681-e3cc6783a757"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[分管领导意见]]></text>
+			</staticText>
+			<line>
+				<reportElement x="5" y="250" width="539" height="1" uuid="88109a77-a390-4ba6-b968-eb06d1bd35a9"/>
+			</line>
+			<staticText>
+				<reportElement x="290" y="223" width="250" height="20" uuid="71dacb05-868d-45e7-9d6b-3d66cf512563"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[签名            年     月    日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="266" width="130" height="20" uuid="388b1dcf-fddd-457f-805c-890977ba771e"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[审计局长意见]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="300" width="250" height="20" uuid="6cc8a0a2-2783-43b1-9138-3cc341d77a3b"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<text><![CDATA[签名            年     月    日]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="320" width="540" height="1" uuid="eddff09e-b597-415c-b172-175042b87d78"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="420" y="1" width="33" height="20" uuid="0a6f4d2a-fe1b-499d-bdc6-35105dca3bbb"/>
+				<textElement>
+					<font fontName="fangsong" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="1" width="30" height="20" uuid="33e4adf7-062f-4915-a148-e6c94cca9f0f"/>
+				<textElement>
+					<font fontName="fangsong" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="393" y="1" width="27" height="20" uuid="1f259d2f-5141-4499-ac66-8ca63a063c76"/>
+				<textElement>
+					<font fontName="fangsong"/>
+				</textElement>
+				<text><![CDATA[共]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="1" width="30" height="20" uuid="fe356559-5754-44a5-b1fe-f2325febf0d6"/>
+				<textElement>
+					<font fontName="fangsong" size="10"/>
+				</textElement>
+				<text><![CDATA[页 第]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="513" y="1" width="30" height="20" uuid="6b8b942b-1e87-44a5-82e3-820a07273504"/>
+				<textElement>
+					<font fontName="fangsong" size="10"/>
+				</textElement>
+				<text><![CDATA[页]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="0" width="100" height="18" uuid="1898ffdc-a237-4beb-9e6f-0427501697e0"/>
+				<textElement>
+					<font fontName="fangsong" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{create_dat_chinese_print}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="0" width="76" height="18" uuid="d3b87153-dc77-4eeb-ada5-37fbc61ee8de"/>
+				<textElement>
+					<font fontName="fangsong" size="14"/>
+				</textElement>
+				<text><![CDATA[申请时间：]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

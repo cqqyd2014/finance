@@ -65,7 +65,7 @@ public class PrintBillAction extends PdfPrintInitAbstractAction {
 	@Override
 	public String setJasperFileName() {
 		// TODO Auto-generated method stub
-		return "BillM_A4.jasper";
+		return "BillM20171210.jasper";
 	}
 
 	@Action(value = "bill_print", results = { @Result(name = "success", type = "stream", params = { "contentType",

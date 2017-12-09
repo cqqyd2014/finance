@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BillMSUB_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="c0d6330e-7e02-4b12-954a-c6197dd25213">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Bill-DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="bank_code" class="java.lang.String">
+		<fieldDescription><![CDATA[bank_code]]></fieldDescription>
+	</field>
+	<field name="search_par_code" class="java.lang.String">
+		<fieldDescription><![CDATA[search_par_code]]></fieldDescription>
+	</field>
+	<field name="search_par_code_name" class="java.lang.String">
+		<fieldDescription><![CDATA[search_par_code_name]]></fieldDescription>
+	</field>
+	<field name="search_par_value" class="java.lang.String">
+		<fieldDescription><![CDATA[search_par_value]]></fieldDescription>
+	</field>
+	<field name="detail_uuid" class="java.lang.String">
+		<fieldDescription><![CDATA[detail_uuid]]></fieldDescription>
+	</field>
+	<field name="business_code_name" class="java.lang.String">
+		<fieldDescription><![CDATA[business_code_name]]></fieldDescription>
+	</field>
+	<field name="bank_name" class="java.lang.String">
+		<fieldDescription><![CDATA[bank_name]]></fieldDescription>
+	</field>
+	<field name="bill_uuid" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_uuid]]></fieldDescription>
+	</field>
+	<field name="business_code" class="java.lang.String">
+		<fieldDescription><![CDATA[business_code]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="41" splitType="Prevent">
+			<line>
+				<reportElement x="4" y="0" width="1" height="40" uuid="07411723-50b0-4ba7-9ba4-18e2d81f1d9c"/>
+			</line>
+			<line>
+				<reportElement x="4" y="40" width="540" height="1" uuid="9b4ae7f6-1813-4e01-8825-6ffb08c1116f"/>
+			</line>
+			<line>
+				<reportElement x="543" y="1" width="1" height="40" uuid="88bdf5f5-4cae-4335-b9ff-dc343db0bfba"/>
+			</line>
+			<line>
+				<reportElement x="4" y="0" width="540" height="1" uuid="44947536-d5d7-49fd-91ac-a2bf464d84ca"/>
+			</line>
+			<line>
+				<reportElement x="92" y="0" width="1" height="40" uuid="c59024b8-1f9e-4cd0-a35e-b007c4a404c5"/>
+			</line>
+			<textField>
+				<reportElement x="4" y="1" width="88" height="30" uuid="93ccb58d-e314-428d-a961-f6cc7660e2e7"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bank_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="181" y="0" width="1" height="40" uuid="0cd59752-c1f0-4fb6-aef3-be0ac8065d35"/>
+			</line>
+			<textField>
+				<reportElement x="93" y="1" width="88" height="30" uuid="6e2004b5-7870-4fca-82bb-bc6b5aad3bd5"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{business_code_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="270" y="0" width="1" height="40" uuid="ff74062a-4787-46ca-a1e7-a7bd14d7ff72"/>
+			</line>
+			<textField>
+				<reportElement x="182" y="1" width="88" height="30" uuid="cf5a2573-1e5f-437f-bf0d-eaf994dac5a6"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{search_par_code_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="1" width="259" height="39" uuid="e36e6c20-34b7-4add-8598-b794a42b83f9"/>
+				<textElement>
+					<font fontName="fangsong" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{search_par_value}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
