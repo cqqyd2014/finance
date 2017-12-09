@@ -2,6 +2,7 @@ package gov.cqaudit.finance.bills.new_bill.action;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Actions;
+import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -52,24 +53,21 @@ public class NewBillInitAction extends LoginedInitAction{
 		 @Action( //表示请求的Action及处理方法  
 		            value="new_bill_init",  //表示action的请求名称  
 		            results={  //表示结果跳转  
-		                    @Result(name="success",location="/WEB-INF/bills/new_bill.jsp"),  
-		                    
-		            }
-		    )    
-	  
-	  }) 
+		                    @Result(name="success",location="/WEB-INF/bills/new_bill.jsp")}, interceptorRefs = {
+									@InterceptorRef("authorityInterceptor") })
+
+	})
 	@Authority(module="new_bill_init", privilege="[00010001]",error_url="authority_error") 
 			@Override
 			public String execute() {
 				// TODO Auto-generated method stub
-				
-				
-
 				super.execute();
 				
 				 session = HibernateSessionFactory.getSession();
+				 tx = session.beginTransaction();
+				 java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=new java.util.ArrayList<>();
 				 
-				
+				 session_http.put("new_bill_temp_billdetails", bds);
 				
 				try {
 					super.init_js_par(session);
@@ -79,6 +77,30 @@ public class NewBillInitAction extends LoginedInitAction{
 					bank_code=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelBySId(session, "bank_code");
 					business_code=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelBySId(session, "business_code");
 			
+					//初始化生产bill
+					 gov.cqaudit.finance.bills.model.BillM bm=new gov.cqaudit.finance.bills.model.BillM();
+					 bm.setAudit_user_id("");
+					 bm.setBill_status("起草申请");
+					 bm.setBill_uuid(bill_uuid);
+					 bm.setContract_mail("");
+					 bm.setContract_name("");
+					 bm.setContract_tell("");
+					 java.util.Date now=new java.util.Date();
+					 bm.setCreate_dat(now);
+					 bm.setCreate_user_id(user_id);
+					 bm.setDept_id(dept_id);
+					 bm.setDept_name(dept_name);
+					 bm.setDownload_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
+					 bm.setDownload_user_id("");
+					 bm.setDownload_uuid("");
+					 bm.setLast_audit_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
+					 bm.setLast_modify_dat(now);
+					 bm.setPro_name("");
+					 bm.setSearch_reason("");
+					 bm.setEffective(true);
+					 bm.setPics_num(new java.math.BigDecimal(0));
+					 gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+					 tx.commit();
 			
 		}
 

@@ -1,13 +1,27 @@
 package gov.cqaudit.finance.common;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.util.ServletContextAware;
 import org.hibernate.Session;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class InitAction extends ActionSupport{
+public class InitAction extends ActionSupport  implements ServletResponseAware, ServletContextAware{
 	String jquery_version;
 	String easyi_version;
+	String temp_save_time;
+	public String getTemp_save_time() {
+		return temp_save_time;
+	}
+
+	public void setTemp_save_time(String temp_save_time) {
+		this.temp_save_time = temp_save_time;
+	}
+
 	public String getEasyi_version() {
 		return easyi_version;
 	}
@@ -54,6 +68,23 @@ public class InitAction extends ActionSupport{
 		jquery_ui_version=sp_jquery_ui_ver.getValue();
 		gov.cqaudit.finance.hibernate.entites.SysPar sp_easyui_ver=spdao.getEntityByCode(session, "easyui_ver");
 		easyi_version=sp_easyui_ver.getValue();
+		gov.cqaudit.finance.hibernate.entites.SysPar sp_temp_save_time=spdao.getEntityByCode(session, "temp_save_time");
+		
+		temp_save_time=sp_temp_save_time.getValue();
+	}
+	public ServletContext servletContext;
+	public HttpServletResponse response;
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		// TODO Auto-generated method stub
+		this.servletContext = servletContext;
+	}
+
+	@Override
+	public void setServletResponse(HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		this.response = response;
 	}
 
 }

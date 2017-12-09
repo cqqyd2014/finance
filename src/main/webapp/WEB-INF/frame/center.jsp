@@ -14,7 +14,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<jsp:include page="../common/include_js_css.jsp" flush="true" />
+<jsp:include page="../common/include_easyui.jsp" flush="true" />
 
 <script language='javascript' type='text/javascript'>
 
@@ -27,7 +27,9 @@ function goods_list(){
 <s:iterator value="javascrpits_method" status="st"> 
 
 function ${menu_d_js_method}(){
-	frames["main"].location = '${menu_d_js_url}';
+	
+	var main=$("#main");
+	$("#main").attr("src","${menu_d_js_url}");    
 	$('#content').attr('title','${d_name}')
 }
 

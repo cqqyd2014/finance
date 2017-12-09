@@ -21,7 +21,16 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @ParentPackage("bfkjs-json-default")
 @Namespace("/bills")
 public class GetSearchParCodeAction   extends LoginedAjaxAction {
+	String business_code;
 	
+	public String getBusiness_code() {
+		return business_code;
+	}
+
+	public void setBusiness_code(String business_code) {
+		this.business_code = business_code;
+	}
+
 	@Action(value = "get_search_par_code", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
 			
 			@InterceptorRef("defaultStack"),
@@ -34,22 +43,17 @@ public class GetSearchParCodeAction   extends LoginedAjaxAction {
 	sm.setAuth_success(true);
 			
 			 session = HibernateSessionFactory.getSession();
-			 tx = session.beginTransaction();
+			 
 			try {
 				super.init_js_par(session);
 				
+				java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> search_par=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelByBusinessCode(session, business_code);
 				
-			com.cqqyd2014.hibernate.dao.GoodsDAO swd = new com.cqqyd2014.hibernate.dao.GoodsDAO();
-			java.util.ArrayList<com.cqqyd2014.hibernate.entities.Goods> sws = swd.getUnPrintGoodsBarcode(session, com_id,user_id);
-			for (int i = 0; i < sws.size(); i++) {
-				com.cqqyd2014.hibernate.entities.Goods sw = sws.get(i);
-				sw.setPrinted(true);
-				session.saveOrUpdate(sw);
-			}
-			sm.setSuccess(true);
 			
-			tx.commit();
-			// session.close();
+			
+			sm.setSuccess(true);
+			sm.setO(search_par);
+			
 		}
 
 		catch (HibernateException e) {

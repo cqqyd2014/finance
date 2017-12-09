@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-5 16:09:39 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-9 9:31:50 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -26,6 +26,7 @@ public class SysUser implements java.io.Serializable {
 	private Boolean online;
 	private Date lastOnlineTime;
 	private String email;
+	private String deptId;
 
 	public SysUser() {
 	}
@@ -35,7 +36,7 @@ public class SysUser implements java.io.Serializable {
 	}
 
 	public SysUser(String id, String name, Date createTime, String pwd, String userLogin, String tel, Boolean effective,
-			Boolean online, Date lastOnlineTime, String email) {
+			Boolean online, Date lastOnlineTime, String email, String deptId) {
 		this.id = id;
 		this.name = name;
 		this.createTime = createTime;
@@ -46,6 +47,7 @@ public class SysUser implements java.io.Serializable {
 		this.online = online;
 		this.lastOnlineTime = lastOnlineTime;
 		this.email = email;
+		this.deptId = deptId;
 	}
 
 	@Id
@@ -140,6 +142,15 @@ public class SysUser implements java.io.Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Column(name = "dept_id", length = 36)
+	public String getDeptId() {
+		return this.deptId;
+	}
+
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
 	}
 
 }

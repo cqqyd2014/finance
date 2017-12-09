@@ -24,6 +24,12 @@ public class SysCodeLogic {
 		return getArrayListModelFromArrayListEntity(gov.cqaudit.finance.hibernate.dao.SysCodeDAO.getEntityByCode(session, s_id));
 	}
 	public static java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> getArrayListModelFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VBusinessSearchPar> vbsps_h){
+		java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> scs=new java.util.ArrayList<>();
+		for (int i=0;i<vbsps_h.size();i++) {
+			gov.cqaudit.finance.system.model.SysCode sc=getModelFromView(vbsps_h.get(i));
+			scs.add(sc);
+		}
+		return scs;
 	}
 	
 	public static gov.cqaudit.finance.system.model.SysCode getModelFromView(gov.cqaudit.finance.hibernate.entites.VBusinessSearchPar vbsp_h){
@@ -35,6 +41,7 @@ public class SysCodeLogic {
 
 	
 	public static java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> getArrayListModelByBusinessCode(Session session,String business_code){
-		return gov.cqaudit.finance.hibernate.dao.VBusinessSearchParDAO.getEntityByBusinessCode(session, business_code)
+		return getArrayListModelFromArrayListView(
+				gov.cqaudit.finance.hibernate.dao.VBusinessSearchParDAO.getEntityByBusinessCode(session, business_code));
 	}
  }

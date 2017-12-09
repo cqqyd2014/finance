@@ -69,23 +69,25 @@ public class LoginAction extends ActionSupport {
 				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("密码为空");
 			}
 
-			gov.cqaudit.finance.hibernate.dao.SysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.SysUserDAO();
-			gov.cqaudit.finance.hibernate.entites.SysUser su=sudao.getEntityByLoginName(session, user_name);
+			gov.cqaudit.finance.hibernate.dao.VSysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
+			gov.cqaudit.finance.hibernate.entites.VSysUser vsu=sudao.getEntityByLoginName(session, user_name);
 			
-			if (su==null) {
+			if (vsu==null) {
 				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("用户不存在");
 			}
-			if (!su.getPwd().equals(com.cqqyd2014.util.StringUtil.md5(password))) {
+			if (!vsu.getId().getPwd().equals(com.cqqyd2014.util.StringUtil.md5(password))) {
 				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("密码错误");
 			}
 			
 				// System.out.println("设置信息");
-				session_http.put("user_name",su.getName());
-				session_http.put("user_login", su.getUserLogin());
-				session_http.put("user_id", su.getId());
+				session_http.put("user_name",vsu.getId().getName());
+				session_http.put("user_login", vsu.getId().getUserLogin());
+				session_http.put("user_id", vsu.getId().getId());
+				session_http.put("dept_id", vsu.getId().getDeptId());
+				session_http.put("dept_name", vsu.getId().getDeptName());
 				//设置权限
 				gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO mddao=new gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO();
-				java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VUserMenuD> menuds=mddao.getArrayListEntityByUserId(session, su.getId());
+				java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VUserMenuD> menuds=mddao.getArrayListEntityByUserId(session, vsu.getId().getId());
 				java.util.ArrayList<String> menu_array=new java.util.ArrayList<String>();
 				for (int i=0;i<menuds.size();i++) {
 					menu_array.add(menuds.get(i).getId().getMenuId()+menuds.get(i).getId().getMenuDId());
@@ -93,13 +95,17 @@ public class LoginAction extends ActionSupport {
 				
 				
 				session_http.put("menu_array", menu_array);
+				gov.cqaudit.finance.system.model.SysUser su=gov.cqaudit.finance.system.logic.SysUserLogic.getModelFromView(vsu);
+				
 				su.setOnline(true);
 				java.util.Date now=new java.util.Date();
-				su.setLastOnlineTime(now);
+				su.setLast_online_dat(now);
+				gov.cqaudit.finance.system.logic.SysUserLogic.save(session, su);
+				
 
 				HttpServletRequest request = ServletActionContext.getRequest();
 				String ip = com.cqqyd2014.util.IPUtil.getIpAddr(request);
-				gov.cqaudit.finance.system.logic.SystemLogLogic.save_log(session, new gov.cqaudit.finance.system.model.SystemLog(su.getId(), now, "登录系统，来自IP:"+ip, "Info0001", com.cqqyd2014.util.StringUtil.getUUID()));
+				gov.cqaudit.finance.system.logic.SystemLogLogic.save_log(session, new gov.cqaudit.finance.system.model.SystemLog(su.getUser_id(), now, "登录系统，来自IP:"+ip, "Info0001", com.cqqyd2014.util.StringUtil.getUUID()));
 				
 				sm.setSuccess(true);
 				sm.setAuth_success(true);

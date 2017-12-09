@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 
 
-<title>勤驿达</title>
+<title>重庆市审计局金融处</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
 </head>
-<frameset rows="40,*,25" cols="*" framespacing="0px" frameborder="no" border="0px">
+<frameset rows="50,*,25" cols="*" framespacing="0px" frameborder="no" border="0px">
   <frame style="padding: 0px;margin-top:0px;margin-bottom:0px;" src="top_frame.action" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
   <frame style="padding: 0px;margin-top:0px;margin-bottom:0px;" src="center_frame.action" name="mainFrame" id="mainFrame" />
   <frame style="padding: 0px;margin-top:0px;margin-bottom:0px;" src="buttom_frame.action" name="bottomFrame" scrolling="No" noresize="noresize" id="bottomFrame" />

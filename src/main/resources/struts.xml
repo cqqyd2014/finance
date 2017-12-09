@@ -27,7 +27,7 @@
 		<!--全局结果处理 -->
 		<global-results>
 			
-			<result name="authority_error">/WEB-INF/authoryity_error/authority_error.jsp
+			<result name="authority_error">/WEB-INF/authority_error/authority_error.jsp
 			</result>
 			
 		</global-results>
@@ -55,7 +55,7 @@
 	</package>
 
 
-	<include file="struts-module-print.xml"></include>
+
 
 
 

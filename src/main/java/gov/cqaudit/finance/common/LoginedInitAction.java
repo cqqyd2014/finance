@@ -15,6 +15,28 @@ public class LoginedInitAction extends InitAction{
 	public String user_name;
 	public String user_login;
 	public String sys_role;
+	public String dept_id;
+	public String dept_name;
+	public String getDept_id() {
+		return dept_id;
+	}
+
+
+	public void setDept_id(String dept_id) {
+		this.dept_id = dept_id;
+	}
+
+
+	public String getDept_name() {
+		return dept_name;
+	}
+
+
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+
+
 	public Map<String,Object> session_http;
 
 	public Session session;
@@ -111,7 +133,8 @@ public class LoginedInitAction extends InitAction{
 		user_login = (String) session_http.get("user_login");
 		user_name = (String) session_http.get("user_name");
 		user_id = (String) session_http.get("user_id");
-		
+		dept_name=(String)session_http.get("dept_name");
+		dept_id=(String)session_http.get("dept_id");
 		sm = new com.cqqyd2014.util.AjaxSuccessMessage();
 		
 		return null;

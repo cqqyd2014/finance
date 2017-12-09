@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<jsp:include page="../common/include_js_css.jsp" flush="true" />
+<jsp:include page="../common/include_easyui.jsp" flush="true" />
 
 <script language='javascript' type='text/javascript'>
 	function exit() {
