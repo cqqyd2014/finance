@@ -4,6 +4,9 @@ import org.hibernate.Session;
 
 public class BillDLogic {
 	
+	
+	
+	
 	public static gov.cqaudit.finance.bills.model.BillD getModelFromView(gov.cqaudit.finance.hibernate.entites.VBillD vbd_h){
 		gov.cqaudit.finance.bills.model.BillD bd=new gov.cqaudit.finance.bills.model.BillD();
 		bd.setBank_code(vbd_h.getId().getBankCode());
@@ -15,6 +18,12 @@ public class BillDLogic {
 		bd.setSearch_par_code(vbd_h.getId().getSearchParCode());
 		bd.setSearch_par_code_name(vbd_h.getId().getSearchParName());
 		bd.setSearch_par_value(vbd_h.getId().getSearchParValue());
+		bd.setEffective(vbd_h.getId().getEffective());
+		bd.setCreate_dat(vbd_h.getId().getCreateDat());
+		bd.setCreate_userid(vbd_h.getId().getCreateUserid());
+		bd.setUn_effective_dat(vbd_h.getId().getUnEffectiveDat());
+		bd.setUn_effective_userid(vbd_h.getId().getUnEffectiveUserid());
+		
 		
 		return bd;
 	}
@@ -35,6 +44,11 @@ public class BillDLogic {
 		bd_h.setId(new gov.cqaudit.finance.hibernate.entites.BillDId(bd.getBill_uuid(), bd.getDetail_uuid()));
 		bd_h.setSearchParCode(bd.getSearch_par_code());
 		bd_h.setSearchParValue(bd.getSearch_par_value());
+		bd_h.setEffective(bd.isEffective());
+		bd_h.setCreateDat(bd.getCreate_dat());
+		bd_h.setCreateUserid(bd.getCreate_userid());
+		bd_h.setUnEffectiveDat(bd.getUn_effective_dat());
+		bd_h.setUnEffectiveUserid(bd.getUn_effective_userid());
 		session.saveOrUpdate(bd_h);
 	}
 	
@@ -43,5 +57,7 @@ public class BillDLogic {
 			save(session,bds.get(i));
 		}
 	}
+	
+	
 
 }

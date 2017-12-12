@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-9 9:31:50 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-10 17:02:37 by Hibernate Tools 5.2.6.Final
 
 import java.util.Date;
 import javax.persistence.Column;

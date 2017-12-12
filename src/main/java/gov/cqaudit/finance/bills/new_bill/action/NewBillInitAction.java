@@ -99,6 +99,7 @@ public class NewBillInitAction extends LoginedInitAction{
 					 bm.setSearch_reason("");
 					 bm.setEffective(true);
 					 bm.setPics_num(new java.math.BigDecimal(0));
+					 bm.setDetail_num(new java.math.BigDecimal(0));
 					 gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
 					 tx.commit();
 			

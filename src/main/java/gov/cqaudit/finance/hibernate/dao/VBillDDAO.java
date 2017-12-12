@@ -6,7 +6,7 @@ import org.hibernate.Session;
 public class VBillDDAO {
 	
 	public static java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VBillD> getArrayListViewByBillUuid(Session session,String bill_uuid){
-		String hql = "from VBillD where id.billUuid=:bill_uuid";
+		String hql = "from VBillD where id.effective=true and id.billUuid=:bill_uuid";
 
 		Query q = session.createQuery(hql);
 		q.setParameter("bill_uuid", bill_uuid);

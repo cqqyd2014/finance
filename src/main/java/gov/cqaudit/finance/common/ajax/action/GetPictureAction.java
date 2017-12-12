@@ -11,7 +11,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 
-import com.cqqyd2014.common.action.DownloadFromDBAbstractAction;
+
+import com.cqqyd2014.common.action.DownloadFromServerAbstractAction;
 
 import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 
@@ -21,7 +22,7 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 
 
 
-public class GetPictureAction   extends DownloadFromDBAbstractAction {
+public class GetPictureAction   extends DownloadFromServerAbstractAction {
 	
 
 	String uuid;
@@ -73,6 +74,9 @@ public class GetPictureAction   extends DownloadFromDBAbstractAction {
 		         } catch (HibernateException e) {   
 			             e.printStackTrace();   
 			         }  
+		         finally {
+						HibernateSessionFactory.closeSession();
+					}
 			return SUCCESS;
 		}
 		   gov.cqaudit.finance.bills.model.Picture pic;

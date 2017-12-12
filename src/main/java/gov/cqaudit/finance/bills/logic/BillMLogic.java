@@ -69,9 +69,7 @@ public class BillMLogic {
 		bm_h.setEffective(bm.isEffective());
 		bm_h.setPicsNum(bm.getPics_num());
 		session.saveOrUpdate(bm_h);
-		if (bm.getBds()!=null) {
-			gov.cqaudit.finance.bills.logic.BillDLogic.save(session, bm.getBds());
-		}
+		
 	}
 
 }

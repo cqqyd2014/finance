@@ -9,8 +9,9 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
 
-
+import org.apache.struts2.StrutsStatics;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -19,9 +20,7 @@ import org.apache.struts2.convention.annotation.Result;
 
 import org.hibernate.HibernateException;
 
-
-
-
+import com.opensymphony.xwork2.ActionContext;
 
 import gov.cqaudit.finance.common.PdfPrintInitAbstractAction;
 import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
@@ -102,6 +101,16 @@ public class PrintBillAction extends PdfPrintInitAbstractAction {
 			HibernateSessionFactory.closeSession();
 		}
 		return bms;
+	}
+
+	@Override
+	public String setImagesPath() {
+		// TODO Auto-generated method stub
+
+		HttpServletRequest request = (HttpServletRequest)ActionContext.getContext().get(StrutsStatics.HTTP_REQUEST);
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/"+"util_web/common/get_qrcode.action?msg=";
+
+		return basePath;
 	}
 
 }

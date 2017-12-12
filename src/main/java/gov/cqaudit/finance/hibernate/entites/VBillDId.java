@@ -1,6 +1,7 @@
 package gov.cqaudit.finance.hibernate.entites;
-// Generated 2017-12-9 9:31:50 by Hibernate Tools 5.2.6.Final
+// Generated 2017-12-10 17:02:37 by Hibernate Tools 5.2.6.Final
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -10,6 +11,11 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VBillDId implements java.io.Serializable {
 
+	private Boolean effective;
+	private Date unEffectiveDat;
+	private String unEffectiveUserid;
+	private Date createDat;
+	private String createUserid;
 	private String billUuid;
 	private String detailUuid;
 	private String bankCode;
@@ -23,8 +29,14 @@ public class VBillDId implements java.io.Serializable {
 	public VBillDId() {
 	}
 
-	public VBillDId(String billUuid, String detailUuid, String bankCode, String businessCode, String searchParCode,
-			String searchParValue, String bankName, String businessName, String searchParName) {
+	public VBillDId(Boolean effective, Date unEffectiveDat, String unEffectiveUserid, Date createDat,
+			String createUserid, String billUuid, String detailUuid, String bankCode, String businessCode,
+			String searchParCode, String searchParValue, String bankName, String businessName, String searchParName) {
+		this.effective = effective;
+		this.unEffectiveDat = unEffectiveDat;
+		this.unEffectiveUserid = unEffectiveUserid;
+		this.createDat = createDat;
+		this.createUserid = createUserid;
 		this.billUuid = billUuid;
 		this.detailUuid = detailUuid;
 		this.bankCode = bankCode;
@@ -34,6 +46,51 @@ public class VBillDId implements java.io.Serializable {
 		this.bankName = bankName;
 		this.businessName = businessName;
 		this.searchParName = searchParName;
+	}
+
+	@Column(name = "effective")
+	public Boolean getEffective() {
+		return this.effective;
+	}
+
+	public void setEffective(Boolean effective) {
+		this.effective = effective;
+	}
+
+	@Column(name = "un_effective_dat", length = 35)
+	public Date getUnEffectiveDat() {
+		return this.unEffectiveDat;
+	}
+
+	public void setUnEffectiveDat(Date unEffectiveDat) {
+		this.unEffectiveDat = unEffectiveDat;
+	}
+
+	@Column(name = "un_effective_userid", length = 36)
+	public String getUnEffectiveUserid() {
+		return this.unEffectiveUserid;
+	}
+
+	public void setUnEffectiveUserid(String unEffectiveUserid) {
+		this.unEffectiveUserid = unEffectiveUserid;
+	}
+
+	@Column(name = "create_dat", length = 35)
+	public Date getCreateDat() {
+		return this.createDat;
+	}
+
+	public void setCreateDat(Date createDat) {
+		this.createDat = createDat;
+	}
+
+	@Column(name = "create_userid", length = 36)
+	public String getCreateUserid() {
+		return this.createUserid;
+	}
+
+	public void setCreateUserid(String createUserid) {
+		this.createUserid = createUserid;
 	}
 
 	@Column(name = "bill_uuid", length = 36)
@@ -126,8 +183,21 @@ public class VBillDId implements java.io.Serializable {
 			return false;
 		VBillDId castOther = (VBillDId) other;
 
-		return ((this.getBillUuid() == castOther.getBillUuid()) || (this.getBillUuid() != null
-				&& castOther.getBillUuid() != null && this.getBillUuid().equals(castOther.getBillUuid())))
+		return ((this.getEffective() == castOther.getEffective()) || (this.getEffective() != null
+				&& castOther.getEffective() != null && this.getEffective().equals(castOther.getEffective())))
+				&& ((this.getUnEffectiveDat() == castOther.getUnEffectiveDat())
+						|| (this.getUnEffectiveDat() != null && castOther.getUnEffectiveDat() != null
+								&& this.getUnEffectiveDat().equals(castOther.getUnEffectiveDat())))
+				&& ((this.getUnEffectiveUserid() == castOther.getUnEffectiveUserid())
+						|| (this.getUnEffectiveUserid() != null && castOther.getUnEffectiveUserid() != null
+								&& this.getUnEffectiveUserid().equals(castOther.getUnEffectiveUserid())))
+				&& ((this.getCreateDat() == castOther.getCreateDat()) || (this.getCreateDat() != null
+						&& castOther.getCreateDat() != null && this.getCreateDat().equals(castOther.getCreateDat())))
+				&& ((this.getCreateUserid() == castOther.getCreateUserid())
+						|| (this.getCreateUserid() != null && castOther.getCreateUserid() != null
+								&& this.getCreateUserid().equals(castOther.getCreateUserid())))
+				&& ((this.getBillUuid() == castOther.getBillUuid()) || (this.getBillUuid() != null
+						&& castOther.getBillUuid() != null && this.getBillUuid().equals(castOther.getBillUuid())))
 				&& ((this.getDetailUuid() == castOther.getDetailUuid()) || (this.getDetailUuid() != null
 						&& castOther.getDetailUuid() != null && this.getDetailUuid().equals(castOther.getDetailUuid())))
 				&& ((this.getBankCode() == castOther.getBankCode()) || (this.getBankCode() != null
@@ -154,6 +224,11 @@ public class VBillDId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getEffective() == null ? 0 : this.getEffective().hashCode());
+		result = 37 * result + (getUnEffectiveDat() == null ? 0 : this.getUnEffectiveDat().hashCode());
+		result = 37 * result + (getUnEffectiveUserid() == null ? 0 : this.getUnEffectiveUserid().hashCode());
+		result = 37 * result + (getCreateDat() == null ? 0 : this.getCreateDat().hashCode());
+		result = 37 * result + (getCreateUserid() == null ? 0 : this.getCreateUserid().hashCode());
 		result = 37 * result + (getBillUuid() == null ? 0 : this.getBillUuid().hashCode());
 		result = 37 * result + (getDetailUuid() == null ? 0 : this.getDetailUuid().hashCode());
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());

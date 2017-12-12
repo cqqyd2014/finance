@@ -16,7 +16,25 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @ParentPackage("bfkjs-json-default")
 @Namespace("/bills")
 public class TempSaveBillAction   extends LoginedAjaxAction {
+	java.math.BigDecimal pic_num;
+	java.math.BigDecimal detail_num;
 	
+	public java.math.BigDecimal getPic_num() {
+		return pic_num;
+	}
+
+	public void setPic_num(java.math.BigDecimal pic_num) {
+		this.pic_num = pic_num;
+	}
+
+	public java.math.BigDecimal getDetail_num() {
+		return detail_num;
+	}
+
+	public void setDetail_num(java.math.BigDecimal detail_num) {
+		this.detail_num = detail_num;
+	}
+
 	String bill_uuid;
 	String pro_name;
 	String search_reason;
@@ -92,11 +110,10 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				
 				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(
 						gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
-				@SuppressWarnings("unchecked")
-				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> dbs=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)
-						session_http.get("new_bill_temp_billdetails");
-				bm.setBds(dbs);
 				
+				
+				bm.setPics_num(pic_num);
+				bm.setDetail_num(detail_num);
 				bm.setContract_mail(contract_mail);
 				bm.setContract_name(contract_name);
 				bm.setContract_tell(contract_tell);

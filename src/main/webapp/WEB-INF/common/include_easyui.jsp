@@ -13,7 +13,8 @@
 <script type="text/javascript"
 	src="../js/jquery-easyui-<s:property value="easyi_version" />/jquery.easyui.min.js"></script>
 
-
+<script src="../js/jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" href="../js/jquery.Jcrop.css" type="text/css" />
 <script type="text/javascript" src="../js/jquery.imgbox.pack.js"></script>
 <link rel="stylesheet" type="text/css" href="../js/qyd.css" />
 <script type="text/javascript" src="../js/qyd.js"></script>

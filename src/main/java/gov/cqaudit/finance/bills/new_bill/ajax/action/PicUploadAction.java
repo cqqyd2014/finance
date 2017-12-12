@@ -105,6 +105,7 @@ public class PicUploadAction extends LoginedAjaxAction {
 	/**
 	 * 文件上传关键方法。
 	 */
+	@SuppressWarnings("resource")
 	@Action(value = "pic_upload", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
 			
 			@InterceptorRef("defaultStack"),
@@ -158,8 +159,18 @@ try {
 				is = new FileInputStream(paper.get(i));
 				gov.cqaudit.finance.bills.model.Picture pic=new gov.cqaudit.finance.bills.model.Picture();
 				byte[] input = new byte[is.available()];  
-				is.read(input); 
 				
+				is.read(input); 
+				String barcode=gov.cqaudit.finance.bills.logic.PictureLogic.decode_barcode(input);
+				if (barcode==null||barcode.equals("")) {
+					throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("图片中二维码数据错误，请核实图片是否为系统生成的图片");
+				}
+				
+				System.out.println(barcode);
+				//测试是否为为当前单号
+				if (!barcode.equals(bill_uuid)) {
+					throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("图片中二维码数据错误，该图片不是对应本查询");
+				}
 				pic.setBill_uuid(bill_uuid);
 				pic.setBin_data(input);
 				pic.setContent_type(content_type);

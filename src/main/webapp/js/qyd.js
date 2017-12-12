@@ -5,7 +5,7 @@ var dialog_width_mid = "500px";
 var dialog_height_mid = "300px";
 var dialog_width_little = "300px";
 var dialog_height_little = "200px";
-//窗口初始化
+// 窗口初始化
 
 function dialog_init(o) {
 	$('#' + o).window('resize', {
@@ -30,7 +30,8 @@ function dialog_init_little(o) {
 	});
 	$('#' + o).dialog('close');
 	$('#' + o).window('center');
-	//$('#'+o).panel("move",{top : $(document).scrollTop()+ ($(window).height() - dialog_height_little) * 0.5	});
+	// $('#'+o).panel("move",{top : $(document).scrollTop()+ ($(window).height()
+	// - dialog_height_little) * 0.5 });
 }
 
 function refresh_tab(currentTab) {
@@ -44,7 +45,7 @@ function refresh_tab(currentTab) {
 	currentTab.panel('refresh');
 }
 
-//ajax未认证处理
+// ajax未认证处理
 
 function ajax_authority(field) {
 	if (field == null) {
@@ -56,20 +57,89 @@ function ajax_authority(field) {
 
 }
 
-function ajax_start(){
-	var frame=window.top;
+function ajax_start() {
+	var frame = window.top;
 	frame.frames["bottomFrame"].start();
-	
+
 }
-function ajax_stop(){var frame=window.top;
-frame.frames["bottomFrame"].stop();
+function ajax_stop() {
+	var frame = window.top;
+	frame.frames["bottomFrame"].stop();
 }
 
-//供使用者调用  
+// 
+/**
+ * 
+ * 检查字符串，宽松模式可以为空，但是不能超过长度,
+ * 
+ * @method check_string_allowed_blank_not_length
+ * 
+ * @for 所属类名
+ * 
+ * @param check_string
+ *            需要检查的字符串
+ * @param message_string
+ *            提示信息的字符串
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @return {返回值类型} 返回值说明
+ */
+function check_string_allowed_blank_not_length(check_string, len) {
+	var value = trim($('#' + check_string).val());
+	if (value == '') {
+		$('#' + check_string + '_msg').html(
+				'<font color="red">' + $('#' + check_string + '_title').text()
+						+ '不能为空' + '</font>');
+		return true;
+	}
+	if (value.length >= len) {
+		$('#' + check_string + '_msg').html(
+				'<font color="red">' + $('#' + check_string + '_title').text()
+						+ '长度不能超过' + len + '个字符' + '</font>');
+		return false;
+	}
+	$('#' + check_string + '_msg').html('');
+	return true;
+}
+/**
+ * 
+ * 检查数字需要大于一个值，比如0，宽松模式可以为0,提示警告，总是返回true,
+ * 
+ * @method check_string_allowed_blank_not_length
+ * 
+ * @for 所属类名
+ * 
+ * @param check_string
+ *            需要检查的字符串
+ * @param message_string
+ *            提示信息的字符串
+ * 
+ * 
+ * 
+ * 
+ * 
+ * @return {返回值类型} 返回值说明
+ */
+function check_num_allowed_bigger_tip(check_num, value) {
+	if ($('#' + check_num).val() < value) {
+		$('#' + check_num + '_msg').html(
+				'<font color="red">' + $('#' + check_num + '_title').text()
+						+ '不能小于1' + '</font>');
+	} else {
+		$('#' + check_num + '_msg').html('');
+	}
+
+	return true;
+}
+
+// 供使用者调用
 function trim(s) {
 	return trimRight(trimLeft(s));
 }
-//去掉左边的空白  
+// 去掉左边的空白
 function trimLeft(s) {
 	if (s == null) {
 		return "";
@@ -86,7 +156,7 @@ function trimLeft(s) {
 	return str;
 }
 
-//去掉右边的空白 www.2cto.com   
+// 去掉右边的空白 www.2cto.com
 function trimRight(s) {
 	if (s == null)
 		return "";
@@ -171,10 +241,10 @@ function setDisabled(target, disabled) {
 			state.onclick = target.onclick;
 			target.onclick = null;
 		}
-		//事件处理
+		// 事件处理
 		var events = $(target).data("events");
 		if (events) {
-			var clicks = events.click;//暂时只处理click事件
+			var clicks = events.click;// 暂时只处理click事件
 			state.events = state.events || [];
 			$.extend(state.events, clicks);
 			$(target).unbind("click");
@@ -207,7 +277,7 @@ function setDisabled(target, disabled) {
 		return pattern.test(phone);
 	}
 
-	// 验证身份证 
+	// 验证身份证
 	function isCardNo(card) {
 		var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 		return pattern.test(card);

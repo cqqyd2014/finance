@@ -42,22 +42,33 @@ public class DelBillDetailAction   extends LoginedAjaxAction {
 	sm.setAuth_success(true);
 			
 			 session = HibernateSessionFactory.getSession();
-			 
+			 tx = session.beginTransaction();
 			try {
 				super.init_js_par(session);
 				
 				@SuppressWarnings("unchecked")
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)session_http.get("new_bill_temp_billdetails");
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds_new=new java.util.ArrayList<>();
 				for (int i=0;i<bds.size();i++) {
 					gov.cqaudit.finance.bills.model.BillD bd=bds.get(i);
 					if (bd.getDetail_uuid().equals(detail_uuid)) {
-						bds.remove(bd);
+						//一致的不添加到新数组
+						bd.setEffective(false);
+						bd.setUn_effective_dat(new java.util.Date());
+						bd.setUn_effective_userid(user_id);
+						gov.cqaudit.finance.bills.logic.BillDLogic.save(session, bd);
+					}
+					else {
+						bds_new.add(bd);
 					}
 				}
 			
-				session_http.put("new_bill_temp_billdetails", bds);
+				session_http.put("new_bill_temp_billdetails", bds_new);
+				
+				tx.commit();
+				
 			sm.setSuccess(true);
-			sm.setO(bds);
+			sm.setO(bds_new);
 			
 		}
 

@@ -75,7 +75,7 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 	sm.setAuth_success(true);
 			
 			 session = HibernateSessionFactory.getSession();
-			 
+			 tx = session.beginTransaction();
 			try {
 				super.init_js_par(session);
 				
@@ -92,9 +92,16 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 				bd.setSearch_par_code(search_par_code);
 				bd.setSearch_par_code_name(gov.cqaudit.finance.hibernate.dao.SysCodeDAO.getValueBySIdCode(session, "search_par_code", search_par_code));
 				bd.setSearch_par_value(search_par_value);
+				bd.setEffective(true);
+				bd.setCreate_dat(new java.util.Date());
+				bd.setCreate_userid(user_id);
+				bd.setUn_effective_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
+				bd.setUn_effective_userid("");
 				bds.add(bd);
 			
 				session_http.put("new_bill_temp_billdetails", bds);
+				gov.cqaudit.finance.bills.logic.BillDLogic.save(session, bd);
+				tx.commit();
 			sm.setSuccess(true);
 			sm.setO(bds);
 			

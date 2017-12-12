@@ -2,7 +2,14 @@ package gov.cqaudit.finance.bills.model;
 
 public class BillM {
 	java.math.BigDecimal pics_num;
+	java.math.BigDecimal detail_num;
 	
+	public java.math.BigDecimal getDetail_num() {
+		return detail_num;
+	}
+	public void setDetail_num(java.math.BigDecimal detail_num) {
+		this.detail_num = detail_num;
+	}
 	public java.math.BigDecimal getPics_num() {
 		return pics_num;
 	}

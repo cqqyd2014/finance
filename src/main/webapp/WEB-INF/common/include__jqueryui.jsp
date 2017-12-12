@@ -13,6 +13,8 @@
 	href="../js/jquery-ui-<s:property value="jquery_ui_version" />/jquery-ui.min.css" >
 
 
+<script src="../js/jquery.Jcrop.min.js"></script>
+<link rel="stylesheet" href="../js/jquery.Jcrop.css" type="text/css" />
 
 
 <link rel="stylesheet" type="text/css" href="../js/qyd.css" />

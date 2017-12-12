@@ -23,6 +23,51 @@
 
 <script type="text/javascript">
 
+var pic_num;
+	function print_bill_callback(){
+		print_bill('<s:property value="#request.bill_uuid"/>');
+		}
+
+	function save_print_bill(){
+
+		//如果没有条目，不能打印
+		var detail_num=$('#seatch_item_count').numberbox('getValue');
+		if (detail_num==0){
+
+			$.messager.alert("操作提示", "没有查询条目，不能打印！", "error");
+			return ;
+		}
+		temp_save_bill(print_bill_callback);
+
+		}
+
+	function save_callback(){
+		//nothing todo
+		}
+	function exit_callback(){
+		//alert('exit');
+
+		windo.location.href="../bills/my_bills_init.action";
+		}
+
+	function temp_save_bill_and_exit(){
+		temp_save_bill(exit_callback);
+		}
+
+	function temp_save_bill_check_field(){
+		//检测字段是否合规
+		//申请人信息
+		
+		check_string_allowed_blank_not_length('contract_name','联系人姓名',64);
+		check_string_allowed_blank_not_length('contract_tell','联系人电话',64);
+		check_string_allowed_blank_not_length('contract_mail','联系人邮件',64);
+		check_string_allowed_blank_not_length('pro_name','项目名称',512);
+		check_string_allowed_blank_not_length('search_reason','联系人邮件',1024);
+		check_num_allowed_bigger_tip('seatch_item_count',1);
+		
+		return true;
+		}
+
 
 	function set_change_business_code(){
 		var business_code=$("#business_code").combobox("getValue");
@@ -88,8 +133,12 @@
 		});
 
 	}
-	function temp_save_bill(){
+	function temp_save_bill(callback){
 		ajax_start();
+		//是否满足临时保存条件
+		if (!temp_save_bill_check_field()){
+			return;
+			}
 
 $.getJSON("temp_save_bill.action", {
 			
@@ -98,7 +147,10 @@ $.getJSON("temp_save_bill.action", {
 			contract_name:$('#contract_name').textbox('getValue'),
 			contract_tell:$('#contract_tell').textbox('getValue'),
 			search_reason:$('#search_reason').textbox('getValue'),
-			contract_mail:$('#contract_mail').textbox('getValue')
+			contract_mail:$('#contract_mail').textbox('getValue'),
+			"pic_num":pic_num,
+			detail_num:$('#seatch_item_count').numberbox('getValue')
+				
 		}, function(result) {
 			ajax_stop();
 
@@ -107,6 +159,7 @@ $.getJSON("temp_save_bill.action", {
 			if (field.success) {
 				//有效
 				//alert('保存成功')
+				callback();
 
 			} else {
 
@@ -132,7 +185,7 @@ $.getJSON("temp_save_bill.action", {
 				var bds=field.o2;
 				show_bill(bill);
 				show_bds(bds);
-				setInterval("temp_save_bill()", <s:property value="#request.temp_save_time"/> * 1000*60);
+				setInterval("temp_save_bill(save_callback)", <s:property value="#request.temp_save_time"/> * 1000*60);
 
 			} else {
 
@@ -154,6 +207,7 @@ $.getJSON("temp_save_bill.action", {
 
 	function show_bds(data) {
 		var n = data.length;
+		$('#seatch_item_count').numberbox('setValue', n);
 		$("#bds_table").datagrid('loadData', {
 			total : n,
 			rows : data
@@ -185,12 +239,12 @@ $.getJSON("temp_save_bill.action", {
 		});
 	}
 	</script>
-	<script>
+<script>
 	$(document)
 			.ready(
 					function() {
 						//$("#login_dialog").panel("move",{top:$(document).scrollTop() + ($(window).height()-250) * 0.5});  
-						
+						pic_num=0;
 						 $('#bank_code').combobox({    
 			                 required:true,    
 			                 multiple:false, //多选
@@ -311,6 +365,7 @@ $.getJSON("temp_save_bill.action", {
 					var pic_names = field.o2;
 					var pic_name = pic_names[0];
 					$.messager.alert("操作提示", "上传图片成功：" + pic_name, "info");
+					
 					show_pics();
 				}
 				else{
@@ -352,6 +407,7 @@ $.getJSON("temp_save_bill.action", {
 				//一行最多6个照片
 				var flag=1;
 				var i;
+				pic_num=pics.length;
 				for (i=0;i<pics.length;i++){
 					var pic=pics[i];
 
@@ -437,66 +493,70 @@ $.getJSON("temp_save_bill.action", {
 		<h1 align='center'>查询账户审批单</h1>
 
 		<table border="1" width="90%" class="box" align='center'>
-		<tr>
-					<td colspan='2'>
-						<span style='float: left'>系统每<span>${temp_save_time }</span>分钟暂存一次数据</span><span style='float: right'>
-							<a href="javascript:void(0)" class="easyui-linkbutton"
-							icon="icon-print"
-							onclick="javascript:print_bill('<s:property value="#request.bill_uuid"/>')">打印申请</a>
+			<tr>
+				<td colspan='2'><span style='float: left'>系统每<span>${temp_save_time }</span>分钟暂存一次数据
+				</span><span style='float: right'> <a href="javascript:void(0)"
+						class="easyui-linkbutton" icon="icon-print"
+						onclick="javascript:save_print_bill()">打印申请</a>
 
-							<a href="javascript:void(0)" class="easyui-linkbutton"
-							onclick="javascript:temp_save_bill()" icon="icon-save">暂存退出</a> <a
-							href="javascript:void(0)" class="easyui-linkbutton"
-							onclick="javascript:login()" icon="icon-ok">提交申请</a>
-						</span>
-					</td>
+						<a href="javascript:void(0)" class="easyui-linkbutton"
+						onclick="javascript:temp_save_bill_and_exit()" icon="icon-save">暂存退出</a> <a
+						href="javascript:void(0)" class="easyui-linkbutton"
+						onclick="javascript:login()" icon="icon-ok">提交申请</a>
+				</span></td>
 			</tr>
 			<tr>
-				<td >申请单位：</td>
+				<td>申请单位：</td>
 				<td><span id='dept_name'></span></td>
 			</tr>
 			<tr>
-				<td> 联系人：</td>
-				<td><input
-							class="easyui-textbox" type='text' id='contract_name'
-							required="true" data-options="iconCls:'icon-man'"  style="width: 100%;">
+				<td>
+					<div id='contract_name_title'>联系人</div>
 				</td>
+				<td><input class="easyui-textbox" type='text'
+					id='contract_name' required="true"
+					data-options="iconCls:'icon-man'" style="width: 100%;">
+					<div id="contract_name_msg"></div></td>
 			</tr>
 			<tr>
-				<td> 联系电话：
-			</td>
-			<td><input
-							type='text' id='contract_tell' class="easyui-textbox"
-							required="true"  style="width: 100%;"> 
-							</td>
-							
-					</tr>
+				<td>
+					<div id='contract_tell_title'>联系电话</div>
+				</td>
+				<td><input type='text' id='contract_tell'
+					class="easyui-textbox" required="true" style="width: 100%;">
+					<div id="contract_tell_msg"></div></td>
+
+			</tr>
 			<tr>
-				<td> 邮箱：
-			</td>
-			<td><input
-							type='text' id='contract_mail' class="easyui-textbox"
-							required="true" style="width: 100%;"> <input type="hidden"
-							value='<s:property value="#request.bill_uuid"/>' id='bill_uuid'>
-							</td>
-							
-					</tr>		
-					
+				<td>
+					<div id='contract_mail_title'>邮箱</div>
+				</td>
+				<td><input type='text' id='contract_mail'
+					class="easyui-textbox" required="true" style="width: 100%;">
+					<input type="hidden"
+					value='<s:property value="#request.bill_uuid"/>' id='bill_uuid'>
+					<div id="contract_mail_msg"></div></td>
+
+			</tr>
+
 			<tr>
-				<td width='30%'>审计（调查）项目名称</td>
+				<td width='30%'><div id='pro_name_title'>审计（调查）项目名称</div></td>
 				<td width='70%'><input required="true"
 					style="width: 100%; height: 50px" id="pro_name"
-					class="easyui-textbox" data-options="multiline:true"></input></td>
+					class="easyui-textbox" data-options="multiline:true"></input>
+					<div id="pro_name_msg"></div></td>
 			</tr>
 			<tr>
-				<td width='30%'>查询理由</td>
+				<td width='30%'><div id='search_reason_title'>查询理由</div></td>
 				<td width='70%'><input required="true"
 					style="width: 100%; height: 50px" id="search_reason"
-					class="easyui-textbox" data-options="multiline:true"></input></td>
+					class="easyui-textbox" data-options="multiline:true"></input>
+					<div id="search_reason_msg"></div></td>
 			</tr>
 			<tr>
 				<td colspan='2'>
 					<div>
+						<div>录入查询条目</div>
 						<div>
 							1、银行：
 							<s:select id="bank_code" name="bank_code" list="bank_code"
@@ -517,6 +577,13 @@ $.getJSON("temp_save_bill.action", {
 								align='right'> <a href="javascript:void(0)"
 								class="easyui-linkbutton" onclick="javascript:add_detail()"
 								iconCls="icon-add">增加查询项目</a></span>
+						</div>
+						<div>
+							<span>已经录入</span><span id='seatch_item_count_title'>查询条目</span> <span><input
+								class="easyui-numberbox" value="0" style="width: 50px"
+								disabled='disabled' data-options="min:0,precision:0"
+								id='seatch_item_count'></span> <span>条。</span><span
+								id='seatch_item_count_msg'></span>
 						</div>
 					</div>
 					<table width='100%' id='bds_table' style="height: 200px">
@@ -543,16 +610,16 @@ $.getJSON("temp_save_bill.action", {
 				<td>局长意见</td>
 				<td>&nbsp;签名&nbsp;日期</td>
 			</tr>
-			
-			
-			
+
+
+
 			<tr>
-				<td colspan='2'> <input class="easyui-filebox" style="width:100%"
-					id="paper" name="paper"
+				<td colspan='2'><input class="easyui-filebox"
+					style="width: 100%" id="paper" name="paper"
 					data-options="onChange:function(){ajaxFileUpload()},label:'上传纸质签批扫描件:',buttonText:'浏览选择文件',prompt:'仅支持jpg、tiff、png格式的图片'
 					,required:true,accept:'image/png,image/jpeg,image/tiff'" />
-					
-					
+
+
 
 				</td>
 			</tr>
@@ -561,9 +628,9 @@ $.getJSON("temp_save_bill.action", {
 					<div id='pics_table'></div>
 				</td>
 			</tr>
-			
-			
-			
+
+
+
 		</table>
 
 	</div>

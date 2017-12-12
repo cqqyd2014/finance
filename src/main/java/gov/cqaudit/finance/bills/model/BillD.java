@@ -1,6 +1,51 @@
 package gov.cqaudit.finance.bills.model;
 
 public class BillD {
+	boolean effective;
+	String un_effective_userid;
+	java.util.Date un_effective_dat;
+	String create_userid;
+	public boolean isEffective() {
+		return effective;
+	}
+
+	public void setEffective(boolean effective) {
+		this.effective = effective;
+	}
+
+	public String getUn_effective_userid() {
+		return un_effective_userid;
+	}
+
+	public void setUn_effective_userid(String un_effective_userid) {
+		this.un_effective_userid = un_effective_userid;
+	}
+
+	public java.util.Date getUn_effective_dat() {
+		return un_effective_dat;
+	}
+
+	public void setUn_effective_dat(java.util.Date un_effective_dat) {
+		this.un_effective_dat = un_effective_dat;
+	}
+
+	public String getCreate_userid() {
+		return create_userid;
+	}
+
+	public void setCreate_userid(String create_userid) {
+		this.create_userid = create_userid;
+	}
+
+	public java.util.Date getCreate_dat() {
+		return create_dat;
+	}
+
+	public void setCreate_dat(java.util.Date create_dat) {
+		this.create_dat = create_dat;
+	}
+
+	java.util.Date create_dat;
 	String detail_uuid;
 	public String getDetail_uuid() {
 		return detail_uuid;
