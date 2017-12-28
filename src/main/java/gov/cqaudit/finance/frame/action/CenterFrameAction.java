@@ -79,19 +79,19 @@ java.util.ArrayList<gov.cqaudit.finance.system.model.MenuM> menu;
 		
 		
 		try {
-			super.init_js_par(session);
-			gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO vumddao=new gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO();
-			javascrpits_method=gov.cqaudit.finance.system.logic.MenuDLogic.getArrayListModelFromArrayListView(
-					vumddao.getArrayListEntityByUserId(session, user_id));
 			
-		gov.cqaudit.finance.hibernate.dao.VUserMenuMDAO vummdao=new gov.cqaudit.finance.hibernate.dao.VUserMenuMDAO();
+			//gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO vumddao=new gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO();
+			javascrpits_method=gov.cqaudit.finance.system.logic.MenuDLogic.getArrayListModelFromArrayListView(
+					gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO.getArrayListEntityByUserId(session, user_id));
+			
+		//gov.cqaudit.finance.hibernate.dao.VUserMenuMDAO vummdao=new gov.cqaudit.finance.hibernate.dao.VUserMenuMDAO();
 		
 		
 		menu=gov.cqaudit.finance.system.logic.MenuMLogic.getArrayListModelFromArrayListView(
-				vummdao.getArrayListEntity(session, user_id));
+				gov.cqaudit.finance.hibernate.dao.VUserMenuMDAO.getArrayListViewByUserId(session, user_id));
 		for (int i=0;i<menu.size();i++) {
 			gov.cqaudit.finance.system.model.MenuM mm=menu.get(i);
-			java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VUserMenuD> vumds=vumddao.getArrayListEntityByIdUserId(session, mm.getM_id(), user_id);
+			java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VUserMenuD> vumds=gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO.getArrayListEntityByIdUserId(session, mm.getM_id(), user_id);
 			mm.setMds(gov.cqaudit.finance.system.logic.MenuDLogic.getArrayListModelFromArrayListView(vumds));
 		}
 		

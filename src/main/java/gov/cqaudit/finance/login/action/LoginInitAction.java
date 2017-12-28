@@ -42,7 +42,7 @@ Session session = HibernateSessionFactory.getSession();
 		
 		try {
 		
-		super.init_js_par(session);
+		
 		}
 
 		catch (HibernateException e) {

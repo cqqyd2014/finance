@@ -36,11 +36,19 @@ public class DelPicAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 tx = session.beginTransaction();
 			try {
-				super.init_js_par(session);
+				
 				
 				gov.cqaudit.finance.bills.model.Picture pic=gov.cqaudit.finance.bills.logic.PictureLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VPictureDAO.getEntityByUuid(session, pic_uuid));
 				pic.setEffective(false);
+				String bill_uuid=pic.getBill_uuid();
 				gov.cqaudit.finance.bills.logic.PictureLogic.save(session, pic);
+				session.flush();
+				//得到图片数量，更新申请单
+				java.math.BigDecimal pictures_num=gov.cqaudit.finance.hibernate.dao.PictureDAO.getEntityCountByBillUuid(session, bill_uuid);
+				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+				bm.setPics_num(pictures_num);
+				gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+				session.flush();
 				
 			sm.setSuccess(true);
 			tx.commit();

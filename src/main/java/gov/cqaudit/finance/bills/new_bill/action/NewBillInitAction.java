@@ -70,7 +70,7 @@ public class NewBillInitAction extends LoginedInitAction{
 				 session_http.put("new_bill_temp_billdetails", bds);
 				
 				try {
-					super.init_js_par(session);
+					
 					
 					chinese_date=com.cqqyd2014.util.DateUtil.getLocalFullString(new java.util.Date());
 					bill_uuid=com.cqqyd2014.util.StringUtil.getUUID();
@@ -100,6 +100,9 @@ public class NewBillInitAction extends LoginedInitAction{
 					 bm.setEffective(true);
 					 bm.setPics_num(new java.math.BigDecimal(0));
 					 bm.setDetail_num(new java.math.BigDecimal(0));
+					 bm.setUneffecitve_user_id("");
+					 bm.setUneffective_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
+					 
 					 gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
 					 tx.commit();
 			

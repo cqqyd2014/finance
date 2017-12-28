@@ -43,7 +43,7 @@ public class HomePageFrameAction extends LoginedInitAction{
 				
 				
 				try {
-					super.init_js_par(session);
+					
 		
 			
 			

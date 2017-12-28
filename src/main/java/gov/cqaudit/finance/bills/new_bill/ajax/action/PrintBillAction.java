@@ -28,7 +28,7 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 
 
 @ParentPackage("bfkjs-default")
-@Namespace("/bill")
+@Namespace("/bills")
 
 
 
@@ -79,6 +79,7 @@ public class PrintBillAction extends PdfPrintInitAbstractAction {
 	@Override
 	public ArrayList<? extends Object> initializeBeanArray() {
 		session = HibernateSessionFactory.getSession();
+		tx=session.beginTransaction();
 		java.util.ArrayList<String> uuids = com.cqqyd2014.util.StringUtil.ArrayToArrayList(bill_uuid.split(","));
 		java.util.ArrayList<gov.cqaudit.finance.bills.model.BillM> bms = null;
 		try {
@@ -88,13 +89,22 @@ public class PrintBillAction extends PdfPrintInitAbstractAction {
 
 			for (int i = 0; i < bms.size(); i++) {
 				gov.cqaudit.finance.bills.model.BillM bm = bms.get(i);
-				bm.setBds(gov.cqaudit.finance.bills.logic.BillDLogic
+				bm.setBill_details(gov.cqaudit.finance.bills.logic.BillDLogic
 						.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO
 								.getArrayListViewByBillUuid(session, bm.getBill_uuid())));
+				if (bm.getBill_status().equals("起草申请")){
+					bm.setBill_status("打印待签");
+					gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+				}
+				
 
 			}
+			tx.commit();
 		} catch (HibernateException e) {
+			if (null != tx) {
+				tx.rollback();// 撤销事务
 
+			}
 			System.out.println("Hibernate错误"+e.toString());
 
 		} finally {

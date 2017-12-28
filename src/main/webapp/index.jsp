@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<script type="text/javascript" src="js/jquery-2.1.4.min.js">
+
 	
 </script>
 <script  type='text/javascript'>
@@ -15,11 +15,7 @@ function qyd_pc(){
  
 
 </script>
-<link rel="stylesheet" type="text/css"
-	href="js/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="js/themes/icon.css" />
-<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
-<link rel="stylesheet" type="text/css" href="js/qyd.css">
+<jsp:include page="WEB-INF/common/include_easyui1.jsp" flush="true" />
 </head>
 <body>
 	<table style='width: 100%'>

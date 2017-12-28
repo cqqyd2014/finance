@@ -8,59 +8,15 @@
 
 
 
-<jsp:include page="../common/include__jqueryui.jsp" flush="true" />
+
+
 
 
 <title>My JSP 'down.jsp' starting page</title>
-<script>
 
- 
-		function start(){
-			var progressbar = $( "#progressbar" );
-	        var progressbarValue = progressbar.find( ".ui-progressbar-value" );
-			progressbarValue.css({
-		          "background": '#' + Math.floor( Math.random() * 16777215 ).toString( 16 )
-		        });
-			progressbar.progressbar( "option", "value", false );
-		}
-	
-		function stop(){
-			var progressbar = $( "#progressbar" );
-	       
-			
-			progressbar.progressbar( "option", {
-		          value: 100
-		        });
-		}
-
-
-
-		$(document)
-		.ready(
-				function() {
-		        $( "#progressbar" ).progressbar({
-		          value: true
-		        });
-		        var progressbar = $( "#progressbar" );
-		        var progressbarValue = progressbar.find( ".ui-progressbar-value" );
-				progressbarValue.css({
-			          "background": '#' + Math.floor( Math.random() * 16777215 ).toString( 16 )
-			        });
-				});
-		        
-		    
-	</script>
-<style>
-#progressbar .ui-progressbar-value {
-	background-color: #ccc;
-}
-</style>
 </head>
 
-<body style="padding: 0px; margin: 0px">
-	<div id="progressbar"></div>
-
-
+重庆市审计局金融处 201712 如果您在使用中存在任何问题或有更好的建议请电话联系13368431187 王利
 
 </body>
 </html>

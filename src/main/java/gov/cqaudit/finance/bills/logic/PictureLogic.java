@@ -59,7 +59,7 @@ public class PictureLogic {
 	
 	
 	
-	public static gov.cqaudit.finance.bills.model.Picture getModelFromView(gov.cqaudit.finance.hibernate.entites.VPicture vp){
+	public static gov.cqaudit.finance.bills.model.Picture getModelFromView(gov.cqaudit.finance.hibernate.entities.VPicture vp){
 		gov.cqaudit.finance.bills.model.Picture p=new gov.cqaudit.finance.bills.model.Picture();
 		p.setBin_data(vp.getId().getBinData());
 		p.setContent_type(vp.getId().getFileType());
@@ -73,7 +73,7 @@ public class PictureLogic {
 		p.setBill_uuid(vp.getId().getBillUuid());
 		return p;
 	}
-	public static java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> getArrayListModelFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VPicture> vps){
+	public static java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> getArrayListModelFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VPicture> vps){
 		java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> ps=new java.util.ArrayList<>();
 		for (int i=0;i<vps.size();i++) {
 			gov.cqaudit.finance.bills.model.Picture p=getModelFromView(vps.get(i));
@@ -83,7 +83,7 @@ public class PictureLogic {
 	}
 	
 	public static void save(Session session,gov.cqaudit.finance.bills.model.Picture p) {
-		gov.cqaudit.finance.hibernate.entites.Picture p_h=new gov.cqaudit.finance.hibernate.entites.Picture();
+		gov.cqaudit.finance.hibernate.entities.Picture p_h=new gov.cqaudit.finance.hibernate.entities.Picture();
 		p_h.setBillUuid(p.getBill_uuid());
 		p_h.setBinData(p.getBin_data());
 		p_h.setEffective(p.isEffective());

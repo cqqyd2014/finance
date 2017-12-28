@@ -44,7 +44,7 @@ public class GetBillAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 
 			try {
-				super.init_js_par(session);
+				
 				
 				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(
 						gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));

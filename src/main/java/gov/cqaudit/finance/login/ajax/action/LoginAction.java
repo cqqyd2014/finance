@@ -70,7 +70,7 @@ public class LoginAction extends ActionSupport {
 			}
 
 			gov.cqaudit.finance.hibernate.dao.VSysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
-			gov.cqaudit.finance.hibernate.entites.VSysUser vsu=sudao.getEntityByLoginName(session, user_name);
+			gov.cqaudit.finance.hibernate.entities.VSysUser vsu=sudao.getEntityByLoginName(session, user_name);
 			
 			if (vsu==null) {
 				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("用户不存在");
@@ -85,9 +85,16 @@ public class LoginAction extends ActionSupport {
 				session_http.put("user_id", vsu.getId().getId());
 				session_http.put("dept_id", vsu.getId().getDeptId());
 				session_http.put("dept_name", vsu.getId().getDeptName());
+				//设置用户参数
+				java.util.ArrayList<gov.cqaudit.finance.system.model.UserPar> ups=gov.cqaudit.finance.system.logic.UserParLogic.getArrayListModelEntityFromArrayListEntity(
+						gov.cqaudit.finance.hibernate.dao.UserParDAO.getArrayListEntityByUserId(session, vsu.getId().getId()));
+				for (int i=0,len=ups.size();i<len;i++){
+					gov.cqaudit.finance.system.model.UserPar up=ups.get(i);
+					session_http.put(up.getParam(),up.getValue());
+				}
 				//设置权限
 				gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO mddao=new gov.cqaudit.finance.hibernate.dao.VUserMenuDDAO();
-				java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VUserMenuD> menuds=mddao.getArrayListEntityByUserId(session, vsu.getId().getId());
+				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VUserMenuD> menuds=mddao.getArrayListEntityByUserId(session, vsu.getId().getId());
 				java.util.ArrayList<String> menu_array=new java.util.ArrayList<String>();
 				for (int i=0;i<menuds.size();i++) {
 					menu_array.add(menuds.get(i).getId().getMenuId()+menuds.get(i).getId().getMenuDId());

@@ -42,7 +42,7 @@ public class ButtomframeAction extends LoginedInitAction{
 				
 				
 				try {
-					super.init_js_par(session);
+					
 		
 			
 			

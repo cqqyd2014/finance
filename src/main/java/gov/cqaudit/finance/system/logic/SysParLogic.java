@@ -1,7 +1,7 @@
 package gov.cqaudit.finance.system.logic;
 
 public class SysParLogic {
-	public static gov.cqaudit.finance.system.model.SysPar getModelFromEntity(gov.cqaudit.finance.hibernate.entites.SysPar sp_h){
+	public static gov.cqaudit.finance.system.model.SysPar getModelFromEntity(gov.cqaudit.finance.hibernate.entities.SysPar sp_h){
 		gov.cqaudit.finance.system.model.SysPar sp=new gov.cqaudit.finance.system.model.SysPar();
 		sp.setCode(sp_h.getCode());
 		sp.setDesc(sp_h.getCodeDesc());

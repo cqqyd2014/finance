@@ -1,6 +1,41 @@
 package gov.cqaudit.finance.bills.model;
 
 public class BillM {
+	
+	java.util.Date uneffective_dat;
+	String uneffective_dat_chinese_print;
+	public String getUneffective_dat_chinese_print() {
+		return uneffective_dat_chinese_print;
+	}
+	public void setUneffective_dat_chinese_print(String uneffective_dat_chinese_print) {
+		this.uneffective_dat_chinese_print = uneffective_dat_chinese_print;
+	}
+
+	String uneffecitve_user_id;
+	String uneffecitve_user_name;
+	
+	public java.util.Date getUneffective_dat() {
+		return uneffective_dat;
+	}
+	public void setUneffective_dat(java.util.Date uneffective_dat) {
+		this.uneffective_dat = uneffective_dat;
+	}
+	public String getUneffecitve_user_id() {
+		return uneffecitve_user_id;
+	}
+	public void setUneffecitve_user_id(String uneffecitve_user_id) {
+		this.uneffecitve_user_id = uneffecitve_user_id;
+	}
+	public String getUneffecitve_user_name() {
+		return uneffecitve_user_name;
+	}
+	public void setUneffecitve_user_name(String uneffecitve_user_name) {
+		this.uneffecitve_user_name = uneffecitve_user_name;
+	}
+
+	java.util.ArrayList<Picture> pictures;
+
+
 	java.math.BigDecimal pics_num;
 	java.math.BigDecimal detail_num;
 	
@@ -17,13 +52,21 @@ public class BillM {
 		this.pics_num = pics_num;
 	}
 
-	java.util.ArrayList<BillD> bds;
-	public java.util.ArrayList<BillD> getBds() {
-		return bds;
+	public java.util.ArrayList<Picture> getPictures() {
+		return pictures;
 	}
-	public void setBds(java.util.ArrayList<BillD> bds) {
-		this.bds = bds;
+	public void setPictures(java.util.ArrayList<Picture> pictures) {
+		this.pictures = pictures;
 	}
+	public java.util.ArrayList<BillD> getBill_details() {
+		return bill_details;
+	}
+	public void setBill_details(java.util.ArrayList<BillD> bill_details) {
+		this.bill_details = bill_details;
+	}
+
+	java.util.ArrayList<BillD> bill_details;
+
 
 	boolean effective;
 	public boolean isEffective() {

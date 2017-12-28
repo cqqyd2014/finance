@@ -47,9 +47,9 @@ if (user_id==null||user_id.equals("")) {
 		 session = HibernateSessionFactory.getSession();
 		 tx = session.beginTransaction();
 		try {
-			super.init_js_par(session);
+			
 			gov.cqaudit.finance.hibernate.dao.SysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.SysUserDAO();
-			gov.cqaudit.finance.hibernate.entites.SysUser su=sudao.getEntityByUserId(session, user_id);
+			gov.cqaudit.finance.hibernate.entities.SysUser su=sudao.getEntityByUserId(session, user_id);
 			su.setLastOnlineTime(new java.util.Date());
 			su.setOnline(false);
 			session.saveOrUpdate(su);

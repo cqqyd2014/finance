@@ -65,8 +65,7 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 
 	@Action(value = "add_bill_detail", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
 			
-			@InterceptorRef("defaultStack"),
-			@InterceptorRef("authorityInterceptor") })
+			@InterceptorRef("authorityStack") })
 @Authority(module = "add_bill_detail", privilege = "[00010001]", error_url = "authority_ajax_error")
 	@Override
 	public String execute() {
@@ -77,7 +76,7 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 tx = session.beginTransaction();
 			try {
-				super.init_js_par(session);
+				
 				
 				@SuppressWarnings("unchecked")
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)session_http.get("new_bill_temp_billdetails");

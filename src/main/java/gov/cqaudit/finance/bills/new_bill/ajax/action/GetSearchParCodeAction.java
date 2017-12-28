@@ -45,7 +45,7 @@ public class GetSearchParCodeAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 
 			try {
-				super.init_js_par(session);
+				
 				
 				java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> search_par=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelByBusinessCode(session, business_code);
 				

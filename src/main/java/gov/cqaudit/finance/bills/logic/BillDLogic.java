@@ -7,7 +7,7 @@ public class BillDLogic {
 	
 	
 	
-	public static gov.cqaudit.finance.bills.model.BillD getModelFromView(gov.cqaudit.finance.hibernate.entites.VBillD vbd_h){
+	public static gov.cqaudit.finance.bills.model.BillD getModelFromView(gov.cqaudit.finance.hibernate.entities.VBillD vbd_h){
 		gov.cqaudit.finance.bills.model.BillD bd=new gov.cqaudit.finance.bills.model.BillD();
 		bd.setBank_code(vbd_h.getId().getBankCode());
 		bd.setBank_name(vbd_h.getId().getBankName());
@@ -28,7 +28,7 @@ public class BillDLogic {
 		return bd;
 	}
 	
-	public static java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> getArrayListFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VBillD> vbds){
+	public static java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> getArrayListFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VBillD> vbds){
 		java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=new java.util.ArrayList<>();
 		for (int i=0;i<vbds.size();i++) {
 			gov.cqaudit.finance.bills.model.BillD bd=getModelFromView(vbds.get(i));
@@ -38,10 +38,10 @@ public class BillDLogic {
 	}
 	
 	public static void save(Session session,gov.cqaudit.finance.bills.model.BillD bd) {
-		gov.cqaudit.finance.hibernate.entites.BillD bd_h=new gov.cqaudit.finance.hibernate.entites.BillD();
+		gov.cqaudit.finance.hibernate.entities.BillD bd_h=new gov.cqaudit.finance.hibernate.entities.BillD();
 		bd_h.setBankCode(bd.getBank_code());
 		bd_h.setBusinessCode(bd.getBusiness_code());
-		bd_h.setId(new gov.cqaudit.finance.hibernate.entites.BillDId(bd.getBill_uuid(), bd.getDetail_uuid()));
+		bd_h.setId(new gov.cqaudit.finance.hibernate.entities.BillDId(bd.getBill_uuid(), bd.getDetail_uuid()));
 		bd_h.setSearchParCode(bd.getSearch_par_code());
 		bd_h.setSearchParValue(bd.getSearch_par_value());
 		bd_h.setEffective(bd.isEffective());
@@ -49,6 +49,7 @@ public class BillDLogic {
 		bd_h.setCreateUserid(bd.getCreate_userid());
 		bd_h.setUnEffectiveDat(bd.getUn_effective_dat());
 		bd_h.setUnEffectiveUserid(bd.getUn_effective_userid());
+		
 		session.saveOrUpdate(bd_h);
 	}
 	

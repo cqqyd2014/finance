@@ -161,6 +161,7 @@ try {
 				byte[] input = new byte[is.available()];  
 				
 				is.read(input); 
+				/*
 				String barcode=gov.cqaudit.finance.bills.logic.PictureLogic.decode_barcode(input);
 				if (barcode==null||barcode.equals("")) {
 					throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("图片中二维码数据错误，请核实图片是否为系统生成的图片");
@@ -171,6 +172,7 @@ try {
 				if (!barcode.equals(bill_uuid)) {
 					throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("图片中二维码数据错误，该图片不是对应本查询");
 				}
+				*/
 				pic.setBill_uuid(bill_uuid);
 				pic.setBin_data(input);
 				pic.setContent_type(content_type);
@@ -190,7 +192,13 @@ try {
 				
 			
 				gov.cqaudit.finance.bills.logic.PictureLogic.save(session, pic);
-				
+				session.flush();
+				//得到图片数量，更新申请单
+				java.math.BigDecimal pictures_num=gov.cqaudit.finance.hibernate.dao.PictureDAO.getEntityCountByBillUuid(session, bill_uuid);
+				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+				bm.setPics_num(pictures_num);
+				gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+				session.flush();
 					is.close();
 				} catch (IOException e) {
 					e.printStackTrace();

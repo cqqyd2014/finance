@@ -4,7 +4,7 @@ import org.hibernate.Session;
 
 public class SysUserLogic {
 	
-	public static gov.cqaudit.finance.system.model.SysUser getModelFromView(gov.cqaudit.finance.hibernate.entites.VSysUser vsu){
+	public static gov.cqaudit.finance.system.model.SysUser getModelFromView(gov.cqaudit.finance.hibernate.entities.VSysUser vsu){
 		gov.cqaudit.finance.system.model.SysUser su=new gov.cqaudit.finance.system.model.SysUser();
 		su.setDept_id(vsu.getId().getDeptId());
 		su.setDept_name(vsu.getId().getDeptName());
@@ -22,7 +22,7 @@ public class SysUserLogic {
 		su.setTell(vsu.getId().getTel());
 		return su;
 	}
-	public static java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> getArrayListModelFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VSysUser> vsus){
+	public static java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> getArrayListModelFromArrayListView(java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysUser> vsus){
 		java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> sus=new java.util.ArrayList<>();
 		for (int i=0;i<vsus.size();i++) {
 			gov.cqaudit.finance.system.model.SysUser su=getModelFromView(vsus.get(i));
@@ -32,7 +32,7 @@ public class SysUserLogic {
 		
 	}
 	public static void save(Session session,gov.cqaudit.finance.system.model.SysUser su) {
-		gov.cqaudit.finance.hibernate.entites.SysUser su_h=new gov.cqaudit.finance.hibernate.entites.SysUser();
+		gov.cqaudit.finance.hibernate.entities.SysUser su_h=new gov.cqaudit.finance.hibernate.entities.SysUser();
 		su_h.setCreateTime(su.getCreate_dat());
 		su_h.setDeptId(su.getDept_id());
 		su_h.setEffective(su.isEffective());

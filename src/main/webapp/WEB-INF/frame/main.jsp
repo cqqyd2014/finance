@@ -1,8 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -17,18 +18,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 
+<jsp:include page="../common/include_easyui2.jsp" flush="true" />
 </head>
-<frameset rows="50,*,25" cols="*" framespacing="0px" frameborder="no" border="0px">
-  <frame style="padding: 0px;margin-top:0px;margin-bottom:0px;" src="top_frame.action" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
-  <frame style="padding: 0px;margin-top:0px;margin-bottom:0px;" src="center_frame.action" name="mainFrame" id="mainFrame" />
-  <frame style="padding: 0px;margin-top:0px;margin-bottom:0px;" src="buttom_frame.action" name="bottomFrame" scrolling="No" noresize="noresize" id="bottomFrame" />
-</frameset>
-<noframes>
-<body>
 
-  </body>
+<body>
+	<div id="fakeLoader"></div>
+	<div class="easyui-layout" fit="true" id="body">
+		<div id="top_panel"
+			data-options="region:'north',href:'top_frame.action'"
+			style="height: 62px"></div>
+	
+	<div id="navi_panel"
+		data-options="region:'west',href:'west_frame.action'" split="true"
+		title="导航" style="width: 150px">
+	</div>
+
+	<div data-options="region:'center',href:'home_page_frame.action'" 
+		style="background: grey; padding: 10px;"></div>
+
+	</div>
+
+
+
+
+
+
+</body>
 </html>

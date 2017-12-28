@@ -44,7 +44,7 @@ public class DelBillDetailAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 tx = session.beginTransaction();
 			try {
-				super.init_js_par(session);
+				
 				
 				@SuppressWarnings("unchecked")
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)session_http.get("new_bill_temp_billdetails");

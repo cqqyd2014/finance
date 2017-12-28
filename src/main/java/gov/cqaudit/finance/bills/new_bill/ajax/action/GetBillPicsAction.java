@@ -38,16 +38,16 @@ public class GetBillPicsAction   extends LoginedAjaxAction {
 	public String execute() {
 	// TODO Auto-generated method stub
 	super.execute();
-	sm.setAuth_success(true);
+	
 			
 			 session = HibernateSessionFactory.getSession();
 			 
 			try {
-				super.init_js_par(session);
+				
 				
 				
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=gov.cqaudit.finance.bills.logic.PictureLogic.getArrayListModelFromArrayListView(
-						gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListEntityByBillUuid(session, bill_uuid));
+						gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListViewByBillUuid(session, bill_uuid));
 				
 			
 			

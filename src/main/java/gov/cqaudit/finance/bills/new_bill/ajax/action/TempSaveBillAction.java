@@ -16,16 +16,10 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @ParentPackage("bfkjs-json-default")
 @Namespace("/bills")
 public class TempSaveBillAction   extends LoginedAjaxAction {
-	java.math.BigDecimal pic_num;
-	java.math.BigDecimal detail_num;
-	
-	public java.math.BigDecimal getPic_num() {
-		return pic_num;
-	}
 
-	public void setPic_num(java.math.BigDecimal pic_num) {
-		this.pic_num = pic_num;
-	}
+	java.math.BigDecimal detail_num;
+
+
 
 	public java.math.BigDecimal getDetail_num() {
 		return detail_num;
@@ -40,6 +34,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 	String search_reason;
 	String contract_name;
 	String contract_tell;
+
 	
 	
 	public String getPro_name() {
@@ -105,29 +100,35 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 			
 			 session = HibernateSessionFactory.getSession();
 			 tx = session.beginTransaction();
+			 java.util.Date now=new java.util.Date();
+			 gov.cqaudit.finance.bills.model.BillM bm=null;
 			try {
-				super.init_js_par(session);
 				
-				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(
+				
+				bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(
 						gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
 				
 				
-				bm.setPics_num(pic_num);
+				
 				bm.setDetail_num(detail_num);
 				bm.setContract_mail(contract_mail);
 				bm.setContract_name(contract_name);
 				bm.setContract_tell(contract_tell);
-				bm.setLast_modify_dat(new java.util.Date());
+				bm.setLast_modify_dat(now);
+				bm.setLast_audit_dat_chinese_print(com.cqqyd2014.util.DateUtil.getLocalFullString(now));
 				bm.setPro_name(pro_name);
 				bm.setSearch_reason(search_reason);
-				java.util.ArrayList<gov.cqaudit.finance.hibernate.entites.VPicture> vps=gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListEntityByBillUuid(session, bill_uuid);
+				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VPicture> vps=gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListViewByBillUuid(session, bill_uuid);
 				bm.setPics_num(new java.math.BigDecimal(vps.size()));
+				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VBillD> vbds=gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid);
+				bm.setDetail_num(new java.math.BigDecimal(vbds.size()));
 				
 				
 				
 				gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
 						
 			sm.setSuccess(true);
+			sm.setO(bm);
 			tx.commit();
 			
 			
@@ -149,7 +150,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 		 finally {
 				HibernateSessionFactory.closeSession();
 			}
-		sm.setSuccess(true);
+		
 		msg=sm.toMap();
 		return SUCCESS;
 	}
