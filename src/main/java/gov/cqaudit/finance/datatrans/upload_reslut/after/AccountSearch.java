@@ -26,6 +26,7 @@ public final class AccountSearch {
         				gov.cqaudit.finance.hibernate.entities.VSearchPublicCustomAccount public_name_search=public_name_searchs.get(l);
         				gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
         				bdb.setDetailCount(new java.math.BigDecimal(public_name_search.getId().getDetailCount()));
+        				bdb.setCustomId(public_name_search.getId().getPublicCustomId());
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, public_name_search.getId().getPublicAccountId()));
         				session.saveOrUpdate(bdb);
         			}
@@ -37,6 +38,7 @@ public final class AccountSearch {
         			if (public_account_search!=null){
         				gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
         				bdb.setDetailCount(new java.math.BigDecimal(public_account_search.getId().getDetailCount()));
+        				bdb.setCustomId(public_account_search.getId().getPublicCustomId());
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, public_account_search.getId().getPublicAccountId()));
         				session.saveOrUpdate(bdb);
         			}
@@ -47,6 +49,7 @@ public final class AccountSearch {
         			if (private_card_no_search!=null){
         				gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
         				bdb.setDetailCount(new java.math.BigDecimal(private_card_no_search.getId().getDetailCount()));
+        				bdb.setCustomId(private_card_no_search.getId().getPrivateCustomId());
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, private_card_no_search.getId().getPrivateAccountId()));
         				
         				session.saveOrUpdate(bdb);
@@ -60,6 +63,7 @@ public final class AccountSearch {
         			for (int l=0,len4=private_id_card_searchs.size();l<len4;l++){
         				gov.cqaudit.finance.hibernate.entities.VSearchPrivateCustomAccount private_id_card_search=private_id_card_searchs.get(l);
         				gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
+        				bdb.setCustomId(private_id_card_search.getId().getPrivateCustomId());
         				bdb.setDetailCount(new java.math.BigDecimal(private_id_card_search.getId().getDetailCount()));
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, private_id_card_search.getId().getPrivateAccountId()));
         				session.saveOrUpdate(bdb);

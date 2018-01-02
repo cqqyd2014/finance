@@ -1,10 +1,46 @@
 package gov.cqaudit.finance.bills.model;
 
 public final class BillDBack {
+
+	public String getBank_code() {
+		return bank_code;
+	}
+	public void setBank_code(String bank_code) {
+		this.bank_code = bank_code;
+	}
+	public String getBank_name() {
+		return bank_name;
+	}
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+	String custom_id;
+	public String getCustom_id() {
+		return custom_id;
+	}
+	public void setCustom_id(String custom_id) {
+		this.custom_id = custom_id;
+	}
 	String bill_uuid;
 	String bill_d_uuid;
+	String bank_code;
+	String bank_name;
 	String business_name;
+	String business_code;
 	String search_par_name;
+	String search_par_code;
+	public String getBusiness_code() {
+		return business_code;
+	}
+	public void setBusiness_code(String business_code) {
+		this.business_code = business_code;
+	}
+	public String getSearch_par_code() {
+		return search_par_code;
+	}
+	public void setSearch_par_code(String search_par_code) {
+		this.search_par_code = search_par_code;
+	}
 	String search_value;
 	String account_id;
 	java.math.BigDecimal rows_count;

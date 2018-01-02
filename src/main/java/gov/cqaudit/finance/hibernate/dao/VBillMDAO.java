@@ -89,7 +89,7 @@ public final class VBillMDAO {
 	
 	public static java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VBillM> getArrayListViewArrayListBillUuid(Session session,java.util.ArrayList<String> bill_uuids){
 		
-		String bill_uuids_array=com.cqqyd2014.util.StringUtil.arrayListToSQLInString(bill_uuids);
+		String bill_uuids_array=com.cqqyd2014.util.ArrayListTools.arrayListToSQLInString(bill_uuids);
 		
 		String hql = "from VBillM where id.effective=true and id.billUuid in "+bill_uuids_array;
 

@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -27,6 +27,7 @@ public class VDataCorePrivateAccountTradeDetail implements java.io.Serializable 
 	@EmbeddedId
 
 	@AttributeOverrides({ @AttributeOverride(name = "bankCode", column = @Column(name = "bank_code", length = 4)),
+			@AttributeOverride(name = "bankCodeName", column = @Column(name = "bank_code_name", length = 90)),
 			@AttributeOverride(name = "privateAccountId", column = @Column(name = "private_account_id", length = 128)),
 			@AttributeOverride(name = "privateTradeSeq", column = @Column(name = "private_trade_seq", length = 128)),
 			@AttributeOverride(name = "privateAmount", column = @Column(name = "private_amount", precision = 131089, scale = 0)),
@@ -40,7 +41,8 @@ public class VDataCorePrivateAccountTradeDetail implements java.io.Serializable 
 			@AttributeOverride(name = "privateBalance", column = @Column(name = "private_balance", precision = 131089, scale = 0)),
 			@AttributeOverride(name = "privateBankOrgId", column = @Column(name = "private_bank_org_id", length = 64)),
 			@AttributeOverride(name = "privateBankOrgName", column = @Column(name = "private_bank_org_name", length = 128)),
-			@AttributeOverride(name = "privateRemark", column = @Column(name = "private_remark", length = 2048)) })
+			@AttributeOverride(name = "privateRemark", column = @Column(name = "private_remark", length = 2048)),
+			@AttributeOverride(name = "privateAccountName", column = @Column(name = "private_account_name", length = 256)) })
 	public VDataCorePrivateAccountTradeDetailId getId() {
 		return this.id;
 	}

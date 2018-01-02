@@ -108,7 +108,7 @@ public final class XmlDataTools {
 	}
 	//解析对公客户基本信息表
 	@SuppressWarnings("unused")
-	private static java.math.BigDecimal CorePublicCustomBase(Session session,Element e,String bank_code){
+	private static java.math.BigDecimal data_core_public_custom_base(Session session,Element e,String bank_code){
 		
 		@SuppressWarnings("unchecked")
 		java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
@@ -116,7 +116,7 @@ public final class XmlDataTools {
 		for (int i=0,row_len=rows.size();i<row_len;i++){
 			Element row=rows.get(i);
 			//处理记录
-			gov.cqaudit.finance.data.core.model.CorePublicCustomBase m=new gov.cqaudit.finance.data.core.model.CorePublicCustomBase();
+			gov.cqaudit.finance.database.model.DataCorePublicCustomBase m=new gov.cqaudit.finance.database.model.DataCorePublicCustomBase();
 			m.setBank_code(bank_code);
 			m.setPublic_business(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Cust_ScopeBus")));
 			m.setPublic_custom_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Cust_No")));
@@ -125,48 +125,51 @@ public final class XmlDataTools {
 			m.setPublic_law_man_id_card(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Cust_LegalIdCard")));
 			m.setPublic_law_man_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Cust_LegalName")));
 			m.setPublic_reg_capital(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pub_Cust_RegCap")));
-			gov.cqaudit.finance.data.core.logic.CorePublicCustomBaseLogic.save(session, m);
+			gov.cqaudit.finance.hibernate.dao.VDataCorePublicCustomBaseDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePublicCustomBaseDAO();
+			vdao.save(session, m);
 			flag++;
 		}
 		return new java.math.BigDecimal(flag);
 	}
 	//解析对公客户分户账表
 	@SuppressWarnings("unused")
-	private static java.math.BigDecimal core_public_account_info(Session session,Element e,String bank_code){
+	private static java.math.BigDecimal data_core_public_account_info(Session session,Element e,String bank_code){
 		@SuppressWarnings("unchecked")
 		java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 		int flag=0;
 		for (int i=0,row_len=rows.size();i<row_len;i++){
 			Element row=rows.get(i);
 			//处理记录
-			gov.cqaudit.finance.data.core.model.CorePublicAccountInfo m=new gov.cqaudit.finance.data.core.model.CorePublicAccountInfo();
+			gov.cqaudit.finance.database.model.DataCorePublicAccountInfo m=new gov.cqaudit.finance.database.model.DataCorePublicAccountInfo();
 			m.setBank_code(bank_code);
 			m.setPublic_account_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Leg_AcctNo")));
 			m.setPublic_account_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Leg_AcctName")));
 			m.setPublic_account_stauts(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Leg_AcctStatus")));
 			m.setPublic_open_dat(com.cqqyd2014.util.StringUtil.cleanToDate(row.attributeValue("Pub_Leg_OpenDate")+" 00:00:00"));
 			
-			m.setPublic_custom_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Cust_No")));
+			m.setPublic_custom_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Leg_CustNo")));
 			m.setPublic_close_dat(com.cqqyd2014.util.StringUtil.cleanToDate(row.attributeValue("Pub_Leg_CancelDate")+" 00:00:00"));
 			
-			gov.cqaudit.finance.data.core.logic.CorePublicAccountInfoLogic.save(session,m);
+			gov.cqaudit.finance.hibernate.dao.VDataCorePublicAccountInfoDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePublicAccountInfoDAO();
+			vdao.save(session, m);
 			flag++;
 		}
 		return new java.math.BigDecimal(flag);
 		}
 		//解析对公客户明细账
-		public static java.math.BigDecimal core_public_account_trade_detail(Session session,Element e,String bank_code){
+		public static java.math.BigDecimal data_core_public_account_trade_detail(Session session,Element e,String bank_code){
 		@SuppressWarnings("unchecked")
 		java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 		int flag=0;
 		for (int i=0,row_len=rows.size();i<row_len;i++){
 			Element row=rows.get(i);
 			//处理记录
-			gov.cqaudit.finance.data.core.model.CorePublicAccountTradeDetail m=new gov.cqaudit.finance.data.core.model.CorePublicAccountTradeDetail();
+			gov.cqaudit.finance.database.model.DataCorePublicAccountTradeDetail m=new gov.cqaudit.finance.database.model.DataCorePublicAccountTradeDetail();
 			m.setBank_code(bank_code);
 			m.setPublic_account_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Det_AcctNo")));
+			m.setPublic_account_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Det_AcctName")));
 			m.setPublic_amount(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pub_Det_TransAmt")));
-			m.setPublic_balance(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pub_Det_AcctBanlance")));
+			m.setPublic_balance(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pub_Det_AcctBalance")));
 			m.setPublic_bank_org_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Det_TransOrgNo")));
 			m.setPublic_bank_org_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Det_TransOrgName")));
 			m.setPublic_op_account_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Det_OthAcctNo")));
@@ -179,21 +182,22 @@ public final class XmlDataTools {
 			m.setPublic_trade_dat(com.cqqyd2014.util.StringUtil.cleanToDate(row.attributeValue("Pub_Det_TransDate")+" "+row.attributeValue("Pub_Det_TransTime")));
 			m.setPublic_trade_seq(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Det_TransNo")));
 			
-			gov.cqaudit.finance.data.core.logic.CorePublicAccountTradeDetailLogic.save(session, m);
+			gov.cqaudit.finance.hibernate.dao.VDataCorePublicAccountTradeDetailDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePublicAccountTradeDetailDAO();
+			vdao.save(session, m);
 			flag++;
 		}
 		return new java.math.BigDecimal(flag);
 	}
 		//解析对私基本信息表
 		@SuppressWarnings("unused")
-		private static java.math.BigDecimal core_private_custom_base(Session session,Element e,String bank_code){
+		private static java.math.BigDecimal data_core_private_custom_base(Session session,Element e,String bank_code){
 			@SuppressWarnings("unchecked")
 			java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 			int flag=0;
 			for (int i=0,row_len=rows.size();i<row_len;i++){
 				Element row=rows.get(i);
 				//处理记录
-				gov.cqaudit.finance.data.core.model.CorePrivateCustomBase m=new gov.cqaudit.finance.data.core.model.CorePrivateCustomBase();
+				gov.cqaudit.finance.database.model.DataCorePrivateCustomBase m=new gov.cqaudit.finance.database.model.DataCorePrivateCustomBase();
 				m.setBank_code(bank_code);
 				m.setPrivate_company(row.attributeValue("Pri_Cust_WorkUnit"));
 				m.setPrivate_custom_id(row.attributeValue("Pri_Cust_No"));
@@ -201,21 +205,22 @@ public final class XmlDataTools {
 				m.setPrivate_id_card(row.attributeValue("Pri_Cust_IdCardNo"));
 				m.setPrivate_post_address(row.attributeValue("Pri_Cust_PostAddr"));
 				m.setPrivate_work_address(row.attributeValue("Pri_Cust_WorkAddr"));
-				gov.cqaudit.finance.data.core.logic.CorePrivateCustomBaseLogic.save(session, m);
+				gov.cqaudit.finance.hibernate.dao.VDataCorePrivateCustomBaseDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePrivateCustomBaseDAO();
+				vdao.save(session, m);
 				flag++;
 			}
 			return new java.math.BigDecimal(flag);
 		}
 		//解析对私分户账
 		@SuppressWarnings("unused")
-		private static java.math.BigDecimal core_private_account_info(Session session,Element e,String bank_code){
+		private static java.math.BigDecimal data_core_private_account_info(Session session,Element e,String bank_code){
 			@SuppressWarnings("unchecked")
 			java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 			int flag=0;
 			for (int i=0,row_len=rows.size();i<row_len;i++){
 				Element row=rows.get(i);
 				//处理记录
-				gov.cqaudit.finance.data.core.model.CorePrivateAccountInfo m=new gov.cqaudit.finance.data.core.model.CorePrivateAccountInfo();
+				gov.cqaudit.finance.database.model.DataCorePrivateAccountInfo m=new gov.cqaudit.finance.database.model.DataCorePrivateAccountInfo();
 				m.setBank_code(bank_code);
 				m.setPrivate_account_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Leg_AcctNo")));
 				m.setPrivate_account_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Leg_AcctName")));
@@ -225,25 +230,27 @@ public final class XmlDataTools {
 				m.setPrivate_custom_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Leg_CustNo")));
 				m.setPrivate_close_dat(com.cqqyd2014.util.StringUtil.cleanToDate(row.attributeValue("Pri_Leg_CancelDate")+" 00:00:00"));
 				
-				gov.cqaudit.finance.data.core.logic.CorePrivateAccountInfoLogic.save(session, m);
+				gov.cqaudit.finance.hibernate.dao.VDataCorePrivateAccountInfoDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePrivateAccountInfoDAO();
+				vdao.save(session, m);
 				flag++;
 			}
 			return new java.math.BigDecimal(flag);
 		}
 		//解析对私明细账
 		@SuppressWarnings("unused")
-		private static java.math.BigDecimal core_private_account_trade_detail(Session session,Element e,String bank_code){
+		private static java.math.BigDecimal data_core_private_account_trade_detail(Session session,Element e,String bank_code){
 			@SuppressWarnings("unchecked")
 			java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 			int flag=0;
 			for (int i=0,row_len=rows.size();i<row_len;i++){
 				Element row=rows.get(i);
 				//处理记录
-				gov.cqaudit.finance.data.core.model.CorePrivateAccountTradeDetail m=new gov.cqaudit.finance.data.core.model.CorePrivateAccountTradeDetail();
+				gov.cqaudit.finance.database.model.DataCorePrivateAccountTradeDetail m=new gov.cqaudit.finance.database.model.DataCorePrivateAccountTradeDetail();
 				m.setBank_code(bank_code);
 				m.setPrivate_account_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Det_AcctNo")));
+				m.setPrivate_account_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Det_AcctName")));
 				m.setPrivate_amount(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pri_Det_TransAmt")));
-				m.setPrivate_balance(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pri_Det_AcctBanlance")));
+				m.setPrivate_balance(com.cqqyd2014.util.StringUtil.cleanToDec(row.attributeValue("Pri_Det_AcctBalance")));
 				m.setPrivate_bank_org_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Det_TransOrgNo")));
 				m.setPrivate_bank_org_name(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Det_TransOrgName")));
 				m.setPrivate_op_account_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Det_OthAcctNo")));
@@ -262,7 +269,8 @@ public final class XmlDataTools {
 				
 				m.setPrivate_trade_seq(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Det_TransNo")));
 				
-				gov.cqaudit.finance.data.core.logic.CorePrivateAccountTradeDetailLogic.save(session, m);
+				gov.cqaudit.finance.hibernate.dao.VDataCorePrivateAccountTradeDetailDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePrivateAccountTradeDetailDAO();
+				vdao.save(session, m);
 				flag++;
 			}
 			return new java.math.BigDecimal(flag);

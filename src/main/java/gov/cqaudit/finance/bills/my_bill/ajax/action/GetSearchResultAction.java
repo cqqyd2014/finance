@@ -16,17 +16,23 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @ParentPackage("bfkjs-json-default")
 @Namespace("/bills")
 public class GetSearchResultAction   extends LoginedAjaxAction {
-	String search_rs_uuid;
+	String bill_uuid;
 	
 
-	public String getSearch_rs_uuid() {
-		return search_rs_uuid;
+	
+
+	public String getBill_uuid() {
+		return bill_uuid;
 	}
 
 
-	public void setSearch_rs_uuid(String search_rs_uuid) {
-		this.search_rs_uuid = search_rs_uuid;
+
+
+	public void setBill_uuid(String bill_uuid) {
+		this.bill_uuid = bill_uuid;
 	}
+
+
 
 
 	@Action(value = "get_search_result", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
@@ -44,10 +50,12 @@ public class GetSearchResultAction   extends LoginedAjaxAction {
 			try {
 				
 				
-				@SuppressWarnings("unchecked")
-				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)session_http.get("new_bill_temp_billdetails");
-				
-				
+
+				gov.cqaudit.finance.hibernate.dao.VBillDBackDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillDBackDAO();
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillDBack> bds=vbdao.getArrayListViewByBillUuid(session, bill_uuid);
+				msg=new java.util.HashMap<>();
+				msg.put("total", String.valueOf(bds.size()));
+				msg.put("rows", bds);
 				
 				
 			sm.setSuccess(true);
@@ -71,8 +79,7 @@ public class GetSearchResultAction   extends LoginedAjaxAction {
 		 finally {
 				HibernateSessionFactory.closeSession();
 			}
-		sm.setSuccess(true);
-		msg=sm.toMap();
+		
 		return SUCCESS;
 	}
 }

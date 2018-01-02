@@ -39,7 +39,7 @@
 				//console.log('检测陈宫');
 				
 				temp_save_bill(function(){
-					console.log('瑞出');
+					//console.log('瑞出');
 					
 					var url="home_page_frame.action";
 					$('#body').layout('panel','center').panel('refresh',url);

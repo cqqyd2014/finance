@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +13,7 @@ import javax.persistence.Embeddable;
 public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializable {
 
 	private String bankCode;
+	private String bankCodeName;
 	private String privateAccountId;
 	private String privateTradeSeq;
 	private BigDecimal privateAmount;
@@ -27,15 +28,18 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 	private String privateBankOrgId;
 	private String privateBankOrgName;
 	private String privateRemark;
+	private String privateAccountName;
 
 	public VDataCorePrivateAccountTradeDetailId() {
 	}
 
-	public VDataCorePrivateAccountTradeDetailId(String bankCode, String privateAccountId, String privateTradeSeq,
-			BigDecimal privateAmount, String privateOpAccountId, String privateOpBankId, String privateOpBankName,
-			String privateOpAccountName, String privateTradeCode, String privateTradeName, Date privateTradeDat,
-			BigDecimal privateBalance, String privateBankOrgId, String privateBankOrgName, String privateRemark) {
+	public VDataCorePrivateAccountTradeDetailId(String bankCode, String bankCodeName, String privateAccountId,
+			String privateTradeSeq, BigDecimal privateAmount, String privateOpAccountId, String privateOpBankId,
+			String privateOpBankName, String privateOpAccountName, String privateTradeCode, String privateTradeName,
+			Date privateTradeDat, BigDecimal privateBalance, String privateBankOrgId, String privateBankOrgName,
+			String privateRemark, String privateAccountName) {
 		this.bankCode = bankCode;
+		this.bankCodeName = bankCodeName;
 		this.privateAccountId = privateAccountId;
 		this.privateTradeSeq = privateTradeSeq;
 		this.privateAmount = privateAmount;
@@ -50,6 +54,7 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 		this.privateBankOrgId = privateBankOrgId;
 		this.privateBankOrgName = privateBankOrgName;
 		this.privateRemark = privateRemark;
+		this.privateAccountName = privateAccountName;
 	}
 
 	@Column(name = "bank_code", length = 4)
@@ -59,6 +64,15 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 
 	public void setBankCode(String bankCode) {
 		this.bankCode = bankCode;
+	}
+
+	@Column(name = "bank_code_name", length = 90)
+	public String getBankCodeName() {
+		return this.bankCodeName;
+	}
+
+	public void setBankCodeName(String bankCodeName) {
+		this.bankCodeName = bankCodeName;
 	}
 
 	@Column(name = "private_account_id", length = 128)
@@ -187,6 +201,15 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 		this.privateRemark = privateRemark;
 	}
 
+	@Column(name = "private_account_name", length = 256)
+	public String getPrivateAccountName() {
+		return this.privateAccountName;
+	}
+
+	public void setPrivateAccountName(String privateAccountName) {
+		this.privateAccountName = privateAccountName;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -198,6 +221,9 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 
 		return ((this.getBankCode() == castOther.getBankCode()) || (this.getBankCode() != null
 				&& castOther.getBankCode() != null && this.getBankCode().equals(castOther.getBankCode())))
+				&& ((this.getBankCodeName() == castOther.getBankCodeName())
+						|| (this.getBankCodeName() != null && castOther.getBankCodeName() != null
+								&& this.getBankCodeName().equals(castOther.getBankCodeName())))
 				&& ((this.getPrivateAccountId() == castOther.getPrivateAccountId())
 						|| (this.getPrivateAccountId() != null && castOther.getPrivateAccountId() != null
 								&& this.getPrivateAccountId().equals(castOther.getPrivateAccountId())))
@@ -239,13 +265,17 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 								&& this.getPrivateBankOrgName().equals(castOther.getPrivateBankOrgName())))
 				&& ((this.getPrivateRemark() == castOther.getPrivateRemark())
 						|| (this.getPrivateRemark() != null && castOther.getPrivateRemark() != null
-								&& this.getPrivateRemark().equals(castOther.getPrivateRemark())));
+								&& this.getPrivateRemark().equals(castOther.getPrivateRemark())))
+				&& ((this.getPrivateAccountName() == castOther.getPrivateAccountName())
+						|| (this.getPrivateAccountName() != null && castOther.getPrivateAccountName() != null
+								&& this.getPrivateAccountName().equals(castOther.getPrivateAccountName())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());
+		result = 37 * result + (getBankCodeName() == null ? 0 : this.getBankCodeName().hashCode());
 		result = 37 * result + (getPrivateAccountId() == null ? 0 : this.getPrivateAccountId().hashCode());
 		result = 37 * result + (getPrivateTradeSeq() == null ? 0 : this.getPrivateTradeSeq().hashCode());
 		result = 37 * result + (getPrivateAmount() == null ? 0 : this.getPrivateAmount().hashCode());
@@ -260,6 +290,7 @@ public class VDataCorePrivateAccountTradeDetailId implements java.io.Serializabl
 		result = 37 * result + (getPrivateBankOrgId() == null ? 0 : this.getPrivateBankOrgId().hashCode());
 		result = 37 * result + (getPrivateBankOrgName() == null ? 0 : this.getPrivateBankOrgName().hashCode());
 		result = 37 * result + (getPrivateRemark() == null ? 0 : this.getPrivateRemark().hashCode());
+		result = 37 * result + (getPrivateAccountName() == null ? 0 : this.getPrivateAccountName().hashCode());
 		return result;
 	}
 

@@ -11,7 +11,7 @@
 <head>
 
 
-<title>重庆市审计局金融处</title>
+<title><s:property value="#application.app_name"/></title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

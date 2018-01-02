@@ -84,12 +84,13 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 				bd.setBill_uuid(bill_uuid);
 				bd.setDetail_uuid(com.cqqyd2014.util.StringUtil.getUUID());
 				bd.setBank_code(bank_code);
-				bd.setBank_name(gov.cqaudit.finance.hibernate.dao.SysCodeDAO.getValueBySIdCode(session, "bank_code", bank_code));
+				gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
+				bd.setBank_name(scdao.getValueBySIdCode(session, "bank_code", bank_code));
 				bd.setBusiness_code(business_code);
-				bd.setBusiness_code_name(gov.cqaudit.finance.hibernate.dao.SysCodeDAO.getValueBySIdCode(session, "business_code", business_code));
+				bd.setBusiness_code_name(scdao.getValueBySIdCode(session, "business_code", business_code));
 				
 				bd.setSearch_par_code(search_par_code);
-				bd.setSearch_par_code_name(gov.cqaudit.finance.hibernate.dao.SysCodeDAO.getValueBySIdCode(session, "search_par_code", search_par_code));
+				bd.setSearch_par_code_name(scdao.getValueBySIdCode(session, "search_par_code", search_par_code));
 				bd.setSearch_par_value(search_par_value);
 				bd.setEffective(true);
 				bd.setCreate_dat(new java.util.Date());

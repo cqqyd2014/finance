@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import javax.persistence.AttributeOverride;
@@ -18,6 +18,7 @@ public class BillDBack implements java.io.Serializable {
 
 	private BillDBackId id;
 	private BigDecimal detailCount;
+	private String customId;
 
 	public BillDBack() {
 	}
@@ -26,9 +27,10 @@ public class BillDBack implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public BillDBack(BillDBackId id, BigDecimal detailCount) {
+	public BillDBack(BillDBackId id, BigDecimal detailCount, String customId) {
 		this.id = id;
 		this.detailCount = detailCount;
+		this.customId = customId;
 	}
 
 	@EmbeddedId
@@ -52,6 +54,15 @@ public class BillDBack implements java.io.Serializable {
 
 	public void setDetailCount(BigDecimal detailCount) {
 		this.detailCount = detailCount;
+	}
+
+	@Column(name = "custom_id", length = 128)
+	public String getCustomId() {
+		return this.customId;
+	}
+
+	public void setCustomId(String customId) {
+		this.customId = customId;
 	}
 
 }

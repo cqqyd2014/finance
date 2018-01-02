@@ -46,13 +46,22 @@ public class GetSearchParCodeAction   extends LoginedAjaxAction {
 			 
 			try {
 				
+				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VBusinessSearchPar> pars=gov.cqaudit.finance.hibernate.dao.VBusinessSearchParDAO.getArrayListByBusinessCode(session, business_code);
 				
-				java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> search_par=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelByBusinessCode(session, business_code);
+				java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> search_pars=new java.util.ArrayList<>();
+				for (int i=0,len_pars=pars.size();i<len_pars;i++){
+					gov.cqaudit.finance.system.model.SysCode sc=new gov.cqaudit.finance.system.model.SysCode();
+					gov.cqaudit.finance.hibernate.entities.VBusinessSearchPar par=pars.get(i);
+					
+					sc.setCode(par.getId().getSearchParCode());
+					sc.setValue(par.getId().getSValue());
+					search_pars.add(sc);
+				}
 				
 			
 			
 			sm.setSuccess(true);
-			sm.setO(search_par);
+			sm.setO(search_pars);
 			
 		}
 

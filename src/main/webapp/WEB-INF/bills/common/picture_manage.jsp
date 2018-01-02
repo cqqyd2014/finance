@@ -226,6 +226,7 @@ function ajaxFileUpload() {
 									//没有传图片
 									$("#main_image").attr('src',
 											"../img/380-500.png");
+									$('#mini_pictures').html('<span></span>');
 
 								} else {
 									var html = '';
@@ -248,6 +249,7 @@ function ajaxFileUpload() {
 									}
 
 									//alert(html);
+									//console.log(html);
 									$('#mini_pictures').html(html);
 									$('.del_picture').linkbutton({
 										text : '删除图片',

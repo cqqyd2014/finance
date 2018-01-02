@@ -33,13 +33,14 @@ public class DataBaseInitPar extends HttpServlet{
 				application.setAttribute(sp.getCode(), sp.getValue());
 			}
 			//处理syscode，采用map<String,map>的方式存储
-			java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.SysCode> codes=gov.cqaudit.finance.hibernate.dao.SysCodeDAO.getEntitis(session);
+			gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
+			java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> codes=scdao.getArrayListModel(session);
 			java.util.HashMap<String, java.util.HashMap<String, String>> sys_code_map=new java.util.HashMap<>();
 			for (int i=0,len=codes.size();i<len;i++){
-				gov.cqaudit.finance.hibernate.entities.SysCode sc=codes.get(i);
-				String id=sc.getId().getSId();
-				String code=sc.getId().getSCode();
-				String value=sc.getSValue();
+				gov.cqaudit.finance.system.model.SysCode sc=codes.get(i);
+				String id=sc.getS_id();
+				String code=sc.getCode();
+				String value=sc.getValue();
 				if (sys_code_map.get(id)==null){
 					java.util.HashMap<String, String> map=new java.util.HashMap<>();
 					map.put(code, value);

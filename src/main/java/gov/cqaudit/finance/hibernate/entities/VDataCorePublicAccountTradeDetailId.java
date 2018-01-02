@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,6 +27,7 @@ public class VDataCorePublicAccountTradeDetailId implements java.io.Serializable
 	private String publicBankOrgId;
 	private String publicBankOrgName;
 	private String publicRemark;
+	private String publicAccountName;
 
 	public VDataCorePublicAccountTradeDetailId() {
 	}
@@ -34,7 +35,8 @@ public class VDataCorePublicAccountTradeDetailId implements java.io.Serializable
 	public VDataCorePublicAccountTradeDetailId(String bankCode, String publicAccountId, String publicTradeSeq,
 			BigDecimal publicAmount, String publicOpAccountId, String publicOpBankId, String publicOpBankName,
 			String publicOpAccountName, String publicTradeCode, String publicTradeName, Date publicTradeDat,
-			BigDecimal publicBalance, String publicBankOrgId, String publicBankOrgName, String publicRemark) {
+			BigDecimal publicBalance, String publicBankOrgId, String publicBankOrgName, String publicRemark,
+			String publicAccountName) {
 		this.bankCode = bankCode;
 		this.publicAccountId = publicAccountId;
 		this.publicTradeSeq = publicTradeSeq;
@@ -50,6 +52,7 @@ public class VDataCorePublicAccountTradeDetailId implements java.io.Serializable
 		this.publicBankOrgId = publicBankOrgId;
 		this.publicBankOrgName = publicBankOrgName;
 		this.publicRemark = publicRemark;
+		this.publicAccountName = publicAccountName;
 	}
 
 	@Column(name = "bank_code", length = 4)
@@ -187,6 +190,15 @@ public class VDataCorePublicAccountTradeDetailId implements java.io.Serializable
 		this.publicRemark = publicRemark;
 	}
 
+	@Column(name = "public_account_name", length = 256)
+	public String getPublicAccountName() {
+		return this.publicAccountName;
+	}
+
+	public void setPublicAccountName(String publicAccountName) {
+		this.publicAccountName = publicAccountName;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -239,7 +251,10 @@ public class VDataCorePublicAccountTradeDetailId implements java.io.Serializable
 								&& this.getPublicBankOrgName().equals(castOther.getPublicBankOrgName())))
 				&& ((this.getPublicRemark() == castOther.getPublicRemark())
 						|| (this.getPublicRemark() != null && castOther.getPublicRemark() != null
-								&& this.getPublicRemark().equals(castOther.getPublicRemark())));
+								&& this.getPublicRemark().equals(castOther.getPublicRemark())))
+				&& ((this.getPublicAccountName() == castOther.getPublicAccountName())
+						|| (this.getPublicAccountName() != null && castOther.getPublicAccountName() != null
+								&& this.getPublicAccountName().equals(castOther.getPublicAccountName())));
 	}
 
 	public int hashCode() {
@@ -260,6 +275,7 @@ public class VDataCorePublicAccountTradeDetailId implements java.io.Serializable
 		result = 37 * result + (getPublicBankOrgId() == null ? 0 : this.getPublicBankOrgId().hashCode());
 		result = 37 * result + (getPublicBankOrgName() == null ? 0 : this.getPublicBankOrgName().hashCode());
 		result = 37 * result + (getPublicRemark() == null ? 0 : this.getPublicRemark().hashCode());
+		result = 37 * result + (getPublicAccountName() == null ? 0 : this.getPublicAccountName().hashCode());
 		return result;
 	}
 

@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import javax.persistence.AttributeOverride;
@@ -28,6 +28,7 @@ public class DataCorePublicAccountTradeDetail implements java.io.Serializable {
 	private String publicBankOrgId;
 	private String publicBankOrgName;
 	private String publicRemark;
+	private String publicAccountName;
 
 	public DataCorePublicAccountTradeDetail() {
 	}
@@ -39,7 +40,7 @@ public class DataCorePublicAccountTradeDetail implements java.io.Serializable {
 	public DataCorePublicAccountTradeDetail(DataCorePublicAccountTradeDetailId id, BigDecimal publicAmount,
 			String publicOpAccountId, String publicOpBankId, String publicOpBankName, String publicOpAccountName,
 			String publicTradeCode, String publicTradeName, BigDecimal publicBalance, String publicBankOrgId,
-			String publicBankOrgName, String publicRemark) {
+			String publicBankOrgName, String publicRemark, String publicAccountName) {
 		this.id = id;
 		this.publicAmount = publicAmount;
 		this.publicOpAccountId = publicOpAccountId;
@@ -52,6 +53,7 @@ public class DataCorePublicAccountTradeDetail implements java.io.Serializable {
 		this.publicBankOrgId = publicBankOrgId;
 		this.publicBankOrgName = publicBankOrgName;
 		this.publicRemark = publicRemark;
+		this.publicAccountName = publicAccountName;
 	}
 
 	@EmbeddedId
@@ -166,6 +168,15 @@ public class DataCorePublicAccountTradeDetail implements java.io.Serializable {
 
 	public void setPublicRemark(String publicRemark) {
 		this.publicRemark = publicRemark;
+	}
+
+	@Column(name = "public_account_name", length = 256)
+	public String getPublicAccountName() {
+		return this.publicAccountName;
+	}
+
+	public void setPublicAccountName(String publicAccountName) {
+		this.publicAccountName = publicAccountName;
 	}
 
 }

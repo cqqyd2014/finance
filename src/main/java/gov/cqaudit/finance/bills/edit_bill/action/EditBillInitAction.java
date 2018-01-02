@@ -76,9 +76,9 @@ public class EditBillInitAction extends LoginedInitAction{
 					
 					
 					
-					
-					bank_code=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelBySId(session, "bank_code");
-					business_code=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelBySId(session, "business_code");
+					gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
+					bank_code=scdao.getArrayListModelBySId(session, "bank_code");
+					business_code=scdao.getArrayListModelBySId(session, "business_code");
 			
 					
 					 java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=gov.cqaudit.finance.bills.logic.BillDLogic.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid));

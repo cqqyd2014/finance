@@ -65,10 +65,10 @@
 			<tr>
 				<td width="30%"><img alt="" src="../img/audit.jpg"
 					width="100px"></td>
-				<td width="70%"><h1>地方银行数据查询系统</h1></td>
+				<td width="70%"><h1><s:property value="#application.app_name"/></h1></td>
 			</tr>
 			<tr>
-				<td colspan='2' align="right">重庆市审计局金融处2017.12</td>
+				<td colspan='2' align="right">2017.12</td>
 			</tr>
 			<tr>
 				<td width="30%">服务器时间：</td>

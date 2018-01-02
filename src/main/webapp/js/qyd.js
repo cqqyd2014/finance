@@ -2,8 +2,8 @@
 
 
 //基础参数
-var dialog_width = "1000px";
-var dialog_height = "700px";
+var dialog_width = "700px";
+var dialog_height = "400px";
 var dialog_width_mid = "500px";
 var dialog_height_mid = "300px";
 var dialog_width_little = "300px";
@@ -171,14 +171,36 @@ function anyEmpty(array){
  * 
  */
 function easyui_ajax_div_clean(div_id){
+	//console.log(div_id);
 	var picture_divs = $('*[id='+div_id+']')
 	var picture_divs_size=picture_divs.size();
+	//console.log(picture_divs_size);
 	
 	if (picture_divs_size>=2){
-		for (var i=0;i<picture_divs_size;i++){
-			$('#'+div_id).dialog('destroy');
-			}
+		var flag=0;
+		$('*[id='+div_id+']').each(function(){
+		    
+		    if (flag>0){
+		    	$(this).dialog('destroy');
+		    }
+		    flag++;
+		  });
 		
+		
+		/*
+		console.log($('#'+div_id));
+		for (var i=0;i<picture_divs_size;i++){
+			//$('#'+div_id).dialog('destroy');
+			//console.log($('#'+div_id));
+			//picture_divs.eq(0).dialog('destroy');
+			}
+			*/
+		/*
+		console.log("del ok");
+		picture_divs = $('*[id='+div_id+']')
+		picture_divs_size=picture_divs.size();
+		console.log(picture_divs.size());
+		*/
 		}
 }
 

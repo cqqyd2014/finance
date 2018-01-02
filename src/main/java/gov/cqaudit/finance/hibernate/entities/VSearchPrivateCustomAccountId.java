@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -13,6 +13,7 @@ public class VSearchPrivateCustomAccountId implements java.io.Serializable {
 	private String bankCode;
 	private String privateAccountName;
 	private String privateAccountId;
+	private String privateCustomId;
 	private String privateIdCard;
 	private Long detailCount;
 	private String privateCardNo;
@@ -21,10 +22,11 @@ public class VSearchPrivateCustomAccountId implements java.io.Serializable {
 	}
 
 	public VSearchPrivateCustomAccountId(String bankCode, String privateAccountName, String privateAccountId,
-			String privateIdCard, Long detailCount, String privateCardNo) {
+			String privateCustomId, String privateIdCard, Long detailCount, String privateCardNo) {
 		this.bankCode = bankCode;
 		this.privateAccountName = privateAccountName;
 		this.privateAccountId = privateAccountId;
+		this.privateCustomId = privateCustomId;
 		this.privateIdCard = privateIdCard;
 		this.detailCount = detailCount;
 		this.privateCardNo = privateCardNo;
@@ -55,6 +57,15 @@ public class VSearchPrivateCustomAccountId implements java.io.Serializable {
 
 	public void setPrivateAccountId(String privateAccountId) {
 		this.privateAccountId = privateAccountId;
+	}
+
+	@Column(name = "private_custom_id", length = 128)
+	public String getPrivateCustomId() {
+		return this.privateCustomId;
+	}
+
+	public void setPrivateCustomId(String privateCustomId) {
+		this.privateCustomId = privateCustomId;
 	}
 
 	@Column(name = "private_id_card", length = 64)
@@ -101,6 +112,9 @@ public class VSearchPrivateCustomAccountId implements java.io.Serializable {
 				&& ((this.getPrivateAccountId() == castOther.getPrivateAccountId())
 						|| (this.getPrivateAccountId() != null && castOther.getPrivateAccountId() != null
 								&& this.getPrivateAccountId().equals(castOther.getPrivateAccountId())))
+				&& ((this.getPrivateCustomId() == castOther.getPrivateCustomId())
+						|| (this.getPrivateCustomId() != null && castOther.getPrivateCustomId() != null
+								&& this.getPrivateCustomId().equals(castOther.getPrivateCustomId())))
 				&& ((this.getPrivateIdCard() == castOther.getPrivateIdCard())
 						|| (this.getPrivateIdCard() != null && castOther.getPrivateIdCard() != null
 								&& this.getPrivateIdCard().equals(castOther.getPrivateIdCard())))
@@ -118,6 +132,7 @@ public class VSearchPrivateCustomAccountId implements java.io.Serializable {
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());
 		result = 37 * result + (getPrivateAccountName() == null ? 0 : this.getPrivateAccountName().hashCode());
 		result = 37 * result + (getPrivateAccountId() == null ? 0 : this.getPrivateAccountId().hashCode());
+		result = 37 * result + (getPrivateCustomId() == null ? 0 : this.getPrivateCustomId().hashCode());
 		result = 37 * result + (getPrivateIdCard() == null ? 0 : this.getPrivateIdCard().hashCode());
 		result = 37 * result + (getDetailCount() == null ? 0 : this.getDetailCount().hashCode());
 		result = 37 * result + (getPrivateCardNo() == null ? 0 : this.getPrivateCardNo().hashCode());

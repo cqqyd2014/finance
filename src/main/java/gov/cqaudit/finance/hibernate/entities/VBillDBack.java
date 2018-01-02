@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -26,7 +26,10 @@ public class VBillDBack implements java.io.Serializable {
 
 	@EmbeddedId
 
-	@AttributeOverrides({ @AttributeOverride(name = "billUuid", column = @Column(name = "bill_uuid", length = 36)),
+	@AttributeOverrides({ @AttributeOverride(name = "bankName", column = @Column(name = "bank_name", length = 90)),
+			@AttributeOverride(name = "searchParName", column = @Column(name = "search_par_name", length = 90)),
+			@AttributeOverride(name = "businessName", column = @Column(name = "business_name", length = 90)),
+			@AttributeOverride(name = "billUuid", column = @Column(name = "bill_uuid", length = 36)),
 			@AttributeOverride(name = "detailUuid", column = @Column(name = "detail_uuid", length = 36)),
 			@AttributeOverride(name = "bankCode", column = @Column(name = "bank_code", length = 4)),
 			@AttributeOverride(name = "businessCode", column = @Column(name = "business_code", length = 4)),
@@ -38,7 +41,8 @@ public class VBillDBack implements java.io.Serializable {
 			@AttributeOverride(name = "createUserid", column = @Column(name = "create_userid", length = 36)),
 			@AttributeOverride(name = "createDat", column = @Column(name = "create_dat", length = 35)),
 			@AttributeOverride(name = "accountId", column = @Column(name = "account_id", length = 128)),
-			@AttributeOverride(name = "detailCount", column = @Column(name = "detail_count", precision = 131089, scale = 0)) })
+			@AttributeOverride(name = "detailCount", column = @Column(name = "detail_count", precision = 131089, scale = 0)),
+			@AttributeOverride(name = "customId", column = @Column(name = "custom_id", length = 128)) })
 	public VBillDBackId getId() {
 		return this.id;
 	}

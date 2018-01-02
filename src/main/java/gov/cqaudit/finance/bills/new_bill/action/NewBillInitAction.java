@@ -74,8 +74,9 @@ public class NewBillInitAction extends LoginedInitAction{
 					
 					chinese_date=com.cqqyd2014.util.DateUtil.getLocalFullString(new java.util.Date());
 					bill_uuid=com.cqqyd2014.util.StringUtil.getUUID();
-					bank_code=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelBySId(session, "bank_code");
-					business_code=gov.cqaudit.finance.system.logic.SysCodeLogic.getArrayListModelBySId(session, "business_code");
+					gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
+					bank_code=scdao.getArrayListModelBySId(session, "bank_code");
+					business_code=scdao.getArrayListModelBySId(session, "business_code");
 			
 					//初始化生产bill
 					 gov.cqaudit.finance.bills.model.BillM bm=new gov.cqaudit.finance.bills.model.BillM();

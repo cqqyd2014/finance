@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,6 +12,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VBillDBackId implements java.io.Serializable {
 
+	private String bankName;
+	private String searchParName;
+	private String businessName;
 	private String billUuid;
 	private String detailUuid;
 	private String bankCode;
@@ -25,13 +28,18 @@ public class VBillDBackId implements java.io.Serializable {
 	private Date createDat;
 	private String accountId;
 	private BigDecimal detailCount;
+	private String customId;
 
 	public VBillDBackId() {
 	}
 
-	public VBillDBackId(String billUuid, String detailUuid, String bankCode, String businessCode, String searchParCode,
-			String searchParValue, Boolean effective, Date unEffectiveDat, String unEffectiveUserid,
-			String createUserid, Date createDat, String accountId, BigDecimal detailCount) {
+	public VBillDBackId(String bankName, String searchParName, String businessName, String billUuid, String detailUuid,
+			String bankCode, String businessCode, String searchParCode, String searchParValue, Boolean effective,
+			Date unEffectiveDat, String unEffectiveUserid, String createUserid, Date createDat, String accountId,
+			BigDecimal detailCount, String customId) {
+		this.bankName = bankName;
+		this.searchParName = searchParName;
+		this.businessName = businessName;
 		this.billUuid = billUuid;
 		this.detailUuid = detailUuid;
 		this.bankCode = bankCode;
@@ -45,6 +53,34 @@ public class VBillDBackId implements java.io.Serializable {
 		this.createDat = createDat;
 		this.accountId = accountId;
 		this.detailCount = detailCount;
+		this.customId = customId;
+	}
+
+	@Column(name = "bank_name", length = 90)
+	public String getBankName() {
+		return this.bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	@Column(name = "search_par_name", length = 90)
+	public String getSearchParName() {
+		return this.searchParName;
+	}
+
+	public void setSearchParName(String searchParName) {
+		this.searchParName = searchParName;
+	}
+
+	@Column(name = "business_name", length = 90)
+	public String getBusinessName() {
+		return this.businessName;
+	}
+
+	public void setBusinessName(String businessName) {
+		this.businessName = businessName;
 	}
 
 	@Column(name = "bill_uuid", length = 36)
@@ -164,6 +200,15 @@ public class VBillDBackId implements java.io.Serializable {
 		this.detailCount = detailCount;
 	}
 
+	@Column(name = "custom_id", length = 128)
+	public String getCustomId() {
+		return this.customId;
+	}
+
+	public void setCustomId(String customId) {
+		this.customId = customId;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -173,8 +218,16 @@ public class VBillDBackId implements java.io.Serializable {
 			return false;
 		VBillDBackId castOther = (VBillDBackId) other;
 
-		return ((this.getBillUuid() == castOther.getBillUuid()) || (this.getBillUuid() != null
-				&& castOther.getBillUuid() != null && this.getBillUuid().equals(castOther.getBillUuid())))
+		return ((this.getBankName() == castOther.getBankName()) || (this.getBankName() != null
+				&& castOther.getBankName() != null && this.getBankName().equals(castOther.getBankName())))
+				&& ((this.getSearchParName() == castOther.getSearchParName())
+						|| (this.getSearchParName() != null && castOther.getSearchParName() != null
+								&& this.getSearchParName().equals(castOther.getSearchParName())))
+				&& ((this.getBusinessName() == castOther.getBusinessName())
+						|| (this.getBusinessName() != null && castOther.getBusinessName() != null
+								&& this.getBusinessName().equals(castOther.getBusinessName())))
+				&& ((this.getBillUuid() == castOther.getBillUuid()) || (this.getBillUuid() != null
+						&& castOther.getBillUuid() != null && this.getBillUuid().equals(castOther.getBillUuid())))
 				&& ((this.getDetailUuid() == castOther.getDetailUuid()) || (this.getDetailUuid() != null
 						&& castOther.getDetailUuid() != null && this.getDetailUuid().equals(castOther.getDetailUuid())))
 				&& ((this.getBankCode() == castOther.getBankCode()) || (this.getBankCode() != null
@@ -205,12 +258,17 @@ public class VBillDBackId implements java.io.Serializable {
 						&& castOther.getAccountId() != null && this.getAccountId().equals(castOther.getAccountId())))
 				&& ((this.getDetailCount() == castOther.getDetailCount())
 						|| (this.getDetailCount() != null && castOther.getDetailCount() != null
-								&& this.getDetailCount().equals(castOther.getDetailCount())));
+								&& this.getDetailCount().equals(castOther.getDetailCount())))
+				&& ((this.getCustomId() == castOther.getCustomId()) || (this.getCustomId() != null
+						&& castOther.getCustomId() != null && this.getCustomId().equals(castOther.getCustomId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getBankName() == null ? 0 : this.getBankName().hashCode());
+		result = 37 * result + (getSearchParName() == null ? 0 : this.getSearchParName().hashCode());
+		result = 37 * result + (getBusinessName() == null ? 0 : this.getBusinessName().hashCode());
 		result = 37 * result + (getBillUuid() == null ? 0 : this.getBillUuid().hashCode());
 		result = 37 * result + (getDetailUuid() == null ? 0 : this.getDetailUuid().hashCode());
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());
@@ -224,6 +282,7 @@ public class VBillDBackId implements java.io.Serializable {
 		result = 37 * result + (getCreateDat() == null ? 0 : this.getCreateDat().hashCode());
 		result = 37 * result + (getAccountId() == null ? 0 : this.getAccountId().hashCode());
 		result = 37 * result + (getDetailCount() == null ? 0 : this.getDetailCount().hashCode());
+		result = 37 * result + (getCustomId() == null ? 0 : this.getCustomId().hashCode());
 		return result;
 	}
 

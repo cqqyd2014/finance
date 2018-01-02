@@ -100,7 +100,7 @@ public class DataUploadAction extends LoginedAjaxAction {
 	/**
 	 * 文件上传关键方法。
 	 */
-	@SuppressWarnings("resource")
+
 	@Action(value = "data_upload", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
 			
 			@InterceptorRef("defaultStack"),
@@ -151,6 +151,7 @@ try {
 				
 				// 获取当前遍历到的文件，new 一个文件输入流，连接到该文件。
 				is = new FileInputStream(paper.get(i));
+				
 				//gov.cqaudit.finance.bills.model.Picture pic=new gov.cqaudit.finance.bills.model.Picture();
 				//byte[] input = new byte[is.available()];  
 				
@@ -168,7 +169,9 @@ try {
 				}
 				*/
 				SAXReader reader = new SAXReader();
+				reader.setEncoding("UTF-8");
 				 Document doc = reader.read(is);  
+				 //doc.setXMLEncoding("UTF-8");
 		            // 获取根节点  
 		            
 		            java.util.ArrayList<XmlDataToolsResult> rs=gov.cqaudit.finance.datatrans.upload_reslut.XmlDataTools.decode(session, doc, user_id);
@@ -214,7 +217,7 @@ catch(HibernateException e) {
 
 			}
 			sm.setSuccess(false);
-			sm.setBody(e.getMessageString());
+			sm.setBody(e.getMessage());
 		}
 		
 		

@@ -267,7 +267,7 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\',this)">提交申请</a><a	class="view_reslut" href="javascript:void(0)" id=\"view_reslut_'
 									+ rowData.bill_uuid
-									+ '\" class="easyui-linkbutton"	onclick="javascript:picture_manage_init(\''
+									+ '\" class="easyui-linkbutton"	onclick="javascript:view_result_init(\''
 									+ rowData.bill_uuid
 									+ '\',this)">查看结果</a><a	class="del_bill" href="javascript:void(0)" id=\"del_bill_'
 									+ rowData.bill_uuid

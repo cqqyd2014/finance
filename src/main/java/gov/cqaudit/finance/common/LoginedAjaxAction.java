@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionContext;
 @SuppressWarnings("serial")
 public class LoginedAjaxAction extends InitAction{
 	
+
 	public Map<String, Object> msg;
 
 	public Map<String, Object> getMsg() {

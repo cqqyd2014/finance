@@ -67,9 +67,9 @@
 					//afterPageText : '页    共 {pages} 页',
 					//displayMsg : '当前显示 {from} - {to} 条记录   共 {total} 条记录',
 					onChangePageSize :function(pageSize){
-						console.log('435345');
+						//console.log('435345');
 						search_bill_rows_in_page=pageSize;
-						console.log(pageSize);
+						//console.log(pageSize);
 						},
 					onSelectPage : function(
 							pageNumber, pageSize) {

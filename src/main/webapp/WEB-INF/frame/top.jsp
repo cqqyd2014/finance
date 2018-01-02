@@ -66,7 +66,8 @@
 
 
 			<p
-				style="border: 0px;font-weight:bold;line-height:50px;font-size: 20px; vertical-align: middle; display: inline-block; margin: 0px;">地方银行数据查询系统</p>
+				style="border: 0px;font-weight:bold;line-height:50px;font-size: 20px; vertical-align: middle; display: inline-block; margin: 0px;"><s:property value="#application.app_name"/>
+				</p>
 		</div>
 
 		<div

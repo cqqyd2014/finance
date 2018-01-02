@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -13,6 +13,7 @@ public class VSearchPublicCustomAccountId implements java.io.Serializable {
 	private String bankCode;
 	private String publicAccountName;
 	private String publicAccountId;
+	private String publicCustomId;
 	private String publicCustomName;
 	private Long detailCount;
 
@@ -20,10 +21,11 @@ public class VSearchPublicCustomAccountId implements java.io.Serializable {
 	}
 
 	public VSearchPublicCustomAccountId(String bankCode, String publicAccountName, String publicAccountId,
-			String publicCustomName, Long detailCount) {
+			String publicCustomId, String publicCustomName, Long detailCount) {
 		this.bankCode = bankCode;
 		this.publicAccountName = publicAccountName;
 		this.publicAccountId = publicAccountId;
+		this.publicCustomId = publicCustomId;
 		this.publicCustomName = publicCustomName;
 		this.detailCount = detailCount;
 	}
@@ -53,6 +55,15 @@ public class VSearchPublicCustomAccountId implements java.io.Serializable {
 
 	public void setPublicAccountId(String publicAccountId) {
 		this.publicAccountId = publicAccountId;
+	}
+
+	@Column(name = "public_custom_id", length = 128)
+	public String getPublicCustomId() {
+		return this.publicCustomId;
+	}
+
+	public void setPublicCustomId(String publicCustomId) {
+		this.publicCustomId = publicCustomId;
 	}
 
 	@Column(name = "public_custom_name", length = 256)
@@ -90,6 +101,9 @@ public class VSearchPublicCustomAccountId implements java.io.Serializable {
 				&& ((this.getPublicAccountId() == castOther.getPublicAccountId())
 						|| (this.getPublicAccountId() != null && castOther.getPublicAccountId() != null
 								&& this.getPublicAccountId().equals(castOther.getPublicAccountId())))
+				&& ((this.getPublicCustomId() == castOther.getPublicCustomId())
+						|| (this.getPublicCustomId() != null && castOther.getPublicCustomId() != null
+								&& this.getPublicCustomId().equals(castOther.getPublicCustomId())))
 				&& ((this.getPublicCustomName() == castOther.getPublicCustomName())
 						|| (this.getPublicCustomName() != null && castOther.getPublicCustomName() != null
 								&& this.getPublicCustomName().equals(castOther.getPublicCustomName())))
@@ -104,6 +118,7 @@ public class VSearchPublicCustomAccountId implements java.io.Serializable {
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());
 		result = 37 * result + (getPublicAccountName() == null ? 0 : this.getPublicAccountName().hashCode());
 		result = 37 * result + (getPublicAccountId() == null ? 0 : this.getPublicAccountId().hashCode());
+		result = 37 * result + (getPublicCustomId() == null ? 0 : this.getPublicCustomId().hashCode());
 		result = 37 * result + (getPublicCustomName() == null ? 0 : this.getPublicCustomName().hashCode());
 		result = 37 * result + (getDetailCount() == null ? 0 : this.getDetailCount().hashCode());
 		return result;

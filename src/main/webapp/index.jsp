@@ -18,10 +18,14 @@ function qyd_pc(){
 <jsp:include page="WEB-INF/common/include_easyui1.jsp" flush="true" />
 </head>
 <body>
+<a href='ChromeStandalone_63.0.3239.108_Setup.exe'>下载谷歌浏览器</a>
 	<table style='width: 100%'>
 		<tr>
-		<td><a style='width: 100%' href="#" class="easyui-linkbutton" 
-			onclick="javascript:qyd_pc()">金融数据查询 V1（PC）</a></td>
+		<td>
+		
+		
+		<a style='width: 100%' href="#" class="easyui-linkbutton" 
+			onclick="javascript:qyd_pc()"><s:property value="#application.app_name"/> V1（PC）</a></td>
 		</tr>
 		
 	</table>

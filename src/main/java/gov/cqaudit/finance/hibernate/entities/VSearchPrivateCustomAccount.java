@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2017-12-28 13:03:11 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -29,6 +29,7 @@ public class VSearchPrivateCustomAccount implements java.io.Serializable {
 	@AttributeOverrides({ @AttributeOverride(name = "bankCode", column = @Column(name = "bank_code", length = 4)),
 			@AttributeOverride(name = "privateAccountName", column = @Column(name = "private_account_name", length = 256)),
 			@AttributeOverride(name = "privateAccountId", column = @Column(name = "private_account_id", length = 128)),
+			@AttributeOverride(name = "privateCustomId", column = @Column(name = "private_custom_id", length = 128)),
 			@AttributeOverride(name = "privateIdCard", column = @Column(name = "private_id_card", length = 64)),
 			@AttributeOverride(name = "detailCount", column = @Column(name = "detail_count")),
 			@AttributeOverride(name = "privateCardNo", column = @Column(name = "private_card_no", length = 64)) })

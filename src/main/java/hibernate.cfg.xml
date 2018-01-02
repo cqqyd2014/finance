@@ -51,6 +51,7 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.Picture"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePublicAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VUserMenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.CatalogTableField"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePrivateAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VBillDBack"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.SysCode"/>
