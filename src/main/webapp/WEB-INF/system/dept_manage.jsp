@@ -6,9 +6,13 @@
 
 <script type="text/javascript">
 function page_init() {
-	//获取数据
-	show_dept_table("../trans/get_trans_download_bills.action",check_all);
-
+	var gridOpts = $('#dept_table').datagrid('options');   
+	gridOpts.url="../system/get_depts.action";
+	
+	//gridOpts.queryParams=$('#search_rs_form').serializeObject();
+	//console.log(gridOpts.queryParams);
+	$("#dept_table").datagrid("load");
+	
 		
 	
 	
@@ -24,87 +28,85 @@ function dept_manage_ready(){
 		valueField : 'code',
 		textField : 'value'
 	});
+
+	$.getJSON("../system/get_sys_codes.action", {
+		s_id:'dept_type'
+	}, function(result) {
+
+		var field = result.msg;
+
+		if (field.success) {
+			//有效
+			var pars = field.o;
+			//console.log(pars);
+			$("#dept_type").combobox("loadData", pars);
+			//var data = $('#search_par_code').combobox('getData');
+			$('#dept_type').combobox('select', pars[0].code);
+
+		} else {
+			$.messager.alert("操作提示", "获取查询参数出错！" + field.body, "error");
+
+		}
+
+	});
 	$('#dept_table')
 	.datagrid(
 			{
 				//border:false,  
 				fitColumns : true,
 				singleSelect : true,
-				title : '查询结果',
+				title : '处室列表',
 				rownumbers : true,
 				columns : [ [
 						{
-							field : 'bank_name',
-							title : '银行'
+							field : 'dept_name',
+							title : '处室名称'
 						},
 						{
-							field : 'business_name',
-							title : '业务类型'
+							field : 'dept_type_name',
+							title : '类型'
 						},
 						{
-							field : 'search_par_name',
-							title : '查询要素'
+							field : 'user_num',
+							title : '用户数量'
 						},
-						{
-							field : 'search_value',
-							title : '查询条件'
-						},
-						{
-							field : 'account_id',
-							title : '账号'
-						},
-						{
-							field : 'rows_count',
-							title : '记录数'
-						},
+						
 
 						{
 							field : 'opt',
 							title : '操作',
-							width : '250px',
+							width : '200px',
 							align : 'center',
 							formatter : function(
 									value, rec) {
-								var btn = '<a class="download_custom_xls" onclick="download_custom_xls(\''
-										+ rec.bank_code
-										+'\',\''
-										+rec.business_code
-										+'\',\''
-										+rec.custom_id
-										+ '\')" href="javascript:void(0)">客户</a><a class="download_account_xls" onclick="download_account_xls(\''
-										+ rec.bank_code
-										+'\',\''
-										+rec.business_code
-										+'\',\''
-										+rec.account_id
-										+ '\')" href="javascript:void(0)">客户</a><a class="download_detail_xls" onclick="download_detail_xls(\''
-										+ rec.bank_code
-										+'\',\''
-										+rec.business_code
-										+'\',\''
-										+rec.account_id
-										+ '\')" href="javascript:void(0)">客户</a>';
+								var btn = '<a class="rename_dept" onclick="rename_dept(\''
+										+ rec.dept_uuid
+										+'\')" href="javascript:void(0)">更名</a><a class="add_user" onclick="add_user(\''
+										+ rec.dept_uuid
+										+'\')" href="javascript:void(0)">添加用户</a><a class="del_dept" onclick="del_dept(\''
+										+ rec.dept_uuid
+										+'\')" href="javascript:void(0)">添加用户</a>';
 								return btn;
 							}
 						} ] ],
 				onLoadSuccess : function(data) {
-					$('.download_custom_xls').linkbutton({
-						text : '客户',
+					$('.rename_dept').linkbutton({
+						text : '更名',
 						plain : true,
-						iconCls : 'icon-excel'
+						iconCls : 'icon-reload'
 					});
-					$('.download_account_xls').linkbutton({
-						text : '账户',
+					$('.add_user').linkbutton({
+						text : '添加用户',
 						plain : true,
-						iconCls : 'icon-excel'
+						iconCls : 'icon-add'
 					});
-					$('.download_detail_xls').linkbutton({
-						text : '流水',
+					$('.del_dept').linkbutton({
+						text : '删除',
 						plain : true,
-						iconCls : 'icon-excel'
+						iconCls : 'icon-cancel'
 					});
 
-					$('#search_rs_table').datagrid(
+					$('#dept_table').datagrid(
 							'fixRowHeight')
 
 				}
@@ -118,6 +120,7 @@ function dept_manage_ready(){
 </script>
 <script>
 
+
 function add_dept(){
 	var value=easyui_textbox_tirm('dept_name');
 	if (value==''){
@@ -126,7 +129,23 @@ function add_dept(){
 
 		}
 	else{
-		$('#new_dept_form').serializeObject()
+		
+
+		$.getJSON("../system/add_dept.action", $('#new_dept_form').serializeObject()
+				, function(result) {
+
+			var field = result.msg;
+
+			if (field.success) {
+				page_init();
+				$.messager.alert("操作提示", "添加成功！", "info");
+
+			} else {
+				$.messager.alert("操作提示", "获取查询参数出错！" + field.body, "error");
+
+			}
+
+		});
 
 		}
 }
@@ -157,13 +176,8 @@ function add_dept(){
             <h2>处室管理</h2>
             <p>有人员的处室，不能删除。</p>
             <div>新建处室,新增处室中文名称
-            <form id="new_dept_form">
-            <input id='dept_name' name='dept_name' class="easyui-textbox" style="width:300px;"/>,处室类型：
-            <input id='dept_type' name='dept_type' style='width:100px;'/> 
-            </form>
-            <a ref="javascript:void(0)"
-								class="easyui-linkbutton" onclick="javascript:add_dept()"
-								iconCls="icon-add" >点击新增处室</a></div>
+            
+            </div>
             
 
         </div>
@@ -176,6 +190,23 @@ function add_dept(){
 		
 	</table>
 
-        </div>          
+        </div> 
+        <div id="tools_panel" data-options="region:'south',border:true" title='操作'
+	style="height: 140px; padding: 5px;">
+            <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
+            
+           
+            <div>新增处室中文名称
+            <form id="new_dept_form">
+            <input id='dept_name' name='dept_name' class="easyui-textbox" style="width:200px;"/>,处室类型：
+            <input id='dept_type' name='dept_type' style='width:100px;'/> 
+            <a ref="javascript:void(0)"
+								class="easyui-linkbutton" onclick="javascript:add_dept()"
+								iconCls="icon-add" >点击新增处室</a>
+            </form>
+            </div>
+            
+
+        </div>         
     </div>
 

@@ -1,12 +1,31 @@
 package gov.cqaudit.finance.hibernate.dao;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
 
-public class VSysUserDAO {
-	public gov.cqaudit.finance.hibernate.entities.VSysUser getEntityByUserId(Session session, String user_id) {
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
+
+public class VSysUserDAO extends GetModelFromEntityViewDAO{
+	@SuppressWarnings("unchecked")
+	public java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> getAllModel(Session session) {
+		String hql = "from VSysUser ";
+
+		@SuppressWarnings("rawtypes")
+		Query q = session.createQuery(hql);
+		
+
+
+		java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysUser> sws = (java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysUser>) q
+				.list();
+		return (java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser>)getArrayListModelFromArrayListViewEntity(sws);
+	}
+	
+	
+	public gov.cqaudit.finance.system.model.SysUser getEntityByUserId(Session session, String user_id) {
 		String hql = "from VSysUser where id.effective=true and id.id=:user_id";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		q.setParameter("user_id", user_id);
 
@@ -17,12 +36,13 @@ public class VSysUserDAO {
 			System.out.println("不能得到用户数据，参数user_id:" + user_id);
 			return null;
 		} else {
-			return sws.get(0);
+			return getModelFromViewEntity(sws.get(0));
 		}
 	}
-	public gov.cqaudit.finance.hibernate.entities.VSysUser getEntityByLoginName(Session session, String user_login_name) {
+	public gov.cqaudit.finance.system.model.SysUser getModelByLoginName(Session session, String user_login_name) {
 		String hql = "from VSysUser where id.effective=true and id.userLogin=:user_login_name";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		q.setParameter("user_login_name", user_login_name);
 
@@ -33,7 +53,61 @@ public class VSysUserDAO {
 			System.out.println("不能得到用户数据，参数user_login_name:" + user_login_name);
 			return null;
 		} else {
-			return sws.get(0);
+			return getModelFromViewEntity(sws.get(0));
 		}
+	}
+	@Override
+	public <T> void save(Session session, T t) {
+		// TODO Auto-generated method stub
+		gov.cqaudit.finance.system.model.SysUser m=(gov.cqaudit.finance.system.model.SysUser)t;
+		gov.cqaudit.finance.hibernate.entities.SysUser su_h=new gov.cqaudit.finance.hibernate.entities.SysUser();
+		su_h.setCreateTime(m.getCreate_dat());
+		su_h.setDeptId(m.getDept_id());
+		su_h.setEffective(m.isEffective());
+		su_h.setEmail(m.getEmail());
+		su_h.setId(m.getUser_id());
+		su_h.setLastOnlineTime(m.getLast_online_dat());
+		su_h.setName(m.getUser_name());
+		su_h.setOnline(m.isOnline());
+		su_h.setPwd(m.getPassword());
+		su_h.setTel(m.getTell());
+		su_h.setUserLogin(m.getUser_login_name());
+		
+		
+		
+		
+		session.saveOrUpdate(su_h);
+		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T, S> T getModelFromViewEntity(S s) {
+		// TODO Auto-generated method stub
+		gov.cqaudit.finance.hibernate.entities.VSysUser h=(gov.cqaudit.finance.hibernate.entities.VSysUser)s;
+		gov.cqaudit.finance.system.model.SysUser su=new gov.cqaudit.finance.system.model.SysUser();
+		su.setDept_id(h.getId().getDeptId());
+		su.setDept_name(h.getId().getDeptName());
+		su.setPassword(h.getId().getPwd());
+		su.setRole_id(h.getId().getRoleId());
+		su.setRole_name(h.getId().getRoleName());
+		su.setUser_id(h.getId().getId());
+		su.setUser_login_name(h.getId().getUserLogin());
+		su.setUser_name(h.getId().getName());
+		su.setEffective(h.getId().getEffective());
+		su.setOnline(h.getId().getOnline());
+		su.setLast_online_dat(h.getId().getLastOnlineTime());
+		su.setCreate_dat(h.getId().getCreateTime());
+		su.setEmail(h.getId().getEmail());
+		su.setTell(h.getId().getTel());
+		su.setCreate_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getCreateTime()));
+		su.setLast_online_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getLastOnlineTime()));
+		if (h.getId().getEffective()){
+			su.setEffective_print("有效");
+		}
+		else{
+			su.setEffective_print("停用");
+		}
+		
+		return (T)su;
 	}
 }

@@ -1,6 +1,7 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-2 21:10:43 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-3 12:12:28 by Hibernate Tools 5.2.3.Final
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +16,8 @@ public class SysDept implements java.io.Serializable {
 
 	private String deptUuid;
 	private String deptName;
+	private BigDecimal userNum;
+	private String deptType;
 
 	public SysDept() {
 	}
@@ -23,9 +26,11 @@ public class SysDept implements java.io.Serializable {
 		this.deptUuid = deptUuid;
 	}
 
-	public SysDept(String deptUuid, String deptName) {
+	public SysDept(String deptUuid, String deptName, BigDecimal userNum, String deptType) {
 		this.deptUuid = deptUuid;
 		this.deptName = deptName;
+		this.userNum = userNum;
+		this.deptType = deptType;
 	}
 
 	@Id
@@ -46,6 +51,24 @@ public class SysDept implements java.io.Serializable {
 
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
+	}
+
+	@Column(name = "user_num", precision = 131089, scale = 0)
+	public BigDecimal getUserNum() {
+		return this.userNum;
+	}
+
+	public void setUserNum(BigDecimal userNum) {
+		this.userNum = userNum;
+	}
+
+	@Column(name = "dept_type", length = 4)
+	public String getDeptType() {
+		return this.deptType;
+	}
+
+	public void setDeptType(String deptType) {
+		this.deptType = deptType;
 	}
 
 }

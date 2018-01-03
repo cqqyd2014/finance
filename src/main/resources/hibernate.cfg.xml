@@ -42,7 +42,6 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.SysUserRole"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePrivateCustomBase"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.SysRole"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entities.VBillBack"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePrivateAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VSysUser"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePrivateAccountInfo"/>
@@ -52,8 +51,11 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.Picture"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePublicAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VUserMenuM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.CatalogTableField"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePrivateAccountTradeDetail"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.VBillDBack"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.SysCode"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.VSysDept"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePublicAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePublicAccountInfo"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.CatalogTable"/>

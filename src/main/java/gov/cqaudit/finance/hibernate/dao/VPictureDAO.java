@@ -1,12 +1,14 @@
 package gov.cqaudit.finance.hibernate.dao;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class VPictureDAO {
 	public static java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VPicture> getArrayListViewByBillUuid(Session session,String bill_uuid){
 		String hql = "from VPicture where id.effective=true and id.billUuid=:bill_uuid order by id.opDat";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		q.setParameter("bill_uuid", bill_uuid);
 		

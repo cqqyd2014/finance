@@ -72,7 +72,12 @@ sm.setAuth_success(true);
 				
 				
 				
-				gov.cqaudit.finance.hibernate.dao.SysUserDAO.setValue(session,user_id, par_code, par_value);
+				gov.cqaudit.finance.hibernate.dao.UserParDAO updao=new gov.cqaudit.finance.hibernate.dao.UserParDAO();
+				gov.cqaudit.finance.system.model.UserPar m=updao.getModelByUserIdCode(session, user_id, par_code);
+				m.setValue(par_value);
+				updao.save(session, m);
+				
+				
 				
 				session_http.put(par_code, par_value);
 

@@ -48,11 +48,11 @@ if (user_id==null||user_id.equals("")) {
 		 tx = session.beginTransaction();
 		try {
 			
-			gov.cqaudit.finance.hibernate.dao.SysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.SysUserDAO();
-			gov.cqaudit.finance.hibernate.entities.SysUser su=sudao.getEntityByUserId(session, user_id);
-			su.setLastOnlineTime(new java.util.Date());
+			gov.cqaudit.finance.hibernate.dao.VSysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
+			gov.cqaudit.finance.system.model.SysUser su=sudao.getEntityByUserId(session, user_id);
+			su.setLast_online_dat(new java.util.Date());
 			su.setOnline(false);
-			session.saveOrUpdate(su);
+			sudao.save(session, su);
 
 			tx.commit();
 			sm.setSuccess(true);

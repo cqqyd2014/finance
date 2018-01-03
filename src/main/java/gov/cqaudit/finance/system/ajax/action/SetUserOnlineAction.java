@@ -50,11 +50,11 @@ sm.setAuth_success(true);
 		try {
 			
 			
-			gov.cqaudit.finance.hibernate.dao.SysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.SysUserDAO();
-			gov.cqaudit.finance.hibernate.entities.SysUser su=sudao.getEntityByUserId(session, user_id);
+			gov.cqaudit.finance.hibernate.dao.VSysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
+			gov.cqaudit.finance.system.model.SysUser su=sudao.getEntityByUserId(session, user_id);
 			su.setOnline(true);
-			su.setLastOnlineTime(new java.util.Date());
-			session.saveOrUpdate(su);
+			su.setLast_online_dat(new java.util.Date());
+			sudao.save(session, su);
 			tx.commit();
 			sm.setSuccess(true);
 		}
