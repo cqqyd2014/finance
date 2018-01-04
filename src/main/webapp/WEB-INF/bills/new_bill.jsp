@@ -99,6 +99,7 @@
 			
 
 		}
+		
 
 		return;
 	}
@@ -138,6 +139,11 @@
 			$.messager.alert("操作提示", "查询条件不能为空！", "error");
 			return;
 		}
+		//查询身份证的情况，测试输入内容是否为身份证
+		if ($("#search_par_code").combobox("getValue")=='0004'&&(!isCardNo($('#search_par_value').val()))){
+			$.messager.alert("操作提示", "请检查身份证号码是否合规！", "error");
+			return;
+			}
 
 		$.getJSON("../bills/add_bill_detail.action", {
 			"business_code" : $("#business_code").combobox("getValue"),

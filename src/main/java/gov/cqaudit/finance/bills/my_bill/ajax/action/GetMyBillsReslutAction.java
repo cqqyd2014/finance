@@ -34,8 +34,8 @@ public class GetMyBillsReslutAction extends BillsReslutAction {
 				else{
 					bill_status=search_bill_bill_status;
 				}
-				
-				return gov.cqaudit.finance.hibernate.dao.VBillMDAO.getBillUuidsCount(session,bill_status, search_bill_contract_name, search_bill_pro_name, user_id).toString();
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+				return vbmdao.getBillUuidsCount(session,bill_status, search_bill_contract_name, search_bill_pro_name, user_id).toString();
 	}
 
 	@Override
@@ -49,7 +49,8 @@ public class GetMyBillsReslutAction extends BillsReslutAction {
 		else{
 			bill_status=search_bill_bill_status;
 		}
-java.util.ArrayList<String> bills_uuids=gov.cqaudit.finance.hibernate.dao.VBillMDAO.getArrayListBillUuids(session, rows, page, bill_status, search_bill_contract_name, search_bill_pro_name, user_id);
+		gov.cqaudit.finance.hibernate.dao.VBillMDAO vbmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+java.util.ArrayList<String> bills_uuids=vbmdao.getArrayListBillUuids(session, rows, page, bill_status, search_bill_contract_name, search_bill_pro_name, user_id);
 		
 		
 		return bills_uuids;

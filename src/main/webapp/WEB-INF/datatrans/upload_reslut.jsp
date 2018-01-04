@@ -5,20 +5,16 @@
 <div class="easyui-layout" fit="true" style="background: red;" >
         <!-- 搜索条件 -->
         <div id="head_panel" data-options="region:'north',border:true"
-	style="height: 140px; padding: 5px;">
+	style="height: 100px; padding: 5px;">
             <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
             
             <h2>上传查询结果</h2>
-            <p>将银行返回的查询结果上传至服务器。</p>
-            <div>1、选择数据文件，校验数据<input class="easyui-filebox" style="width: 400px" id="paper"
+            
+            <div>选择数据文件，上传至服务器<input class="easyui-filebox" style="width: 400px" id="paper"
 						name="paper"
 						data-options="onChange:function(){ajaxFileUpload()},label:'上传纸质签批扫描件:',buttonText:'浏览选择文件',prompt:'仅支持xml格式的图片'
 					,required:true,accept:'text/xml'" /></div>
-					<div>2、确认校验通过的数据发送至数据库
-					<a class="easyui-linkbutton" id="post_to_Db" href="javascript:void(0)"  onclick="javascript:post_to_db()">
 					
-					确定保存至数据库
-					</a></div>
             
 
         </div>
@@ -53,6 +49,7 @@
 
 
 function ajaxFileUpload() {
+	$('#up_result').textbox('setValue','');
 	if ($('#paper').filebox("getValue") == "") {
 		return;
 	}
@@ -78,15 +75,17 @@ function ajaxFileUpload() {
 
 			var field = data.msg;
 			if (field.success) {
-				var pic_uuids = field.o;
-				var pic_uuid = pic_uuids[0];
-				var pic_names = field.o2;
-				var pic_name = pic_names[0];
-				//$.messager.alert("操作提示", "上传图片成功：" + pic_name, "info");
+				var rs=field.o;
+				//console.log(rs);
+				var text_rs='';
+				for (var i=0;i<rs.length;i++){
+					var r=rs[i];
+					text_rs=text_rs+r.table_name+'导入：'+r.rows_count+'\n';
+					}
 
-				picture_manage_init(image_bill_uuid,null);
+				$('#up_result').textbox('setValue',text_rs);
 			} else {
-				$.messager.alert("操作提示", "上传图片失败：" + field.body, "error");
+				$.messager.alert("操作提示", "上传数据失败：" + field.body, "error");
 			}
 
 		},

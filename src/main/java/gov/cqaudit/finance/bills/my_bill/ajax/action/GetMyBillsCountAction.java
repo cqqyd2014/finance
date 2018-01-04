@@ -27,8 +27,9 @@ public class GetMyBillsCountAction extends BillCountAjaxAction{
 		if (search_bill_bill_status.equals("0")){
 			search_bill_bill_status=null;
 		}
+		gov.cqaudit.finance.hibernate.dao.VBillMDAO vbmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 		
-		return gov.cqaudit.finance.hibernate.dao.VBillMDAO.getBillUuidsCount(session,search_bill_bill_status, search_bill_contract_name, search_bill_pro_name, user_id);
+		return vbmdao.getBillUuidsCount(session,search_bill_bill_status, search_bill_contract_name, search_bill_pro_name, user_id);
 	}
 	@Action(value = "get_my_bills_count", results = { @Result(type = "json", params = { "root", "bill_count" }) }, interceptorRefs = {
 			

@@ -53,6 +53,7 @@ public class VBillDBackDAO extends GetModelFromEntityViewDAO{
 		m.setSearch_par_name(h.getId().getSearchParName());
 		m.setSearch_value(h.getId().getSearchParValue());
 		m.setCustom_id(h.getId().getCustomId());
+		m.setAccount_name(h.getId().getAccountName());
 		return (T)m;
 	}
 }

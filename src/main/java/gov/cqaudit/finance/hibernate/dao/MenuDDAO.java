@@ -1,12 +1,14 @@
 package gov.cqaudit.finance.hibernate.dao;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class MenuDDAO {
 	public gov.cqaudit.finance.hibernate.entities.MenuD getEntityByIdDId(Session session, String id,String d_id) {
 		String hql = "from MenuD where id.menuDId=:d_id and menuId=:id";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		q.setParameter("id", id);
 		q.setParameter("d_id", d_id);

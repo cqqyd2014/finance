@@ -39,15 +39,15 @@ msg=new java.util.HashMap<String, Object>();
 			String search_bill_pro_name, String create_user_id) {
 		// TODO Auto-generated method stub
 		
-		
-		return gov.cqaudit.finance.hibernate.dao.VBillMDAO.getBillUuidsCount(session,"等待传单", search_bill_contract_name, search_bill_pro_name, null).toString();
+		 gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+		return vbdao.getBillUuidsCount(session,"等待传单", search_bill_contract_name, search_bill_pro_name, null).toString();
 	}
 
 	@Override
 	public ArrayList<String> getBillsImpl(Session session, String rows, String page, String search_bill_bill_status,
 			String search_bill_contract_name, String search_bill_pro_name, String create_user_id) {
-		
-java.util.ArrayList<String> bills_uuids=gov.cqaudit.finance.hibernate.dao.VBillMDAO.getArrayListBillUuids(session, rows, page, "等待传单", search_bill_contract_name, search_bill_pro_name, null);
+		gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+java.util.ArrayList<String> bills_uuids=vbdao.getArrayListBillUuids(session, rows, page, "等待传单", search_bill_contract_name, search_bill_pro_name, null);
 		
 		
 		return bills_uuids;

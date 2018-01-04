@@ -69,8 +69,8 @@ public class EditBillInitAction extends LoginedInitAction{
 				
 				try {
 					
-					
-					gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+					gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+					gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
 					
 					chinese_date=bm.getCreate_dat_chinese_print();
 					

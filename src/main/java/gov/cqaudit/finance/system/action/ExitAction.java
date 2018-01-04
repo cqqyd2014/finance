@@ -49,7 +49,7 @@ if (user_id==null||user_id.equals("")) {
 		try {
 			
 			gov.cqaudit.finance.hibernate.dao.VSysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
-			gov.cqaudit.finance.system.model.SysUser su=sudao.getEntityByUserId(session, user_id);
+			gov.cqaudit.finance.system.model.SysUser su=sudao.getModelByUserId(session, user_id);
 			su.setLast_online_dat(new java.util.Date());
 			su.setOnline(false);
 			sudao.save(session, su);

@@ -103,8 +103,8 @@ public class NewBillInitAction extends LoginedInitAction{
 					 bm.setDetail_num(new java.math.BigDecimal(0));
 					 bm.setUneffecitve_user_id("");
 					 bm.setUneffective_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
-					 
-					 gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+					 gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+					 vbdao.save(session, bm);
 					 tx.commit();
 			
 		}

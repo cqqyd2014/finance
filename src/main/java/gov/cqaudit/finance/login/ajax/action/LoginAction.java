@@ -78,6 +78,9 @@ public class LoginAction extends ActionSupport {
 			if (!vsu.getPassword().equals(com.cqqyd2014.util.StringUtil.md5(password))) {
 				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("密码错误");
 			}
+			if (!vsu.isEffective()){
+				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("该用户已经停用");
+			}
 			
 				// System.out.println("设置信息");
 				session_http.put("user_name",vsu.getUser_name());

@@ -84,8 +84,8 @@ public class PrintBillAction extends PdfPrintInitAbstractAction {
 		java.util.ArrayList<gov.cqaudit.finance.bills.model.BillM> bms = null;
 		try {
 			// TODO Auto-generated method stub
-			bms = gov.cqaudit.finance.bills.logic.BillMLogic.getArrayListModelFromArrayListView(
-					gov.cqaudit.finance.hibernate.dao.VBillMDAO.getArrayListViewArrayListBillUuid(session, uuids));
+			gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+			bms = vbdao.getArrayListViewArrayListBillUuid(session, uuids);
 
 			for (int i = 0; i < bms.size(); i++) {
 				gov.cqaudit.finance.bills.model.BillM bm = bms.get(i);
@@ -94,7 +94,7 @@ public class PrintBillAction extends PdfPrintInitAbstractAction {
 								.getArrayListViewByBillUuid(session, bm.getBill_uuid())));
 				if (bm.getBill_status().equals("起草申请")){
 					bm.setBill_status("打印待签");
-					gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+					vbdao.save(session, bm);
 				}
 				
 

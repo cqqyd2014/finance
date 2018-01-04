@@ -1,7 +1,7 @@
 package gov.cqaudit.finance.bills.my_bill.ajax.action;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -36,9 +36,9 @@ public class GetMyBillsPagesAction extends BillPagesAjaxAction{
 	public ArrayList<String> getBills(Session session, String rows, String page, String bill_status,
 			String contract_name, String pro_name, String create_user_id) {
 		
+		gov.cqaudit.finance.hibernate.dao.VBillMDAO vbmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 		
-		
-		java.util.ArrayList<String> bills_uuids=gov.cqaudit.finance.hibernate.dao.VBillMDAO.getArrayListBillUuids(session, rows, page, bill_status, contract_name, pro_name, user_id);
+		java.util.ArrayList<String> bills_uuids=vbmdao.getArrayListBillUuids(session, rows, page, bill_status, contract_name, pro_name, user_id);
 		
 		
 		return bills_uuids;

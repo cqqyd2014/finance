@@ -298,6 +298,7 @@ function picture_manage_ready(){
 	
 	
 
+	easyui_ajax_div_clean('picture_manage_div');
 	dialog_init('picture_manage_div');
 
 	

@@ -103,10 +103,9 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 			 java.util.Date now=new java.util.Date();
 			 gov.cqaudit.finance.bills.model.BillM bm=null;
 			try {
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 				
-				
-				bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(
-						gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+				bm=vbdao.getModelByUuid(session, bill_uuid);
 				
 				
 				
@@ -125,7 +124,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				
 				
 				
-				gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+				vbdao.save(session, bm);
 						
 			sm.setSuccess(true);
 			sm.setO(bm);

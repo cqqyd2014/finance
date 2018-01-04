@@ -23,13 +23,14 @@ public final class XmlDataTools {
 		dtm.setUpload_dat(now);
 		gov.cqaudit.finance.datatrans.logic.DataTransMLogic.save(session, dtm);
 		//更新查询单状态
+		gov.cqaudit.finance.hibernate.dao.VBillMDAO vbmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 		
 		java.util.ArrayList<gov.cqaudit.finance.datatrans.model.DataTransD> dtds=gov.cqaudit.finance.datatrans.logic.DataTransDLogic.getArrayListModelFromArrayListView(gov.cqaudit.finance.hibernate.dao.VDataTransDDAO.getArrayListViewByTransUuid(session, trans_uuid));
 		for (int i=0,len=dtds.size();i<len;i++){
 			gov.cqaudit.finance.datatrans.model.DataTransD dtd=dtds.get(i);
-			gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, dtd.getBill_uuid()));
+			gov.cqaudit.finance.bills.model.BillM bm=vbmdao.getModelByUuid(session, dtd.getBill_uuid());
 			bm.setBill_status("结果返回");
-			gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+			vbmdao.save(session, bm);
 		}
 		//在session中保存本次导入的客户资料和分户账资料，以便统计对应查询单的结果
 		

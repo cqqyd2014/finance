@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-3 12:12:28 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-5 1:05:23 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,6 +14,7 @@ public class VBillDBackId implements java.io.Serializable {
 
 	private String bankName;
 	private String searchParName;
+	private String accountName;
 	private String businessName;
 	private String billUuid;
 	private String detailUuid;
@@ -33,12 +34,13 @@ public class VBillDBackId implements java.io.Serializable {
 	public VBillDBackId() {
 	}
 
-	public VBillDBackId(String bankName, String searchParName, String businessName, String billUuid, String detailUuid,
-			String bankCode, String businessCode, String searchParCode, String searchParValue, Boolean effective,
-			Date unEffectiveDat, String unEffectiveUserid, String createUserid, Date createDat, String accountId,
-			BigDecimal detailCount, String customId) {
+	public VBillDBackId(String bankName, String searchParName, String accountName, String businessName, String billUuid,
+			String detailUuid, String bankCode, String businessCode, String searchParCode, String searchParValue,
+			Boolean effective, Date unEffectiveDat, String unEffectiveUserid, String createUserid, Date createDat,
+			String accountId, BigDecimal detailCount, String customId) {
 		this.bankName = bankName;
 		this.searchParName = searchParName;
+		this.accountName = accountName;
 		this.businessName = businessName;
 		this.billUuid = billUuid;
 		this.detailUuid = detailUuid;
@@ -72,6 +74,15 @@ public class VBillDBackId implements java.io.Serializable {
 
 	public void setSearchParName(String searchParName) {
 		this.searchParName = searchParName;
+	}
+
+	@Column(name = "account_name", length = 256)
+	public String getAccountName() {
+		return this.accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	@Column(name = "business_name", length = 90)
@@ -223,6 +234,9 @@ public class VBillDBackId implements java.io.Serializable {
 				&& ((this.getSearchParName() == castOther.getSearchParName())
 						|| (this.getSearchParName() != null && castOther.getSearchParName() != null
 								&& this.getSearchParName().equals(castOther.getSearchParName())))
+				&& ((this.getAccountName() == castOther.getAccountName())
+						|| (this.getAccountName() != null && castOther.getAccountName() != null
+								&& this.getAccountName().equals(castOther.getAccountName())))
 				&& ((this.getBusinessName() == castOther.getBusinessName())
 						|| (this.getBusinessName() != null && castOther.getBusinessName() != null
 								&& this.getBusinessName().equals(castOther.getBusinessName())))
@@ -268,6 +282,7 @@ public class VBillDBackId implements java.io.Serializable {
 
 		result = 37 * result + (getBankName() == null ? 0 : this.getBankName().hashCode());
 		result = 37 * result + (getSearchParName() == null ? 0 : this.getSearchParName().hashCode());
+		result = 37 * result + (getAccountName() == null ? 0 : this.getAccountName().hashCode());
 		result = 37 * result + (getBusinessName() == null ? 0 : this.getBusinessName().hashCode());
 		result = 37 * result + (getBillUuid() == null ? 0 : this.getBillUuid().hashCode());
 		result = 37 * result + (getDetailUuid() == null ? 0 : this.getDetailUuid().hashCode());

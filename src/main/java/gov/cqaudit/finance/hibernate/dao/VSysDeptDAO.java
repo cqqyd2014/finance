@@ -7,6 +7,26 @@ import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
 public class VSysDeptDAO extends GetModelFromEntityViewDAO{
 	
+	public gov.cqaudit.finance.system.model.Dept getModelByDeptId(Session session,String dept_uuid){
+		String hql = "from VSysDept where id.deptUuid=:dept_uuid";
+
+		@SuppressWarnings("rawtypes")
+		Query q = session.createQuery(hql);
+		
+		q.setParameter("dept_uuid", dept_uuid);
+
+		@SuppressWarnings("unchecked")
+		java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysDept> sws = 
+				(java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysDept>)q.list();
+		if (sws.size()==1){
+			return getModelFromViewEntity(sws.get(0));
+		}
+		else{
+			return null;
+		}
+		
+	}
+	
 	
 	public java.util.ArrayList<gov.cqaudit.finance.system.model.Dept> getArrayListModelByDeptName(Session session,String dept_name){
 		String hql = "from VSysDept where id.deptName=:dept_name";
@@ -61,6 +81,7 @@ public class VSysDeptDAO extends GetModelFromEntityViewDAO{
 		m.setDept_type(h.getId().getDeptType());
 		m.setDept_type_name(h.getId().getTypeName());
 		m.setUser_num(h.getId().getUserNum());
+		m.setDept_uuid(h.getId().getDeptUuid());
 		return (T)m;
 	}
 

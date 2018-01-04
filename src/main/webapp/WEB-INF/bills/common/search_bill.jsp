@@ -12,10 +12,10 @@
 	style="height: 140px; padding: 5px;">
 	<!------------------ 在这里填写你的搜索条件（FORM） -------------------->
 	<h2>查询申请</h2>
-	<p>查询单状态分为“起草申请”、“打印待签”、“等待传单”，“等待返回”和“结果返回”五个状态。起草阶段，查询单可以重复修改。一旦打印只会，查询不可再修改。待签字之后，再上传。确认图片附件已经上传，可提交申请。由于原始数据在不同银行，因此，需等待后台工作人员下载申请，赴银行执行查询，再返回结果。</p>
+	<p>查询单状态分为“起草申请”、“打印待签”、“等待传单”，“等待返回”和“结果返回”五个状态。起草阶段，查询单可以重复修改。一旦打印之后，查询不可再修改。请将申请单签字之后拍照上传。已附加图片的申请单，可提交。由于原始数据在不同银行，因此，需等待后台工作人员下载申请，赴银行执行查询，再返回结果。</p>
 	<div>
 	<form id='search_bill_pars'>
-		1、订单状态： <SELECT id="search_bill_bill_status" name='search_bill_bill_status'style="width: 70px">
+		1、订单状态： <SELECT id="search_bill_bill_status" name='search_bill_bill_status'style="width: 100px">
 			<option VALUE="0" SELECTED>所有申请</option>
 			<option VALUE="起草申请">起草申请</option>
 			<option VALUE="打印待签">打印待签</option>

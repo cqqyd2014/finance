@@ -51,13 +51,13 @@ public class DelBillMAction   extends LoginedAjaxAction {
 			 tx = session.beginTransaction();
 			try {
 				
-				
-				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+				gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
 				bm.setEffective(false);
 				bm.setUneffecitve_user_id(user_id);
 				java.util.Date now=new java.util.Date();
 				bm.setUneffective_dat(now);
-				gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+				vbdao.save(session, bm);
 				tx.commit();
 				
 				

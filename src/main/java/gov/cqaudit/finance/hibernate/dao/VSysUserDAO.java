@@ -22,8 +22,8 @@ public class VSysUserDAO extends GetModelFromEntityViewDAO{
 	}
 	
 	
-	public gov.cqaudit.finance.system.model.SysUser getEntityByUserId(Session session, String user_id) {
-		String hql = "from VSysUser where id.effective=true and id.id=:user_id";
+	public gov.cqaudit.finance.system.model.SysUser getModelByUserId(Session session, String user_id) {
+		String hql = "from VSysUser where id.id=:user_id";
 
 		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
@@ -100,7 +100,7 @@ public class VSysUserDAO extends GetModelFromEntityViewDAO{
 		su.setEmail(h.getId().getEmail());
 		su.setTell(h.getId().getTel());
 		su.setCreate_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getCreateTime()));
-		su.setLast_online_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getLastOnlineTime()));
+		su.setLast_online_dat_print(com.cqqyd2014.util.DateUtil.getPrintFullString(h.getId().getLastOnlineTime()));
 		if (h.getId().getEffective()){
 			su.setEffective_print("有效");
 		}

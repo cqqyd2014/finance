@@ -106,10 +106,12 @@ public abstract class BillPagesAjaxAction extends LoginedAjaxAction{
 				items=new java.util.ArrayList<>();
 			}
 			else {
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 				
 				
 				
-				items=gov.cqaudit.finance.bills.logic.BillMLogic.getArrayListModelWithDetailsPics(session, bills_uuids);
+				
+				items=vbdao.getArrayListModelWithDetailsPics(session, bills_uuids);
 			}
 			
 			

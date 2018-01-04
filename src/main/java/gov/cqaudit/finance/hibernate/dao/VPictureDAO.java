@@ -21,6 +21,7 @@ public class VPictureDAO {
 	public static gov.cqaudit.finance.hibernate.entities.VPicture getEntityByUuid(Session session,String uuid){
 		String hql = "from VPicture where id.uuid=:uuid";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		q.setParameter("uuid", uuid);
 		

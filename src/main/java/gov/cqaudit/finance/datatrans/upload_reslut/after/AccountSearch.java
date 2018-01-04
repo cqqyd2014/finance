@@ -28,6 +28,7 @@ public final class AccountSearch {
         				bdb.setDetailCount(new java.math.BigDecimal(public_name_search.getId().getDetailCount()));
         				bdb.setCustomId(public_name_search.getId().getPublicCustomId());
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, public_name_search.getId().getPublicAccountId()));
+        				bdb.setAccountName(public_name_search.getId().getPublicAccountName());
         				session.saveOrUpdate(bdb);
         			}
         			
@@ -40,6 +41,7 @@ public final class AccountSearch {
         				bdb.setDetailCount(new java.math.BigDecimal(public_account_search.getId().getDetailCount()));
         				bdb.setCustomId(public_account_search.getId().getPublicCustomId());
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, public_account_search.getId().getPublicAccountId()));
+        				bdb.setAccountName(public_account_search.getId().getPublicAccountName());
         				session.saveOrUpdate(bdb);
         			}
         		  break;
@@ -50,6 +52,7 @@ public final class AccountSearch {
         				gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
         				bdb.setDetailCount(new java.math.BigDecimal(private_card_no_search.getId().getDetailCount()));
         				bdb.setCustomId(private_card_no_search.getId().getPrivateCustomId());
+        				bdb.setAccountName(private_card_no_search.getId().getPrivateAccountName());
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, private_card_no_search.getId().getPrivateAccountId()));
         				
         				session.saveOrUpdate(bdb);
@@ -66,6 +69,7 @@ public final class AccountSearch {
         				bdb.setCustomId(private_id_card_search.getId().getPrivateCustomId());
         				bdb.setDetailCount(new java.math.BigDecimal(private_id_card_search.getId().getDetailCount()));
         				bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bill_uuid, detail_uuid, private_id_card_search.getId().getPrivateAccountId()));
+        				bdb.setAccountName(private_id_card_search.getId().getPrivateAccountName());
         				session.saveOrUpdate(bdb);
         			}
         			break;

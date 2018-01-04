@@ -131,11 +131,12 @@ public class DownloadXmlRequestAction extends DownloadFromServerAbstractAction{
         	 for (int i=0;i<bill_array.length;i++){
         		 String bill_uuid=bill_array[i];
         		 //更新申请单状态
-        		 gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+        		 gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+        		 gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
         		 
         		 bm.setLast_modify_dat(now);
         		 bm.setBill_status("等待返回");
-        		 gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+        		 vbdao.save(session, bm);
         		 //处理传输明细
         		 gov.cqaudit.finance.datatrans.model.DataTransD dtd=new gov.cqaudit.finance.datatrans.model.DataTransD();
         		 dtd.setBill_uuid(bill_uuid);

@@ -1,12 +1,14 @@
 package gov.cqaudit.finance.hibernate.dao;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public final class SysParDAO {
 	public static java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.SysPar> getArrayListEntites(Session session){
 		String hql = "from SysPar";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		
 		
@@ -28,6 +30,7 @@ public final class SysParDAO {
 	private static gov.cqaudit.finance.hibernate.entities.SysPar getEntityByCode(Session session, String code) {
 		String hql = "from SysPar where code=:code";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		q.setParameter("code", code);
 		

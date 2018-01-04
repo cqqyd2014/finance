@@ -45,9 +45,10 @@ public class DelPicAction   extends LoginedAjaxAction {
 				session.flush();
 				//得到图片数量，更新申请单
 				java.math.BigDecimal pictures_num=gov.cqaudit.finance.hibernate.dao.PictureDAO.getEntityCountByBillUuid(session, bill_uuid);
-				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+				gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
 				bm.setPics_num(pictures_num);
-				gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+				vbdao.save(session, bm);
 				session.flush();
 				
 			sm.setSuccess(true);

@@ -14,10 +14,11 @@ import com.cqqyd2014.annotation.Authority;
 import gov.cqaudit.finance.common.LoginedAjaxAction;
 
 import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
+
+
 @SuppressWarnings("serial")
-@Scope("prototype")//支持多例  
-@ParentPackage("bfkjs-default") 
-@Namespace(value="/system") //表示当前Action所在命名空间 
+@ParentPackage("bfkjs-json-default")
+@Namespace("/system")
 public class GetUsersAction  extends LoginedAjaxAction {
 
 	

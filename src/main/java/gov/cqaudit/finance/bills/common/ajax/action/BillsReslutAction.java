@@ -110,8 +110,8 @@ public abstract class BillsReslutAction extends LoginedAjaxAction {
 			else {
 				
 				
-				
-				items=gov.cqaudit.finance.bills.logic.BillMLogic.getArrayListModelWithDetailsPics(session, bills_uuids);
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+				items= vbdao.getArrayListModelWithDetailsPics(session, bills_uuids);
 			}
 			
 			

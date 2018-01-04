@@ -51,7 +51,7 @@ sm.setAuth_success(true);
 			
 			
 			gov.cqaudit.finance.hibernate.dao.VSysUserDAO sudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
-			gov.cqaudit.finance.system.model.SysUser su=sudao.getEntityByUserId(session, user_id);
+			gov.cqaudit.finance.system.model.SysUser su=sudao.getModelByUserId(session, user_id);
 			su.setOnline(true);
 			su.setLast_online_dat(new java.util.Date());
 			sudao.save(session, su);

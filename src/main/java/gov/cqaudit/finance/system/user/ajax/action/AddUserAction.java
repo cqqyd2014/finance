@@ -21,7 +21,45 @@ public class AddUserAction extends LoginedAjaxAction {
 	String dept_id;
 	String password1;
 	String role_id;
+	String tell;
+	String email;
 	
+
+
+
+
+
+public String getTell() {
+		return tell;
+	}
+
+
+
+
+
+
+	public void setTell(String tell) {
+		this.tell = tell;
+	}
+
+
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
 
 
@@ -135,7 +173,7 @@ sm.setAuth_success(true);
 			gov.cqaudit.finance.hibernate.dao.VSysUserDAO vdao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
 			gov.cqaudit.finance.system.model.SysUser ms=vdao.getModelByLoginName(session, user_login);
 			
-			if (ms==null){
+			if (ms!=null){
 				sm.setSuccess(false);
 				sm.setBody("用户登录名重复");
 			}
@@ -144,17 +182,38 @@ sm.setAuth_success(true);
 				m.setCreate_dat(new java.util.Date());
 				m.setDept_id(dept_id);
 				m.setEffective(true);
-				m.setEmail("");
+				m.setEmail(email);
 				m.setLast_online_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
 				m.setOnline(false);
 				m.setPassword(com.cqqyd2014.util.StringUtil.md5(password1));
 				m.setRole_id(role_id);
-				m.setTell("");
-				m.setUser_id(com.cqqyd2014.util.StringUtil.getUUID());
+				m.setTell(tell);
+				String user_uuid=com.cqqyd2014.util.StringUtil.getUUID();
+				m.setUser_id(user_uuid);
 				m.setUser_login_name(user_login);
 				m.setUser_name(user_name);
 				vdao.save(session, m);
-				
+				//更新处室人数
+				gov.cqaudit.finance.hibernate.dao.VSysDeptDAO deptdao=new gov.cqaudit.finance.hibernate.dao.VSysDeptDAO();
+				gov.cqaudit.finance.system.model.Dept m2=deptdao.getModelByDeptId(session,dept_id);
+				java.math.BigDecimal num_old=m2.getUser_num();
+				m2.setUser_num(num_old.add(new java.math.BigDecimal(1)));
+				deptdao.save(session, m2);
+				//默认用户参数
+				gov.cqaudit.finance.system.model.UserPar upm=new gov.cqaudit.finance.system.model.UserPar();
+				upm.setParam("default_rows_in_page");
+				upm.setUserid(user_uuid);
+				upm.setValue("50");
+				upm.setParam_desc("默认一页显示行数");
+				 gov.cqaudit.finance.hibernate.dao.UserParDAO updao=new gov.cqaudit.finance.hibernate.dao.UserParDAO();
+				 updao.save(session, upm);
+				//分配角色
+				 
+				 gov.cqaudit.finance.system.model.UserRole ur=new gov.cqaudit.finance.system.model.UserRole();
+				 ur.setRole_id(role_id);
+				 ur.setUser_id(user_uuid);
+				 gov.cqaudit.finance.hibernate.dao.UserRoleDAO urdao=new gov.cqaudit.finance.hibernate.dao.UserRoleDAO();
+				 urdao.save(session, ur);
 				tx.commit();
 				sm.setSuccess(true);
 			}

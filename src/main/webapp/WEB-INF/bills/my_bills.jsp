@@ -116,11 +116,11 @@ function center_load_ready(){
 
 	
 
-	easyui_ajax_div_clean('picture_manage_div');
 	
 	
-	easyui_ajax_div_clean('view_reslut_div');
-	picture_manage_ready();
+	
+	
+	picture_manage_ready(page_init);
 	view_reslut_ready();
 	search_bill_ready();
 				

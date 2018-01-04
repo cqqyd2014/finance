@@ -14,12 +14,12 @@
 	<!-- 布局 -->
 	<div class="easyui-layout" fit="true" style="padding:5px;">
 	<div data-options="region:'north',border:true,iconCls:'icon-tip'"
-			style="height: 60px; padding: 0px 0px 0px 0px;" title="">
+			style="height: 60px; padding: 0px;" title="">
 			<!------------------ 在这里填写你的搜索条件（FORM） -------------------->
-			<h3>根据查询要求，已经查出一下记录，点击下载Excel文件</h3>
+			<h3>根据查询要求，已经查出以下记录，点击下载Excel文件</h3>
 		</div>
 		<div data-options="region:'center',border:false"
-			style="padding: 0px 0px 0px 0px;" fit="true">
+			style="padding: 0px;" >
 			<!------------------ 在这里填写你的datagrid -------------------->
 			<table id="search_rs_table" style="width: 100%;">
 			</table>
@@ -104,6 +104,10 @@
 								title : '账号'
 							},
 							{
+								field : 'account_name',
+								title : '户名'
+							},
+							{
 								field : 'rows_count',
 								title : '记录数'
 							},
@@ -111,7 +115,7 @@
 							{
 								field : 'opt',
 								title : '操作',
-								width : '250px',
+								width : '180px',
 								align : 'center',
 								formatter : function(
 										value, rec) {
@@ -161,7 +165,7 @@
 				});
 
 
-
+	 easyui_ajax_div_clean('view_reslut_div');
 	 
 	 dialog_init('view_reslut_div');
 	 }

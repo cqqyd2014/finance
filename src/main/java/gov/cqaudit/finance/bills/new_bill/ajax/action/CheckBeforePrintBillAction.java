@@ -44,10 +44,10 @@ public class CheckBeforePrintBillAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 
 			try {
+				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 				
 				
-				gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(
-						gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+				gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
 				if (bm.getDetail_num().compareTo(new java.math.BigDecimal(0))==0){
 					sm.setBoolean_flag(false);
 				}

@@ -18,7 +18,65 @@ function page_init() {
 	
 
 }
-function dept_manage_ready(){
+
+
+function effective(user_uuid,effective){
+
+	$.messager.confirm('操作提示','确认要启用这个用户吗?',function(r){
+	    if (r){
+	    	if (effective=='true'){
+	    		$.messager.alert("操作提示", "已经启用的用户不能再次启用", "error");
+	    		return;
+
+	    		}
+	    $.getJSON("../system/effective_user.action", {
+	    	user_uuid:user_uuid
+	    	}, function(result) {
+	    		//console.log(result);
+
+	    		page_init();
+
+	    		
+	    			
+
+	    		
+
+	    	});
+	    }
+	});
+
+	
+}
+
+function del_user(user_uuid,effective){
+	//console.log(effective);
+	
+	$.messager.confirm('操作提示','确认要停用这个用户吗?',function(r){
+	    if (r){
+	    	if (effective=='false'){
+	    		$.messager.alert("操作提示", "已经停用的用户不能再次停用", "error");
+	    		return;
+
+	    		}
+	    $.getJSON("../system/del_user.action", {
+	    	user_uuid:user_uuid
+	    	}, function(result) {
+	    		//console.log(result);
+
+	    		page_init();
+
+	    		
+	    			
+
+	    		
+
+	    	});
+	    }
+	});
+
+	
+}
+function user_manage_ready(){
 
 
 	$('#dept_id').combobox({
@@ -41,14 +99,15 @@ function dept_manage_ready(){
 	$.getJSON("../system/get_depts.action", {
 		
 	}, function(result) {
+		//console.log(result);
 
 		var field = result.rows;
 
 		
 			
-			$("#dept_type").combobox("loadData", field);
+			$("#dept_id").combobox("loadData", field);
 			//var data = $('#search_par_code').combobox('getData');
-			$('#dept_type').combobox('select', field[0].dept_uuid);
+			$('#dept_id').combobox('select', field[0].dept_uuid);
 
 		
 
@@ -70,7 +129,7 @@ $.getJSON("../system/get_roles.action", {
 	});
 
 	
-	$('#user_table')
+	$('#users_table')
 	.datagrid(
 			{
 				//border:false,  
@@ -111,39 +170,84 @@ $.getJSON("../system/get_roles.action", {
 						{
 							field : 'opt',
 							title : '操作',
-							width : '200px',
+							width : '280px',
 							align : 'center',
 							formatter : function(
 									value, rec) {
 								var btn = '<a class="effective" onclick="effective(\''
-										+ rec.dept_uuid
-										+'\')" href="javascript:void(0)">启/停用</a><a class="user_detail" onclick="user_detail(\''
-										+ rec.dept_uuid
-										+'\')" href="javascript:void(0)">查看详情</a><a class="del_dept" onclick="del_dept(\''
-										+ rec.dept_uuid
-										+'\')" href="javascript:void(0)">添加用户</a>';
+										+ rec.user_id
+										+'\',\''
+										+rec.effective
+										+'\')" id="effective_'+rec.user_id+'" href="javascript:void(0)">启用</a><a class="user_detail" onclick="user_detail(\''
+										+ rec.user_id
+										+'\')" href="javascript:void(0)">查看详情</a><a class="del_user" onclick="del_user(\''
+										+ rec.user_id
+										+'\',\''
+										+rec.effective
+										+'\')" id="del_'+rec.user_id+'" href="javascript:void(0)">停用</a><a class="change_password" onclick="change_password(\''
+										+ rec.user_id
+										+'\',\''
+										+rec.effective
+										+'\')" id="change_password_'+rec.user_id+'" href="javascript:void(0)">重置密码</a>';
 								return btn;
 							}
 						} ] ],
 				onLoadSuccess : function(data) {
 					$('.effective').linkbutton({
-						text : '启/停用',
+						text : '启用',
+						plain : true,
+						iconCls : 'icon-ok'
+					});
+					$('.user_detail').linkbutton({
+						text : '查看详情',
+						plain : true,
+						iconCls : 'icon-more'
+					});
+					$('.del_user').linkbutton({
+						text : '停用',
+						plain : true,
+						iconCls : 'icon-cancel'
+					});
+					$('.change_password').linkbutton({
+						text : '重置密码',
 						plain : true,
 						iconCls : 'icon-reload'
 					});
-					$('.user_detail').linkbutton({
-						text : '添加用户',
-						plain : true,
-						iconCls : 'icon-search'
-					});
+
+
 					
 
-					$('#user_table').datagrid(
-							'fixRowHeight')
+					$('#users_table').datagrid(
+							'fixRowHeight');
+
+
+					var rowsData = $("#users_table").datagrid("getRows");
+					//console.log(rowsData.length);
+					for (var i = 0; i < rowsData.length; i++) {
+						var row = data.rows;
+						var sysuser = row[i];
+						
+						if (sysuser.effective){
+							$('#del_' + sysuser.user_id)
+							.linkbutton('enable');
+							$('#effective_' + sysuser.user_id)
+							.linkbutton('disable');
+
+							
+							
+							}
+						else{
+							$('#del_' + sysuser.user_id)
+							.linkbutton('disable');
+							$('#effective_' + sysuser.user_id)
+							.linkbutton('enable');
+							}
+					}
+					
 
 				}
 			});
-
+	
 	
 }
 
@@ -189,7 +293,7 @@ function add_user(){
 }
 
 					function center_load_ready() {
-						dept_manage_ready();
+						user_manage_ready();
 						page_init();
 					}
 
@@ -208,7 +312,7 @@ function add_user(){
 <div class="easyui-layout" fit="true" style="background: red;" >
         <!-- 搜索条件 -->
         <div id="head_panel" data-options="region:'north',border:true"
-	style="height: 140px; padding: 5px;">
+	style="height: 100px; padding: 5px;">
             <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
             
             <h2>人员管理</h2>
@@ -228,7 +332,7 @@ function add_user(){
 
         </div>    
         <div id="tools_panel" data-options="region:'south',border:true" title='新增用户'
-	style="height: 140px; padding: 5px;">
+	style="height: 100px; padding: 5px;">
             <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
             
            
@@ -242,20 +346,26 @@ function add_user(){
             		<td><input id='user_name' name='user_name' class="easyui-textbox" style="width:100px;"/></td>
             		<td>处室</td>
             		<td><input id='dept_id' name='dept_id'  style="width:100px;"/></td>
-            	</tr>
-            	<tr>
             		<td>密码</td>
             		<td><input id='password1' name='password1' class="easyui-passwordbox" style="width:100px;"/></td>
             		<td>确认密码</td>
             		<td><input id='password2' name='password2' class="easyui-passwordbox" style="width:100px;"/></td>
-            		<td>角色</td>
-            		<td><input id='role_id' name='role_id' style="width:100px;"/></td>
             	</tr>
             	<tr>
+            		
+            		
+            		<td>角色</td>
+            		<td><input id='role_id' name='role_id' style="width:100px;"/></td>
+            		<td>联系电话</td>
+            		<td><input id='tell' name='tell'  class="easyui-textbox"  style="width:100px;"/></td>
+         			<td>邮箱</td>
+            		<td><input id='email' name='email'  class="easyui-textbox"  style="width:100px;"/></td>   		
             		<td colspan='6' align='right'><a ref="javascript:void(0)"
 								class="easyui-linkbutton" onclick="javascript:add_user()"
-								iconCls="icon-add" >点击新增处室</a></td>
+								iconCls="icon-add" >点击新增用户</a></td>
+            		
             	</tr>
+            	
             </table>
             
             

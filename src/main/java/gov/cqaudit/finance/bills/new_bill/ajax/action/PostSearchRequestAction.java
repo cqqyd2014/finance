@@ -60,9 +60,10 @@ public class PostSearchRequestAction   extends LoginedAjaxAction {
 					tx.rollback();
 				}
 				else{
-					gov.cqaudit.finance.bills.model.BillM bm=gov.cqaudit.finance.bills.logic.BillMLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VBillMDAO.getViewByUuid(session, bill_uuid));
+					gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+					gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
 					bm.setBill_status("等待传单");
-					gov.cqaudit.finance.bills.logic.BillMLogic.save(session, bm);
+					vbdao.save(session, bm);
 					sm.setBoolean_flag(true);
 					tx.commit();
 					sm.setSuccess(true);

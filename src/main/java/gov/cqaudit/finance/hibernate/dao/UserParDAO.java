@@ -39,7 +39,7 @@ public final class UserParDAO extends GetModelFromEntityViewDAO{
 		
 
 		q.setParameter("user_id", user_id);
-		@SuppressWarnings("unchecked")
+
 		java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.UserPar> rs = (java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.UserPar>) q
 				.list();
 		return (java.util.ArrayList<gov.cqaudit.finance.system.model.UserPar>)getArrayListModelFromArrayListViewEntity(rs);

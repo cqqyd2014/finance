@@ -45,6 +45,7 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePrivateAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VSysUser"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePrivateAccountInfo"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.VStatisticsBillsResult"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VUserMenuD"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePrivateAccountInfo"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.MenuM"/>

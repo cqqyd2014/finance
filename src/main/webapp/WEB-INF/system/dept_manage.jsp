@@ -170,14 +170,12 @@ function add_dept(){
 <div class="easyui-layout" fit="true" style="background: red;" >
         <!-- 搜索条件 -->
         <div id="head_panel" data-options="region:'north',border:true"
-	style="height: 140px; padding: 5px;">
+	style="height: 100px; padding: 5px;">
             <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
             
             <h2>处室管理</h2>
             <p>有人员的处室，不能删除。</p>
-            <div>新建处室,新增处室中文名称
             
-            </div>
             
 
         </div>
@@ -191,20 +189,20 @@ function add_dept(){
 	</table>
 
         </div> 
-        <div id="tools_panel" data-options="region:'south',border:true" title='操作'
-	style="height: 140px; padding: 5px;">
+        <div id="tools_panel" data-options="region:'south',border:true" title='新增处室'
+	style="height: 100px; padding: 5px;">
             <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
             
            
-            <div>新增处室中文名称
+            
             <form id="new_dept_form">
-            <input id='dept_name' name='dept_name' class="easyui-textbox" style="width:200px;"/>,处室类型：
+            处室名称：<input id='dept_name' name='dept_name' class="easyui-textbox" style="width:200px;"/>,处室类型：
             <input id='dept_type' name='dept_type' style='width:100px;'/> 
             <a ref="javascript:void(0)"
 								class="easyui-linkbutton" onclick="javascript:add_dept()"
 								iconCls="icon-add" >点击新增处室</a>
             </form>
-            </div>
+            
             
 
         </div>         

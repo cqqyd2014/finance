@@ -1,7 +1,8 @@
 package gov.cqaudit.finance.hibernate.dao;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class VDataTransMDAO {
 public static gov.cqaudit.finance.hibernate.entities.VDataTransM getViewArrayListByTransId(Session session,String trans_id){
@@ -10,6 +11,7 @@ public static gov.cqaudit.finance.hibernate.entities.VDataTransM getViewArrayLis
 		
 		String hql = "from VDataTransM where id.transUuid=:trans_id";
 
+		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
 		
 		q.setParameter("trans_id", trans_id);
