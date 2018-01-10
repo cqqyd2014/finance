@@ -39,11 +39,11 @@ $('#simple_bill_table').datagrid('getPager').pagination({
 		gridOpts.pageSize=100;
 		gridOpts.pageNumber=1;
 		gridOpts.pageList=[100,200];
-		console.log(gridOpts);
+		//console.log(gridOpts);
 		//gridOpts.queryParams=$('#search_bill_pars').serializeObject();
 		//console.log(gridOpts.queryParams);
 		$("#simple_bill_table").datagrid("load");
-		console.log('load ok');
+		//console.log('load ok');
 
 		
 		

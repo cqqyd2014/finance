@@ -53,41 +53,23 @@
 	var search_bill_rows_in_page;
 
 
+	var rowaction_handler;
+	
 
-	function pagination(){
-		
-		var p = $('#search_bill_list_table').datagrid('getPager');
-		//console.log(p);
-		$(p).pagination(
-				{
-					
-					//pageSize : search_bill_rows_in_page,//每页显示的记录条数，默认为10   
-					
-					//beforePageText : '第',//页数文本框前显示的汉字   
-					//afterPageText : '页    共 {pages} 页',
-					//displayMsg : '当前显示 {from} - {to} 条记录   共 {total} 条记录',
-					onChangePageSize :function(pageSize){
-						//console.log('435345');
-						search_bill_rows_in_page=pageSize;
-						//console.log(pageSize);
-						},
-					onSelectPage : function(
-							pageNumber, pageSize) {
-						search_bill_current_page = pageNumber;
-
-						
-						
-					}
-
-				});
-		
-
-		}
-
-	function search_bill_ready() {
+	function search_bill_ready(rowaction) {
+		rowaction_handler = rowaction;
 		search_bill_current_page = 1;
-		search_bill_rows_in_page = <s:property value="#session.default_rows_in_page" />;
-			
+		var search_bill_rows_in_page=<s:property value="#session.default_rows_in_page" />;
+		
+		
+		
+		var search_bill_rows_list=new Array();
+		search_bill_rows_list[0]=search_bill_rows_in_page;
+		search_bill_rows_list[1]=search_bill_rows_in_page*5;
+		search_bill_rows_list[2]=search_bill_rows_in_page*10;
+		search_bill_rows_list[3]=search_bill_rows_in_page*20;
+		search_bill_rows_list[4]=search_bill_rows_in_page*50;
+			console.log(search_bill_rows_in_page);
 			$('#search_bill_bill_status').combobox({
 				required : true,
 				multiple : false, //多选
@@ -103,29 +85,44 @@
 		    	//url:rowaction_handler,//需要立即查询时开启url  
 		    	pageNumber:search_bill_current_page,
 		    	pageSize:search_bill_rows_in_page,
+		    	pageList: search_bill_rows_list,
 		    	pagination:true
 		    	
 		    });  
+		  $('#search_bill_list_table').datagrid('getPager').pagination({  
+			    pageSize: search_bill_rows_in_page,  
+			    pageNumber: search_bill_current_page,  
+			    pageList: search_bill_rows_list,
+			    onSelectPage : function(
+						pageNumber, pageSize) {
+					search_bill_current_page = pageNumber;
+					show_search_bill_list_table();
+
+					
+					
+				}
+			    
+			}); 
 		
-		  pagination();
+		 
 		
 		
 	}
 </script>
 
 <script type='text/javascript'>
-	var rowaction_handler;
+	
 	
 	//获取明细记录
-	function show_search_bill_list_table(rowaction) {
+	function show_search_bill_list_table() {
 		
 
-		rowaction_handler = rowaction;
+		
 		
 		var gridOpts = $('#search_bill_list_table').datagrid('options');   
-		gridOpts.url=rowaction;
+		gridOpts.url=rowaction_handler;
 		gridOpts.queryParams=$('#search_bill_pars').serializeObject();
-		//console.log(gridOpts.queryParams);
+		gridOpts.pageSize=search_bill_rows_in_page;
 		$("#search_bill_list_table").datagrid("load");
 		
 		

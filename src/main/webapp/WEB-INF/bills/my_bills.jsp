@@ -10,7 +10,7 @@
 		//获取数据
 		
 		
-		show_search_bill_list_table("../bills/get_my_bills.action");
+		show_search_bill_list_table();
 		
 		
 
@@ -122,7 +122,7 @@ function center_load_ready(){
 	
 	picture_manage_ready(page_init);
 	view_reslut_ready();
-	search_bill_ready();
+	search_bill_ready("../bills/get_my_bills.action");
 				
 				var search_bill_list_table_view = $
 				.extend(
