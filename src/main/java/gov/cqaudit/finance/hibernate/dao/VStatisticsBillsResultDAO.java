@@ -5,7 +5,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class VStatisticsBillsResultDAO extends GetModelFromEntityViewDAO{
+public class VStatisticsBillsResultDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.statistics.model.StatisticsBillsResult>{
 
 
 	public java.math.BigDecimal
@@ -67,7 +67,7 @@ public class VStatisticsBillsResultDAO extends GetModelFromEntityViewDAO{
 		m.setPrivate_detail_count(h.getId().getPrivateDetail());
 		m.setPublic_account_count(new java.math.BigDecimal(h.getId().getPublicCount()));
 		m.setPublic_detail_count(h.getId().getPublicDetail());
-		m.setPro_name(h.getId().get);
+		m.setPro_name(h.getId().getProName());
 		return (T)m;
 	}
 

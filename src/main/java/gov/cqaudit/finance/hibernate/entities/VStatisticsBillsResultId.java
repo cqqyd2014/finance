@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 1:05:23 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,12 +22,14 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 	private Long privateCount;
 	private BigDecimal publicDetail;
 	private BigDecimal privateDetail;
+	private String proName;
 
 	public VStatisticsBillsResultId() {
 	}
 
 	public VStatisticsBillsResultId(String deptId, String deptName, String deptType, String typeName, Date createDat,
-			String billUuid, Long publicCount, Long privateCount, BigDecimal publicDetail, BigDecimal privateDetail) {
+			String billUuid, Long publicCount, Long privateCount, BigDecimal publicDetail, BigDecimal privateDetail,
+			String proName) {
 		this.deptId = deptId;
 		this.deptName = deptName;
 		this.deptType = deptType;
@@ -38,6 +40,7 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.privateCount = privateCount;
 		this.publicDetail = publicDetail;
 		this.privateDetail = privateDetail;
+		this.proName = proName;
 	}
 
 	@Column(name = "dept_id", length = 36)
@@ -130,6 +133,15 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.privateDetail = privateDetail;
 	}
 
+	@Column(name = "pro_name", length = 512)
+	public String getProName() {
+		return this.proName;
+	}
+
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -162,7 +174,9 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 								&& this.getPublicDetail().equals(castOther.getPublicDetail())))
 				&& ((this.getPrivateDetail() == castOther.getPrivateDetail())
 						|| (this.getPrivateDetail() != null && castOther.getPrivateDetail() != null
-								&& this.getPrivateDetail().equals(castOther.getPrivateDetail())));
+								&& this.getPrivateDetail().equals(castOther.getPrivateDetail())))
+				&& ((this.getProName() == castOther.getProName()) || (this.getProName() != null
+						&& castOther.getProName() != null && this.getProName().equals(castOther.getProName())));
 	}
 
 	public int hashCode() {
@@ -178,6 +192,7 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		result = 37 * result + (getPrivateCount() == null ? 0 : this.getPrivateCount().hashCode());
 		result = 37 * result + (getPublicDetail() == null ? 0 : this.getPublicDetail().hashCode());
 		result = 37 * result + (getPrivateDetail() == null ? 0 : this.getPrivateDetail().hashCode());
+		result = 37 * result + (getProName() == null ? 0 : this.getProName().hashCode());
 		return result;
 	}
 

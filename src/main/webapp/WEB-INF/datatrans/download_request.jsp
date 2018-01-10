@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function page_init() {
 	//获取数据
-	show_bill_simple_table("../trans/get_trans_download_bills.action",check_all);
+	show_bill_simple_table("../trans/get_trans_download_bills.action");
 
 		
 	
@@ -36,6 +36,7 @@ function un_check_all(){
 function check_all(){
 	//设置为全部选中
 	var rows=$('#simple_bill_table').datagrid('getRows');
+	//console.log(rows);
 	
 	for (var i=0;i<rows.length;i++){
 		$('#simple_bill_table').datagrid('checkRow', i);

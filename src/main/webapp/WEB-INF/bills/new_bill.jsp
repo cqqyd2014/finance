@@ -17,10 +17,14 @@
 
 		if (save_bill_check_field()){
 			temp_save_bill(function(){
-				print_bill('<s:property value="#request.bill_uuid"/>');
+				
+				print_bill('<s:property value="#request.bill_uuid"/>',function callback(){
+					$('#body').layout('panel','center').panel('refresh',"../bills/my_bills_init.action");
+					});
 				
 				
-				$('#body').layout('panel','center').panel('refresh',"../bills/my_bills_init.action");
+				
+				//console.log('refresh');
 
 				});
 
@@ -263,7 +267,7 @@
 
 	function del_bd(uuid) {
 
-		$.getJSON("del_bill_detail.action", {
+		$.getJSON("../bills/del_bill_detail.action", {
 
 			"detail_uuid" : uuid
 		}, function(result) {
@@ -289,77 +293,6 @@
 <script type="text/javascript">
 
 
-	function show_pics() {
-		ajax_start();
-
-		$.getJSON("get_bill_pics.action", {
-
-			"bill_uuid" : $('#bill_uuid').val()
-		}, function(result) {
-			ajax_stop();
-
-			var field = result.msg;
-
-			if (field.success) {
-				//有效
-				var pics = field.o;
-
-				var pics_html = '<table width="100%"><tr>';
-				//一行最多6个照片
-				var flag = 1;
-				var i;
-				pic_num = pics.length;
-				for (i = 0; i < pics.length; i++) {
-					var pic = pics[i];
-
-					if (flag == 7) {
-						pics_html = pics_html + '</tr><tr>';
-						flag = 0;
-
-					}
-
-					pics_html = pics_html
-							+ '<td width="16.667%"><div><a id="pic' + pic.uuid
-							+ '" href="get_pic.action?uuid=' + pic.uuid
-							+ '"><img alt="" src="get_pic.action?uuid='
-							+ pic.uuid + '" width="100px"></a></div>'
-							+ '<div align="center"><a class="del" id="img'
-							+ pic.uuid + '" onclick="javascript:del_pic(\''
-							+ pic.uuid + '\')">删除图片</a></div></td>';
-					flag++;
-
-				}
-				//除以6的余数
-				var addon = 6 - i % 6;
-
-				if (addon < 6) {
-					for (var a = 0; a < addon; a++) {
-						pics_html = pics_html + '<td width="16.667%"></td>';
-					}
-				}
-
-				pics_html = pics_html + '</tr></table>';
-				$('#pics_table').empty();
-
-				$('#pics_table').html(pics_html);
-				for (var i = 0; i < pics.length; i++) {
-
-					$('.del').linkbutton({
-						text : '删除图片',
-						plain : true,
-						iconCls : 'icon-cancel'
-					});
-				}
-
-			} else {
-
-				$.messager.alert("操作提示", "删除查询条目错误：" + field.body, "error");
-
-			}
-
-		});
-
-	}
 
 
 </script>

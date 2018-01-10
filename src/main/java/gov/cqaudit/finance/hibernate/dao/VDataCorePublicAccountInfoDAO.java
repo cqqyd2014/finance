@@ -4,7 +4,7 @@ import org.hibernate.Session;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class VDataCorePublicAccountInfoDAO extends GetModelFromEntityViewDAO{
+public class VDataCorePublicAccountInfoDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.database.model.DataCorePublicAccountInfo>{
 
 	@Override
 	public <T> void save(Session session, T t) {

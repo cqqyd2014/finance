@@ -6,7 +6,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public final class VBillMDAO extends GetModelFromEntityViewDAO{
+public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.bills.model.BillM>{
 	
 	
 	
@@ -27,11 +27,12 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO{
 	
 	public java.util.ArrayList<gov.cqaudit.finance.bills.model.BillM> getArrayListModelWithDetailsPics(Session session,java.util.ArrayList<String> bill_uuids){
 		java.util.ArrayList<gov.cqaudit.finance.bills.model.BillM> bms=new java.util.ArrayList<>();
+		gov.cqaudit.finance.hibernate.dao.VBillDDAO vddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
 		for (int i=0,len=bill_uuids.size();i<len;i++){
 			String bill_uuid=bill_uuids.get(i);
 			gov.cqaudit.finance.bills.model.BillM bm=getModelByUuid(session, bill_uuid);
 			
-			java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=gov.cqaudit.finance.bills.logic.BillDLogic.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid));
+			java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=vddao.getArrayListModelByBillUuid(session, bill_uuid);
 			java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=gov.cqaudit.finance.bills.logic.PictureLogic.getArrayListModelFromArrayListView(gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListViewByBillUuid(session, bill_uuid));
 			bm.setBill_details(bds);
 			bm.setPictures(pics);

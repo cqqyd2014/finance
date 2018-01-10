@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 1:05:23 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -35,7 +35,8 @@ public class VStatisticsBillsResult implements java.io.Serializable {
 			@AttributeOverride(name = "publicCount", column = @Column(name = "public_count")),
 			@AttributeOverride(name = "privateCount", column = @Column(name = "private_count")),
 			@AttributeOverride(name = "publicDetail", column = @Column(name = "public_detail", precision = 131089, scale = 0)),
-			@AttributeOverride(name = "privateDetail", column = @Column(name = "private_detail", precision = 131089, scale = 0)) })
+			@AttributeOverride(name = "privateDetail", column = @Column(name = "private_detail", precision = 131089, scale = 0)),
+			@AttributeOverride(name = "proName", column = @Column(name = "pro_name", length = 512)) })
 	public VStatisticsBillsResultId getId() {
 		return this.id;
 	}

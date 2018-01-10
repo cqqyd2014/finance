@@ -76,7 +76,7 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 tx = session.beginTransaction();
 			try {
-				
+				gov.cqaudit.finance.hibernate.dao.VBillDDAO vbddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
 				
 				@SuppressWarnings("unchecked")
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)session_http.get("new_bill_temp_billdetails");
@@ -100,7 +100,7 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 				bds.add(bd);
 			
 				session_http.put("new_bill_temp_billdetails", bds);
-				gov.cqaudit.finance.bills.logic.BillDLogic.save(session, bd);
+				vbddao.save(session, bd);
 				tx.commit();
 			sm.setSuccess(true);
 			sm.setO(bds);

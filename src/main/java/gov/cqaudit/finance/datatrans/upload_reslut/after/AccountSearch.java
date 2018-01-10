@@ -5,11 +5,13 @@ import org.hibernate.Session;
 public final class AccountSearch {
 	public  static void afterToDo(Session session,String trans_uuid){
         java.util.ArrayList<gov.cqaudit.finance.datatrans.model.DataTransD> dtds=gov.cqaudit.finance.datatrans.logic.DataTransDLogic.getArrayListModelFromArrayListView(gov.cqaudit.finance.hibernate.dao.VDataTransDDAO.getArrayListViewByTransUuid(session, trans_uuid));
+        gov.cqaudit.finance.hibernate.dao.VBillDDAO vbddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
+        
         for (int j=0,len=dtds.size();j<len;j++){
         	gov.cqaudit.finance.datatrans.model.DataTransD dtd=dtds.get(j);
         	String bill_uuid=dtd.getBill_uuid();
         	//得到查询单明细
-        	java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=gov.cqaudit.finance.bills.logic.BillDLogic.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid));
+        	java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=vbddao.getArrayListModelByBillUuid(session, bill_uuid);
         	for (int k=0,len2=bds.size();k<len2;k++){
         		gov.cqaudit.finance.bills.model.BillD bd=bds.get(k);
         		String detail_uuid=bd.getDetail_uuid();

@@ -6,7 +6,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class SysCodeDAO extends GetModelFromEntityViewDAO{
+public class SysCodeDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.system.model.SysCode>{
 	@SuppressWarnings("unchecked")
 	public  java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> getArrayListModelBySId(Session session, String s_id) {
 		String hql = "from SysCode where id.SId=:s_id";

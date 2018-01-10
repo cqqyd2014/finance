@@ -31,6 +31,7 @@ msg=new java.util.HashMap<String, Object>();
 		
 		msg.put("total", getTotal());
 		msg.put("rows", getBills());
+		//System.out.println("backok");
 		return SUCCESS;
 	}
 

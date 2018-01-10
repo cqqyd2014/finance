@@ -53,7 +53,10 @@ public class EditBillInitAction extends LoginedInitAction{
 		 @Action( //表示请求的Action及处理方法  
 		            value="edit_bill_init",  //表示action的请求名称  
 		            results={  //表示结果跳转  
-		                    @Result(name="success",location="/WEB-INF/bills/new_bill.jsp")}, interceptorRefs = {
+		                    @Result(name="success",location="/WEB-INF/bills/new_bill.jsp"),
+		                    @Result(name="error",location="../bills/my_bills_init.action",type = "redirect")
+		                    
+		            }, interceptorRefs = {
 									@InterceptorRef("authorityStack") })
 
 	})
@@ -71,20 +74,30 @@ public class EditBillInitAction extends LoginedInitAction{
 					
 					gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 					gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
+					if (bm.getBill_status().equals("起草申请")){
+chinese_date=bm.getCreate_dat_chinese_print();
+						
+						
+						
+						gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
+						bank_code=scdao.getArrayListModelBySId(session, "bank_code");
+						business_code=scdao.getArrayListModelBySId(session, "business_code");
+				
+						gov.cqaudit.finance.hibernate.dao.VBillDDAO vbbdao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
+						 java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=vbbdao.getArrayListModelByBillUuid(session, bill_uuid);
+						 
+						 
+						 session_http.put("new_bill_temp_billdetails", bds);
+						
+					}
+					else{
+						//状态不对
+						return "error";
+						
+						
+						
+					}
 					
-					chinese_date=bm.getCreate_dat_chinese_print();
-					
-					
-					
-					gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
-					bank_code=scdao.getArrayListModelBySId(session, "bank_code");
-					business_code=scdao.getArrayListModelBySId(session, "business_code");
-			
-					
-					 java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=gov.cqaudit.finance.bills.logic.BillDLogic.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid));
-					 
-					 
-					 session_http.put("new_bill_temp_billdetails", bds);
 			
 		}
 

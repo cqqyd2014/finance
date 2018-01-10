@@ -6,7 +6,7 @@ import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
 import gov.cqaudit.finance.hibernate.entities.DataCorePrivateAccountInfoId;
 
-public class VDataCorePrivateAccountInfoDAO extends GetModelFromEntityViewDAO{
+public class VDataCorePrivateAccountInfoDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.database.model.DataCorePrivateAccountInfo>{
 
 	
 

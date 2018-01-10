@@ -27,35 +27,7 @@ public class PictureLogic {
 	    private static  int WHITE = 0xFFFFFFFF;  
 	
 	
-	public static String decode_barcode(byte[] bytes) {  
-		
-		
-
-		
-		
-		ByteArrayInputStream in = new ByteArrayInputStream(bytes);    //将b作为输入流；
-		
-		  
-        
-        try {  
-            
-        	BufferedImage image = ImageIO.read((InputStream)in);     //将in作为输入流，读取图片存入image中，而这里in可以为ByteArrayInputStream();
-        	LuminanceSource source = new BufferedImageLuminanceSource(image);  
-            Binarizer binarizer = new HybridBinarizer(source);  
-            BinaryBitmap binaryBitmap = new BinaryBitmap(binarizer);  
-            Map<DecodeHintType, Object> hints = new HashMap<DecodeHintType, Object>();  
-            hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
-            hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
-            Result result = new MultiFormatReader().decode(binaryBitmap, hints);// 对图像进行解码  
-  
-            return result.getText();  
-  
-        } catch (Exception e) {  
-            e.printStackTrace();  
-        }  
-  
-        return null;  
-    }  
+	
 	
 	
 	

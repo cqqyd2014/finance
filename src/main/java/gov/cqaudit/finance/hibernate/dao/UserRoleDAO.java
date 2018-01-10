@@ -4,14 +4,14 @@ import org.hibernate.Session;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class UserRoleDAO extends GetModelFromEntityViewDAO{
+public class UserRoleDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.hibernate.entities.SysUserRole>{
 
 	@Override
 	public <T> void save(Session session, T t) {
 		// TODO Auto-generated method stub
 		gov.cqaudit.finance.hibernate.entities.SysUserRole h=new gov.cqaudit.finance.hibernate.entities.SysUserRole();
 		gov.cqaudit.finance.system.model.UserRole m=(gov.cqaudit.finance.system.model.UserRole)t;
-		h.setId(new gov.cqaudit.finance.hibernate.entities.SysUserRoleId(m.getRole_id(), m.getUser_id()));
+		h.setId(new gov.cqaudit.finance.hibernate.entities.SysUserRoleId(m.getUser_id(),m.getRole_id()));
 		session.saveOrUpdate(h);
 		
 	}

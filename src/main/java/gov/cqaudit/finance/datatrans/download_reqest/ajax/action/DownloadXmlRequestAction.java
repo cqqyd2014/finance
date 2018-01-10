@@ -127,6 +127,7 @@ public class DownloadXmlRequestAction extends DownloadFromServerAbstractAction{
      		dm.setUser_id(user_id);
      		
         	 gov.cqaudit.finance.datatrans.logic.DataTransMLogic.save(session, dm);
+        	 gov.cqaudit.finance.hibernate.dao.VBillDDAO vddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
         	 String[] bill_array=bills.split(",");
         	 for (int i=0;i<bill_array.length;i++){
         		 String bill_uuid=bill_array[i];
@@ -146,7 +147,7 @@ public class DownloadXmlRequestAction extends DownloadFromServerAbstractAction{
         		 //分析这个单子情况
         		 Element bill=body.addElement("bill");
         		 bill.addAttribute("bill_id", bill_uuid);
-        		 java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=gov.cqaudit.finance.bills.logic.BillDLogic.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid));
+        		 java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=vddao.getArrayListModelByBillUuid(session, bill_uuid);
         		 for (int j=0,len_j=bds.size();j<len_j;j++){
         			 gov.cqaudit.finance.bills.model.BillD db=bds.get(j);
         			 Element item=bill.addElement("item");

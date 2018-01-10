@@ -5,7 +5,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class VDataCorePrivateAccountTradeDetailDAO  extends GetModelFromEntityViewDAO{
+public class VDataCorePrivateAccountTradeDetailDAO  extends GetModelFromEntityViewDAO<gov.cqaudit.finance.database.model.DataCorePrivateAccountTradeDetail>{
 	
 	
 	

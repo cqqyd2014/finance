@@ -107,7 +107,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				
 				bm=vbdao.getModelByUuid(session, bill_uuid);
 				
-				
+				gov.cqaudit.finance.hibernate.dao.VBillDDAO vbddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
 				
 				bm.setDetail_num(detail_num);
 				bm.setContract_mail(contract_mail);
@@ -119,7 +119,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				bm.setSearch_reason(search_reason);
 				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VPicture> vps=gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListViewByBillUuid(session, bill_uuid);
 				bm.setPics_num(new java.math.BigDecimal(vps.size()));
-				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VBillD> vbds=gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid);
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> vbds=vbddao.getArrayListModelByBillUuid(session, bill_uuid);
 				bm.setDetail_num(new java.math.BigDecimal(vbds.size()));
 				
 				

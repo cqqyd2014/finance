@@ -49,6 +49,7 @@ public class DelBillDetailAction   extends LoginedAjaxAction {
 				@SuppressWarnings("unchecked")
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD>)session_http.get("new_bill_temp_billdetails");
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds_new=new java.util.ArrayList<>();
+				gov.cqaudit.finance.hibernate.dao.VBillDDAO vbddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
 				for (int i=0;i<bds.size();i++) {
 					gov.cqaudit.finance.bills.model.BillD bd=bds.get(i);
 					if (bd.getDetail_uuid().equals(detail_uuid)) {
@@ -56,7 +57,7 @@ public class DelBillDetailAction   extends LoginedAjaxAction {
 						bd.setEffective(false);
 						bd.setUn_effective_dat(new java.util.Date());
 						bd.setUn_effective_userid(user_id);
-						gov.cqaudit.finance.bills.logic.BillDLogic.save(session, bd);
+						vbddao.save(session, bd);
 					}
 					else {
 						bds_new.add(bd);

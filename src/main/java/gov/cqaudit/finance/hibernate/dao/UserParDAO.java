@@ -6,7 +6,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public final class UserParDAO extends GetModelFromEntityViewDAO{
+public final class UserParDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.hibernate.entities.UserPar>{
 	
 	
 	public gov.cqaudit.finance.system.model.UserPar getModelByUserIdCode(Session session,String user_id,String code){

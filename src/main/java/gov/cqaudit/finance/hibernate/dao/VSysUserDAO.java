@@ -6,7 +6,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class VSysUserDAO extends GetModelFromEntityViewDAO{
+public class VSysUserDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.system.model.SysUser>{
 	@SuppressWarnings("unchecked")
 	public java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> getAllModel(Session session) {
 		String hql = "from VSysUser ";

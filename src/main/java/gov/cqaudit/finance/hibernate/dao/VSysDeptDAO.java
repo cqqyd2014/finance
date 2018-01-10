@@ -5,7 +5,7 @@ import org.hibernate.query.Query;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class VSysDeptDAO extends GetModelFromEntityViewDAO{
+public class VSysDeptDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.system.model.Dept>{
 	
 	public gov.cqaudit.finance.system.model.Dept getModelByDeptId(Session session,String dept_uuid){
 		String hql = "from VSysDept where id.deptUuid=:dept_uuid";

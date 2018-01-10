@@ -44,10 +44,11 @@ public class GetBillAction   extends LoginedAjaxAction {
 			 session = HibernateSessionFactory.getSession();
 			 
 			try {
+				gov.cqaudit.finance.hibernate.dao.VBillDDAO vbddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
 				
 				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 				gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
-				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> dbs=gov.cqaudit.finance.bills.logic.BillDLogic.getArrayListFromArrayListView(gov.cqaudit.finance.hibernate.dao.VBillDDAO.getArrayListViewByBillUuid(session, bill_uuid));
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> dbs=vbddao.getArrayListModelByBillUuid(session, bill_uuid);
 				
 						
 			sm.setSuccess(true);

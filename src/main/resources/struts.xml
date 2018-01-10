@@ -11,7 +11,9 @@
 	<constant name="struts.locale" value="zh_CN" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.ui.theme" value="simple" />
-
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.serve.static.browserCache" value="false"/>
 	<package name="bfkjs-default" extends="struts-default">
 
 		<interceptors>

@@ -4,7 +4,7 @@ import org.hibernate.Session;
 
 import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
-public class VDataCorePrivateCustomBaseDAO extends GetModelFromEntityViewDAO{
+public class VDataCorePrivateCustomBaseDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.database.model.DataCorePrivateCustomBase>{
 
 	@Override
 	public <T> T getArrayListViewByHqlSql(Session session, String hql_sql) {
