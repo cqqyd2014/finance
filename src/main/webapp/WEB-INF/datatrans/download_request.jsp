@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function page_init() {
 	//获取数据
-	show_bill_simple_table("../trans/get_trans_download_bills.action");
+	show_bill_simple_table();
 
 		
 	
@@ -49,7 +49,7 @@ function check_all(){
 <script>
 
 					function center_load_ready() {
-						search_bill_simple_ready();
+						search_bill_simple_ready("../trans/get_trans_download_bills.action");
 						page_init();
 					}
 

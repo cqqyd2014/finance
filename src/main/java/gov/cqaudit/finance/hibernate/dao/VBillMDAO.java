@@ -65,7 +65,7 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finan
 			hql=hql.substring(0, hql.length()-3);
 			hql=hql+" group by bill_uuid) t1";
 			//System.out.println(hql);
-			
+			hql=hql.replaceAll("where     group", "   group");
 			return (java.math.BigInteger)session.createSQLQuery(hql).uniqueResult();
 
 			

@@ -11,7 +11,7 @@
 <div id="head_panel" data-options="region:'north',border:true"
 	style="height: 140px; padding: 5px;">
 	<!------------------ 在这里填写你的搜索条件（FORM） -------------------->
-	<h2>查询申请</h2>
+	<h2>查询列表</h2>
 	<p>查询单状态分为“起草申请”、“打印待签”、“等待传单”，“等待返回”和“结果返回”五个状态。起草阶段，查询单可以重复修改。一旦打印之后，查询不可再修改。请将申请单签字之后拍照上传。已附加图片的申请单，可提交。由于原始数据在不同银行，因此，需等待后台工作人员下载申请，赴银行执行查询，再返回结果。</p>
 	<div>
 	<form id='search_bill_pars'>
@@ -59,7 +59,7 @@
 	function search_bill_ready(rowaction) {
 		rowaction_handler = rowaction;
 		search_bill_current_page = 1;
-		var search_bill_rows_in_page=<s:property value="#session.default_rows_in_page" />;
+		search_bill_rows_in_page=<s:property value="#session.default_rows_in_page" />;
 		
 		
 		
@@ -69,7 +69,7 @@
 		search_bill_rows_list[2]=search_bill_rows_in_page*10;
 		search_bill_rows_list[3]=search_bill_rows_in_page*20;
 		search_bill_rows_list[4]=search_bill_rows_in_page*50;
-			console.log(search_bill_rows_in_page);
+			//console.log(search_bill_rows_in_page);
 			$('#search_bill_bill_status').combobox({
 				required : true,
 				multiple : false, //多选
@@ -123,6 +123,7 @@
 		gridOpts.url=rowaction_handler;
 		gridOpts.queryParams=$('#search_bill_pars').serializeObject();
 		gridOpts.pageSize=search_bill_rows_in_page;
+		//console.log(search_bill_rows_in_page);
 		$("#search_bill_list_table").datagrid("load");
 		
 		
