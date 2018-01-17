@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -38,6 +38,7 @@ public class BillM implements java.io.Serializable {
 	private BigDecimal detailNum;
 	private Date uneffectiveDat;
 	private String uneffectiveUserId;
+	private String billType;
 
 	public BillM() {
 	}
@@ -50,7 +51,7 @@ public class BillM implements java.io.Serializable {
 			String contractTell, String contractMail, String auditUserId, Date lastAuditDat, String proName,
 			String deptId, Date lastModifyDat, String searchReason, String downloadUserId, Date downloadDat,
 			String downloadUuid, Boolean effective, BigDecimal picsNum, BigDecimal detailNum, Date uneffectiveDat,
-			String uneffectiveUserId) {
+			String uneffectiveUserId, String billType) {
 		this.billUuid = billUuid;
 		this.createUserId = createUserId;
 		this.createDat = createDat;
@@ -72,6 +73,7 @@ public class BillM implements java.io.Serializable {
 		this.detailNum = detailNum;
 		this.uneffectiveDat = uneffectiveDat;
 		this.uneffectiveUserId = uneffectiveUserId;
+		this.billType = billType;
 	}
 
 	@Id
@@ -268,6 +270,15 @@ public class BillM implements java.io.Serializable {
 
 	public void setUneffectiveUserId(String uneffectiveUserId) {
 		this.uneffectiveUserId = uneffectiveUserId;
+	}
+
+	@Column(name = "bill_type", length = 4)
+	public String getBillType() {
+		return this.billType;
+	}
+
+	public void setBillType(String billType) {
+		this.billType = billType;
 	}
 
 }

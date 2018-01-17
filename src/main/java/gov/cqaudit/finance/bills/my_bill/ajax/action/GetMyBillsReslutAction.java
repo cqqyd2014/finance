@@ -63,11 +63,14 @@ java.util.ArrayList<String> bills_uuids=vbmdao.getArrayListBillUuids(session, ro
 	@Authority(module = "get_my_bills", privilege = "[00010002]", error_url = "authority_ajax_error")
 	@Override
 	public String getDataGrid() {
+		//System.out.println("开始运行");
 		// TODO Auto-generated method stub
 		msg=new java.util.HashMap<String, Object>();
 		
 		msg.put("total", getTotal());
+		
 		msg.put("rows", getBills());
+		
 		return SUCCESS;
 	}
 

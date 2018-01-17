@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;

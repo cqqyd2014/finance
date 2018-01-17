@@ -9,7 +9,7 @@ import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 public class VSysUserDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.system.model.SysUser>{
 	@SuppressWarnings("unchecked")
 	public java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> getAllModel(Session session) {
-		String hql = "from VSysUser ";
+		String hql = "from VSysUser order by id.deptName,id.name";
 
 		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);

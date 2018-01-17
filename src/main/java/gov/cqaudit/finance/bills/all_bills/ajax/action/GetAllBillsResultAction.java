@@ -66,7 +66,11 @@ java.util.ArrayList<String> bills_uuids=vbmdao.getArrayListBillUuids(session, ro
 		msg=new java.util.HashMap<String, Object>();
 		
 		msg.put("total", getTotal());
+
+		
 		msg.put("rows", getBills());
+		
+		
 		return SUCCESS;
 	}
 

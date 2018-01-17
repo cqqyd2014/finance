@@ -20,6 +20,14 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @Namespace(value = "/bills") // 表示当前Action所在命名空间
 public class NewBillInitAction extends LoginedInitAction{
 	
+	String bill_type;
+	
+	public String getBill_type() {
+		return bill_type;
+	}
+	public void setBill_type(String bill_type) {
+		this.bill_type = bill_type;
+	}
 	java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> business_code;
 	public java.util.ArrayList<gov.cqaudit.finance.system.model.SysCode> getBusiness_code() {
 		return business_code;
@@ -54,7 +62,7 @@ public class NewBillInitAction extends LoginedInitAction{
 		            value="new_bill_init",  //表示action的请求名称  
 		            results={  //表示结果跳转  
 		                    @Result(name="success",location="/WEB-INF/bills/new_bill.jsp")}, interceptorRefs = {
-									@InterceptorRef("authorityInterceptor") })
+									@InterceptorRef("authorityStack") })
 
 	})
 	@Authority(module="new_bill_init", privilege="[00010001]",error_url="authority_error") 
@@ -77,15 +85,21 @@ public class NewBillInitAction extends LoginedInitAction{
 					gov.cqaudit.finance.hibernate.dao.SysCodeDAO scdao=new gov.cqaudit.finance.hibernate.dao.SysCodeDAO();
 					bank_code=scdao.getArrayListModelBySId(session, "bank_code");
 					business_code=scdao.getArrayListModelBySId(session, "business_code");
+					
+					//得到用户基本信息
+					gov.cqaudit.finance.hibernate.dao.VSysUserDAO vsudao=new gov.cqaudit.finance.hibernate.dao.VSysUserDAO();
+					gov.cqaudit.finance.system.model.SysUser su=vsudao.getModelByUserId(session, user_id);
+					
 			
 					//初始化生产bill
 					 gov.cqaudit.finance.bills.model.BillM bm=new gov.cqaudit.finance.bills.model.BillM();
 					 bm.setAudit_user_id("");
+					 bm.setBill_type(bill_type);
 					 bm.setBill_status("起草申请");
 					 bm.setBill_uuid(bill_uuid);
-					 bm.setContract_mail("");
-					 bm.setContract_name("");
-					 bm.setContract_tell("");
+					 bm.setContract_mail(su.getEmail());
+					 bm.setContract_name(su.getUser_name());
+					 bm.setContract_tell(su.getTell());
 					 java.util.Date now=new java.util.Date();
 					 bm.setCreate_dat(now);
 					 bm.setCreate_user_id(user_id);

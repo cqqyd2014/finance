@@ -1,6 +1,7 @@
 package gov.cqaudit.finance.system.model;
 
 public class SysUser {
+	
 	String create_dat_print;
 	java.util.Date create_dat;
 	public java.util.Date getCreate_dat() {

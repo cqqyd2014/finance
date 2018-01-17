@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,6 +12,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VBillMId implements java.io.Serializable {
 
+	private String billType;
+	private String billTypeName;
 	private Date uneffectiveDat;
 	private String uneffectiveUserId;
 	private BigDecimal detailNum;
@@ -42,12 +44,14 @@ public class VBillMId implements java.io.Serializable {
 	public VBillMId() {
 	}
 
-	public VBillMId(Date uneffectiveDat, String uneffectiveUserId, BigDecimal detailNum, BigDecimal picsNum,
-			String deptName, String createUserId, Date createDat, String billStatus, String contractName,
-			String contractTell, String contractMail, String auditUserId, Date lastAuditDat, String proName,
-			String billUuid, String deptId, Date lastModifyDat, String searchReason, String downloadUserId,
-			Date downloadDat, String downloadUuid, Boolean effective, String createUserName, String auditUserName,
-			String downloadUserName, String uneffectiveUserName) {
+	public VBillMId(String billType, String billTypeName, Date uneffectiveDat, String uneffectiveUserId,
+			BigDecimal detailNum, BigDecimal picsNum, String deptName, String createUserId, Date createDat,
+			String billStatus, String contractName, String contractTell, String contractMail, String auditUserId,
+			Date lastAuditDat, String proName, String billUuid, String deptId, Date lastModifyDat, String searchReason,
+			String downloadUserId, Date downloadDat, String downloadUuid, Boolean effective, String createUserName,
+			String auditUserName, String downloadUserName, String uneffectiveUserName) {
+		this.billType = billType;
+		this.billTypeName = billTypeName;
 		this.uneffectiveDat = uneffectiveDat;
 		this.uneffectiveUserId = uneffectiveUserId;
 		this.detailNum = detailNum;
@@ -74,6 +78,24 @@ public class VBillMId implements java.io.Serializable {
 		this.auditUserName = auditUserName;
 		this.downloadUserName = downloadUserName;
 		this.uneffectiveUserName = uneffectiveUserName;
+	}
+
+	@Column(name = "bill_type", length = 4)
+	public String getBillType() {
+		return this.billType;
+	}
+
+	public void setBillType(String billType) {
+		this.billType = billType;
+	}
+
+	@Column(name = "bill_type_name", length = 90)
+	public String getBillTypeName() {
+		return this.billTypeName;
+	}
+
+	public void setBillTypeName(String billTypeName) {
+		this.billTypeName = billTypeName;
 	}
 
 	@Column(name = "uneffective_dat", length = 35)
@@ -319,9 +341,14 @@ public class VBillMId implements java.io.Serializable {
 			return false;
 		VBillMId castOther = (VBillMId) other;
 
-		return ((this.getUneffectiveDat() == castOther.getUneffectiveDat())
-				|| (this.getUneffectiveDat() != null && castOther.getUneffectiveDat() != null
-						&& this.getUneffectiveDat().equals(castOther.getUneffectiveDat())))
+		return ((this.getBillType() == castOther.getBillType()) || (this.getBillType() != null
+				&& castOther.getBillType() != null && this.getBillType().equals(castOther.getBillType())))
+				&& ((this.getBillTypeName() == castOther.getBillTypeName())
+						|| (this.getBillTypeName() != null && castOther.getBillTypeName() != null
+								&& this.getBillTypeName().equals(castOther.getBillTypeName())))
+				&& ((this.getUneffectiveDat() == castOther.getUneffectiveDat())
+						|| (this.getUneffectiveDat() != null && castOther.getUneffectiveDat() != null
+								&& this.getUneffectiveDat().equals(castOther.getUneffectiveDat())))
 				&& ((this.getUneffectiveUserId() == castOther.getUneffectiveUserId())
 						|| (this.getUneffectiveUserId() != null && castOther.getUneffectiveUserId() != null
 								&& this.getUneffectiveUserId().equals(castOther.getUneffectiveUserId())))
@@ -393,6 +420,8 @@ public class VBillMId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getBillType() == null ? 0 : this.getBillType().hashCode());
+		result = 37 * result + (getBillTypeName() == null ? 0 : this.getBillTypeName().hashCode());
 		result = 37 * result + (getUneffectiveDat() == null ? 0 : this.getUneffectiveDat().hashCode());
 		result = 37 * result + (getUneffectiveUserId() == null ? 0 : this.getUneffectiveUserId().hashCode());
 		result = 37 * result + (getDetailNum() == null ? 0 : this.getDetailNum().hashCode());

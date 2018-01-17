@@ -88,6 +88,12 @@ public class LoginAction extends ActionSupport {
 				session_http.put("user_id", vsu.getUser_id());
 				session_http.put("dept_id", vsu.getDept_id());
 				session_http.put("dept_name", vsu.getDept_name());
+				//得到用户role
+				gov.cqaudit.finance.hibernate.dao.UserRoleDAO urdao=new gov.cqaudit.finance.hibernate.dao.UserRoleDAO();
+				java.util.ArrayList<gov.cqaudit.finance.system.model.UserRole> urs=urdao.getArrayListModelByUserId(session, vsu.getUser_id());
+				java.util.ArrayList<String> roles=com.cqqyd2014.util.ArrayListTools.getStringFieldArrayList(urs, gov.cqaudit.finance.system.model.UserRole.class, "getRole_id");
+				session_http.put("sys_roles", roles);
+				
 				//设置用户参数
 				gov.cqaudit.finance.hibernate.dao.UserParDAO updao=new gov.cqaudit.finance.hibernate.dao.UserParDAO();
 				java.util.ArrayList<gov.cqaudit.finance.system.model.UserPar> ups=updao.getArrayListModelByUserId(session, vsu.getUser_id());

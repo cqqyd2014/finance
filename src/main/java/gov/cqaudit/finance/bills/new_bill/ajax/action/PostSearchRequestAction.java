@@ -51,8 +51,8 @@ public class PostSearchRequestAction   extends LoginedAjaxAction {
 			 tx = session.beginTransaction();
 			try {
 				//检查图片附件数量
-				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=gov.cqaudit.finance.bills.logic.PictureLogic.getArrayListModelFromArrayListView(
-						gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListViewByBillUuid(session, bill_uuid));
+				gov.cqaudit.finance.hibernate.dao.VPictureDAO vpdao=new gov.cqaudit.finance.hibernate.dao.VPictureDAO();
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=vpdao.getArrayListViewByBillUuid(session, bill_uuid);
 				if (pics.size()==0){
 					sm.setSuccess(true);
 					sm.setBoolean_flag(false);

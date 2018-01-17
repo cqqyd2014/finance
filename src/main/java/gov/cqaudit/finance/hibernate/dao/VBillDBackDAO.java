@@ -8,7 +8,7 @@ import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 
 public class VBillDBackDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.bills.model.BillDBack>{
 	@SuppressWarnings("unchecked")
-	public  java.util.ArrayList<gov.cqaudit.finance.bills.model.BillDBack> getArrayListViewByBillUuid(Session session,String bill_uuid){
+	public  java.util.ArrayList<gov.cqaudit.finance.bills.model.BillDBack> getArrayListModelByBillUuid(Session session,String bill_uuid){
 		String hql = "from VBillDBack where id.billUuid=:bill_uuid";
 
 		@SuppressWarnings("rawtypes")

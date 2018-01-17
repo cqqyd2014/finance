@@ -8,6 +8,47 @@ import com.cqqyd2014.common.hibernate.GetModelFromEntityViewDAO;
 public class VStatisticsBillsResultDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.statistics.model.StatisticsBillsResult>{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6088137393018136712L;
+	
+	//单一查询的情况
+	public gov.cqaudit.finance.statistics.model.StatisticsBillsResult getModelByBillUuid(Session session,String bill_uuid){
+		String hql = "from VStatisticsBillsResult where id.billUuid=:bill_uuid";
+
+		@SuppressWarnings("rawtypes")
+		Query q = session.createQuery(hql);
+		q.setParameter("bill_uuid", bill_uuid);
+		
+
+		@SuppressWarnings("unchecked")
+		java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VStatisticsBillsResult> sws = (java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VStatisticsBillsResult>) q
+				.list();
+		if (sws.size()==0){
+			return null;
+		}
+		else{
+			return getModelFromViewEntity(sws.get(0));
+		}
+		
+	
+	}
+	//查询多个
+	public java.util.ArrayList<gov.cqaudit.finance.statistics.model.StatisticsBillsResult> 
+	getArrayListModelByBillUuids(Session session,java.util.ArrayList<String> bill_uuids){
+		java.util.ArrayList<gov.cqaudit.finance.statistics.model.StatisticsBillsResult> rs=new java.util.ArrayList<>();
+		for (int i=0;i<bill_uuids.size();i++){
+			rs.add(getModelByBillUuid(session,bill_uuids.get(i)));
+		}
+		
+	return rs;
+	}
+	
+	
+	
+	
+
 	public java.math.BigDecimal
 	getCountBetweenCreateDate(Session session,java.util.Date start_date,java.util.Date end_date){
 		
@@ -68,6 +109,12 @@ public class VStatisticsBillsResultDAO extends GetModelFromEntityViewDAO<gov.cqa
 		m.setPublic_account_count(new java.math.BigDecimal(h.getId().getPublicCount()));
 		m.setPublic_detail_count(h.getId().getPublicDetail());
 		m.setPro_name(h.getId().getProName());
+		m.setBank_names(h.getId().getBankNames());
+		m.setDownload_user_id(h.getId().getDownloadUserId());
+		m.setDownload_user_name(h.getId().getDownloadUserName());
+		m.setDownload_dat(h.getId().getDownloadDat());
+		m.setDownload_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getDownloadDat()));
+		m.setDownlaod_dat_chinese_print(com.cqqyd2014.util.DateUtil.getLocalSimpleString(h.getId().getDownloadDat()));
 		return (T)m;
 	}
 

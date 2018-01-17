@@ -8,7 +8,7 @@
 	style="height: 100px; padding: 5px;">
             <!------------------ 在这里填写你的搜索条件（FORM） -------------------->
             
-            <h2>按时间序列统计</h2>
+            <h2>明细统计</h2>
             
             <div>
             <form id="date_statistic_form">
@@ -48,7 +48,7 @@
 					//border:false,  
 					fitColumns : true,
 					singleSelect : true,
-					title : '时间序列查询结果',
+					title : '明细统计结果',
 					rownumbers : true,
 					columns : [ [
 							{
@@ -82,27 +82,9 @@
 							{
 								field : 'private_detail_count',
 								title : '对私明细'
-							},
-
-							{
-								field : 'opt',
-								title : '操作',
-								width : '100px',
-								align : 'center',
-								formatter : function(
-										value, rec) {
-									var btn = '<a class="bill_detail" onclick="bill_detail(\''
-											+ rec.bill_uuid
-											+'\')" href="javascript:void(0)">明细</a>';
-									return btn;
-								}
 							} ] ],
 					onLoadSuccess : function(data) {
-						$('.bill_detail').linkbutton({
-							text : '查看明细',
-							plain : true,
-							iconCls : 'icon-more'
-						});
+					
 						
 
 						$('#date_statistic_table').datagrid(

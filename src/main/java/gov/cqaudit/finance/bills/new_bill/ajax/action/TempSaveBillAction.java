@@ -117,7 +117,8 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				bm.setLast_audit_dat_chinese_print(com.cqqyd2014.util.DateUtil.getLocalFullString(now));
 				bm.setPro_name(pro_name);
 				bm.setSearch_reason(search_reason);
-				java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VPicture> vps=gov.cqaudit.finance.hibernate.dao.VPictureDAO.getArrayListViewByBillUuid(session, bill_uuid);
+				gov.cqaudit.finance.hibernate.dao.VPictureDAO vpdao=new gov.cqaudit.finance.hibernate.dao.VPictureDAO();
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> vps=vpdao.getArrayListViewByBillUuid(session, bill_uuid);
 				bm.setPics_num(new java.math.BigDecimal(vps.size()));
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> vbds=vbddao.getArrayListModelByBillUuid(session, bill_uuid);
 				bm.setDetail_num(new java.math.BigDecimal(vbds.size()));

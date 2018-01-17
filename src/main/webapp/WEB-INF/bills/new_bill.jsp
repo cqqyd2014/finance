@@ -301,7 +301,8 @@
 	<div style="display:table-cell;text-align:center;">
 
 	<div 
-		style="background:white;display:inline-block;vertical-align: middle;box-shadow:5px 2px 6px #000;padding: 10px; margin: 10px;border:1px solid Gray">
+		style="width:500px;background:white;display:inline-block;vertical-align: middle;box-shadow:5px 2px 6px #000;padding: 10px
+		; margin: 10px;border:1px solid Gray">
 
 		<h1 align='center'>查询账户审批单</h1>
 <form id="edit_bill_form">
@@ -379,29 +380,28 @@
 							1、银行：
 							<s:select id="bank_code" name="bank_code" list="bank_code"
 								listKey="code" listValue="value" cssClass="easyui-combobox"
-								cssStyle="width:150px" />
+								cssStyle="width:100px" />
 
-							2、业务类型
+							2、类型
 							<s:select id="business_code" name="business_code"
 								list="business_code" listKey="code" listValue="value"
 								onchange="change_business_code();" cssClass="easyui-combobox"
-								cssStyle="width:150px" />
-							3、查询要素<input id="search_par_code" class="easyui-combobox"
-								style="width: 150px"> </input>
-						</div>
-						<div>
-							<span> 4、查询条件<input required="true" id='search_par_value' name='search_par_value'
-								class="easyui-textbox" style="width: 400px"></span><span
+								cssStyle="width:100px" />
+							3、要素<input id="search_par_code" class="easyui-combobox"
+								style="width: 100px"> </input>
+						<span> 4、查询条件<input required="true" id='search_par_value' name='search_par_value'
+								class="easyui-textbox" style="width: 150px"></span><span
 								align='right'> <a href="javascript:void(0)"
 								class="easyui-linkbutton" onclick="javascript:add_detail()"
-								iconCls="icon-add">增加查询项目</a></span>
-						</div>
-						<div>
-							<span>已经录入</span><span id='seatch_item_count_title'>查询条目</span> <span><input
+								iconCls="icon-add">增加</a></span>
+								</div><div><span>已录入</span><span><input
 								class="easyui-numberbox" value="0" style="width: 50px"
 								disabled='disabled' data-options="min:0,precision:0"
 								id='seatch_item_count'></span> <span>条。</span><span
 								id='seatch_item_count_msg'></span>
+						</div>
+						<div>
+							
 						</div>
 					</div>
 					<table width='100%' id='bds_table' style="height: 200px">

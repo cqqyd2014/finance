@@ -88,6 +88,56 @@ function easyui_textbox_key(object,method){
 
 
 
+
+//数据表格及分页处理
+
+function datagrid_page_init(dt,rows_in_page,select_page_callback,change_page_size_callback){
+	
+	
+	$('#'+dt).css("width","97%");
+	current_page = 1;
+	
+	
+	
+	
+	var rows_list=new Array();
+	rows_list[0]=rows_in_page;
+	rows_list[1]=rows_in_page*5;
+	rows_list[2]=rows_in_page*10;
+	rows_list[3]=rows_in_page*20;
+	rows_list[4]=rows_in_page*50;
+	//console.log( $('#'+dt));
+	 $('#'+dt).datagrid({
+	    	
+	    	pageNumber:current_page,
+	    	pageSize:rows_in_page,
+	    	pageList: rows_list,
+	    	pagination:true,
+	    	
+	    	
+	    });  
+	  $('#'+dt).datagrid('getPager').pagination({  
+		    pageSize: rows_in_page,  
+		    pageNumber: current_page,  
+		    pageList: rows_list,
+		    onSelectPage : function(
+					pageNumber, pageSize) {
+				//search_bill_current_page = pageNumber;
+		    	
+				
+		    	select_page_callback(pageNumber, pageSize);
+				
+				
+			},
+	  onChangePageSize:function(pageSize){
+		  change_page_size_callback(pageSize);
+	  }
+		    
+		}); 
+}
+
+
+
 function ajax_start() {
 	$(".fakeloader").fakeLoader({  
         timeToHide: 60000,  

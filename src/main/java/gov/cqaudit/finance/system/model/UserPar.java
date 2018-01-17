@@ -1,10 +1,24 @@
 package gov.cqaudit.finance.system.model;
 
 public class UserPar {
+	public String getPar_type() {
+		return par_type;
+	}
+	public void setPar_type(String par_type) {
+		this.par_type = par_type;
+	}
+	public String getPar_type_name() {
+		return par_type_name;
+	}
+	public void setPar_type_name(String par_type_name) {
+		this.par_type_name = par_type_name;
+	}
 	String param;
 	String value;
 	String userid;
 	String param_desc;
+	String par_type;
+	String par_type_name;
 
 	public String getParam() {
 		return param;

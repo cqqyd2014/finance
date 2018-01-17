@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -18,6 +18,7 @@ public class UserPar implements java.io.Serializable {
 	private UserParId id;
 	private String parDesc;
 	private String parValue;
+	private String parType;
 
 	public UserPar() {
 	}
@@ -26,10 +27,11 @@ public class UserPar implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public UserPar(UserParId id, String parDesc, String parValue) {
+	public UserPar(UserParId id, String parDesc, String parValue, String parType) {
 		this.id = id;
 		this.parDesc = parDesc;
 		this.parValue = parValue;
+		this.parType = parType;
 	}
 
 	@EmbeddedId
@@ -61,6 +63,15 @@ public class UserPar implements java.io.Serializable {
 
 	public void setParValue(String parValue) {
 		this.parValue = parValue;
+	}
+
+	@Column(name = "par_type", length = 4)
+	public String getParType() {
+		return this.parType;
+	}
+
+	public void setParType(String parType) {
+		this.parType = parType;
 	}
 
 }

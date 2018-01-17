@@ -224,6 +224,7 @@ sm.setAuth_success(true);
 				upm.setUserid(user_uuid);
 				upm.setValue("50");
 				upm.setParam_desc("默认一页显示行数");
+				upm.setPar_type("NUM_");
 				 gov.cqaudit.finance.hibernate.dao.UserParDAO updao=new gov.cqaudit.finance.hibernate.dao.UserParDAO();
 				 updao.save(session, upm);
 				//分配角色

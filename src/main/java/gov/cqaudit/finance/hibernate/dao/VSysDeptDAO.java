@@ -46,7 +46,7 @@ public class VSysDeptDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.s
 	@SuppressWarnings("unchecked")
 	public java.util.ArrayList<gov.cqaudit.finance.system.model.Dept> getAllModel(Session session){
 		
-			String hql = "from VSysDept";
+			String hql = "from VSysDept order by id.deptType,id.deptName";
 
 			@SuppressWarnings("rawtypes")
 			Query q = session.createQuery(hql);

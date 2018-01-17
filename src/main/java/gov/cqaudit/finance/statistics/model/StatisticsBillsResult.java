@@ -1,6 +1,48 @@
 package gov.cqaudit.finance.statistics.model;
 
 public class StatisticsBillsResult {
+	String bank_names;
+	String download_user_id;
+	String download_user_name;
+	java.util.Date download_dat;
+	String download_dat_print;
+	String downlaod_dat_chinese_print;
+	public java.util.Date getDownload_dat() {
+		return download_dat;
+	}
+	public void setDownload_dat(java.util.Date download_dat) {
+		this.download_dat = download_dat;
+	}
+	public String getDownload_dat_print() {
+		return download_dat_print;
+	}
+	public void setDownload_dat_print(String download_dat_print) {
+		this.download_dat_print = download_dat_print;
+	}
+	public String getDownlaod_dat_chinese_print() {
+		return downlaod_dat_chinese_print;
+	}
+	public void setDownlaod_dat_chinese_print(String downlaod_dat_chinese_print) {
+		this.downlaod_dat_chinese_print = downlaod_dat_chinese_print;
+	}
+	public String getBank_names() {
+		return bank_names;
+	}
+	public void setBank_names(String bank_names) {
+		this.bank_names = bank_names;
+	}
+	public String getDownload_user_id() {
+		return download_user_id;
+	}
+	public void setDownload_user_id(String download_user_id) {
+		this.download_user_id = download_user_id;
+	}
+	public String getDownload_user_name() {
+		return download_user_name;
+	}
+	public void setDownload_user_name(String download_user_name) {
+		this.download_user_name = download_user_name;
+	}
 	String pro_name;
 	public String getPro_name() {
 		return pro_name;

@@ -25,8 +25,12 @@
 	function bill_list_table_Dclick(rowData) {
 
 	}
-	
-
+	function room(bill_uuid){
+		window.open("../bills/bill_room.action?bill_uuid="+bill_uuid);
+		}
+	function output(bill_uuid){
+		window.open("../bills/bill_output.action?bill_uuid="+bill_uuid);
+		}
 	function del_bill(bill_uuid,object){
 		$.messager.confirm('操作提示','确定删除这个申请单吗?',function(r){
 		    if (r){
@@ -112,8 +116,11 @@ function center_load_ready(){
 								case '等待返回':
 									cc.push('#666666');
 									break;
-								case '结果返回':
+								case '返回待审':
 									cc.push('#CCCCCC');
+									break;
+								case '查看结果':
+									cc.push('#CCCC33');
 									break;
 
 								default:
@@ -132,20 +139,26 @@ function center_load_ready(){
 										+ rowData.create_dat_chinese_print
 										+ ']</td></tr>');
 								//alert(rowData.c_status);
+								
+								var opts=$('#search_bill_list_table').datagrid('getPager').pagination('options');
+								//console.log(opts);
+								var pageSize=opts.pageSize;
+								var pageNumber=opts.pageNumber;
 								var row_no = parseInt(rowIndex + 1, 10)
-										+ parseInt((search_bill_current_page - 1)
-												* search_bill_rows_in_page, 10);
+										+ parseInt(((pageNumber==0?1:pageNumber) -1)
+												* pageSize, 10);
 
 								var row_len = row_len = rowData.bill_details.length;
 								row_len++;
 
 								//alert(row_len);
+								var tip=rowData.audit_user_name==""?"":"<font color=\'red\'>已打印数据拷出审批单</font>";
 
 								cc
 										.push('<tr><td width=\'10%\' rowspan=\''
 												+ row_len
 												+ '\'>序号：'
-												+ row_no
+												+  row_no
 												
 
 												+ '</td><td width=\'10%\' rowspan=\''
@@ -166,13 +179,12 @@ function center_load_ready(){
 												+ '查询参数'
 
 												+ '</td><td width=\'21%\' rowspan=\''
-												+ row_len + '\'>图片附件：'
+												+ row_len + '\'>审核状态：'+tip+'<br>图片附件：'
 												+ rowData.pics_num + '<br>');
 
 								var pics = rowData.pictures;
 
-								$
-										.each(
+								$.each(
 												pics,
 												function(j, pic) {
 													cc
@@ -205,12 +217,18 @@ function center_load_ready(){
 
 									});
 								}
+								
+								
 								var temp_b='<tr><td colspan=\'8\'>'
 									+ '<div>操作：<a	class="print_bill" href="javascript:void(0)" id=\"print_bill_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:print_bill(\''
 									+ rowData.bill_uuid
-									+ '\',this)">打印申请</a><a	class="room" href="javascript:void(0)" id=\"room_'
+									+ '\',this)">打印申请</a><a	class="upload_pictures" href="javascript:void(0)" id=\"upload_pictures_'
+									+ rowData.bill_uuid
+									+ '\" class="easyui-linkbutton"	onclick="javascript:picture_manage_init(\''
+									+ rowData.bill_uuid
+									+ '\',this)">管理图片附件</a><a	class="room" href="javascript:void(0)" id=\"room_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:room(\''
 									+ rowData.bill_uuid
@@ -218,7 +236,9 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:output(\''
 									+ rowData.bill_uuid
-									+ '\',this)">打印数据导出申请单</a><a	class="view_reslut" href="javascript:void(0)" id=\"view_reslut_'
+									+ '\',this)">打印数据导出申请单</a>'
+									
+									+'<a	class="view_reslut" href="javascript:void(0)" id=\"view_reslut_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:view_result_init(\''
 									+ rowData.bill_uuid
@@ -254,6 +274,12 @@ function center_load_ready(){
 								
 
 								//console.log(data);
+								
+								$('.upload_pictures').linkbutton({
+									text : '管理图片附件',
+									plain : false,
+									iconCls : 'icon-add'
+								});
 
 								$('.view_reslut').linkbutton({
 									text : '查看结果',
@@ -291,7 +317,8 @@ function center_load_ready(){
 									//console.log(bill);
 									switch (bill.bill_status) {
 									case '起草申请':
-
+										$('#upload_pictures_' + bill.bill_uuid)
+												.linkbutton('disable');
 										
 										
 										$('#output_' + bill.bill_uuid)
@@ -307,6 +334,8 @@ function center_load_ready(){
 										
 										break;
 									case '打印待签':
+										$('#upload_pictures_' + bill.bill_uuid)
+										.linkbutton('disable');
 										$('#output_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#print_bill_' + bill.bill_uuid)
@@ -316,9 +345,11 @@ function center_load_ready(){
 								$('#room_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#del_bill_' + bill.bill_uuid)
-								.linkbutton('enable');
+								.linkbutton('disable');
 										break;
 									case '等待传单':
+										$('#upload_pictures_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#print_bill_' + bill.bill_uuid)
@@ -328,9 +359,11 @@ function center_load_ready(){
 								$('#room_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#del_bill_' + bill.bill_uuid)
-								.linkbutton('enable');
+								.linkbutton('disable');
 										break;
 									case '等待返回':
+										$('#upload_pictures_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#print_bill_' + bill.bill_uuid)
@@ -340,9 +373,11 @@ function center_load_ready(){
 								$('#room_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#del_bill_' + bill.bill_uuid)
-								.linkbutton('enable');
+								.linkbutton('disable');
 										break;
-									case '结果返回':
+									case '返回待审':
+										$('#upload_pictures_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
 										.linkbutton('enable');
 								$('#print_bill_' + bill.bill_uuid)
@@ -352,9 +387,22 @@ function center_load_ready(){
 								$('#room_' + bill.bill_uuid)
 										.linkbutton('enable');
 								$('#del_bill_' + bill.bill_uuid)
-								.linkbutton('enable');
+								.linkbutton('disable');
 										break;
-
+									case '查看结果':
+										$('#upload_pictures_' + bill.bill_uuid)
+										.linkbutton('enable');
+										$('#output_' + bill.bill_uuid)
+										.linkbutton('enable');
+								$('#print_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
+								$('#view_reslut_' + bill.bill_uuid)
+										.linkbutton('enable');
+								$('#room_' + bill.bill_uuid)
+										.linkbutton('enable');
+								$('#del_bill_' + bill.bill_uuid)
+								.linkbutton('disable');
+										break;
 									default:
 
 									}

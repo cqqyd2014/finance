@@ -42,8 +42,16 @@
 		//console.log("enter");
 
 		$('#search_rs_bill_uuid').val(bill_uuid);
-		
-		dialog_init('view_reslut_div');
+		//检测是否已经打印"数据拷出表",并且记录查看时间
+		$.getJSON("../bills/log_view.action", {
+			bill_uuid : bill_uuid
+		}, function(result) {
+
+			var field = result.msg;
+
+			if (field.success) {
+				//有效
+				dialog_init('view_reslut_div');
 			//初始化，加载
 			var gridOpts = $('#search_rs_table').datagrid('options');   
 			gridOpts.url="../bills/get_search_result.action";
@@ -54,6 +62,15 @@
 			//console.log("load");
 			$('#view_reslut_div').dialog('open');
 			//console.log("open");
+
+			} else {
+				$.messager.alert("操作提示", "检测是否打印拷出数据、记录查看日志出错！" + field.body, "error");
+
+			}
+
+		});
+		
+		
 			
 		
 		}
@@ -172,7 +189,7 @@
 
 function download_detail_xls(bank_code,business_code,custom_id){
 	//console.log(business_code);
-	 var table_name,filter_cols,filter_orders;
+	 var table_name,filter_cols,filter_orders,filter_ordertypes;
 		switch(business_code)
 		{
 		case "0001":
@@ -180,24 +197,26 @@ function download_detail_xls(bank_code,business_code,custom_id){
 		  table_name="data_core_public_account_trade_detail";
 		  filter_cols="public_account_id,bank_code";
 		  filter_orders="public_trade_dat,public_trade_seq";
+		  filter_ordertypes="asc,asc";
 		  break;
 		case "0002":
 			
 			table_name="data_core_private_account_trade_detail";
 			filter_cols="private_account_id,bank_code";
 			filter_orders="private_trade_dat,private_trade_seq";
+			filter_ordertypes="asc,asc";
 			break;
 		default:
 		  //n 与 case 1 和 case 2 不同时执行的代码
 		}
-		window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders);
+		window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders+"&filter_ordertypes="+filter_ordertypes);
 
 		
 }
 
 
  function download_account_xls(bank_code,business_code,custom_id){
-	 var table_name,filter_cols,filter_orders;
+	 var table_name,filter_cols,filter_orders,filter_ordertypes;
 		switch(business_code)
 		{
 		case "0001":
@@ -205,22 +224,24 @@ function download_detail_xls(bank_code,business_code,custom_id){
 		  table_name="data_core_public_account_info";
 		  filter_cols="public_account_id,bank_code";
 		  filter_orders="public_account_id";
+		  filter_ordertypes="asc,asc";
 		  break;
 		case "0002":
 			table_name="data_core_private_account_info";
 			filter_cols="private_account_id,bank_code";
 			 filter_orders="private_account_id";
+			 filter_ordertypes="asc,asc";
 			break;
 		default:
 		  //n 与 case 1 和 case 2 不同时执行的代码
 		}
-		window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders);
+		window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders+"&filter_ordertypes="+filter_ordertypes);
 
 		
  }
 function download_custom_xls(bank_code,business_code,custom_id){
 	
-	var table_name,filter_cols,filter_orders;
+	var table_name,filter_cols,filter_orders,filter_ordertypes;
 	
 	switch(business_code)
 	{
@@ -229,16 +250,18 @@ function download_custom_xls(bank_code,business_code,custom_id){
 	  table_name="data_core_public_custom_base";
 	  filter_cols="public_custom_id,bank_code";
 	  filter_orders="public_custom_id";
+	  filter_ordertypes="asc,asc";
 	  break;
 	case "0002":
 		table_name="data_core_private_custom_base";
 		filter_cols="private_custom_id,bank_code";
 		filter_orders="private_custom_id";
+		filter_ordertypes="asc,asc";
 		break;
 	default:
 	  //n 与 case 1 和 case 2 不同时执行的代码
 	}
-	window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders);
+	window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders+"&filter_ordertypes="+filter_ordertypes);
 
 	
 }

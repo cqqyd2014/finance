@@ -1,5 +1,7 @@
 package gov.cqaudit.finance.hibernate.dao;
 
+import java.math.BigDecimal;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -13,6 +15,18 @@ public class VDataCorePublicAccountTradeDetailDAO  extends GetModelFromEntityVie
 	
 	
 	
+	@Override
+	public <T> T getArrayListViewByHqlSql(Session session, String hql_sql, BigDecimal page_size, BigDecimal page) {
+		// TODO Auto-generated method stub
+		return super.getArrayListViewByHqlSql(session, hql_sql, page_size, page);
+	}
+
+	@Override
+	public String getCountByHqlSql(Session session, String hql_sql) {
+		// TODO Auto-generated method stub
+		return super.getCountByHqlSql(session, hql_sql);
+	}
+
 	@SuppressWarnings("unchecked")
 	public java.util.ArrayList<gov.cqaudit.finance.database.model.DataCorePublicAccountTradeDetail>
 	getArrayListViewByAccountIdBankId(Session session,String account_id,String bank_id){

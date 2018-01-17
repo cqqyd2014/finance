@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-5 2:10:16 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,34 +13,42 @@ import javax.persistence.Embeddable;
 public class VStatisticsBillsResultId implements java.io.Serializable {
 
 	private String deptId;
-	private String deptName;
 	private String deptType;
-	private String typeName;
+	private String deptName;
 	private Date createDat;
 	private String billUuid;
+	private String bankNames;
 	private Long publicCount;
 	private Long privateCount;
 	private BigDecimal publicDetail;
 	private BigDecimal privateDetail;
 	private String proName;
+	private String downloadUserName;
+	private String downloadUserId;
+	private Date downloadDat;
+	private String typeName;
 
 	public VStatisticsBillsResultId() {
 	}
 
-	public VStatisticsBillsResultId(String deptId, String deptName, String deptType, String typeName, Date createDat,
-			String billUuid, Long publicCount, Long privateCount, BigDecimal publicDetail, BigDecimal privateDetail,
-			String proName) {
+	public VStatisticsBillsResultId(String deptId, String deptType, String deptName, Date createDat, String billUuid,
+			String bankNames, Long publicCount, Long privateCount, BigDecimal publicDetail, BigDecimal privateDetail,
+			String proName, String downloadUserName, String downloadUserId, Date downloadDat, String typeName) {
 		this.deptId = deptId;
-		this.deptName = deptName;
 		this.deptType = deptType;
-		this.typeName = typeName;
+		this.deptName = deptName;
 		this.createDat = createDat;
 		this.billUuid = billUuid;
+		this.bankNames = bankNames;
 		this.publicCount = publicCount;
 		this.privateCount = privateCount;
 		this.publicDetail = publicDetail;
 		this.privateDetail = privateDetail;
 		this.proName = proName;
+		this.downloadUserName = downloadUserName;
+		this.downloadUserId = downloadUserId;
+		this.downloadDat = downloadDat;
+		this.typeName = typeName;
 	}
 
 	@Column(name = "dept_id", length = 36)
@@ -52,15 +60,6 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.deptId = deptId;
 	}
 
-	@Column(name = "dept_name", length = 128)
-	public String getDeptName() {
-		return this.deptName;
-	}
-
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
-	}
-
 	@Column(name = "dept_type", length = 4)
 	public String getDeptType() {
 		return this.deptType;
@@ -70,13 +69,13 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.deptType = deptType;
 	}
 
-	@Column(name = "type_name", length = 90)
-	public String getTypeName() {
-		return this.typeName;
+	@Column(name = "dept_name", length = 128)
+	public String getDeptName() {
+		return this.deptName;
 	}
 
-	public void setTypeName(String typeName) {
-		this.typeName = typeName;
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
 	}
 
 	@Column(name = "create_dat", length = 35)
@@ -95,6 +94,15 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 
 	public void setBillUuid(String billUuid) {
 		this.billUuid = billUuid;
+	}
+
+	@Column(name = "bank_names")
+	public String getBankNames() {
+		return this.bankNames;
+	}
+
+	public void setBankNames(String bankNames) {
+		this.bankNames = bankNames;
 	}
 
 	@Column(name = "public_count")
@@ -142,6 +150,42 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.proName = proName;
 	}
 
+	@Column(name = "download_user_name")
+	public String getDownloadUserName() {
+		return this.downloadUserName;
+	}
+
+	public void setDownloadUserName(String downloadUserName) {
+		this.downloadUserName = downloadUserName;
+	}
+
+	@Column(name = "download_user_id")
+	public String getDownloadUserId() {
+		return this.downloadUserId;
+	}
+
+	public void setDownloadUserId(String downloadUserId) {
+		this.downloadUserId = downloadUserId;
+	}
+
+	@Column(name = "download_dat", length = 35)
+	public Date getDownloadDat() {
+		return this.downloadDat;
+	}
+
+	public void setDownloadDat(Date downloadDat) {
+		this.downloadDat = downloadDat;
+	}
+
+	@Column(name = "type_name", length = 90)
+	public String getTypeName() {
+		return this.typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -153,16 +197,16 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 
 		return ((this.getDeptId() == castOther.getDeptId()) || (this.getDeptId() != null
 				&& castOther.getDeptId() != null && this.getDeptId().equals(castOther.getDeptId())))
-				&& ((this.getDeptName() == castOther.getDeptName()) || (this.getDeptName() != null
-						&& castOther.getDeptName() != null && this.getDeptName().equals(castOther.getDeptName())))
 				&& ((this.getDeptType() == castOther.getDeptType()) || (this.getDeptType() != null
 						&& castOther.getDeptType() != null && this.getDeptType().equals(castOther.getDeptType())))
-				&& ((this.getTypeName() == castOther.getTypeName()) || (this.getTypeName() != null
-						&& castOther.getTypeName() != null && this.getTypeName().equals(castOther.getTypeName())))
+				&& ((this.getDeptName() == castOther.getDeptName()) || (this.getDeptName() != null
+						&& castOther.getDeptName() != null && this.getDeptName().equals(castOther.getDeptName())))
 				&& ((this.getCreateDat() == castOther.getCreateDat()) || (this.getCreateDat() != null
 						&& castOther.getCreateDat() != null && this.getCreateDat().equals(castOther.getCreateDat())))
 				&& ((this.getBillUuid() == castOther.getBillUuid()) || (this.getBillUuid() != null
 						&& castOther.getBillUuid() != null && this.getBillUuid().equals(castOther.getBillUuid())))
+				&& ((this.getBankNames() == castOther.getBankNames()) || (this.getBankNames() != null
+						&& castOther.getBankNames() != null && this.getBankNames().equals(castOther.getBankNames())))
 				&& ((this.getPublicCount() == castOther.getPublicCount())
 						|| (this.getPublicCount() != null && castOther.getPublicCount() != null
 								&& this.getPublicCount().equals(castOther.getPublicCount())))
@@ -176,23 +220,38 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 						|| (this.getPrivateDetail() != null && castOther.getPrivateDetail() != null
 								&& this.getPrivateDetail().equals(castOther.getPrivateDetail())))
 				&& ((this.getProName() == castOther.getProName()) || (this.getProName() != null
-						&& castOther.getProName() != null && this.getProName().equals(castOther.getProName())));
+						&& castOther.getProName() != null && this.getProName().equals(castOther.getProName())))
+				&& ((this.getDownloadUserName() == castOther.getDownloadUserName())
+						|| (this.getDownloadUserName() != null && castOther.getDownloadUserName() != null
+								&& this.getDownloadUserName().equals(castOther.getDownloadUserName())))
+				&& ((this.getDownloadUserId() == castOther.getDownloadUserId())
+						|| (this.getDownloadUserId() != null && castOther.getDownloadUserId() != null
+								&& this.getDownloadUserId().equals(castOther.getDownloadUserId())))
+				&& ((this.getDownloadDat() == castOther.getDownloadDat())
+						|| (this.getDownloadDat() != null && castOther.getDownloadDat() != null
+								&& this.getDownloadDat().equals(castOther.getDownloadDat())))
+				&& ((this.getTypeName() == castOther.getTypeName()) || (this.getTypeName() != null
+						&& castOther.getTypeName() != null && this.getTypeName().equals(castOther.getTypeName())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
 		result = 37 * result + (getDeptId() == null ? 0 : this.getDeptId().hashCode());
-		result = 37 * result + (getDeptName() == null ? 0 : this.getDeptName().hashCode());
 		result = 37 * result + (getDeptType() == null ? 0 : this.getDeptType().hashCode());
-		result = 37 * result + (getTypeName() == null ? 0 : this.getTypeName().hashCode());
+		result = 37 * result + (getDeptName() == null ? 0 : this.getDeptName().hashCode());
 		result = 37 * result + (getCreateDat() == null ? 0 : this.getCreateDat().hashCode());
 		result = 37 * result + (getBillUuid() == null ? 0 : this.getBillUuid().hashCode());
+		result = 37 * result + (getBankNames() == null ? 0 : this.getBankNames().hashCode());
 		result = 37 * result + (getPublicCount() == null ? 0 : this.getPublicCount().hashCode());
 		result = 37 * result + (getPrivateCount() == null ? 0 : this.getPrivateCount().hashCode());
 		result = 37 * result + (getPublicDetail() == null ? 0 : this.getPublicDetail().hashCode());
 		result = 37 * result + (getPrivateDetail() == null ? 0 : this.getPrivateDetail().hashCode());
 		result = 37 * result + (getProName() == null ? 0 : this.getProName().hashCode());
+		result = 37 * result + (getDownloadUserName() == null ? 0 : this.getDownloadUserName().hashCode());
+		result = 37 * result + (getDownloadUserId() == null ? 0 : this.getDownloadUserId().hashCode());
+		result = 37 * result + (getDownloadDat() == null ? 0 : this.getDownloadDat().hashCode());
+		result = 37 * result + (getTypeName() == null ? 0 : this.getTypeName().hashCode());
 		return result;
 	}
 

@@ -2,6 +2,22 @@ package gov.cqaudit.finance.bills.model;
 
 public class BillM {
 	
+	String bill_type;
+	String bill_type_name;
+	
+	public String getBill_type() {
+		return bill_type;
+	}
+	public void setBill_type(String bill_type) {
+		this.bill_type = bill_type;
+	}
+	public String getBill_type_name() {
+		return bill_type_name;
+	}
+	public void setBill_type_name(String bill_type_name) {
+		this.bill_type_name = bill_type_name;
+	}
+
 	java.util.Date uneffective_dat;
 	String uneffective_dat_chinese_print;
 	public String getUneffective_dat_chinese_print() {
@@ -88,6 +104,8 @@ public class BillM {
 	}
 
 	String bill_status;
+	
+
 	String contract_name;
 	String contract_tell;
 	String contract_mail;

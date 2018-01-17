@@ -13,6 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 public @interface Export {
 	/** 是否导出 */
 	 boolean if_export() default true;
+	 //是否有索引支持扫描
+	 boolean indexed() default false;
 	 
 	 /** 类型 */
 	 int xlsxtype() default XSSFCell.CELL_TYPE_STRING;
@@ -26,4 +28,9 @@ public @interface Export {
 	 /**输出顺序**/
 	 
 	 int export_order()  default -1;
+	 /**默认排序字段*/
+	 boolean default_order() default false;
+	 int order_order() default -1;
+	 /*  正序列为asc，倒序为desc*/
+	 String order_type() default "asc";
 }

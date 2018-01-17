@@ -25,7 +25,15 @@ public class LoginedAjaxAction extends InitAction{
 	public String user_id;
 	public String user_name;
 	public String user_login;
-	public String sys_role;
+	public java.util.ArrayList<String> sys_roles;
+	public java.util.ArrayList<String> getSys_roles() {
+		return sys_roles;
+	}
+
+	public void setSys_roles(java.util.ArrayList<String> sys_roles) {
+		this.sys_roles = sys_roles;
+	}
+
 	public Map<String,Object> session_http;
 
 	public Session session;
@@ -93,14 +101,7 @@ public class LoginedAjaxAction extends InitAction{
 	}
 
 
-	public String getSys_role() {
-		return sys_role;
-	}
 
-
-	public void setSys_role(String sys_role) {
-		this.sys_role = sys_role;
-	}
 
 
 	public Map<String, Object> getSession_http() {
@@ -113,6 +114,7 @@ public class LoginedAjaxAction extends InitAction{
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public String execute()  {
 		// TODO Auto-generated method stub
@@ -122,7 +124,7 @@ public class LoginedAjaxAction extends InitAction{
 		user_login = (String) session_http.get("user_login");
 		user_name = (String) session_http.get("user_name");
 		user_id = (String) session_http.get("user_id");
-		
+		sys_roles=(java.util.ArrayList<String>) session_http.get("sys_roles");
 		sm = new com.cqqyd2014.util.AjaxSuccessMessage();
 		
 		return null;

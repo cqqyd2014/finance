@@ -40,7 +40,7 @@
 
 								if (field.success) {
 									//有效
-									console.log(field.boolean_flag);
+									//console.log(field.boolean_flag);
 									if (field.boolean_flag){
 										$.messager.alert("操作提示", "提交查询查询申请成功", "info");
 										page_init();
@@ -157,6 +157,9 @@ function center_load_ready(){
 									break;
 								case '结果返回':
 									cc.push('#CCCCCC');
+									break;
+								case '查看结果':
+									cc.push('#CCCC33');
 									break;
 
 								default:
@@ -400,7 +403,21 @@ function center_load_ready(){
 										$('#post_search_request_' + bill.bill_uuid)
 										.linkbutton('disable');
 										break;
-									case '结果返回':
+									case '返回待审':
+										$('#edit_bill_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#print_bill_' + bill.bill_uuid)
+												.linkbutton('enable');
+										$('#view_reslut_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#upload_pictures_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#del_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										$('#post_search_request_' + bill.bill_uuid)
+										.linkbutton('disable');
+										break;
+									case '查看结果':
 										$('#edit_bill_' + bill.bill_uuid)
 												.linkbutton('disable');
 										$('#print_bill_' + bill.bill_uuid)

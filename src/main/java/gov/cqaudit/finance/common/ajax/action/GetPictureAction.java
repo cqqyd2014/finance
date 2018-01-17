@@ -66,7 +66,8 @@ public class GetPictureAction   extends DownloadFromServerAbstractAction {
 			// TODO Auto-generated method stub
 			   Session session = HibernateSessionFactory.getSession();
 		         try {   
-		        	 pic=gov.cqaudit.finance.bills.logic.PictureLogic.getModelFromView(gov.cqaudit.finance.hibernate.dao.VPictureDAO.getEntityByUuid(session, uuid));
+		        	 gov.cqaudit.finance.hibernate.dao.VPictureDAO vpdao=new gov.cqaudit.finance.hibernate.dao.VPictureDAO();
+		        	 pic=vpdao.getEntityByUuid(session, uuid);
 		        	 
 		        	 
 			             

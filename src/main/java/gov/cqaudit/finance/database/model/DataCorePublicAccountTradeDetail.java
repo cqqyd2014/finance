@@ -2,44 +2,65 @@ package gov.cqaudit.finance.database.model;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
+import gov.cqaudit.finance.annotation.DataTableView;
 import gov.cqaudit.finance.annotation.Export;
 
+@DataTableView(table_name="对公账户交易明细账")
 public class DataCorePublicAccountTradeDetail {
-	@Export(name="户名",export_order=1)
+	
+	@Export(name="户名",export_order=1,indexed=true)
 	String public_account_name;
 	@Export(if_export=false,name="银行编码")
+	
 	String bank_code;
-	@Export(name="银行名称",export_order=13)
+	
+	@Export(name="银行名称",export_order=14)
 	String bank_name;
-	@Export(name="账号",export_order=0)
+	
+	@Export(name="账号",export_order=0,indexed=true)
 	String public_account_id;
+	@Export(if_export=true,name="流水号",default_order=true,order_order=2,export_order=3)
 	String public_trade_seq;
-	@Export(name="交易金额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=3)
+	
+	@Export(name="交易金额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=4,indexed=true)
 	java.math.BigDecimal public_amount;
-	@Export(name="对方账号",export_order=5)
+	
+	@Export(name="对方账号",export_order=6,indexed=true)
 	String public_op_account_id;
-	@Export(name="对方行号",export_order=7)
+	
+	@Export(name="对方行号",export_order=8)
 	String public_op_bank_id;
-	@Export(name="对方行名",export_order=8)
+	
+	@Export(name="对方行名",export_order=9)
 	String public_op_bank_name;
-	@Export(name="对方户名",export_order=6)
+	
+	@Export(name="对方户名",export_order=7,indexed=true)
 	String public_op_account_name;
-	@Export(name="交易码",export_order=9)
+	
+	@Export(name="交易码",export_order=10)
 	String public_trade_code;
-	@Export(name="交易码名",export_order=10)
+	
+	@Export(name="交易码名",export_order=11)
 	String public_trade_name;
-	@Export(name="余额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=4)
+	
+	@Export(name="余额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=5,indexed=true)
 	java.math.BigDecimal public_balance;
-	@Export(name="交易机构号",export_order=11)
+	
+	@Export(name="交易机构号",export_order=12)
 	String public_bank_org_id;
-	@Export(name="交易机构名",export_order=12)
+	
+	@Export(name="交易机构名",export_order=13)
 	String public_bank_org_name;
-	@Export(name="备注",export_order=14)
+	
+	@Export(name="备注",export_order=15,indexed=true)
 	String public_remark;
-	@Export(if_export=false,name="交易日期")
+	
+	@Export(if_export=false,name="交易日期",default_order=true,order_order=1)
 	java.util.Date public_trade_dat;
+	
 	@Export(name="交易日期",if_database=false,export_order=2)
 	String public_trade_dat_print;
+	
 	@Export(if_export=false,name="交易日期",if_database=false)
 	String public_trade_dat_chinese_print;
 	public String getPublic_account_name() {

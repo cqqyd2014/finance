@@ -32,6 +32,7 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 	String filter_cols;
 	String filter_ops;
 	String filter_orders;
+	String filter_ordertypes;
 
 
 	public String getFilter_ops() {
@@ -103,6 +104,7 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 			String[] filter_value_array = filter_values.split(",");
 			String[] filter_op_array=filter_ops.split(",");
 			String[] orders_array = filter_orders.split(",");
+			String[] ordertype_array=filter_ordertypes.split(",");
 			String table_camel_name=com.cqqyd2014.util.StringUtil.underlineToCamel(table_name);
 			String view_name="v_"+table_name;
 			String model_name=table_camel_name.substring(0,1).toUpperCase()+table_camel_name.substring(1,table_camel_name.length());
@@ -110,7 +112,7 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 			String dao_package_name="gov.cqaudit.finance.hibernate.dao";
 			Class<?> model_clazz=Class.forName(model_package_name+"."+model_name);  
  			
-			export(workbook,dao_package_name,model_package_name, view_name, model_clazz,session,filter_col_array, filter_op_array,filter_value_array,orders_array);
+			export(workbook,dao_package_name,model_package_name, view_name, model_clazz,session,filter_col_array, filter_op_array,filter_value_array,orders_array,ordertype_array);
 				
 
 			// gov.cqaudit.finance.dataexport.xls.Ooxml.exportWorkBook(workbook,
@@ -133,6 +135,14 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 		return SUCCESS;
 	}
 
+	public String getFilter_ordertypes() {
+		return filter_ordertypes;
+	}
+
+	public void setFilter_ordertypes(String filter_ordertypes) {
+		this.filter_ordertypes = filter_ordertypes;
+	}
+
 	public String getFilter_orders() {
 		return filter_orders;
 	}
@@ -149,7 +159,7 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 	}
 
 	private static void export(XSSFWorkbook workbook, String dao_package_name,String model_package_name,String view_name,@SuppressWarnings("rawtypes") java.lang.Class clazz,Session session, String[] filter_col_array,String[] filter_op_array,
-			String[] filter_value_array,String[] orders_array) {
+			String[] filter_value_array,String[] orders_array,String[] ordertype_array) {
 		// 检测参数是否正确
 
 		// 在Excel工作簿中建一工作表，其名为缺省值
@@ -186,12 +196,16 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 		java.util.ArrayList<String> values=com.cqqyd2014.util.StringUtil.ArrayToArrayList(filter_value_array);
 		//values.add("5001010125013377573");
 		java.util.ArrayList<String> orders=com.cqqyd2014.util.StringUtil.ArrayToArrayList(orders_array);
+		java.util.ArrayList<String> order_types=com.cqqyd2014.util.StringUtil.ArrayToArrayList(ordertype_array);
 		
+		
+		
+		gov.cqaudit.finance.database.common.logic.ExportView ev=new gov.cqaudit.finance.database.common.logic.ExportView();
 		
 		java.util.ArrayList<? extends Object> ms=(java.util.ArrayList<? extends Object>)
-		gov.cqaudit.finance.database.common.logic.ExportView.getObject(session
+		ev.getRows(session
 				,dao_package_name, model_package_name, view_name
-				, cols, ops, values, orders);
+				, cols, ops, values, orders,order_types);
 
 		// ===============================================================
 		// 添加数据

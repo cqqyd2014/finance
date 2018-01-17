@@ -29,7 +29,13 @@ public final class XmlDataTools {
 		for (int i=0,len=dtds.size();i<len;i++){
 			gov.cqaudit.finance.datatrans.model.DataTransD dtd=dtds.get(i);
 			gov.cqaudit.finance.bills.model.BillM bm=vbmdao.getModelByUuid(session, dtd.getBill_uuid());
-			bm.setBill_status("结果返回");
+			if (bm.getAudit_user_name().equals("")){
+				bm.setBill_status("返回待审");
+			}
+			else{
+				bm.setBill_status("查看结果");
+			}
+			
 			vbmdao.save(session, bm);
 		}
 		//在session中保存本次导入的客户资料和分户账资料，以便统计对应查询单的结果

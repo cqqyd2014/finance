@@ -40,7 +40,7 @@
 				<tr>
 					<td style="width: 50%">
 						<div>
-					当前申请单中已经上传图片附件<span id='pic_num'></span>件
+					当前申请单中已经上传图片附件<span id='pic_num'></span>件，一次只能上传一个附件，附件类型为jpg。
 				</div>
 				<div>
 

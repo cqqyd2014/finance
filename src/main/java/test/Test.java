@@ -25,6 +25,7 @@ public class Test {
 	  mp.printMessage();
 	  System.out.println(mp.billMDAOPostgresql.getAbb());
 	  System.out.println(com.cqqyd2014.util.StringUtil.getUUID());
+	  System.out.println(new java.math.BigDecimal("dsfsdfsd"));
   }
 
 }

@@ -12,7 +12,7 @@
 	style="height: 140px; padding: 5px;">
 	<!------------------ 在这里填写你的搜索条件（FORM） -------------------->
 	<h2>查询列表</h2>
-	<p>查询单状态分为“起草申请”、“打印待签”、“等待传单”，“等待返回”和“结果返回”五个状态。起草阶段，查询单可以重复修改。一旦打印之后，查询不可再修改。请将申请单签字之后拍照上传。已附加图片的申请单，可提交。由于原始数据在不同银行，因此，需等待后台工作人员下载申请，赴银行执行查询，再返回结果。</p>
+	<p>查询单状态分为“起草申请”、“打印待签”、“等待传单”，“等待返回”,“返回待审”和“查看结果”五个状态。起草阶段，查询单可以重复修改。一旦打印之后，查询不可再修改。请将申请单签字之后拍照上传。已附加图片的申请单，可提交。由于原始数据在不同银行，因此，需等待后台工作人员下载申请，赴银行执行查询，再返回结果。</p>
 	<div>
 	<form id='search_bill_pars'>
 		1、订单状态： <SELECT id="search_bill_bill_status" name='search_bill_bill_status'style="width: 100px">
@@ -48,28 +48,51 @@
 	 * 初始化
 	 */
 
+	var search_bill_rows_in_page;
 	var search_bill_current_page;
 
-	var search_bill_rows_in_page;
 
-
-	var rowaction_handler;
+	var search_bill_url;
 	
 
-	function search_bill_ready(rowaction) {
-		rowaction_handler = rowaction;
+	function search_bill_ready(url) {
+		search_bill_url = url;
 		search_bill_current_page = 1;
+		
 		search_bill_rows_in_page=<s:property value="#session.default_rows_in_page" />;
+			datagrid_page_init('search_bill_list_table',search_bill_rows_in_page
+					,function select_page_callback(pageNumber, pageSize){
+				console.log("select");
+				search_bill_current_page=pageNumber;
+				//console.log(pageNumber);
+				search_bill_rows_in_page=pageSize;
+				
+
+				$("#search_bill_list_table").datagrid({
+			    	
+			    	pageNumber:pageNumber,
+			    	pageSize:pageSize
+			    	
+			    	
+			    });  
+
+				$("#search_bill_list_table").datagrid("load");
+				},
+				function change_page_size_callback(pageSize){
+					console.log("size");
+					search_bill_rows_in_page=pageSize;
+					$("#search_bill_list_table").datagrid({
+				    	
+				    	
+				    	pageSize:pageSize
+				    	
+				    	
+				    }); 
+					$("#search_bill_list_table").datagrid("load");
+					});
 		
 		
-		
-		var search_bill_rows_list=new Array();
-		search_bill_rows_list[0]=search_bill_rows_in_page;
-		search_bill_rows_list[1]=search_bill_rows_in_page*5;
-		search_bill_rows_list[2]=search_bill_rows_in_page*10;
-		search_bill_rows_list[3]=search_bill_rows_in_page*20;
-		search_bill_rows_list[4]=search_bill_rows_in_page*50;
-			//console.log(search_bill_rows_in_page);
+			
 			$('#search_bill_bill_status').combobox({
 				required : true,
 				multiple : false, //多选
@@ -79,34 +102,6 @@
 			});
 			$('#search_bill_bill_status').combobox('select', 0);
 
-			//console.log($('#search_bill_pars').serializeObject());
-
-		  $('#search_bill_list_table').datagrid({
-		    	//url:rowaction_handler,//需要立即查询时开启url  
-		    	pageNumber:search_bill_current_page,
-		    	pageSize:search_bill_rows_in_page,
-		    	pageList: search_bill_rows_list,
-		    	pagination:true
-		    	
-		    });  
-		  $('#search_bill_list_table').datagrid('getPager').pagination({  
-			    pageSize: search_bill_rows_in_page,  
-			    pageNumber: search_bill_current_page,  
-			    pageList: search_bill_rows_list,
-			    onSelectPage : function(
-						pageNumber, pageSize) {
-					search_bill_current_page = pageNumber;
-					show_search_bill_list_table();
-
-					
-					
-				}
-			    
-			}); 
-		
-		 
-		
-		
 	}
 </script>
 
@@ -120,13 +115,13 @@
 		
 		
 		var gridOpts = $('#search_bill_list_table').datagrid('options');   
-		gridOpts.url=rowaction_handler;
+		
 		gridOpts.queryParams=$('#search_bill_pars').serializeObject();
-		gridOpts.pageSize=search_bill_rows_in_page;
-		//console.log(search_bill_rows_in_page);
+		
+		gridOpts.url=search_bill_url;
 		$("#search_bill_list_table").datagrid("load");
 		
-		
+		//console.log($("#search_bill_list_table"));
 	}
 	
 </script>

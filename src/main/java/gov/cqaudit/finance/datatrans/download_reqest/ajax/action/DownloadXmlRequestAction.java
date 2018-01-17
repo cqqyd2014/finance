@@ -134,7 +134,9 @@ public class DownloadXmlRequestAction extends DownloadFromServerAbstractAction{
         		 //更新申请单状态
         		 gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
         		 gov.cqaudit.finance.bills.model.BillM bm=vbdao.getModelByUuid(session, bill_uuid);
-        		 
+        		 bm.setDownload_dat(now);
+        		 bm.setDownload_user_id(user_id);
+        		 bm.setDownload_uuid(trans_uuid);
         		 bm.setLast_modify_dat(now);
         		 bm.setBill_status("等待返回");
         		 vbdao.save(session, bm);

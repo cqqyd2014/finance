@@ -88,21 +88,8 @@ function check_all(){
 <div data-options="region:'center',border:false"
 	style="padding: 0px;">
             <!------------------ 在这里填写你的datagrid -------------------->
-            <table id="simple_bill_table"   pagination="true" class="easyui-datagrid"
-		fit="true" sortName="itemid" singleSelect="false"
-			iconCls="icon-redo">
-		<thead>
-			<tr>
-				<th field="ck" checkbox="true"></th>
-				<th field=dept_name width="100">处室</th>
-				
-				<th field="contract_name" width="100" >联系人</th>
-				<th field="contract_tell" width="100" >联系电话</th>
-				<th field="create_dat_chinese_print" width="100">创建时间</th>
-				<th field="pro_name" width="200">项目名称</th>
-				<th field="search_reason" width="400" >查询原因</th>
-			</tr>
-		</thead>
+            <table id="simple_bill_table" >
+		
 	</table>
 
         </div>          
