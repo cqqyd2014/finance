@@ -28,7 +28,15 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 	public void setDetail_num(java.math.BigDecimal detail_num) {
 		this.detail_num = detail_num;
 	}
+	String create_date;
 
+	public String getCreate_date() {
+		return create_date;
+	}
+
+	public void setCreate_date(String create_date) {
+		this.create_date = create_date;
+	}
 	String bill_uuid;
 	String pro_name;
 	String search_reason;
@@ -100,7 +108,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 			
 			 session = HibernateSessionFactory.getSession();
 			 tx = session.beginTransaction();
-			 java.util.Date now=new java.util.Date();
+			 java.util.Date now=null;
 			 gov.cqaudit.finance.bills.model.BillM bm=null;
 			try {
 				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
@@ -108,7 +116,13 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				bm=vbdao.getModelByUuid(session, bill_uuid);
 				
 				gov.cqaudit.finance.hibernate.dao.VBillDDAO vbddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
-				
+				if (create_date==null){
+					now=new java.util.Date();;
+				}
+				else{
+					now=com.cqqyd2014.util.DateUtil.FullStringToJDate(create_date);
+					bm.setCreate_dat(now);
+				}
 				bm.setDetail_num(detail_num);
 				bm.setContract_mail(contract_mail);
 				bm.setContract_name(contract_name);

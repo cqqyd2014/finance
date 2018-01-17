@@ -260,6 +260,7 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finan
 		bm.setDetail_num(vbm_h.getId().getDetailNum());
 		bm.setBill_type(vbm_h.getId().getBillType());
 		bm.setBill_type_name(vbm_h.getId().getBillTypeName());
+		bm.setCreate_dat_print(com.cqqyd2014.util.DateUtil.getPrintFullString(vbm_h.getId().getCreateDat()));
 		return (T)bm;
 	}
 }

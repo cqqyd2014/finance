@@ -79,8 +79,8 @@ function center_load_ready(){
 
 	
 	
-	
-	
+	//console.log("d111d");
+	modify_bill_base_ready(page_init);
 	picture_manage_ready(page_init);
 	view_reslut_ready();
 	search_bill_ready("../bills/get_all_bills.action");
@@ -246,6 +246,10 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:del_bill(\''
 									+ rowData.bill_uuid
+									+ '\',this)">删除</a></div><a	class="mod_bill" href="javascript:void(0)" id=\"mod_bill_'
+									+ rowData.bill_uuid
+									+ '\" class="easyui-linkbutton"	onclick="javascript:modify_bill_base_init(\''
+									+ rowData.bill_uuid
 									+ '\',this)">删除</a></div>'
 
 									+ '</td></tr></table></div></td>';
@@ -280,7 +284,11 @@ function center_load_ready(){
 									plain : false,
 									iconCls : 'icon-add'
 								});
-
+								$('.mod_bill').linkbutton({
+									text : '修改基本信息',
+									plain : false,
+									iconCls : 'icon-edit'
+								});
 								$('.view_reslut').linkbutton({
 									text : '查看结果',
 									plain : false,
@@ -319,7 +327,8 @@ function center_load_ready(){
 									case '起草申请':
 										$('#upload_pictures_' + bill.bill_uuid)
 												.linkbutton('disable');
-										
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
 										
 										$('#output_' + bill.bill_uuid)
 												.linkbutton('disable');
@@ -338,6 +347,8 @@ function center_load_ready(){
 										.linkbutton('disable');
 										$('#output_' + bill.bill_uuid)
 										.linkbutton('disable');
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
 								$('#print_bill_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#view_reslut_' + bill.bill_uuid)
@@ -348,6 +359,8 @@ function center_load_ready(){
 								.linkbutton('disable');
 										break;
 									case '等待传单':
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
@@ -362,6 +375,8 @@ function center_load_ready(){
 								.linkbutton('disable');
 										break;
 									case '等待返回':
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
@@ -376,6 +391,8 @@ function center_load_ready(){
 								.linkbutton('disable');
 										break;
 									case '返回待审':
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
@@ -390,6 +407,8 @@ function center_load_ready(){
 								.linkbutton('disable');
 										break;
 									case '查看结果':
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#output_' + bill.bill_uuid)
@@ -426,5 +445,5 @@ function center_load_ready(){
 	<jsp:include page="common/search_bill.jsp" flush="true" />
 	<jsp:include page="common/view_reslut.jsp" flush="true" />
 <jsp:include page="../common/include_print.jsp" flush="true" />
-
+<jsp:include page="common/modify_bill_base.jsp" flush="true" />
 

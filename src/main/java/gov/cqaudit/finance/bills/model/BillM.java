@@ -1,7 +1,15 @@
 package gov.cqaudit.finance.bills.model;
 
 public class BillM {
+	String create_dat_print;
 	
+	public String getCreate_dat_print() {
+		return create_dat_print;
+	}
+	public void setCreate_dat_print(String create_dat_print) {
+		this.create_dat_print = create_dat_print;
+	}
+
 	String bill_type;
 	String bill_type_name;
 	

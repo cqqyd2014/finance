@@ -21,7 +21,8 @@
 			<option VALUE="打印待签">打印待签</option>
 			<option VALUE="等待传单">等待传单</option>
 			<option VALUE="等待返回">等待返回</option>
-			<option VALUE="结果返回">结果返回</option>
+			<option VALUE="返回待审">返回待审</option>
+			<option VALUE="查看结果">查看结果</option>
 		</SELECT> 2、联系人姓名:<input id="search_bill_contract_name" name='search_bill_contract_name' class="easyui-textbox"
 			style="width: 70px" /> 3、项目名称:<input id="search_bill_pro_name" name='search_bill_pro_name'
 			class="easyui-textbox" style="width: 70px" /> <a href="javascript:void(0)"

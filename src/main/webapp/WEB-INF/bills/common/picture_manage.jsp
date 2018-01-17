@@ -262,6 +262,7 @@ function ajaxFileUpload() {
 									set_main_picture(first);
 
 								}
+								$('#picture_manage_div').dialog('open');
 
 							} else {
 
@@ -272,7 +273,7 @@ function ajaxFileUpload() {
 
 						});
 
-		$('#picture_manage_div').dialog('open');
+		
 	}
 
 
@@ -293,7 +294,7 @@ function ajaxFileUpload() {
 
 
  
-function picture_manage_ready(){
+function picture_manage_ready(page_init){
 	picture_manage_handler=page_init;
 	
 	
