@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -13,6 +13,7 @@ public class VDataCorePublicAccountInfoId implements java.io.Serializable {
 
 	private String bankCode;
 	private String publicAccountId;
+	private Date timepoint;
 	private String publicAccountName;
 	private String publicAccountStatus;
 	private Date publicOpenDat;
@@ -22,10 +23,12 @@ public class VDataCorePublicAccountInfoId implements java.io.Serializable {
 	public VDataCorePublicAccountInfoId() {
 	}
 
-	public VDataCorePublicAccountInfoId(String bankCode, String publicAccountId, String publicAccountName,
-			String publicAccountStatus, Date publicOpenDat, Date publicCloseDat, String publicCustomId) {
+	public VDataCorePublicAccountInfoId(String bankCode, String publicAccountId, Date timepoint,
+			String publicAccountName, String publicAccountStatus, Date publicOpenDat, Date publicCloseDat,
+			String publicCustomId) {
 		this.bankCode = bankCode;
 		this.publicAccountId = publicAccountId;
+		this.timepoint = timepoint;
 		this.publicAccountName = publicAccountName;
 		this.publicAccountStatus = publicAccountStatus;
 		this.publicOpenDat = publicOpenDat;
@@ -49,6 +52,15 @@ public class VDataCorePublicAccountInfoId implements java.io.Serializable {
 
 	public void setPublicAccountId(String publicAccountId) {
 		this.publicAccountId = publicAccountId;
+	}
+
+	@Column(name = "timepoint", length = 35)
+	public Date getTimepoint() {
+		return this.timepoint;
+	}
+
+	public void setTimepoint(Date timepoint) {
+		this.timepoint = timepoint;
 	}
 
 	@Column(name = "public_account_name", length = 256)
@@ -110,6 +122,8 @@ public class VDataCorePublicAccountInfoId implements java.io.Serializable {
 				&& ((this.getPublicAccountId() == castOther.getPublicAccountId())
 						|| (this.getPublicAccountId() != null && castOther.getPublicAccountId() != null
 								&& this.getPublicAccountId().equals(castOther.getPublicAccountId())))
+				&& ((this.getTimepoint() == castOther.getTimepoint()) || (this.getTimepoint() != null
+						&& castOther.getTimepoint() != null && this.getTimepoint().equals(castOther.getTimepoint())))
 				&& ((this.getPublicAccountName() == castOther.getPublicAccountName())
 						|| (this.getPublicAccountName() != null && castOther.getPublicAccountName() != null
 								&& this.getPublicAccountName().equals(castOther.getPublicAccountName())))
@@ -132,6 +146,7 @@ public class VDataCorePublicAccountInfoId implements java.io.Serializable {
 
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());
 		result = 37 * result + (getPublicAccountId() == null ? 0 : this.getPublicAccountId().hashCode());
+		result = 37 * result + (getTimepoint() == null ? 0 : this.getTimepoint().hashCode());
 		result = 37 * result + (getPublicAccountName() == null ? 0 : this.getPublicAccountName().hashCode());
 		result = 37 * result + (getPublicAccountStatus() == null ? 0 : this.getPublicAccountStatus().hashCode());
 		result = 37 * result + (getPublicOpenDat() == null ? 0 : this.getPublicOpenDat().hashCode());

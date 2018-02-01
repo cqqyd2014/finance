@@ -1,6 +1,43 @@
 package gov.cqaudit.finance.bills.model;
 
 public class BillM {
+	java.util.ArrayList<gov.cqaudit.finance.bills.model.BillMessage> messages;
+	public java.util.ArrayList<gov.cqaudit.finance.bills.model.BillMessage> getMessages() {
+		return messages;
+	}
+	public void setMessages(java.util.ArrayList<gov.cqaudit.finance.bills.model.BillMessage> messages) {
+		this.messages = messages;
+	}
+
+	boolean if_room;
+	String if_room_print;
+	boolean if_output;
+	String if_output_print;
+	public String getIf_room_print() {
+		return if_room_print;
+	}
+	public void setIf_room_print(String if_room_print) {
+		this.if_room_print = if_room_print;
+	}
+	public String getIf_output_print() {
+		return if_output_print;
+	}
+	public void setIf_output_print(String if_output_print) {
+		this.if_output_print = if_output_print;
+	}
+	public boolean isIf_room() {
+		return if_room;
+	}
+	public void setIf_room(boolean if_room) {
+		this.if_room = if_room;
+	}
+	public boolean isIf_output() {
+		return if_output;
+	}
+	public void setIf_output(boolean if_output) {
+		this.if_output = if_output;
+	}
+
 	String create_dat_print;
 	
 	public String getCreate_dat_print() {

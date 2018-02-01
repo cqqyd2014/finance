@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -26,8 +26,8 @@ public class VSysUser implements java.io.Serializable {
 
 	@EmbeddedId
 
-	@AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "id", length = 36)),
-			@AttributeOverride(name = "name", column = @Column(name = "name", length = 45)),
+	@AttributeOverrides({ @AttributeOverride(name = "userId", column = @Column(name = "user_id", length = 36)),
+			@AttributeOverride(name = "userName", column = @Column(name = "user_name", length = 45)),
 			@AttributeOverride(name = "createTime", column = @Column(name = "create_time", length = 35)),
 			@AttributeOverride(name = "pwd", column = @Column(name = "pwd", length = 45)),
 			@AttributeOverride(name = "userLogin", column = @Column(name = "user_login", length = 45)),

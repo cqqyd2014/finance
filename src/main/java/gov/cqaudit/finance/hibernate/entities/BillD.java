@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -28,6 +28,8 @@ public class BillD implements java.io.Serializable {
 	private String unEffectiveUserid;
 	private String createUserid;
 	private Date createDat;
+	private Date startDat;
+	private Date endDat;
 
 	public BillD() {
 	}
@@ -37,7 +39,8 @@ public class BillD implements java.io.Serializable {
 	}
 
 	public BillD(BillDId id, String bankCode, String businessCode, String searchParCode, String searchParValue,
-			Boolean effective, Date unEffectiveDat, String unEffectiveUserid, String createUserid, Date createDat) {
+			Boolean effective, Date unEffectiveDat, String unEffectiveUserid, String createUserid, Date createDat,
+			Date startDat, Date endDat) {
 		this.id = id;
 		this.bankCode = bankCode;
 		this.businessCode = businessCode;
@@ -48,6 +51,8 @@ public class BillD implements java.io.Serializable {
 		this.unEffectiveUserid = unEffectiveUserid;
 		this.createUserid = createUserid;
 		this.createDat = createDat;
+		this.startDat = startDat;
+		this.endDat = endDat;
 	}
 
 	@EmbeddedId
@@ -144,6 +149,26 @@ public class BillD implements java.io.Serializable {
 
 	public void setCreateDat(Date createDat) {
 		this.createDat = createDat;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "start_dat", length = 35)
+	public Date getStartDat() {
+		return this.startDat;
+	}
+
+	public void setStartDat(Date startDat) {
+		this.startDat = startDat;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "end_dat", length = 35)
+	public Date getEndDat() {
+		return this.endDat;
+	}
+
+	public void setEndDat(Date endDat) {
+		this.endDat = endDat;
 	}
 
 }

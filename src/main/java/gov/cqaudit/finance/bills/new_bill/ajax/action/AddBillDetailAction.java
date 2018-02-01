@@ -21,7 +21,25 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 	String search_par_code;
 	String search_par_value;
 	String bank_code;
+	String start_dat;
+	String end_dat;
 	
+	public String getStart_dat() {
+		return start_dat;
+	}
+
+	public void setStart_dat(String start_dat) {
+		this.start_dat = start_dat;
+	}
+
+	public String getEnd_dat() {
+		return end_dat;
+	}
+
+	public void setEnd_dat(String end_dat) {
+		this.end_dat = end_dat;
+	}
+
 	public String getBill_uuid() {
 		return bill_uuid;
 	}
@@ -88,7 +106,8 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 				bd.setBank_name(scdao.getValueBySIdCode(session, "bank_code", bank_code));
 				bd.setBusiness_code(business_code);
 				bd.setBusiness_code_name(scdao.getValueBySIdCode(session, "business_code", business_code));
-				
+				bd.setStart_dat(com.cqqyd2014.util.DateUtil.FullStringToJDate(start_dat+" 00:00:00"));
+				bd.setEnd_dat(com.cqqyd2014.util.DateUtil.FullStringToJDate(end_dat+" 23:59:59"));
 				bd.setSearch_par_code(search_par_code);
 				bd.setSearch_par_code_name(scdao.getValueBySIdCode(session, "search_par_code", search_par_code));
 				bd.setSearch_par_value(search_par_value);
@@ -97,6 +116,8 @@ public class AddBillDetailAction   extends LoginedAjaxAction {
 				bd.setCreate_userid(user_id);
 				bd.setUn_effective_dat(com.cqqyd2014.util.DateUtil.ShortStringToJDate("1900-1-1"));
 				bd.setUn_effective_userid("");
+				bd.setStart_dat_print(start_dat);
+				bd.setEnd_dat_print(end_dat);
 				bds.add(bd);
 			
 				session_http.put("new_bill_temp_billdetails", bds);

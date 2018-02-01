@@ -21,9 +21,27 @@ public class VSysUserDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.s
 		return (java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser>)getArrayListModelFromArrayListViewEntity(sws);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser> getAllModelPages(Session session,String page,String rows) {
+		int i_page=Integer.parseInt(page);
+		int i_rows=Integer.parseInt(rows);
+		
+		String hql = "from VSysUser order by id.deptName,id.name";
+		int offset = i_rows * (i_page - 1);
+		@SuppressWarnings("rawtypes")
+		Query q = session.createQuery(hql).setFirstResult(offset)
+				.setMaxResults(i_rows);
+		
+
+		
+		java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysUser> sws = (java.util.ArrayList<gov.cqaudit.finance.hibernate.entities.VSysUser>) q
+				.list();
+		return (java.util.ArrayList<gov.cqaudit.finance.system.model.SysUser>)getArrayListModelFromArrayListViewEntity(sws);
+	}
+	
 	
 	public gov.cqaudit.finance.system.model.SysUser getModelByUserId(Session session, String user_id) {
-		String hql = "from VSysUser where id.id=:user_id";
+		String hql = "from VSysUser where id.userId=:user_id";
 
 		@SuppressWarnings("rawtypes")
 		Query q = session.createQuery(hql);
@@ -65,9 +83,9 @@ public class VSysUserDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.s
 		su_h.setDeptId(m.getDept_id());
 		su_h.setEffective(m.isEffective());
 		su_h.setEmail(m.getEmail());
-		su_h.setId(m.getUser_id());
+		su_h.setUserId(m.getUser_id());
 		su_h.setLastOnlineTime(m.getLast_online_dat());
-		su_h.setName(m.getUser_name());
+		su_h.setUserName(m.getUser_name());
 		su_h.setOnline(m.isOnline());
 		su_h.setPwd(m.getPassword());
 		su_h.setTel(m.getTell());
@@ -90,9 +108,9 @@ public class VSysUserDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.s
 		su.setPassword(h.getId().getPwd());
 		su.setRole_id(h.getId().getRoleId());
 		su.setRole_name(h.getId().getRoleName());
-		su.setUser_id(h.getId().getId());
+		su.setUser_id(h.getId().getUserId());
 		su.setUser_login_name(h.getId().getUserLogin());
-		su.setUser_name(h.getId().getName());
+		su.setUser_name(h.getId().getUserName());
 		su.setEffective(h.getId().getEffective());
 		su.setOnline(h.getId().getOnline());
 		su.setLast_online_dat(h.getId().getLastOnlineTime());

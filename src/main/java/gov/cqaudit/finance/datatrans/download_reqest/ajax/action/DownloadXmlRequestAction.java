@@ -97,6 +97,7 @@ public class DownloadXmlRequestAction extends DownloadFromServerAbstractAction{
 	@Override
 	public String execute_download() {
 		// TODO Auto-generated method stub
+		 init();
 		 bank_arraylist=new java.util.ArrayList<>();
 		 Session session = HibernateSessionFactory.getSession();
 		 Transaction tx=session.beginTransaction();
@@ -140,6 +141,18 @@ public class DownloadXmlRequestAction extends DownloadFromServerAbstractAction{
         		 bm.setLast_modify_dat(now);
         		 bm.setBill_status("等待返回");
         		 vbdao.save(session, bm);
+        		 //生成日志
+        		 gov.cqaudit.finance.bills.model.BillMessage message=new gov.cqaudit.finance.bills.model.BillMessage();
+        		 gov.cqaudit.finance.hibernate.dao.VBillMessageDAO messagedao=new gov.cqaudit.finance.hibernate.dao.VBillMessageDAO();
+        		 message.setBill_uuid(bill_uuid);
+        		 message.setCreate_dat(now);
+        		 message.setDept_id(dept_id);
+        		 message.setIp_addr(ip_addr);
+        		 message.setMessage("查询需求传输至银行");
+        		 message.setMessage_uuid(com.cqqyd2014.util.StringUtil.getUUID());
+        		 message.setType_id("0001");
+        		 message.setUser_id(user_id);
+        		 messagedao.save(session, message);
         		 //处理传输明细
         		 gov.cqaudit.finance.datatrans.model.DataTransD dtd=new gov.cqaudit.finance.datatrans.model.DataTransD();
         		 dtd.setBill_uuid(bill_uuid);

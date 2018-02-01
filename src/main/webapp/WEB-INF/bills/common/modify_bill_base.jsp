@@ -31,11 +31,23 @@
 					<td>创建时间</td><td><input id="create_date"></td>
 					
 				</tr>
-				<tr><td>项目名称</td><td colspan='3'><input  id='pro_name' name='pro_name'
+				<tr>
+					<td>项目名称</td>
+					<td ><input  id='pro_name' name='pro_name'
 					class="easyui-textbox" required="true" style="width: 100%;"></td>
+					<td>当前状态</td>
+					<td> <SELECT id="bill_status" name='bill_status'style="width: 100px">
+			
+			<option VALUE="起草申请">起草申请</option>
+			<option VALUE="打印待签">打印待签</option>
+			<option VALUE="等待传单">等待传单</option>
+			<option VALUE="等待返回">等待返回</option>
+			<option VALUE="返回待审">返回待审</option>
+			<option VALUE="查看结果">查看结果</option>
+		</SELECT></td>
 				</tr>
 				<tr>
-				<td>项目名称</td><td colspan='3'><input  id='search_reason' name='search_reason'
+				<td>查询原因</td><td colspan='3'><input  id='search_reason' name='search_reason'
 					class="easyui-textbox" style="width: 100%;height:50px" data-options="multiline:true">
 				</tr>
 				</table>
@@ -55,7 +67,7 @@
 		iconCls="icon-save">保存并关闭</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		onclick="javascript:exit_modify_bill_base()"
-		iconCls="icon-canel">取消并关闭</a>
+		iconCls="icon-cancel">取消并关闭</a>
 </div>
 
 
@@ -75,7 +87,8 @@ function save_modify_bill_base(){
 				"contract_tell":$('#contract_tell').textbox('getValue'),
 				"pro_name":$('#pro_name').textbox('getValue'),
 				"search_reason":$('#search_reason').textbox('getValue'),
-				"create_date":$('#create_date').datetimebox('getValue')
+				"create_date":$('#create_date').datetimebox('getValue'),
+				"bill_status":$('#bill_status').combobox('getValue')
 			},
 			function(result) {
 				ajax_stop();
@@ -92,7 +105,7 @@ function save_modify_bill_base(){
 
 					$("#create_date").datetimebox('setValue',bm.create_dat_print);
 					$('#modify_bill_base_div').dialog('close');
-					
+					modify_bill_base_handler();
 				
 
 				} else {
@@ -111,6 +124,9 @@ function save_modify_bill_base(){
 
 function exit_modify_bill_base(){
 	modify_bill_base_handler();
+
+
+	
 	$('#modify_bill_base_div').dialog('close');
 }
 
@@ -150,6 +166,7 @@ var modify_bill_base_bill_uuid;
 								$('#pro_name').textbox('setValue',bm.pro_name);
 								$('#search_reason').textbox('setValue',bm.search_reason);
 
+								$('#bill_status').combobox('select', bm.bill_status);
 
 								$("#create_date").datetimebox('setValue',bm.create_dat_print);
 								$('#modify_bill_base_div').dialog('open');
@@ -190,6 +207,16 @@ function modify_bill_base_ready(page_init){
 	$("#create_date").datetimebox({
 	   
 	});
+
+	
+	$('#bill_status').combobox({
+		required : true,
+		multiple : false, //多选
+		editable : false
+	//是否可编辑
+
+	});
+	
 	
 
 	easyui_ajax_div_clean('modify_bill_base_div');

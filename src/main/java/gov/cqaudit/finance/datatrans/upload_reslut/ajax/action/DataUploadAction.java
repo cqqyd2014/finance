@@ -121,11 +121,11 @@ try {
 		
 		
 		for (int i = 0; i < paper.size(); i++) {
-			//文件长度，限制在10M以内，10*1024*1024=10485760
+			//文件长度，限制在1000M以内，1000*1024*1024=1048576000
 
 			long file_size=paper.get(i).length();
-			if (file_size>104857600) {
-				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("文件大小不能超过100M，当前大小："+file_size/1024/1024+"M。");
+			if (file_size>1048576000) {
+				throw new com.cqqyd2014.util.exception.AjaxSuccessMessageException("文件大小不能超过1000M，当前大小："+file_size/1024/1024+"M。");
 			}
 			
 			//文件类型只能为jpg等

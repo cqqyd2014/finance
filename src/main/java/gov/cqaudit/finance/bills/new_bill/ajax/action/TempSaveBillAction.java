@@ -20,6 +20,15 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 	java.math.BigDecimal detail_num;
 
 
+	String bill_status;
+
+	public String getBill_status() {
+		return bill_status;
+	}
+
+	public void setBill_status(String bill_status) {
+		this.bill_status = bill_status;
+	}
 
 	public java.math.BigDecimal getDetail_num() {
 		return detail_num;
@@ -122,6 +131,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				else{
 					now=com.cqqyd2014.util.DateUtil.FullStringToJDate(create_date);
 					bm.setCreate_dat(now);
+					bm.setBill_status(bill_status);
 				}
 				bm.setDetail_num(detail_num);
 				bm.setContract_mail(contract_mail);
@@ -132,7 +142,7 @@ public class TempSaveBillAction   extends LoginedAjaxAction {
 				bm.setPro_name(pro_name);
 				bm.setSearch_reason(search_reason);
 				gov.cqaudit.finance.hibernate.dao.VPictureDAO vpdao=new gov.cqaudit.finance.hibernate.dao.VPictureDAO();
-				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> vps=vpdao.getArrayListViewByBillUuid(session, bill_uuid);
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> vps=vpdao.getArrayListModelByBillUuid(session, bill_uuid);
 				bm.setPics_num(new java.math.BigDecimal(vps.size()));
 				java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> vbds=vbddao.getArrayListModelByBillUuid(session, bill_uuid);
 				bm.setDetail_num(new java.math.BigDecimal(vbds.size()));

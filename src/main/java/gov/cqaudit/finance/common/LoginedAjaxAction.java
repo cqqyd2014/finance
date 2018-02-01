@@ -2,6 +2,9 @@ package gov.cqaudit.finance.common;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,6 +25,24 @@ public class LoginedAjaxAction extends InitAction{
 	}
 	
 	public com.cqqyd2014.util.AjaxSuccessMessage sm;
+	public String dept_id;
+	public String ip_addr;
+	public String getDept_id() {
+		return dept_id;
+	}
+
+	public void setDept_id(String dept_id) {
+		this.dept_id = dept_id;
+	}
+
+	public String getIp_addr() {
+		return ip_addr;
+	}
+
+	public void setIp_addr(String ip_addr) {
+		this.ip_addr = ip_addr;
+	}
+
 	public String user_id;
 	public String user_name;
 	public String user_login;
@@ -121,10 +142,14 @@ public class LoginedAjaxAction extends InitAction{
 		super.execute();
 		session_http= ActionContext.getContext().getSession();
 
+		dept_id=(String)session_http.get("dept_id");
 		user_login = (String) session_http.get("user_login");
 		user_name = (String) session_http.get("user_name");
 		user_id = (String) session_http.get("user_id");
 		sys_roles=(java.util.ArrayList<String>) session_http.get("sys_roles");
+		HttpServletRequest
+		 request = ServletActionContext.getRequest();
+		ip_addr=com.cqqyd2014.util.IPUtil.getIpAddr(request);
 		sm = new com.cqqyd2014.util.AjaxSuccessMessage();
 		
 		return null;

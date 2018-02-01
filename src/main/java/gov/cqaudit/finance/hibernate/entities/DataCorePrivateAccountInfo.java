@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -25,6 +25,7 @@ public class DataCorePrivateAccountInfo implements java.io.Serializable {
 	private Date privateOpenDat;
 	private Date privateCloseDat;
 	private String privateAcountStatus;
+	private Date timepoint;
 
 	public DataCorePrivateAccountInfo() {
 	}
@@ -35,7 +36,7 @@ public class DataCorePrivateAccountInfo implements java.io.Serializable {
 
 	public DataCorePrivateAccountInfo(DataCorePrivateAccountInfoId id, String privateAccountName,
 			String privateCustomId, String privateCardNo, Date privateOpenDat, Date privateCloseDat,
-			String privateAcountStatus) {
+			String privateAcountStatus, Date timepoint) {
 		this.id = id;
 		this.privateAccountName = privateAccountName;
 		this.privateCustomId = privateCustomId;
@@ -43,6 +44,7 @@ public class DataCorePrivateAccountInfo implements java.io.Serializable {
 		this.privateOpenDat = privateOpenDat;
 		this.privateCloseDat = privateCloseDat;
 		this.privateAcountStatus = privateAcountStatus;
+		this.timepoint = timepoint;
 	}
 
 	@EmbeddedId
@@ -112,6 +114,16 @@ public class DataCorePrivateAccountInfo implements java.io.Serializable {
 
 	public void setPrivateAcountStatus(String privateAcountStatus) {
 		this.privateAcountStatus = privateAcountStatus;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "timepoint", length = 35)
+	public Date getTimepoint() {
+		return this.timepoint;
+	}
+
+	public void setTimepoint(Date timepoint) {
+		this.timepoint = timepoint;
 	}
 
 }

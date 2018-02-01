@@ -95,12 +95,12 @@ java.util.Map<String, Object> msg;
 msg=new java.util.HashMap<String, Object>();
 		
 		msg.put("total", getTotal(session,"gov.cqaudit.finance.hibernate.dao", "gov.cqaudit.finance.database.model"
-				,"v_data_core_public_account_trade_detail"
+				,view_name
 				,cols,ops,values
 				,orders,order_types,rows,page));
 		
 		msg.put("rows", getRows(session,"gov.cqaudit.finance.hibernate.dao", "gov.cqaudit.finance.database.model"
-				,"v_data_core_public_account_trade_detail"
+				,view_name
 				,cols,ops,values
 				,orders,order_types,rows,page));
 		

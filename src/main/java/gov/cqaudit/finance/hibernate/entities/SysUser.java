@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
 @Table(name = "sys_user", schema = "public")
 public class SysUser implements java.io.Serializable {
 
-	private String id;
-	private String name;
+	private String userId;
+	private String userName;
 	private Date createTime;
 	private String pwd;
 	private String userLogin;
@@ -31,14 +31,14 @@ public class SysUser implements java.io.Serializable {
 	public SysUser() {
 	}
 
-	public SysUser(String id) {
-		this.id = id;
+	public SysUser(String userId) {
+		this.userId = userId;
 	}
 
-	public SysUser(String id, String name, Date createTime, String pwd, String userLogin, String tel, Boolean effective,
-			Boolean online, Date lastOnlineTime, String email, String deptId) {
-		this.id = id;
-		this.name = name;
+	public SysUser(String userId, String userName, Date createTime, String pwd, String userLogin, String tel,
+			Boolean effective, Boolean online, Date lastOnlineTime, String email, String deptId) {
+		this.userId = userId;
+		this.userName = userName;
 		this.createTime = createTime;
 		this.pwd = pwd;
 		this.userLogin = userLogin;
@@ -52,22 +52,22 @@ public class SysUser implements java.io.Serializable {
 
 	@Id
 
-	@Column(name = "id", unique = true, nullable = false, length = 36)
-	public String getId() {
-		return this.id;
+	@Column(name = "user_id", unique = true, nullable = false, length = 36)
+	public String getUserId() {
+		return this.userId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	@Column(name = "name", length = 45)
-	public String getName() {
-		return this.name;
+	@Column(name = "user_name", length = 45)
+	public String getUserName() {
+		return this.userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

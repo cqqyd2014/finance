@@ -46,7 +46,7 @@ public class GetBillPicsAction   extends LoginedAjaxAction {
 				
 				
 				gov.cqaudit.finance.hibernate.dao.VPictureDAO vpdao=new gov.cqaudit.finance.hibernate.dao.VPictureDAO();
-				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=vpdao.getArrayListViewByBillUuid(session, bill_uuid);
+				java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=vpdao.getArrayListModelByBillUuid(session, bill_uuid);
 				
 			
 			

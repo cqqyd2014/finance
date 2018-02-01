@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,10 +12,16 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VBillDBackId implements java.io.Serializable {
 
+	private String proName;
+	private String deptId;
 	private String bankName;
 	private String searchParName;
 	private String accountName;
+	private String deptName;
+	private String deptType;
+	private String typeName;
 	private String businessName;
+	private Date downloadDat;
 	private String billUuid;
 	private String detailUuid;
 	private String bankCode;
@@ -24,24 +30,41 @@ public class VBillDBackId implements java.io.Serializable {
 	private String searchParValue;
 	private Boolean effective;
 	private Date unEffectiveDat;
+	private String downloadUserName;
 	private String unEffectiveUserid;
 	private String createUserid;
-	private Date createDat;
+	private Date billDCreateDat;
 	private String accountId;
 	private BigDecimal detailCount;
 	private String customId;
+	private Date billMCreateDat;
+	private Integer publicCount;
+	private Integer privateCount;
+	private BigDecimal publicDetail;
+	private BigDecimal privateDetail;
+	private String createUserName;
+	private String downloadUserId;
 
 	public VBillDBackId() {
 	}
 
-	public VBillDBackId(String bankName, String searchParName, String accountName, String businessName, String billUuid,
+	public VBillDBackId(String proName, String deptId, String bankName, String searchParName, String accountName,
+			String deptName, String deptType, String typeName, String businessName, Date downloadDat, String billUuid,
 			String detailUuid, String bankCode, String businessCode, String searchParCode, String searchParValue,
-			Boolean effective, Date unEffectiveDat, String unEffectiveUserid, String createUserid, Date createDat,
-			String accountId, BigDecimal detailCount, String customId) {
+			Boolean effective, Date unEffectiveDat, String downloadUserName, String unEffectiveUserid,
+			String createUserid, Date billDCreateDat, String accountId, BigDecimal detailCount, String customId,
+			Date billMCreateDat, Integer publicCount, Integer privateCount, BigDecimal publicDetail,
+			BigDecimal privateDetail, String createUserName, String downloadUserId) {
+		this.proName = proName;
+		this.deptId = deptId;
 		this.bankName = bankName;
 		this.searchParName = searchParName;
 		this.accountName = accountName;
+		this.deptName = deptName;
+		this.deptType = deptType;
+		this.typeName = typeName;
 		this.businessName = businessName;
+		this.downloadDat = downloadDat;
 		this.billUuid = billUuid;
 		this.detailUuid = detailUuid;
 		this.bankCode = bankCode;
@@ -50,15 +73,41 @@ public class VBillDBackId implements java.io.Serializable {
 		this.searchParValue = searchParValue;
 		this.effective = effective;
 		this.unEffectiveDat = unEffectiveDat;
+		this.downloadUserName = downloadUserName;
 		this.unEffectiveUserid = unEffectiveUserid;
 		this.createUserid = createUserid;
-		this.createDat = createDat;
+		this.billDCreateDat = billDCreateDat;
 		this.accountId = accountId;
 		this.detailCount = detailCount;
 		this.customId = customId;
+		this.billMCreateDat = billMCreateDat;
+		this.publicCount = publicCount;
+		this.privateCount = privateCount;
+		this.publicDetail = publicDetail;
+		this.privateDetail = privateDetail;
+		this.createUserName = createUserName;
+		this.downloadUserId = downloadUserId;
 	}
 
-	@Column(name = "bank_name", length = 90)
+	@Column(name = "pro_name", length = 512)
+	public String getProName() {
+		return this.proName;
+	}
+
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
+	@Column(name = "dept_id", length = 36)
+	public String getDeptId() {
+		return this.deptId;
+	}
+
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
+	}
+
+	@Column(name = "bank_name", length = 64)
 	public String getBankName() {
 		return this.bankName;
 	}
@@ -85,6 +134,33 @@ public class VBillDBackId implements java.io.Serializable {
 		this.accountName = accountName;
 	}
 
+	@Column(name = "dept_name", length = 128)
+	public String getDeptName() {
+		return this.deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	@Column(name = "dept_type", length = 4)
+	public String getDeptType() {
+		return this.deptType;
+	}
+
+	public void setDeptType(String deptType) {
+		this.deptType = deptType;
+	}
+
+	@Column(name = "type_name", length = 90)
+	public String getTypeName() {
+		return this.typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
 	@Column(name = "business_name", length = 90)
 	public String getBusinessName() {
 		return this.businessName;
@@ -92,6 +168,15 @@ public class VBillDBackId implements java.io.Serializable {
 
 	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
+	}
+
+	@Column(name = "download_dat", length = 35)
+	public Date getDownloadDat() {
+		return this.downloadDat;
+	}
+
+	public void setDownloadDat(Date downloadDat) {
+		this.downloadDat = downloadDat;
 	}
 
 	@Column(name = "bill_uuid", length = 36)
@@ -166,6 +251,15 @@ public class VBillDBackId implements java.io.Serializable {
 		this.unEffectiveDat = unEffectiveDat;
 	}
 
+	@Column(name = "download_user_name", length = 45)
+	public String getDownloadUserName() {
+		return this.downloadUserName;
+	}
+
+	public void setDownloadUserName(String downloadUserName) {
+		this.downloadUserName = downloadUserName;
+	}
+
 	@Column(name = "un_effective_userid", length = 36)
 	public String getUnEffectiveUserid() {
 		return this.unEffectiveUserid;
@@ -184,13 +278,13 @@ public class VBillDBackId implements java.io.Serializable {
 		this.createUserid = createUserid;
 	}
 
-	@Column(name = "create_dat", length = 35)
-	public Date getCreateDat() {
-		return this.createDat;
+	@Column(name = "bill_d_create_dat", length = 35)
+	public Date getBillDCreateDat() {
+		return this.billDCreateDat;
 	}
 
-	public void setCreateDat(Date createDat) {
-		this.createDat = createDat;
+	public void setBillDCreateDat(Date billDCreateDat) {
+		this.billDCreateDat = billDCreateDat;
 	}
 
 	@Column(name = "account_id", length = 128)
@@ -220,6 +314,69 @@ public class VBillDBackId implements java.io.Serializable {
 		this.customId = customId;
 	}
 
+	@Column(name = "bill_m_create_dat", length = 35)
+	public Date getBillMCreateDat() {
+		return this.billMCreateDat;
+	}
+
+	public void setBillMCreateDat(Date billMCreateDat) {
+		this.billMCreateDat = billMCreateDat;
+	}
+
+	@Column(name = "public_count")
+	public Integer getPublicCount() {
+		return this.publicCount;
+	}
+
+	public void setPublicCount(Integer publicCount) {
+		this.publicCount = publicCount;
+	}
+
+	@Column(name = "private_count")
+	public Integer getPrivateCount() {
+		return this.privateCount;
+	}
+
+	public void setPrivateCount(Integer privateCount) {
+		this.privateCount = privateCount;
+	}
+
+	@Column(name = "public_detail", precision = 131089, scale = 0)
+	public BigDecimal getPublicDetail() {
+		return this.publicDetail;
+	}
+
+	public void setPublicDetail(BigDecimal publicDetail) {
+		this.publicDetail = publicDetail;
+	}
+
+	@Column(name = "private_detail", precision = 131089, scale = 0)
+	public BigDecimal getPrivateDetail() {
+		return this.privateDetail;
+	}
+
+	public void setPrivateDetail(BigDecimal privateDetail) {
+		this.privateDetail = privateDetail;
+	}
+
+	@Column(name = "create_user_name", length = 45)
+	public String getCreateUserName() {
+		return this.createUserName;
+	}
+
+	public void setCreateUserName(String createUserName) {
+		this.createUserName = createUserName;
+	}
+
+	@Column(name = "download_user_id", length = 36)
+	public String getDownloadUserId() {
+		return this.downloadUserId;
+	}
+
+	public void setDownloadUserId(String downloadUserId) {
+		this.downloadUserId = downloadUserId;
+	}
+
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
@@ -229,17 +386,30 @@ public class VBillDBackId implements java.io.Serializable {
 			return false;
 		VBillDBackId castOther = (VBillDBackId) other;
 
-		return ((this.getBankName() == castOther.getBankName()) || (this.getBankName() != null
-				&& castOther.getBankName() != null && this.getBankName().equals(castOther.getBankName())))
+		return ((this.getProName() == castOther.getProName()) || (this.getProName() != null
+				&& castOther.getProName() != null && this.getProName().equals(castOther.getProName())))
+				&& ((this.getDeptId() == castOther.getDeptId()) || (this.getDeptId() != null
+						&& castOther.getDeptId() != null && this.getDeptId().equals(castOther.getDeptId())))
+				&& ((this.getBankName() == castOther.getBankName()) || (this.getBankName() != null
+						&& castOther.getBankName() != null && this.getBankName().equals(castOther.getBankName())))
 				&& ((this.getSearchParName() == castOther.getSearchParName())
 						|| (this.getSearchParName() != null && castOther.getSearchParName() != null
 								&& this.getSearchParName().equals(castOther.getSearchParName())))
 				&& ((this.getAccountName() == castOther.getAccountName())
 						|| (this.getAccountName() != null && castOther.getAccountName() != null
 								&& this.getAccountName().equals(castOther.getAccountName())))
+				&& ((this.getDeptName() == castOther.getDeptName()) || (this.getDeptName() != null
+						&& castOther.getDeptName() != null && this.getDeptName().equals(castOther.getDeptName())))
+				&& ((this.getDeptType() == castOther.getDeptType()) || (this.getDeptType() != null
+						&& castOther.getDeptType() != null && this.getDeptType().equals(castOther.getDeptType())))
+				&& ((this.getTypeName() == castOther.getTypeName()) || (this.getTypeName() != null
+						&& castOther.getTypeName() != null && this.getTypeName().equals(castOther.getTypeName())))
 				&& ((this.getBusinessName() == castOther.getBusinessName())
 						|| (this.getBusinessName() != null && castOther.getBusinessName() != null
 								&& this.getBusinessName().equals(castOther.getBusinessName())))
+				&& ((this.getDownloadDat() == castOther.getDownloadDat())
+						|| (this.getDownloadDat() != null && castOther.getDownloadDat() != null
+								&& this.getDownloadDat().equals(castOther.getDownloadDat())))
 				&& ((this.getBillUuid() == castOther.getBillUuid()) || (this.getBillUuid() != null
 						&& castOther.getBillUuid() != null && this.getBillUuid().equals(castOther.getBillUuid())))
 				&& ((this.getDetailUuid() == castOther.getDetailUuid()) || (this.getDetailUuid() != null
@@ -260,30 +430,61 @@ public class VBillDBackId implements java.io.Serializable {
 				&& ((this.getUnEffectiveDat() == castOther.getUnEffectiveDat())
 						|| (this.getUnEffectiveDat() != null && castOther.getUnEffectiveDat() != null
 								&& this.getUnEffectiveDat().equals(castOther.getUnEffectiveDat())))
+				&& ((this.getDownloadUserName() == castOther.getDownloadUserName())
+						|| (this.getDownloadUserName() != null && castOther.getDownloadUserName() != null
+								&& this.getDownloadUserName().equals(castOther.getDownloadUserName())))
 				&& ((this.getUnEffectiveUserid() == castOther.getUnEffectiveUserid())
 						|| (this.getUnEffectiveUserid() != null && castOther.getUnEffectiveUserid() != null
 								&& this.getUnEffectiveUserid().equals(castOther.getUnEffectiveUserid())))
 				&& ((this.getCreateUserid() == castOther.getCreateUserid())
 						|| (this.getCreateUserid() != null && castOther.getCreateUserid() != null
 								&& this.getCreateUserid().equals(castOther.getCreateUserid())))
-				&& ((this.getCreateDat() == castOther.getCreateDat()) || (this.getCreateDat() != null
-						&& castOther.getCreateDat() != null && this.getCreateDat().equals(castOther.getCreateDat())))
+				&& ((this.getBillDCreateDat() == castOther.getBillDCreateDat())
+						|| (this.getBillDCreateDat() != null && castOther.getBillDCreateDat() != null
+								&& this.getBillDCreateDat().equals(castOther.getBillDCreateDat())))
 				&& ((this.getAccountId() == castOther.getAccountId()) || (this.getAccountId() != null
 						&& castOther.getAccountId() != null && this.getAccountId().equals(castOther.getAccountId())))
 				&& ((this.getDetailCount() == castOther.getDetailCount())
 						|| (this.getDetailCount() != null && castOther.getDetailCount() != null
 								&& this.getDetailCount().equals(castOther.getDetailCount())))
 				&& ((this.getCustomId() == castOther.getCustomId()) || (this.getCustomId() != null
-						&& castOther.getCustomId() != null && this.getCustomId().equals(castOther.getCustomId())));
+						&& castOther.getCustomId() != null && this.getCustomId().equals(castOther.getCustomId())))
+				&& ((this.getBillMCreateDat() == castOther.getBillMCreateDat())
+						|| (this.getBillMCreateDat() != null && castOther.getBillMCreateDat() != null
+								&& this.getBillMCreateDat().equals(castOther.getBillMCreateDat())))
+				&& ((this.getPublicCount() == castOther.getPublicCount())
+						|| (this.getPublicCount() != null && castOther.getPublicCount() != null
+								&& this.getPublicCount().equals(castOther.getPublicCount())))
+				&& ((this.getPrivateCount() == castOther.getPrivateCount())
+						|| (this.getPrivateCount() != null && castOther.getPrivateCount() != null
+								&& this.getPrivateCount().equals(castOther.getPrivateCount())))
+				&& ((this.getPublicDetail() == castOther.getPublicDetail())
+						|| (this.getPublicDetail() != null && castOther.getPublicDetail() != null
+								&& this.getPublicDetail().equals(castOther.getPublicDetail())))
+				&& ((this.getPrivateDetail() == castOther.getPrivateDetail())
+						|| (this.getPrivateDetail() != null && castOther.getPrivateDetail() != null
+								&& this.getPrivateDetail().equals(castOther.getPrivateDetail())))
+				&& ((this.getCreateUserName() == castOther.getCreateUserName())
+						|| (this.getCreateUserName() != null && castOther.getCreateUserName() != null
+								&& this.getCreateUserName().equals(castOther.getCreateUserName())))
+				&& ((this.getDownloadUserId() == castOther.getDownloadUserId())
+						|| (this.getDownloadUserId() != null && castOther.getDownloadUserId() != null
+								&& this.getDownloadUserId().equals(castOther.getDownloadUserId())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getProName() == null ? 0 : this.getProName().hashCode());
+		result = 37 * result + (getDeptId() == null ? 0 : this.getDeptId().hashCode());
 		result = 37 * result + (getBankName() == null ? 0 : this.getBankName().hashCode());
 		result = 37 * result + (getSearchParName() == null ? 0 : this.getSearchParName().hashCode());
 		result = 37 * result + (getAccountName() == null ? 0 : this.getAccountName().hashCode());
+		result = 37 * result + (getDeptName() == null ? 0 : this.getDeptName().hashCode());
+		result = 37 * result + (getDeptType() == null ? 0 : this.getDeptType().hashCode());
+		result = 37 * result + (getTypeName() == null ? 0 : this.getTypeName().hashCode());
 		result = 37 * result + (getBusinessName() == null ? 0 : this.getBusinessName().hashCode());
+		result = 37 * result + (getDownloadDat() == null ? 0 : this.getDownloadDat().hashCode());
 		result = 37 * result + (getBillUuid() == null ? 0 : this.getBillUuid().hashCode());
 		result = 37 * result + (getDetailUuid() == null ? 0 : this.getDetailUuid().hashCode());
 		result = 37 * result + (getBankCode() == null ? 0 : this.getBankCode().hashCode());
@@ -292,12 +493,20 @@ public class VBillDBackId implements java.io.Serializable {
 		result = 37 * result + (getSearchParValue() == null ? 0 : this.getSearchParValue().hashCode());
 		result = 37 * result + (getEffective() == null ? 0 : this.getEffective().hashCode());
 		result = 37 * result + (getUnEffectiveDat() == null ? 0 : this.getUnEffectiveDat().hashCode());
+		result = 37 * result + (getDownloadUserName() == null ? 0 : this.getDownloadUserName().hashCode());
 		result = 37 * result + (getUnEffectiveUserid() == null ? 0 : this.getUnEffectiveUserid().hashCode());
 		result = 37 * result + (getCreateUserid() == null ? 0 : this.getCreateUserid().hashCode());
-		result = 37 * result + (getCreateDat() == null ? 0 : this.getCreateDat().hashCode());
+		result = 37 * result + (getBillDCreateDat() == null ? 0 : this.getBillDCreateDat().hashCode());
 		result = 37 * result + (getAccountId() == null ? 0 : this.getAccountId().hashCode());
 		result = 37 * result + (getDetailCount() == null ? 0 : this.getDetailCount().hashCode());
 		result = 37 * result + (getCustomId() == null ? 0 : this.getCustomId().hashCode());
+		result = 37 * result + (getBillMCreateDat() == null ? 0 : this.getBillMCreateDat().hashCode());
+		result = 37 * result + (getPublicCount() == null ? 0 : this.getPublicCount().hashCode());
+		result = 37 * result + (getPrivateCount() == null ? 0 : this.getPrivateCount().hashCode());
+		result = 37 * result + (getPublicDetail() == null ? 0 : this.getPublicDetail().hashCode());
+		result = 37 * result + (getPrivateDetail() == null ? 0 : this.getPrivateDetail().hashCode());
+		result = 37 * result + (getCreateUserName() == null ? 0 : this.getCreateUserName().hashCode());
+		result = 37 * result + (getDownloadUserId() == null ? 0 : this.getDownloadUserId().hashCode());
 		return result;
 	}
 

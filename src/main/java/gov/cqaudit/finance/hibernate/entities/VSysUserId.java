@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -11,8 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VSysUserId implements java.io.Serializable {
 
-	private String id;
-	private String name;
+	private String userId;
+	private String userName;
 	private Date createTime;
 	private String pwd;
 	private String userLogin;
@@ -29,11 +29,11 @@ public class VSysUserId implements java.io.Serializable {
 	public VSysUserId() {
 	}
 
-	public VSysUserId(String id, String name, Date createTime, String pwd, String userLogin, String tel,
+	public VSysUserId(String userId, String userName, Date createTime, String pwd, String userLogin, String tel,
 			Boolean effective, Boolean online, Date lastOnlineTime, String email, String deptId, String deptName,
 			String roleId, String roleName) {
-		this.id = id;
-		this.name = name;
+		this.userId = userId;
+		this.userName = userName;
 		this.createTime = createTime;
 		this.pwd = pwd;
 		this.userLogin = userLogin;
@@ -48,22 +48,22 @@ public class VSysUserId implements java.io.Serializable {
 		this.roleName = roleName;
 	}
 
-	@Column(name = "id", length = 36)
-	public String getId() {
-		return this.id;
+	@Column(name = "user_id", length = 36)
+	public String getUserId() {
+		return this.userId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	@Column(name = "name", length = 45)
-	public String getName() {
-		return this.name;
+	@Column(name = "user_name", length = 45)
+	public String getUserName() {
+		return this.userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	@Column(name = "create_time", length = 35)
@@ -183,10 +183,10 @@ public class VSysUserId implements java.io.Serializable {
 			return false;
 		VSysUserId castOther = (VSysUserId) other;
 
-		return ((this.getId() == castOther.getId())
-				|| (this.getId() != null && castOther.getId() != null && this.getId().equals(castOther.getId())))
-				&& ((this.getName() == castOther.getName()) || (this.getName() != null && castOther.getName() != null
-						&& this.getName().equals(castOther.getName())))
+		return ((this.getUserId() == castOther.getUserId()) || (this.getUserId() != null
+				&& castOther.getUserId() != null && this.getUserId().equals(castOther.getUserId())))
+				&& ((this.getUserName() == castOther.getUserName()) || (this.getUserName() != null
+						&& castOther.getUserName() != null && this.getUserName().equals(castOther.getUserName())))
 				&& ((this.getCreateTime() == castOther.getCreateTime()) || (this.getCreateTime() != null
 						&& castOther.getCreateTime() != null && this.getCreateTime().equals(castOther.getCreateTime())))
 				&& ((this.getPwd() == castOther.getPwd()) || (this.getPwd() != null && castOther.getPwd() != null
@@ -217,8 +217,8 @@ public class VSysUserId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + (getId() == null ? 0 : this.getId().hashCode());
-		result = 37 * result + (getName() == null ? 0 : this.getName().hashCode());
+		result = 37 * result + (getUserId() == null ? 0 : this.getUserId().hashCode());
+		result = 37 * result + (getUserName() == null ? 0 : this.getUserName().hashCode());
 		result = 37 * result + (getCreateTime() == null ? 0 : this.getCreateTime().hashCode());
 		result = 37 * result + (getPwd() == null ? 0 : this.getPwd().hashCode());
 		result = 37 * result + (getUserLogin() == null ? 0 : this.getUserLogin().hashCode());

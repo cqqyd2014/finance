@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -26,7 +26,9 @@ public class VBillM implements java.io.Serializable {
 
 	@EmbeddedId
 
-	@AttributeOverrides({ @AttributeOverride(name = "billType", column = @Column(name = "bill_type", length = 4)),
+	@AttributeOverrides({ @AttributeOverride(name = "ifRoom", column = @Column(name = "if_room")),
+			@AttributeOverride(name = "ifOutput", column = @Column(name = "if_output")),
+			@AttributeOverride(name = "billType", column = @Column(name = "bill_type", length = 4)),
 			@AttributeOverride(name = "billTypeName", column = @Column(name = "bill_type_name", length = 90)),
 			@AttributeOverride(name = "uneffectiveDat", column = @Column(name = "uneffective_dat", length = 35)),
 			@AttributeOverride(name = "uneffectiveUserId", column = @Column(name = "uneffective_user_id", length = 36)),

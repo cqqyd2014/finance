@@ -28,6 +28,97 @@ public final class BillDBack {
 	public void setCustom_id(String custom_id) {
 		this.custom_id = custom_id;
 	}
+	String dept_id;
+	String dept_name;
+	String pro_name;
+	String type_name;
+	java.util.Date download_dat;
+	String download_dat_print;
+	String download_dat_chinese_print;
+	java.util.Date create_bill_m_dat;
+	String create_bill_m_dat_print;
+	String create_bill_m_dat_chinese_print;
+	java.util.Date create_bill_d_dat;
+	String create_bill_d_dat_print;
+	String create_bill_d_dat_chinese_print;
+	public String getDept_id() {
+		return dept_id;
+	}
+	public void setDept_id(String dept_id) {
+		this.dept_id = dept_id;
+	}
+	public String getDept_name() {
+		return dept_name;
+	}
+	public void setDept_name(String dept_name) {
+		this.dept_name = dept_name;
+	}
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	public String getType_name() {
+		return type_name;
+	}
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
+	}
+	public java.util.Date getDownload_dat() {
+		return download_dat;
+	}
+	public void setDownload_dat(java.util.Date download_dat) {
+		this.download_dat = download_dat;
+	}
+	public String getDownload_dat_print() {
+		return download_dat_print;
+	}
+	public void setDownload_dat_print(String download_dat_print) {
+		this.download_dat_print = download_dat_print;
+	}
+	public String getDownload_dat_chinese_print() {
+		return download_dat_chinese_print;
+	}
+	public void setDownload_dat_chinese_print(String download_dat_chinese_print) {
+		this.download_dat_chinese_print = download_dat_chinese_print;
+	}
+	public java.util.Date getCreate_bill_m_dat() {
+		return create_bill_m_dat;
+	}
+	public void setCreate_bill_m_dat(java.util.Date create_bill_m_dat) {
+		this.create_bill_m_dat = create_bill_m_dat;
+	}
+	public String getCreate_bill_m_dat_print() {
+		return create_bill_m_dat_print;
+	}
+	public void setCreate_bill_m_dat_print(String create_bill_m_dat_print) {
+		this.create_bill_m_dat_print = create_bill_m_dat_print;
+	}
+	public String getCreate_bill_m_dat_chinese_print() {
+		return create_bill_m_dat_chinese_print;
+	}
+	public void setCreate_bill_m_dat_chinese_print(String create_bill_m_dat_chinese_print) {
+		this.create_bill_m_dat_chinese_print = create_bill_m_dat_chinese_print;
+	}
+	public java.util.Date getCreate_bill_d_dat() {
+		return create_bill_d_dat;
+	}
+	public void setCreate_bill_d_dat(java.util.Date create_bill_d_dat) {
+		this.create_bill_d_dat = create_bill_d_dat;
+	}
+	public String getCreate_bill_d_dat_print() {
+		return create_bill_d_dat_print;
+	}
+	public void setCreate_bill_d_dat_print(String create_bill_d_dat_print) {
+		this.create_bill_d_dat_print = create_bill_d_dat_print;
+	}
+	public String getCreate_bill_d_dat_chinese_print() {
+		return create_bill_d_dat_chinese_print;
+	}
+	public void setCreate_bill_d_dat_chinese_print(String create_bill_d_dat_chinese_print) {
+		this.create_bill_d_dat_chinese_print = create_bill_d_dat_chinese_print;
+	}
 	String bill_uuid;
 	String bill_d_uuid;
 	String bank_code;
@@ -47,6 +138,20 @@ public final class BillDBack {
 	}
 	public void setSearch_par_code(String search_par_code) {
 		this.search_par_code = search_par_code;
+	}
+	String create_user_id;
+	String create_user_name;
+	public String getCreate_user_id() {
+		return create_user_id;
+	}
+	public void setCreate_user_id(String create_user_id) {
+		this.create_user_id = create_user_id;
+	}
+	public String getCreate_user_name() {
+		return create_user_name;
+	}
+	public void setCreate_user_name(String create_user_name) {
+		this.create_user_name = create_user_name;
 	}
 	String search_value;
 	String account_id;

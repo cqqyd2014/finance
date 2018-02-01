@@ -109,7 +109,9 @@ public class VStatisticsBillsResultDAO extends GetModelFromEntityViewDAO<gov.cqa
 		m.setPublic_account_count(new java.math.BigDecimal(h.getId().getPublicCount()));
 		m.setPublic_detail_count(h.getId().getPublicDetail());
 		m.setPro_name(h.getId().getProName());
-		m.setBank_names(h.getId().getBankNames());
+		String bank_names=com.cqqyd2014.util.ArrayTools.toString(
+				com.cqqyd2014.util.ArrayTools.eliminateDuplicates(h.getId().getBankNames().split(",")));
+		m.setBank_names(bank_names.substring(1, bank_names.length()-1));
 		m.setDownload_user_id(h.getId().getDownloadUserId());
 		m.setDownload_user_name(h.getId().getDownloadUserName());
 		m.setDownload_dat(h.getId().getDownloadDat());

@@ -80,6 +80,7 @@ function center_load_ready(){
 	
 	
 	//console.log("d111d");
+	permit_bill_div(page_init);
 	modify_bill_base_ready(page_init);
 	picture_manage_ready(page_init);
 	view_reslut_ready();
@@ -152,7 +153,7 @@ function center_load_ready(){
 								row_len++;
 
 								//alert(row_len);
-								var tip=rowData.audit_user_name==""?"":"<font color=\'red\'>已打印数据拷出审批单</font>";
+								//var tip=rowData.audit_user_name==""?"":"<font color=\'red\'>已打印数据拷出审批单</font>";
 
 								cc
 										.push('<tr><td width=\'10%\' rowspan=\''
@@ -179,7 +180,7 @@ function center_load_ready(){
 												+ '查询参数'
 
 												+ '</td><td width=\'21%\' rowspan=\''
-												+ row_len + '\'>审核状态：'+tip+'<br>图片附件：'
+												+ row_len + '\'>数据分析：'+rowData.if_room_print+' <br>数据拷出：'+rowData.if_output_print+'<br>图片附件：'
 												+ rowData.pics_num + '<br>');
 
 								var pics = rowData.pictures;
@@ -220,7 +221,11 @@ function center_load_ready(){
 								
 								
 								var temp_b='<tr><td colspan=\'8\'>'
-									+ '<div>操作：<a	class="print_bill" href="javascript:void(0)" id=\"print_bill_'
+									+ '<div>操作：<a	class="permit_bill" href="javascript:void(0)" id=\"permit_bill_'
+									+ rowData.bill_uuid
+									+ '\" class="easyui-linkbutton"	onclick="javascript:permit_bill_init(\''
+									+ rowData.bill_uuid
+									+ '\',this)">打印申请</a><a	class="print_bill" href="javascript:void(0)" id=\"print_bill_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:print_bill(\''
 									+ rowData.bill_uuid
@@ -246,17 +251,38 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:del_bill(\''
 									+ rowData.bill_uuid
-									+ '\',this)">删除</a></div><a	class="mod_bill" href="javascript:void(0)" id=\"mod_bill_'
+									+ '\',this)">删除</a><a	class="mod_bill" href="javascript:void(0)" id=\"mod_bill_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:modify_bill_base_init(\''
 									+ rowData.bill_uuid
 									+ '\',this)">删除</a></div>'
 
-									+ '</td></tr></table></div></td>';
+									+ '</td></tr>';
 									//alert(temp_b);
 								cc.push(temp_b);
 
+
+								if (rowData.messages != null) {
+									var messages = rowData.messages;
+									cc.push('<tr><td colspan=\'8\'>');
+
+									$.each(messages, function(i, field) {
+
+										cc.push('<div>[时间：'+field.craete_dat_print+'][类型：'
+												+ field.type_name
+												+ '][日志生成：'
+												+field.user_name
+												+"][内容："
+												+ field.message
+												
+												+ ']</div>');
+
+									});
+									cc.push('</tr>');
+								}
+
 								//alert(cc.join(''));
+								cc.push('</table></div></td>');
 								return cc.join('');
 							}
 
@@ -278,7 +304,11 @@ function center_load_ready(){
 								
 
 								//console.log(data);
-								
+								$('.permit_bill').linkbutton({
+									text : '审核查询单',
+									plain : false,
+									iconCls : 'icon-more'
+								});
 								$('.upload_pictures').linkbutton({
 									text : '管理图片附件',
 									plain : false,
@@ -327,6 +357,28 @@ function center_load_ready(){
 									case '起草申请':
 										$('#upload_pictures_' + bill.bill_uuid)
 												.linkbutton('disable');
+										$('#permit_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										$('#mod_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										
+										$('#output_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#print_bill_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#view_reslut_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#room_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#del_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
+										
+										break;
+									case '申请待审':
+										$('#upload_pictures_' + bill.bill_uuid)
+												.linkbutton('disable');
+										$('#permit_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
 										$('#mod_bill_' + bill.bill_uuid)
 										.linkbutton('disable');
 										
@@ -343,6 +395,8 @@ function center_load_ready(){
 										
 										break;
 									case '打印待签':
+										$('#permit_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
 										$('#upload_pictures_' + bill.bill_uuid)
 										.linkbutton('disable');
 										$('#output_' + bill.bill_uuid)
@@ -350,7 +404,7 @@ function center_load_ready(){
 										$('#mod_bill_' + bill.bill_uuid)
 										.linkbutton('enable');
 								$('#print_bill_' + bill.bill_uuid)
-										.linkbutton('disable');
+										.linkbutton('enable');
 								$('#view_reslut_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#room_' + bill.bill_uuid)
@@ -359,6 +413,8 @@ function center_load_ready(){
 								.linkbutton('disable');
 										break;
 									case '等待传单':
+										$('#permit_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
 										$('#mod_bill_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
@@ -375,6 +431,8 @@ function center_load_ready(){
 								.linkbutton('disable');
 										break;
 									case '等待返回':
+										$('#permit_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
 										$('#mod_bill_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
@@ -390,23 +448,10 @@ function center_load_ready(){
 								$('#del_bill_' + bill.bill_uuid)
 								.linkbutton('disable');
 										break;
-									case '返回待审':
-										$('#mod_bill_' + bill.bill_uuid)
-										.linkbutton('enable');
-										$('#upload_pictures_' + bill.bill_uuid)
-										.linkbutton('enable');
-										$('#output_' + bill.bill_uuid)
-										.linkbutton('enable');
-								$('#print_bill_' + bill.bill_uuid)
-										.linkbutton('enable');
-								$('#view_reslut_' + bill.bill_uuid)
-										.linkbutton('enable');
-								$('#room_' + bill.bill_uuid)
-										.linkbutton('enable');
-								$('#del_bill_' + bill.bill_uuid)
-								.linkbutton('disable');
-										break;
+									
 									case '查看结果':
+										$('#permit_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
 										$('#mod_bill_' + bill.bill_uuid)
 										.linkbutton('enable');
 										$('#upload_pictures_' + bill.bill_uuid)
@@ -446,4 +491,4 @@ function center_load_ready(){
 	<jsp:include page="common/view_reslut.jsp" flush="true" />
 <jsp:include page="../common/include_print.jsp" flush="true" />
 <jsp:include page="common/modify_bill_base.jsp" flush="true" />
-
+<jsp:include page="common/permit_bill.jsp" flush="true" />

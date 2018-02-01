@@ -28,6 +28,7 @@ public class VDataCorePrivateAccountInfoDAO extends GetModelFromEntityViewDAO<go
 		h.setPrivateCloseDat(m.getPrivate_close_dat());
 		h.setPrivateCustomId(m.getPrivate_custom_id());
 		h.setPrivateOpenDat(m.getPrivate_open_dat());
+		h.setTimepoint(m.getTimepoint());
 		session.merge(h);
 		
 	}
@@ -51,6 +52,8 @@ public class VDataCorePrivateAccountInfoDAO extends GetModelFromEntityViewDAO<go
 		m.setPrivate_open_dat_chinese_print(com.cqqyd2014.util.DateUtil.getLocalSimpleString(h.getId().getPrivateOpenDat()));
 		m.setPrivate_close_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getPrivateCloseDat()));
 		m.setPrivate_close_dat_chinese_print(com.cqqyd2014.util.DateUtil.getLocalSimpleString(h.getId().getPrivateCloseDat()));
+		m.setTimepoint(h.getId().getTimepoint());
+		m.setTimepoint_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getTimepoint()));
 		return (T)m;
 	}
 

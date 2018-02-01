@@ -18,10 +18,10 @@
 		1、订单状态： <SELECT id="search_bill_bill_status" name='search_bill_bill_status'style="width: 100px">
 			<option VALUE="0" SELECTED>所有申请</option>
 			<option VALUE="起草申请">起草申请</option>
+			<option VALUE="申请待审">申请待审</option>
 			<option VALUE="打印待签">打印待签</option>
 			<option VALUE="等待传单">等待传单</option>
 			<option VALUE="等待返回">等待返回</option>
-			<option VALUE="返回待审">返回待审</option>
 			<option VALUE="查看结果">查看结果</option>
 		</SELECT> 2、联系人姓名:<input id="search_bill_contract_name" name='search_bill_contract_name' class="easyui-textbox"
 			style="width: 70px" /> 3、项目名称:<input id="search_bill_pro_name" name='search_bill_pro_name'
@@ -63,7 +63,7 @@
 		search_bill_rows_in_page=<s:property value="#session.default_rows_in_page" />;
 			datagrid_page_init('search_bill_list_table',search_bill_rows_in_page
 					,function select_page_callback(pageNumber, pageSize){
-				console.log("select");
+				//console.log("select");
 				search_bill_current_page=pageNumber;
 				//console.log(pageNumber);
 				search_bill_rows_in_page=pageSize;
@@ -80,7 +80,7 @@
 				$("#search_bill_list_table").datagrid("load");
 				},
 				function change_page_size_callback(pageSize){
-					console.log("size");
+					//console.log("size");
 					search_bill_rows_in_page=pageSize;
 					$("#search_bill_list_table").datagrid({
 				    	
@@ -101,7 +101,21 @@
 			//是否可编辑
 
 			});
-			$('#search_bill_bill_status').combobox('select', 0);
+			//根据request中的bill_status判断是否只读
+			
+			
+			var bill_status='<s:property value="#request.bill_status"/>';
+			//console.log(bill_status);
+			if (bill_status=='0'||bill_status==''){
+				$('#search_bill_bill_status').combobox('select', 0);
+				$("#search_bill_bill_status").combobox('readonly',false);
+				}
+			else{
+				$('#search_bill_bill_status').combobox('select', bill_status);
+				$("#search_bill_bill_status").combobox('readonly',true);
+				}
+			
+			
 
 	}
 </script>

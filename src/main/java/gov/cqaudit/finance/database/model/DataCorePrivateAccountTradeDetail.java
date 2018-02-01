@@ -2,12 +2,11 @@ package gov.cqaudit.finance.database.model;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
-
-
+import gov.cqaudit.finance.annotation.DataTableView;
 import gov.cqaudit.finance.annotation.Export;
-
+@DataTableView(table_name="对私账户交易明细账")
 public class DataCorePrivateAccountTradeDetail {
-	@Export(name="户名",export_order=1)
+	@Export(name="户名",export_order=1,indexed=true)
 	String private_account_name;
 	public String getPrivate_account_name() {
 		return private_account_name;
@@ -18,7 +17,7 @@ public class DataCorePrivateAccountTradeDetail {
 	
 	@Export(if_export=false,name="银行编码")
 	String bank_code;
-	@Export(name="银行名称",export_order=13)
+	@Export(name="银行名称",export_order=14)
 	String bank_name;
 	public String getBank_name() {
 		return bank_name;
@@ -26,12 +25,13 @@ public class DataCorePrivateAccountTradeDetail {
 	public void setBank_name(String bank_name) {
 		this.bank_name = bank_name;
 	}
-	@Export(name="账号",export_order=0)
+	@Export(name="账号",export_order=0,indexed=true)
 	String private_account_id;
+	@Export(if_export=true,name="流水号",default_order=true,order_order=2,export_order=3)
 	String private_trade_seq;
-	@Export(name="交易金额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=3)
+	@Export(name="交易金额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=4,indexed=true)
 	java.math.BigDecimal private_amount;
-	@Export(name="对方账号",export_order=5)
+	@Export(name="对方账号",export_order=6,indexed=true)
 	String private_op_account_id;
 	public String getBank_code() {
 		return bank_code;
@@ -120,25 +120,25 @@ public class DataCorePrivateAccountTradeDetail {
 	public void setPrivate_remark(String private_remark) {
 		this.private_remark = private_remark;
 	}
-	@Export(name="对方行号",export_order=7)
+	@Export(name="对方行号",export_order=8)
 	String private_op_bank_id;
-	@Export(name="对方行名",export_order=8)
+	@Export(name="对方行名",export_order=9)
 	String private_op_bank_name;
-	@Export(name="对方户名",export_order=6)
+	@Export(name="对方户名",export_order=7,indexed=true)
 	String private_op_account_name;
-	@Export(name="交易码",export_order=9)
+	@Export(name="交易码",export_order=10)
 	String private_trade_code;
-	@Export(name="交易码名",export_order=10)
+	@Export(name="交易码名",export_order=11)
 	String private_trade_name;
-	@Export(name="余额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=4)
+	@Export(name="余额",xlsxtype=XSSFCell.CELL_TYPE_NUMERIC,export_order=5,indexed=true)
 	java.math.BigDecimal private_balance;
-	@Export(name="交易机构号",export_order=11)
+	@Export(name="交易机构号",export_order=12)
 	String private_bank_org_id;
-	@Export(name="交易机构名",export_order=12)
+	@Export(name="交易机构名",export_order=13)
 	String private_bank_org_name;
-	@Export(name="备注",export_order=14)
+	@Export(name="备注",export_order=15,indexed=true)
 	String private_remark;
-	@Export(if_export=false,name="交易日期")
+	@Export(if_export=false,name="交易日期",default_order=true,order_order=1)
 	java.util.Date private_trade_dat;
 	@Export(name="交易日期",if_database=false,export_order=2)
 	String private_trade_dat_print;

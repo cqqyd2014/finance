@@ -20,7 +20,7 @@ public class VPictureDAO  extends GetModelFromEntityViewDAO<gov.cqaudit.finance.
 	
 	
 	
-	public  java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> getArrayListViewByBillUuid(Session session,String bill_uuid){
+	public  java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> getArrayListModelByBillUuid(Session session,String bill_uuid){
 		String hql = "from VPicture where id.effective=true and id.billUuid=:bill_uuid order by id.opDat";
 
 		@SuppressWarnings("rawtypes")

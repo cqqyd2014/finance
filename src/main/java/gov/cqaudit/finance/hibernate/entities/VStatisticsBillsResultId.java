@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -150,7 +150,7 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.proName = proName;
 	}
 
-	@Column(name = "download_user_name")
+	@Column(name = "download_user_name", length = 45)
 	public String getDownloadUserName() {
 		return this.downloadUserName;
 	}
@@ -159,7 +159,7 @@ public class VStatisticsBillsResultId implements java.io.Serializable {
 		this.downloadUserName = downloadUserName;
 	}
 
-	@Column(name = "download_user_id")
+	@Column(name = "download_user_id", length = 36)
 	public String getDownloadUserId() {
 		return this.downloadUserId;
 	}

@@ -48,7 +48,7 @@ public class LogViewAction   extends LoginedAjaxAction {
 			try {
 				
 					//记录user角色的数据访问
-					if (com.cqqyd2014.util.ArrayListTools.indexOfArrayList(sys_roles, "users")!=-1){
+					if (sys_roles.indexOf("users")!=-1){
 						HttpServletRequest
 						 request = ServletActionContext.getRequest();
 						String ip=com.cqqyd2014.util.IPUtil.getIpAddr(request);

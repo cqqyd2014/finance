@@ -36,13 +36,18 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finan
 		java.util.ArrayList<gov.cqaudit.finance.bills.model.BillM> bms=new java.util.ArrayList<>();
 		gov.cqaudit.finance.hibernate.dao.VBillDDAO vddao=new gov.cqaudit.finance.hibernate.dao.VBillDDAO();
 		gov.cqaudit.finance.hibernate.dao.VPictureDAO vpdao=new gov.cqaudit.finance.hibernate.dao.VPictureDAO();
+		gov.cqaudit.finance.hibernate.dao.VBillMessageDAO messagedao=new gov.cqaudit.finance.hibernate.dao.VBillMessageDAO();
 		for (int i=0,len=bill_uuids.size();i<len;i++){
 			String bill_uuid=bill_uuids.get(i);
+			//System.out.println(bill_uuid);
 			gov.cqaudit.finance.bills.model.BillM bm=getModelByUuid(session, bill_uuid);
 			
 			java.util.ArrayList<gov.cqaudit.finance.bills.model.BillD> bds=vddao.getArrayListModelByBillUuid(session, bill_uuid);
 			
-			java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=vpdao.getArrayListViewByBillUuid(session, bill_uuid);
+			java.util.ArrayList<gov.cqaudit.finance.bills.model.Picture> pics=vpdao.getArrayListModelByBillUuid(session, bill_uuid);
+			
+			java.util.ArrayList<gov.cqaudit.finance.bills.model.BillMessage> messages=messagedao.getArrayListModelByBillUuid(session, bill_uuid);
+			bm.setMessages(messages);
 			bm.setBill_details(bds);
 			bm.setPictures(pics);
 			bms.add(bm);
@@ -66,14 +71,14 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finan
 				hql=hql+" bill_status=\'"+bill_status+"\' and";
 			}
 			if (contract_name!=null&&!contract_name.equals("")){
-				hql=hql+" and  contract_name like \'%"+contract_name+"%\' and";
+				hql=hql+"  contract_name like \'%"+contract_name+"%\' and";
 			}
 			if (pro_name!=null&&!pro_name.equals("")){
 				hql=hql+" pro_name like \'%"+pro_name+"%\' and";
 			}
 			hql=hql.substring(0, hql.length()-3);
 			hql=hql+" group by bill_uuid) t1";
-			//System.out.println(hql);
+			System.out.println(hql);
 			//hql=hql.replaceAll("where     group", "   group");
 			return (java.math.BigInteger)session.createSQLQuery(hql).uniqueResult();
 
@@ -216,6 +221,8 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finan
 		bm_h.setUneffectiveDat(bm.getUneffective_dat());
 		bm_h.setUneffectiveUserId(bm.getUneffecitve_user_id());
 		bm_h.setBillType(bm.getBill_type());
+		bm_h.setIfRoom(bm.isIf_room());
+		bm_h.setIfOutput(bm.isIf_output());
 		session.saveOrUpdate(bm_h);
 		
 	}
@@ -261,6 +268,10 @@ public final class VBillMDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finan
 		bm.setBill_type(vbm_h.getId().getBillType());
 		bm.setBill_type_name(vbm_h.getId().getBillTypeName());
 		bm.setCreate_dat_print(com.cqqyd2014.util.DateUtil.getPrintFullString(vbm_h.getId().getCreateDat()));
+		bm.setIf_room(vbm_h.getId().getIfRoom());
+		bm.setIf_room_print(vbm_h.getId().getIfRoom()?"已打印":"未打印");
+		bm.setIf_output(vbm_h.getId().getIfOutput());
+		bm.setIf_output_print(vbm_h.getId().getIfOutput()?"已打印":"未打印");
 		return (T)bm;
 	}
 }

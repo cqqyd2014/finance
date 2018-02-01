@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -39,6 +39,8 @@ public class BillM implements java.io.Serializable {
 	private Date uneffectiveDat;
 	private String uneffectiveUserId;
 	private String billType;
+	private Boolean ifRoom;
+	private Boolean ifOutput;
 
 	public BillM() {
 	}
@@ -51,7 +53,7 @@ public class BillM implements java.io.Serializable {
 			String contractTell, String contractMail, String auditUserId, Date lastAuditDat, String proName,
 			String deptId, Date lastModifyDat, String searchReason, String downloadUserId, Date downloadDat,
 			String downloadUuid, Boolean effective, BigDecimal picsNum, BigDecimal detailNum, Date uneffectiveDat,
-			String uneffectiveUserId, String billType) {
+			String uneffectiveUserId, String billType, Boolean ifRoom, Boolean ifOutput) {
 		this.billUuid = billUuid;
 		this.createUserId = createUserId;
 		this.createDat = createDat;
@@ -74,6 +76,8 @@ public class BillM implements java.io.Serializable {
 		this.uneffectiveDat = uneffectiveDat;
 		this.uneffectiveUserId = uneffectiveUserId;
 		this.billType = billType;
+		this.ifRoom = ifRoom;
+		this.ifOutput = ifOutput;
 	}
 
 	@Id
@@ -279,6 +283,24 @@ public class BillM implements java.io.Serializable {
 
 	public void setBillType(String billType) {
 		this.billType = billType;
+	}
+
+	@Column(name = "if_room")
+	public Boolean getIfRoom() {
+		return this.ifRoom;
+	}
+
+	public void setIfRoom(Boolean ifRoom) {
+		this.ifRoom = ifRoom;
+	}
+
+	@Column(name = "if_output")
+	public Boolean getIfOutput() {
+		return this.ifOutput;
+	}
+
+	public void setIfOutput(Boolean ifOutput) {
+		this.ifOutput = ifOutput;
 	}
 
 }

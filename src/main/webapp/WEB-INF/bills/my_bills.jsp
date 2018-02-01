@@ -25,6 +25,69 @@
 	function bill_list_table_Dclick(rowData) {
 
 	}
+	function post_bill(bill_uuid,object){
+		$.messager.confirm('操作提示','确定提交这个申请单吗?',function(r){
+		    if (r){
+		    	$.getJSON("../bills/post_search_request.action", {
+					
+					"bill_uuid" : bill_uuid
+				}, function(result) {
+					//console.log(result);
+
+					var field = result.msg;
+					if (field.success) {
+						$.messager.alert("操作提示", "提交申请成功，等待金融处审核。", "info");
+						page_init();
+
+					} else {
+						$.messager.alert("操作提示", "提交申请出错！" + field.body, "error");
+
+					}
+
+					
+
+				});
+		    }
+		});
+
+		}
+
+
+	function post_addon(bill_uuid,object){
+
+
+		$.messager.confirm('操作提示','申请单的签字附件已经上传了吗?',function(r){
+		    if (r){
+		    	$.getJSON("../bills/post_addon.action", {
+					
+					"bill_uuid" : bill_uuid
+				}, function(result) {
+					//console.log(result);
+
+					var field = result.msg;
+
+					if (field.success) {
+						//有效
+						//console.log(field.boolean_flag);
+						if (field.boolean_flag){
+							$.messager.alert("操作提示", "提交查询查询申请成功", "info");
+							page_init();
+							}
+						else{
+							$.messager.alert("操作提示", "提交查询查询申请错误；"+field.body, "error");
+							}
+						
+
+					} else {
+
+						$.messager.alert("操作提示", "提交查询查询申请错误：" + field.body, "error");
+					}
+
+				});
+		    }
+		});
+
+		}
 	
 	function post_search_request(bill_uuid,object){
 		
@@ -256,7 +319,11 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:edit(\''
 									+ rowData.bill_uuid
-									+ '\',this)">继续编辑</a><a	class="print_bill" href="javascript:void(0)" id=\"print_bill_'
+									+ '\',this)">继续编辑</a><a	class="post_bill" href="javascript:void(0)" id=\"post_bill_'
+									+ rowData.bill_uuid
+									+ '\" class="easyui-linkbutton"	onclick="javascript:post_bill(\''
+									+ rowData.bill_uuid
+									+ '\',this)">提交申请</a><a	class="print_bill" href="javascript:void(0)" id=\"print_bill_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:print_bill(\''
 									+ rowData.bill_uuid
@@ -264,11 +331,11 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:picture_manage_init(\''
 									+ rowData.bill_uuid
-									+ '\',this)">管理图片附件</a><a	class="post_search_request" href="javascript:void(0)" id=\"post_search_request_'
+									+ '\',this)">管理图片附件</a><a	class="post_addon" href="javascript:void(0)" id=\"post_addon_'
 									+ rowData.bill_uuid
-									+ '\" class="easyui-linkbutton"	onclick="javascript:post_search_request(\''
+									+ '\" class="easyui-linkbutton"	onclick="javascript:post_addon(\''
 									+ rowData.bill_uuid
-									+ '\',this)">提交申请</a><a	class="view_reslut" href="javascript:void(0)" id=\"view_reslut_'
+									+ '\',this)">提交附件</a><a	class="view_reslut" href="javascript:void(0)" id=\"view_reslut_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:view_result_init(\''
 									+ rowData.bill_uuid
@@ -278,11 +345,32 @@ function center_load_ready(){
 									+ rowData.bill_uuid
 									+ '\',this)">删除</a></div>'
 
-									+ '</td></tr></table></div></td>';
+									+ '</td></tr>';
 									//alert(temp_b);
 								cc.push(temp_b);
 
+
+								if (rowData.messages != null) {
+									var messages = rowData.messages;
+									cc.push('<tr><td colspan=\'8\'>');
+
+									$.each(messages, function(i, field) {
+
+										cc.push('<div>[时间：'+field.craete_dat_print+'][类型：'
+												+ field.type_name
+												+ '][日志生成：'
+												+field.user_name
+												+"][内容："
+												+ field.message
+												
+												+ ']</div>');
+
+									});
+									cc.push('</tr>');
+								}
+
 								//alert(cc.join(''));
+								cc.push('</table></div></td>');
 								return cc.join('');
 							}
 
@@ -299,11 +387,7 @@ function center_load_ready(){
 							pagination : true,
 							//rownumbers: true, 
 							onLoadSuccess : function(data) {
-								
 
-								
-
-								//console.log(data);
 
 								$('.view_reslut').linkbutton({
 									text : '查看结果',
@@ -330,8 +414,13 @@ function center_load_ready(){
 									plain : false,
 									iconCls : 'icon-cancel'
 								});
-								$('.post_search_request').linkbutton({
+								$('.post_bill').linkbutton({
 									text : '提交申请',
+									plain : false,
+									iconCls : 'icon-redo'
+								});
+								$('.post_addon').linkbutton({
+									text : '提交附件',
 									plain : false,
 									iconCls : 'icon-redo'
 								});
@@ -358,9 +447,27 @@ function center_load_ready(){
 												.linkbutton('disable');
 										$('#del_bill_' + bill.bill_uuid)
 										.linkbutton('enable');
-										$('#post_search_request_' + bill.bill_uuid)
+										$('#post_bill_' + bill.bill_uuid)
+										.linkbutton('enable');
+										$('#post_addon_' + bill.bill_uuid)
 										.linkbutton('disable');
 										break;
+									case '申请待审':
+										$('#edit_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+								$('#print_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+								$('#view_reslut_' + bill.bill_uuid)
+										.linkbutton('disable');
+								$('#upload_pictures_' + bill.bill_uuid)
+										.linkbutton('enable');
+								$('#post_bill_' + bill.bill_uuid)
+								.linkbutton('disable');
+								$('#post_addon_' + bill.bill_uuid)
+								.linkbutton('disable');
+								break;
+
+										
 									case '打印待签':
 										$('#edit_bill_' + bill.bill_uuid)
 												.linkbutton('disable');
@@ -372,7 +479,9 @@ function center_load_ready(){
 												.linkbutton('enable');
 										$('#del_bill_' + bill.bill_uuid)
 										.linkbutton('disable');
-										$('#post_search_request_' + bill.bill_uuid)
+										$('#post_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										$('#post_addon_' + bill.bill_uuid)
 										.linkbutton('enable');
 										break;
 									case '等待传单':
@@ -386,7 +495,9 @@ function center_load_ready(){
 												.linkbutton('disable');
 										$('#del_bill_' + bill.bill_uuid)
 										.linkbutton('disable');
-										$('#post_search_request_' + bill.bill_uuid)
+										$('#post_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										$('#post_addon_' + bill.bill_uuid)
 										.linkbutton('disable');
 										break;
 									case '等待返回':
@@ -400,23 +511,12 @@ function center_load_ready(){
 												.linkbutton('disable');
 										$('#del_bill_' + bill.bill_uuid)
 										.linkbutton('disable');
-										$('#post_search_request_' + bill.bill_uuid)
+										$('#post_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										$('#post_addon_' + bill.bill_uuid)
 										.linkbutton('disable');
 										break;
-									case '返回待审':
-										$('#edit_bill_' + bill.bill_uuid)
-												.linkbutton('disable');
-										$('#print_bill_' + bill.bill_uuid)
-												.linkbutton('enable');
-										$('#view_reslut_' + bill.bill_uuid)
-												.linkbutton('disable');
-										$('#upload_pictures_' + bill.bill_uuid)
-												.linkbutton('disable');
-										$('#del_bill_' + bill.bill_uuid)
-										.linkbutton('disable');
-										$('#post_search_request_' + bill.bill_uuid)
-										.linkbutton('disable');
-										break;
+									
 									case '查看结果':
 										$('#edit_bill_' + bill.bill_uuid)
 												.linkbutton('disable');
@@ -428,7 +528,9 @@ function center_load_ready(){
 												.linkbutton('disable');
 										$('#del_bill_' + bill.bill_uuid)
 										.linkbutton('disable');
-										$('#post_search_request_' + bill.bill_uuid)
+										$('#post_bill_' + bill.bill_uuid)
+										.linkbutton('disable');
+										$('#post_addon_' + bill.bill_uuid)
 										.linkbutton('disable');
 										break;
 
@@ -451,9 +553,9 @@ function center_load_ready(){
 
 
 
-	<jsp:include page="common/picture_manage.jsp" flush="true" />
-	<jsp:include page="common/search_bill.jsp" flush="true" />
-	<jsp:include page="common/view_reslut.jsp" flush="true" />
+<jsp:include page="common/picture_manage.jsp" flush="true" />
+<jsp:include page="common/search_bill.jsp" flush="true" />
+<jsp:include page="common/view_reslut.jsp" flush="true" />
 <jsp:include page="../common/include_print.jsp" flush="true" />
 
 

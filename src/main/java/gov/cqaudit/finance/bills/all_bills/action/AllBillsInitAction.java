@@ -19,6 +19,15 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @ParentPackage("bfkjs-default")  
 @Namespace(value = "/bills") // 表示当前Action所在命名空间
 public class AllBillsInitAction extends LoginedInitAction{
+	String bill_status;
+
+	public String getBill_status() {
+		return bill_status;
+	}
+
+	public void setBill_status(String bill_status) {
+		this.bill_status = bill_status;
+	}
 
 	@Actions({     
 	    
@@ -26,7 +35,7 @@ public class AllBillsInitAction extends LoginedInitAction{
 		            value="all_bills_init",  //表示action的请求名称  
 		            results={  //表示结果跳转  
 		                    @Result(name="success",location="/WEB-INF/bills/all_bills.jsp")}, interceptorRefs = {
-									@InterceptorRef("authorityInterceptor") })
+									@InterceptorRef("authorityStack") })
 
 	})
 	@Authority(module="all_bills_init", privilege="[00010003]",error_url="authority_error") 
@@ -36,7 +45,23 @@ public class AllBillsInitAction extends LoginedInitAction{
 				super.execute();
 				
 				 session = HibernateSessionFactory.getSession();
-
+				 
+				 if (bill_status==null){
+					 bill_status="0";
+				 }
+				 else{
+					 switch(bill_status){
+					 case "wait_permit":
+						 bill_status="申请待审";
+						 break;
+					 case "view_result":
+						 bill_status="查看结果";
+						 break;
+					 
+					 }
+				 }
+				 
+				 
 				
 				
 				try {

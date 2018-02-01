@@ -3,8 +3,6 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 
 
-
-
 <script type="text/javascript">
 	var pic_num;
 	$.parser.onComplete = function(){
@@ -13,15 +11,33 @@
 	};	
 	
 
-	function save_print_bill() {
+	function save_post_bill() {
 
 		if (save_bill_check_field()){
 			temp_save_bill(function(){
-				
+				/*
 				print_bill('<s:property value="#request.bill_uuid"/>',function callback(){
 					$('#body').layout('panel','center').panel('refresh',"../bills/my_bills_init.action");
 					});
 				
+				*/
+				$.getJSON("../bills/post_search_request.action", {
+					bill_uuid : '<s:property value="#request.bill_uuid"/>'
+				}, function(result) {
+
+					var field = result.msg;
+
+					if (field.success) {
+						$.messager.alert("操作提示", "提交申请成功，等待金融处审核。", "info");
+						$('#body').layout('panel','center').panel('refresh',"../bills/my_bills_init.action");
+
+					} else {
+						$.messager.alert("操作提示", "提交申请出错！" + field.body, "error");
+
+					}
+
+				});
+
 				
 				
 				//console.log('refresh');
@@ -154,7 +170,9 @@
 			"bank_code" : $("#bank_code").combobox("getValue"),
 			"search_par_code" : $("#search_par_code").combobox("getValue"),
 			"search_par_value" : $('#search_par_value').val(),
-			"bill_uuid" : $('#bill_uuid').val()
+			"bill_uuid" : $('#bill_uuid').val(),
+			start_dat:$('#start_dat').datebox('getValue'),
+			end_dat:$('#end_dat').datebox('getValue'),
 		}, function(result) {
 
 			var field = result.msg;
@@ -289,26 +307,20 @@
 	}
 </script>
 
-<script type="text/javascript" src="../js/ajaxfileupload.js"></script>
-<script type="text/javascript">
 
-
-
-
-</script>
 <div class="easyui-layout" data-options="fit:true" style="display:table;">
 
 	<div style="display:table-cell;text-align:center;">
 
 	<div 
-		style="width:500px;background:white;display:inline-block;vertical-align: middle;box-shadow:5px 2px 6px #000;padding: 10px
+		style="width:600px;background:white;display:inline-block;vertical-align: middle;box-shadow:5px 2px 6px #000;padding: 10px
 		; margin: 10px;border:1px solid Gray">
 
 		<h1 align='center'>查询账户审批单</h1>
 <form id="edit_bill_form">
 		<table border="1" width="90%" class="box" align='center'>
 			<tr>
-				<td colspan='2'>
+				<td colspan='4'>
 					<div>
 						<span style='float: left'>当前订单状态：<span id='bill_status'>
 						
@@ -317,7 +329,7 @@
 					</div>
 					<div style='float: right'>
 						<a href="javascript:void(0)" class="easyui-linkbutton"
-							icon="icon-print" onclick="javascript:save_print_bill()">填写完成，准备打印</a>
+							icon="icon-ok" onclick="javascript:save_post_bill()">填写完成，提交申请</a>
 						<a href="javascript:void(0)" class="easyui-linkbutton"
 							onclick="javascript:save_bill_and_exit()" icon="icon-save">暂存退出</a>
 						
@@ -325,14 +337,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td>申请单位：</td>
-				<td><span id='dept_name'></span></td>
-			</tr>
-			<tr>
-				<td>
+				<td width='20%'>申请单位：</td>
+				<td width='30%'><span id='dept_name'></span></td>
+			
+				<td width='20%'>
 					<div id='contract_name_title'>联系人</div>
 				</td>
-				<td><input class="easyui-textbox" name="contract_name"
+				<td width='30%'><input class="easyui-textbox" name="contract_name"
 					id='contract_name' required="true"
 					data-options="iconCls:'icon-man'" style="width: 100%;">
 					<div id="contract_name_msg"></div></td>
@@ -345,8 +356,7 @@
 					class="easyui-textbox" required="true" style="width: 100%;">
 					<div id="contract_tell_msg"></div></td>
 
-			</tr>
-			<tr>
+			
 				<td>
 					<div id='contract_mail_title'>邮箱</div>
 				</td>
@@ -359,21 +369,21 @@
 			</tr>
 
 			<tr>
-				<td width='30%'><div id='pro_name_title'>审计（调查）项目名称</div></td>
-				<td width='70%'><input required="true"
-					style="width: 100%; height: 50px" id="pro_name" name='pro_name'
-					class="easyui-textbox" data-options="multiline:true"></input>
+				<td ><div id='pro_name_title'>审计（调查）项目名称</div></td>
+				<td colspan='3'><input required="true"
+					style="width: 100%;" id="pro_name" name='pro_name'
+					class="easyui-textbox" ></input>
 					<div id="pro_name_msg"></div></td>
 			</tr>
 			<tr>
-				<td width='30%'><div id='search_reason_title'>查询理由</div></td>
-				<td width='70%'><input required="true"
+				<td ><div id='search_reason_title'>查询理由</div></td>
+				<td colspan='3'><input required="true"
 					style="width: 100%; height: 50px" id="search_reason" name='search_reason'
 					class="easyui-textbox" data-options="multiline:true"></input>
 					<div id="search_reason_msg"></div></td>
 			</tr>
 			<tr>
-				<td colspan='2'>
+				<td colspan='4'>
 					<div>
 						<div>录入查询条目</div>
 						<div>
@@ -389,9 +399,13 @@
 								cssStyle="width:100px" />
 							3、要素<input id="search_par_code" class="easyui-combobox"
 								style="width: 100px"> </input>
-						<span> 4、查询条件<input required="true" id='search_par_value' name='search_par_value'
-								class="easyui-textbox" style="width: 150px"></span><span
-								align='right'> <a href="javascript:void(0)"
+							4、查询条件<input required="true" id='search_par_value' name='search_par_value'
+								class="easyui-textbox" style="width: 150px">
+							5、起始时间<input id='start_dat' name="start_dat" style="width: 100px" class="easyui-datebox"/>
+							6、结束时间<input id="end_dat" name="end_dat" style="width: 100px" class="easyui-datebox" /><span
+								align='right'>
+								
+								<a href="javascript:void(0)"
 								class="easyui-linkbutton" onclick="javascript:add_detail()"
 								iconCls="icon-add">增加</a></span>
 								</div><div><span>已录入</span><span><input
@@ -409,24 +423,24 @@
 				</td>
 			</tr>
 			<tr>
-				<td>审计组主神意见</td>
-				<td>&nbsp;签名&nbsp;日期</td>
+				<td>审计组主审意见</td>
+				<td colspan='3'>&nbsp;签名&nbsp;日期</td>
 			</tr>
 			<tr>
 				<td>业务部门负责人意见</td>
-				<td>&nbsp;签名&nbsp;日期</td>
+				<td colspan='3'>&nbsp;签名&nbsp;日期</td>
 			</tr>
 			<tr>
 				<td>法规处审核意见</td>
-				<td>&nbsp;签名&nbsp;日期</td>
+				<td colspan='3'>&nbsp;签名&nbsp;日期</td>
 			</tr>
 			<tr>
 				<td>分管领导意见</td>
-				<td>&nbsp;签名&nbsp;日期</td>
+				<td colspan='3'>&nbsp;签名&nbsp;日期</td>
 			</tr>
 			<tr>
 				<td>局长意见</td>
-				<td>&nbsp;签名&nbsp;日期</td>
+				<td colspan='3'>&nbsp;签名&nbsp;日期</td>
 			</tr>
 
 
@@ -435,7 +449,7 @@
 			
 
 			<tr>
-				<td colspan='2'>
+				<td colspan='4'>
 				系统每<span>${temp_save_time }</span><span>分钟暂存一次数据</span>,最后一次保存数据时间为<span id='last_save_time'></span>
 				</td>
 			</tr>
@@ -507,6 +521,14 @@ function center_load_ready(){
 														field : 'search_par_value',
 														title : '查询条件'
 													},
+													{
+														field : 'start_dat_print',
+														title : '起始时间'
+													},
+													{
+														field : 'end_dat_print',
+														title : '结束时间'
+													},
 
 													{
 														field : 'opt',
@@ -535,10 +557,8 @@ function center_load_ready(){
 										});
 						change_business_code('0001');
 						get_bill('<s:property value="#request.bill_uuid"/>');
-						/**
-						 * jquery 定时刷新
-						 * edit 
-						 */
+						$('#start_dat').datebox('setValue','2013-01-01');
+						$('#end_dat').datebox('setValue',GetDateStr(0));
 }
 		
 </script>

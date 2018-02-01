@@ -3,6 +3,20 @@ package gov.cqaudit.finance.database.model;
 import gov.cqaudit.finance.annotation.Export;
 
 public class DataCorePublicAccountInfo {
+	java.util.Date timepoint;
+	String timepoint_print;
+	public String getTimepoint_print() {
+		return timepoint_print;
+	}
+	public void setTimepoint_print(String timepoint_print) {
+		this.timepoint_print = timepoint_print;
+	}
+	public java.util.Date getTimepoint() {
+		return timepoint;
+	}
+	public void setTimepoint(java.util.Date timepoint) {
+		this.timepoint = timepoint;
+	}
 	String bank_code;
 	@Export(name="账号",export_order=0)
 	String public_account_id;

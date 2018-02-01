@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -28,6 +28,7 @@ public class VDataCorePrivateAccountInfo implements java.io.Serializable {
 
 	@AttributeOverrides({
 			@AttributeOverride(name = "privateAccountId", column = @Column(name = "private_account_id", length = 128)),
+			@AttributeOverride(name = "timepoint", column = @Column(name = "timepoint", length = 35)),
 			@AttributeOverride(name = "privateAccountName", column = @Column(name = "private_account_name", length = 256)),
 			@AttributeOverride(name = "privateCustomId", column = @Column(name = "private_custom_id", length = 128)),
 			@AttributeOverride(name = "privateCardNo", column = @Column(name = "private_card_no", length = 64)),

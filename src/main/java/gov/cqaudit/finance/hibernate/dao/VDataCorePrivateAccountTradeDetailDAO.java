@@ -1,5 +1,7 @@
 package gov.cqaudit.finance.hibernate.dao;
 
+import java.math.BigDecimal;
+
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -13,6 +15,23 @@ public class VDataCorePrivateAccountTradeDetailDAO  extends GetModelFromEntityVi
 	
 	
 	
+	@Override
+	public String getCountByHqlSql(Session session, String hql_sql) {
+		// TODO Auto-generated method stub
+		return super.getCountByHqlSql(session, hql_sql);
+	}
+
+	@Override
+	public <T> T getArrayListViewByHqlSql(Session session, String hql_sql, BigDecimal page_size, BigDecimal page) {
+		// TODO Auto-generated method stub
+		return super.getArrayListViewByHqlSql(session, hql_sql, page_size, page);
+	}
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4383786039619629613L;
+
 	@Override
 	public <T> T getArrayListViewByHqlSql(Session session, String hql_sql) {
 		// TODO Auto-generated method stub

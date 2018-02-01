@@ -29,7 +29,6 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataTransD"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VSearchPublicCustomAccount"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.BusinessSearchPar"/>
-        <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePublicAcountInfo"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.SysLog"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VStatisticsBillsResultByType"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataTransM"/>
@@ -49,6 +48,8 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePrivateAccountTradeDetail"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VBillDBack"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.SysCode"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.VBillMessage"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePublicAccountInfo"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePublicAccountInfo"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.CatalogTable"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VBillM"/>
@@ -59,9 +60,11 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataCorePublicCustomBase"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VBillD"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataTransM"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.BankInfo"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataTransBack"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.UserPar"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataTransD"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.BillMessage"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VSearchPrivateCustomAccount"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VBusinessSearchPar"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePrivateCustomBase"/>

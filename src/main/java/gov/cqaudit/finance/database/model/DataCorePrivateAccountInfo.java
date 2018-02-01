@@ -3,8 +3,16 @@ package gov.cqaudit.finance.database.model;
 import gov.cqaudit.finance.annotation.Export;
 
 public class DataCorePrivateAccountInfo {
+	public String timepoint_print;
+	
 
 	
+	public String getTimepoint_print() {
+		return timepoint_print;
+	}
+	public void setTimepoint_print(String timepoint_print) {
+		this.timepoint_print = timepoint_print;
+	}
 	public String getPrivate_close_dat_print() {
 		return private_close_dat_print;
 	}
@@ -29,6 +37,13 @@ public class DataCorePrivateAccountInfo {
 	}
 	public void setPrivate_open_dat_chinese_print(String private_open_dat_chinese_print) {
 		this.private_open_dat_chinese_print = private_open_dat_chinese_print;
+	}
+	java.util.Date timepoint;
+	public java.util.Date getTimepoint() {
+		return timepoint;
+	}
+	public void setTimepoint(java.util.Date timepoint) {
+		this.timepoint = timepoint;
 	}
 	@Export(name="销户日期",export_order=6)
 	String private_close_dat_print;

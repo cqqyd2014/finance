@@ -68,10 +68,20 @@ public class PrintRoomAction extends PdfPrintInitAbstractAction {
 		
 		java.util.ArrayList<String> bill_uuids = com.cqqyd2014.util.StringUtil.ArrayToArrayList(bill_uuid.split(","));
 		java.util.ArrayList<gov.cqaudit.finance.statistics.model.StatisticsBillsResult> bms = null;
+		tx=session.beginTransaction();
 		try {
 			// TODO Auto-generated method stub
 			gov.cqaudit.finance.hibernate.dao.VStatisticsBillsResultDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VStatisticsBillsResultDAO();
 			bms = vbdao.getArrayListModelByBillUuids(session, bill_uuids);
+			gov.cqaudit.finance.hibernate.dao.VBillMDAO bmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
+			for (int i=0,len=bms.size();i<len;i++){
+				gov.cqaudit.finance.bills.model.BillM bm=bmdao.getModelByUuid(session, bms.get(i).getBill_uuid());
+				bm.setIf_room(true);
+				bmdao.save(session, bm);
+				
+				
+			}
+			tx.commit();
 			
 			
 			

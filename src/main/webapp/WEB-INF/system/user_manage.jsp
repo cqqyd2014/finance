@@ -221,11 +221,38 @@
 							}
 						});
 		user_rows_in_page=<s:property value="#session.default_rows_in_page" />;
+			/*
 			datagrid_page_init('users_table',user_rows_in_page
 					,function select_page_callback(pageNumber, pageSize){
-				user_current_page=pageNumber;
+				//console.log("select");
+				search_bill_current_page=pageNumber;
+				//console.log(pageNumber);
+				search_bill_rows_in_page=pageSize;
+				
+
+				$("#users_table").datagrid({
+			    	
+			    	pageNumber:pageNumber,
+			    	pageSize:pageSize
+			    	
+			    	
+			    });  
+				$("#users_table").datagrid("load");
+			},
+			function change_page_size_callback(pageSize){
+				//console.log("size");
+				search_bill_rows_in_page=pageSize;
+				$("#users_table").datagrid({
+			    	
+			    	
+			    	pageSize:pageSize
+			    	
+			    	
+			    }); 
 				$("#users_table").datagrid("load");
 				});
+			*/
+	
 
 	}
 </script>

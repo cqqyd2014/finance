@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VBillDId implements java.io.Serializable {
 
+	private Date startDat;
+	private Date endDat;
 	private Boolean effective;
 	private Date unEffectiveDat;
 	private String unEffectiveUserid;
@@ -29,9 +31,12 @@ public class VBillDId implements java.io.Serializable {
 	public VBillDId() {
 	}
 
-	public VBillDId(Boolean effective, Date unEffectiveDat, String unEffectiveUserid, Date createDat,
-			String createUserid, String billUuid, String detailUuid, String bankCode, String businessCode,
-			String searchParCode, String searchParValue, String bankName, String businessName, String searchParName) {
+	public VBillDId(Date startDat, Date endDat, Boolean effective, Date unEffectiveDat, String unEffectiveUserid,
+			Date createDat, String createUserid, String billUuid, String detailUuid, String bankCode,
+			String businessCode, String searchParCode, String searchParValue, String bankName, String businessName,
+			String searchParName) {
+		this.startDat = startDat;
+		this.endDat = endDat;
 		this.effective = effective;
 		this.unEffectiveDat = unEffectiveDat;
 		this.unEffectiveUserid = unEffectiveUserid;
@@ -46,6 +51,24 @@ public class VBillDId implements java.io.Serializable {
 		this.bankName = bankName;
 		this.businessName = businessName;
 		this.searchParName = searchParName;
+	}
+
+	@Column(name = "start_dat", length = 35)
+	public Date getStartDat() {
+		return this.startDat;
+	}
+
+	public void setStartDat(Date startDat) {
+		this.startDat = startDat;
+	}
+
+	@Column(name = "end_dat", length = 35)
+	public Date getEndDat() {
+		return this.endDat;
+	}
+
+	public void setEndDat(Date endDat) {
+		this.endDat = endDat;
 	}
 
 	@Column(name = "effective")
@@ -183,8 +206,12 @@ public class VBillDId implements java.io.Serializable {
 			return false;
 		VBillDId castOther = (VBillDId) other;
 
-		return ((this.getEffective() == castOther.getEffective()) || (this.getEffective() != null
-				&& castOther.getEffective() != null && this.getEffective().equals(castOther.getEffective())))
+		return ((this.getStartDat() == castOther.getStartDat()) || (this.getStartDat() != null
+				&& castOther.getStartDat() != null && this.getStartDat().equals(castOther.getStartDat())))
+				&& ((this.getEndDat() == castOther.getEndDat()) || (this.getEndDat() != null
+						&& castOther.getEndDat() != null && this.getEndDat().equals(castOther.getEndDat())))
+				&& ((this.getEffective() == castOther.getEffective()) || (this.getEffective() != null
+						&& castOther.getEffective() != null && this.getEffective().equals(castOther.getEffective())))
 				&& ((this.getUnEffectiveDat() == castOther.getUnEffectiveDat())
 						|| (this.getUnEffectiveDat() != null && castOther.getUnEffectiveDat() != null
 								&& this.getUnEffectiveDat().equals(castOther.getUnEffectiveDat())))
@@ -224,6 +251,8 @@ public class VBillDId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getStartDat() == null ? 0 : this.getStartDat().hashCode());
+		result = 37 * result + (getEndDat() == null ? 0 : this.getEndDat().hashCode());
 		result = 37 * result + (getEffective() == null ? 0 : this.getEffective().hashCode());
 		result = 37 * result + (getUnEffectiveDat() == null ? 0 : this.getUnEffectiveDat().hashCode());
 		result = 37 * result + (getUnEffectiveUserid() == null ? 0 : this.getUnEffectiveUserid().hashCode());

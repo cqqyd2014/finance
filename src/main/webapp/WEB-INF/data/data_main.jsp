@@ -204,6 +204,7 @@ $.getJSON("../data/remove_logic.action", {
 						var gridOpts = $('#detail_table').datagrid('options');   
 						
 						gridOpts.queryParams=$('#search_par').serializeObject();
+						//console.log($('#search_par').serializeObject());
 						
 						gridOpts.url="../data/get_data_web_datagrid.action";
 						$("#detail_table").datagrid("load");
@@ -226,6 +227,7 @@ $.getJSON("../data/remove_logic.action", {
 						if ($('#number_span').css("display")=="inline"){
 							value=$('#number_value').numberbox('getValue');
 							}
+						//alert($('#col').combobox('getValue'));
 						
 						$.getJSON("../data/add_logic.action", {
 							
@@ -236,6 +238,7 @@ $.getJSON("../data/remove_logic.action", {
 							logic_string:JSON.stringify(logics),
 							view_name:view_name
 						}, function(result) {
+							//console.log(result);
 							var field=result.msg;
 							if (field.success){
 								//添加成功

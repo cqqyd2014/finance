@@ -1,6 +1,43 @@
 package gov.cqaudit.finance.bills.model;
 
 public class BillD {
+	java.util.Date start_dat;
+	java.util.Date end_dat;
+	String start_dat_print;
+	String end_dat_print;
+	
+	public java.util.Date getStart_dat() {
+		return start_dat;
+	}
+
+	public void setStart_dat(java.util.Date start_dat) {
+		this.start_dat = start_dat;
+	}
+
+	public java.util.Date getEnd_dat() {
+		return end_dat;
+	}
+
+	public void setEnd_dat(java.util.Date end_dat) {
+		this.end_dat = end_dat;
+	}
+
+	public String getStart_dat_print() {
+		return start_dat_print;
+	}
+
+	public void setStart_dat_print(String start_dat_print) {
+		this.start_dat_print = start_dat_print;
+	}
+
+	public String getEnd_dat_print() {
+		return end_dat_print;
+	}
+
+	public void setEnd_dat_print(String end_dat_print) {
+		this.end_dat_print = end_dat_print;
+	}
+
 	boolean effective;
 	String un_effective_userid;
 	java.util.Date un_effective_dat;

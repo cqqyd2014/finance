@@ -102,10 +102,8 @@ public class AddLogicAction extends LoginedAjaxAction {
 
 	@SuppressWarnings("unchecked")
 	@Action(value = "add_logic", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
-			
-			@InterceptorRef("defaultStack"),
-			@InterceptorRef("authorityInterceptor") })
-@Authority(module = "add_logic", privilege = "[00020003]", error_url = "authority_ajax_error")
+			@InterceptorRef("authorityStack") })
+@Authority(module = "add_logic", privilege = "*", error_url = "authority_ajax_error")
 	@Override
 	public String execute() {
 	// TODO Auto-generated method stub
@@ -116,7 +114,7 @@ public class AddLogicAction extends LoginedAjaxAction {
 	
 	java.util.ArrayList<LogicItem> logics=null;
 	
-	if (logic_string.equals("null")){
+	if (logic_string==null||logic_string.equals("null")){
 		logics=new java.util.ArrayList<>();
 		
 		

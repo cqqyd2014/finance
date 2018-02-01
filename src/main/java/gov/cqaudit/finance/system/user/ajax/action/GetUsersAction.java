@@ -21,9 +21,30 @@ import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 @Namespace("/system")
 public class GetUsersAction  extends LoginedAjaxAction {
 
-	
+	String page;
+	String rows;
 
 	
+public String getPage() {
+		return page;
+	}
+
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+
+	public String getRows() {
+		return rows;
+	}
+
+
+	public void setRows(String rows) {
+		this.rows = rows;
+	}
+
+
 @Action(value = "get_users", results = { @Result(type = "json", params = { "root", "msg" }) }, interceptorRefs = {
 			
 			@InterceptorRef("defaultStack"),

@@ -39,7 +39,8 @@ public class VBillDDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.bil
 		bd_h.setCreateUserid(bd.getCreate_userid());
 		bd_h.setUnEffectiveDat(bd.getUn_effective_dat());
 		bd_h.setUnEffectiveUserid(bd.getUn_effective_userid());
-		
+		bd_h.setStartDat(bd.getStart_dat());
+		bd_h.setEndDat(bd.getEnd_dat());
 		session.saveOrUpdate(bd_h);
 		
 	}
@@ -69,7 +70,10 @@ public class VBillDDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance.bil
 		bd.setCreate_userid(vbd_h.getId().getCreateUserid());
 		bd.setUn_effective_dat(vbd_h.getId().getUnEffectiveDat());
 		bd.setUn_effective_userid(vbd_h.getId().getUnEffectiveUserid());
-		
+		bd.setStart_dat(vbd_h.getId().getStartDat());
+		bd.setStart_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(vbd_h.getId().getStartDat()));
+		bd.setEnd_dat(vbd_h.getId().getEndDat());
+		bd.setEnd_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(vbd_h.getId().getEndDat()));
 		
 		return (T)bd;
 	}

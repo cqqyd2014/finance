@@ -29,12 +29,7 @@ public final class XmlDataTools {
 		for (int i=0,len=dtds.size();i<len;i++){
 			gov.cqaudit.finance.datatrans.model.DataTransD dtd=dtds.get(i);
 			gov.cqaudit.finance.bills.model.BillM bm=vbmdao.getModelByUuid(session, dtd.getBill_uuid());
-			if (bm.getAudit_user_name().equals("")){
-				bm.setBill_status("返回待审");
-			}
-			else{
-				bm.setBill_status("查看结果");
-			}
+			bm.setIf_output(true);
 			
 			vbmdao.save(session, bm);
 		}

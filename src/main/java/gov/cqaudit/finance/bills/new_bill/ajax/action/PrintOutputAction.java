@@ -73,23 +73,18 @@ public class PrintOutputAction extends PdfPrintInitAbstractAction {
 			// TODO Auto-generated method stub
 			gov.cqaudit.finance.hibernate.dao.VStatisticsBillsResultDAO vbdao=new gov.cqaudit.finance.hibernate.dao.VStatisticsBillsResultDAO();
 			bms = vbdao.getArrayListModelByBillUuids(session, bill_uuids);
-			//设置审核人员，只有manager可以审核
-			if (com.cqqyd2014.util.ArrayListTools.indexOfArrayList(sys_roles, "manager")!=-1){
+			
+			
 				gov.cqaudit.finance.hibernate.dao.VBillMDAO vbmdao=new gov.cqaudit.finance.hibernate.dao.VBillMDAO();
 				for (int i=0;i<bill_uuids.size();i++){
 					gov.cqaudit.finance.bills.model.BillM bm=vbmdao.getModelByUuid(session, bill_uuids.get(i));
-					bm.setAudit_user_id(user_id);
-					bm.setLast_audit_dat(new java.util.Date());
-					if (bm.getBill_status().equals("返回待审")){
-						bm.setBill_status("查看结果");
-					}
-					
+					bm.setIf_output(true);
 					vbmdao.save(session, bm);
 					
 					
 				}
 				tx.commit();
-			}
+			
 			
 			
 		} catch (HibernateException e) {

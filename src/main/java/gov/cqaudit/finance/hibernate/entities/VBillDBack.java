@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-16 13:34:04 by Hibernate Tools 5.2.3.Final
+// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -26,10 +26,16 @@ public class VBillDBack implements java.io.Serializable {
 
 	@EmbeddedId
 
-	@AttributeOverrides({ @AttributeOverride(name = "bankName", column = @Column(name = "bank_name", length = 90)),
+	@AttributeOverrides({ @AttributeOverride(name = "proName", column = @Column(name = "pro_name", length = 512)),
+			@AttributeOverride(name = "deptId", column = @Column(name = "dept_id", length = 36)),
+			@AttributeOverride(name = "bankName", column = @Column(name = "bank_name", length = 64)),
 			@AttributeOverride(name = "searchParName", column = @Column(name = "search_par_name", length = 90)),
 			@AttributeOverride(name = "accountName", column = @Column(name = "account_name", length = 256)),
+			@AttributeOverride(name = "deptName", column = @Column(name = "dept_name", length = 128)),
+			@AttributeOverride(name = "deptType", column = @Column(name = "dept_type", length = 4)),
+			@AttributeOverride(name = "typeName", column = @Column(name = "type_name", length = 90)),
 			@AttributeOverride(name = "businessName", column = @Column(name = "business_name", length = 90)),
+			@AttributeOverride(name = "downloadDat", column = @Column(name = "download_dat", length = 35)),
 			@AttributeOverride(name = "billUuid", column = @Column(name = "bill_uuid", length = 36)),
 			@AttributeOverride(name = "detailUuid", column = @Column(name = "detail_uuid", length = 36)),
 			@AttributeOverride(name = "bankCode", column = @Column(name = "bank_code", length = 4)),
@@ -38,12 +44,20 @@ public class VBillDBack implements java.io.Serializable {
 			@AttributeOverride(name = "searchParValue", column = @Column(name = "search_par_value", length = 1024)),
 			@AttributeOverride(name = "effective", column = @Column(name = "effective")),
 			@AttributeOverride(name = "unEffectiveDat", column = @Column(name = "un_effective_dat", length = 35)),
+			@AttributeOverride(name = "downloadUserName", column = @Column(name = "download_user_name", length = 45)),
 			@AttributeOverride(name = "unEffectiveUserid", column = @Column(name = "un_effective_userid", length = 36)),
 			@AttributeOverride(name = "createUserid", column = @Column(name = "create_userid", length = 36)),
-			@AttributeOverride(name = "createDat", column = @Column(name = "create_dat", length = 35)),
+			@AttributeOverride(name = "billDCreateDat", column = @Column(name = "bill_d_create_dat", length = 35)),
 			@AttributeOverride(name = "accountId", column = @Column(name = "account_id", length = 128)),
 			@AttributeOverride(name = "detailCount", column = @Column(name = "detail_count", precision = 131089, scale = 0)),
-			@AttributeOverride(name = "customId", column = @Column(name = "custom_id", length = 128)) })
+			@AttributeOverride(name = "customId", column = @Column(name = "custom_id", length = 128)),
+			@AttributeOverride(name = "billMCreateDat", column = @Column(name = "bill_m_create_dat", length = 35)),
+			@AttributeOverride(name = "publicCount", column = @Column(name = "public_count")),
+			@AttributeOverride(name = "privateCount", column = @Column(name = "private_count")),
+			@AttributeOverride(name = "publicDetail", column = @Column(name = "public_detail", precision = 131089, scale = 0)),
+			@AttributeOverride(name = "privateDetail", column = @Column(name = "private_detail", precision = 131089, scale = 0)),
+			@AttributeOverride(name = "createUserName", column = @Column(name = "create_user_name", length = 45)),
+			@AttributeOverride(name = "downloadUserId", column = @Column(name = "download_user_id", length = 36)) })
 	public VBillDBackId getId() {
 		return this.id;
 	}
