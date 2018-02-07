@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
+// Generated 2018-2-2 15:03:25 by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -170,7 +170,7 @@ public class VBillDId implements java.io.Serializable {
 		this.searchParValue = searchParValue;
 	}
 
-	@Column(name = "bank_name", length = 90)
+	@Column(name = "bank_name", length = 64)
 	public String getBankName() {
 		return this.bankName;
 	}

@@ -250,6 +250,8 @@ public class GetTableToExcelAction2 extends DownloadFromServerAbstractAction {
 								celld_dec.setCellValue(field_dec_value.doubleValue());
 								
 								break;
+							
+								
 							default:
 
 							}

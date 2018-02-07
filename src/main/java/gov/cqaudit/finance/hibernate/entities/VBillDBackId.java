@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
+// Generated 2018-2-2 15:03:25 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,6 +12,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VBillDBackId implements java.io.Serializable {
 
+	private Date startDat;
+	private Date endDat;
 	private String proName;
 	private String deptId;
 	private String bankName;
@@ -48,13 +50,16 @@ public class VBillDBackId implements java.io.Serializable {
 	public VBillDBackId() {
 	}
 
-	public VBillDBackId(String proName, String deptId, String bankName, String searchParName, String accountName,
-			String deptName, String deptType, String typeName, String businessName, Date downloadDat, String billUuid,
-			String detailUuid, String bankCode, String businessCode, String searchParCode, String searchParValue,
-			Boolean effective, Date unEffectiveDat, String downloadUserName, String unEffectiveUserid,
-			String createUserid, Date billDCreateDat, String accountId, BigDecimal detailCount, String customId,
-			Date billMCreateDat, Integer publicCount, Integer privateCount, BigDecimal publicDetail,
-			BigDecimal privateDetail, String createUserName, String downloadUserId) {
+	public VBillDBackId(Date startDat, Date endDat, String proName, String deptId, String bankName,
+			String searchParName, String accountName, String deptName, String deptType, String typeName,
+			String businessName, Date downloadDat, String billUuid, String detailUuid, String bankCode,
+			String businessCode, String searchParCode, String searchParValue, Boolean effective, Date unEffectiveDat,
+			String downloadUserName, String unEffectiveUserid, String createUserid, Date billDCreateDat,
+			String accountId, BigDecimal detailCount, String customId, Date billMCreateDat, Integer publicCount,
+			Integer privateCount, BigDecimal publicDetail, BigDecimal privateDetail, String createUserName,
+			String downloadUserId) {
+		this.startDat = startDat;
+		this.endDat = endDat;
 		this.proName = proName;
 		this.deptId = deptId;
 		this.bankName = bankName;
@@ -87,6 +92,24 @@ public class VBillDBackId implements java.io.Serializable {
 		this.privateDetail = privateDetail;
 		this.createUserName = createUserName;
 		this.downloadUserId = downloadUserId;
+	}
+
+	@Column(name = "start_dat", length = 35)
+	public Date getStartDat() {
+		return this.startDat;
+	}
+
+	public void setStartDat(Date startDat) {
+		this.startDat = startDat;
+	}
+
+	@Column(name = "end_dat", length = 35)
+	public Date getEndDat() {
+		return this.endDat;
+	}
+
+	public void setEndDat(Date endDat) {
+		this.endDat = endDat;
 	}
 
 	@Column(name = "pro_name", length = 512)
@@ -386,8 +409,12 @@ public class VBillDBackId implements java.io.Serializable {
 			return false;
 		VBillDBackId castOther = (VBillDBackId) other;
 
-		return ((this.getProName() == castOther.getProName()) || (this.getProName() != null
-				&& castOther.getProName() != null && this.getProName().equals(castOther.getProName())))
+		return ((this.getStartDat() == castOther.getStartDat()) || (this.getStartDat() != null
+				&& castOther.getStartDat() != null && this.getStartDat().equals(castOther.getStartDat())))
+				&& ((this.getEndDat() == castOther.getEndDat()) || (this.getEndDat() != null
+						&& castOther.getEndDat() != null && this.getEndDat().equals(castOther.getEndDat())))
+				&& ((this.getProName() == castOther.getProName()) || (this.getProName() != null
+						&& castOther.getProName() != null && this.getProName().equals(castOther.getProName())))
 				&& ((this.getDeptId() == castOther.getDeptId()) || (this.getDeptId() != null
 						&& castOther.getDeptId() != null && this.getDeptId().equals(castOther.getDeptId())))
 				&& ((this.getBankName() == castOther.getBankName()) || (this.getBankName() != null
@@ -475,6 +502,8 @@ public class VBillDBackId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
+		result = 37 * result + (getStartDat() == null ? 0 : this.getStartDat().hashCode());
+		result = 37 * result + (getEndDat() == null ? 0 : this.getEndDat().hashCode());
 		result = 37 * result + (getProName() == null ? 0 : this.getProName().hashCode());
 		result = 37 * result + (getDeptId() == null ? 0 : this.getDeptId().hashCode());
 		result = 37 * result + (getBankName() == null ? 0 : this.getBankName().hashCode());

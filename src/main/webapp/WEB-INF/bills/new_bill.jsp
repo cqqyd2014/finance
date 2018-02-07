@@ -164,6 +164,10 @@
 			$.messager.alert("操作提示", "请检查身份证号码是否合规！", "error");
 			return;
 			}
+		if ($('#start_dat').datebox('getValue')<'2013-01-01'){
+			$.messager.alert("操作提示", "本系统可查询的数据从2013年1月1日期，因此起始时间不能早于2013年1月1日！", "error");
+			return;
+			}
 
 		$.getJSON("../bills/add_bill_detail.action", {
 			"business_code" : $("#business_code").combobox("getValue"),

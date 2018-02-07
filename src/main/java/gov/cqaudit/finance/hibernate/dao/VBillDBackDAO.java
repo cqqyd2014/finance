@@ -81,6 +81,10 @@ public class VBillDBackDAO extends GetModelFromEntityViewDAO<gov.cqaudit.finance
 		m.setSearch_value(h.getId().getSearchParValue());
 		m.setCustom_id(h.getId().getCustomId());
 		m.setAccount_name(h.getId().getAccountName());
+		m.setStart_dat(h.getId().getStartDat());
+		m.setStart_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getStartDat()));
+		m.setEnd_dat(h.getId().getEndDat());
+		m.setEnd_dat_print(com.cqqyd2014.util.DateUtil.getPrintSimpleString(h.getId().getEndDat()));
 		return (T)m;
 	}
 }

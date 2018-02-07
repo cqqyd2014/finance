@@ -154,7 +154,11 @@
 											+rec.business_code
 											+'\',\''
 											+rec.account_id
-											+ '\')" href="javascript:void(0)">客户</a>';
+											+'\',\''
+											+rec.start_dat_print
+											+' 00:00:00\',\''
+											+rec.end_dat_print
+											+ ' 23:59:59\')" href="javascript:void(0)">客户</a>';
 									return btn;
 								}
 							} ] ],
@@ -187,7 +191,7 @@
 	 dialog_init('view_reslut_div');
 	 }
 
-function download_detail_xls(bank_code,business_code,custom_id){
+function download_detail_xls(bank_code,business_code,custom_id,stat_dat,end_dat){
 	//console.log(business_code);
 	 var table_name,filter_cols,filter_orders,filter_ordertypes;
 		switch(business_code)
@@ -195,21 +199,21 @@ function download_detail_xls(bank_code,business_code,custom_id){
 		case "0001":
 		  //对公查询
 		  table_name="data_core_public_account_trade_detail";
-		  filter_cols="public_account_id,bank_code";
+		  filter_cols="public_account_id,bank_code,public_trade_dat,public_trade_dat";
 		  filter_orders="public_trade_dat,public_trade_seq";
 		  filter_ordertypes="asc,asc";
 		  break;
 		case "0002":
 			
 			table_name="data_core_private_account_trade_detail";
-			filter_cols="private_account_id,bank_code";
+			filter_cols="private_account_id,bank_code,private_trade_dat,private_trade_dat";
 			filter_orders="private_trade_dat,private_trade_seq";
 			filter_ordertypes="asc,asc";
 			break;
 		default:
 		  //n 与 case 1 和 case 2 不同时执行的代码
 		}
-		window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+'&filter_orders='+filter_orders+"&filter_ordertypes="+filter_ordertypes);
+		window.open('../data_export/get_table_to_excel2.action?table_name='+table_name+'&filter_ops==,=,>,<&filter_cols='+filter_cols+'&filter_values='+custom_id+','+bank_code+','+stat_dat+','+end_dat+'&filter_orders='+filter_orders+"&filter_ordertypes="+filter_ordertypes);
 
 		
 }

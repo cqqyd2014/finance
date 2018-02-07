@@ -200,7 +200,22 @@ public abstract class ExportViewBase {
 								
 								break;
 							case ("java.util.Date"):
+								switch(op){
+								case ("="):
+									hql=hql+"=\'"+value+"\'";
+									break;
+								case (">"):
+									hql=hql+">\'"+value+"\'";
+									break;
+								case ("<"):
+									hql=hql+"<\'"+value+"\'";
+									break;
 								
+								
+								
+								
+								
+								}
 								break;
 							default:
 

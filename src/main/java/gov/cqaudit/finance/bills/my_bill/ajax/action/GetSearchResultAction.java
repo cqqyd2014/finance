@@ -21,7 +21,11 @@ import org.hibernate.Transaction;
 public class GetSearchResultAction
   extends LoginedAjaxAction
 {
-  String bill_uuid;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4735612752837017836L;
+String bill_uuid;
   
   public String getBill_uuid()
   {

@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-1-30 16:21:58 by Hibernate Tools 5.2.3.Final
+// Generated 2018-2-2 15:03:25 by Hibernate Tools 5.2.3.Final
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -39,7 +39,7 @@ public class VBillD implements java.io.Serializable {
 			@AttributeOverride(name = "businessCode", column = @Column(name = "business_code", length = 4)),
 			@AttributeOverride(name = "searchParCode", column = @Column(name = "search_par_code", length = 4)),
 			@AttributeOverride(name = "searchParValue", column = @Column(name = "search_par_value", length = 1024)),
-			@AttributeOverride(name = "bankName", column = @Column(name = "bank_name", length = 90)),
+			@AttributeOverride(name = "bankName", column = @Column(name = "bank_name", length = 64)),
 			@AttributeOverride(name = "businessName", column = @Column(name = "business_name", length = 90)),
 			@AttributeOverride(name = "searchParName", column = @Column(name = "search_par_name", length = 90)) })
 	public VBillDId getId() {

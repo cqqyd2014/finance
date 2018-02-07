@@ -28,10 +28,11 @@ public final class AccountSearch {
         		case "0001":
         		 //企业名称查询
         			gov.cqaudit.finance.hibernate.dao.VDataCorePublicCustomBaseDAO pcbdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePublicCustomBaseDAO();
-        			java.util.ArrayList<gov.cqaudit.finance.database.model.DataCorePublicCustomBase> pcbs=pcbdao.getArrayListViewByHqlSql(session, "from VDataCorePublicCustomBase where id.publicCustomName=\'"+bd.getSearch_par_value()+"\'");
+        			java.util.ArrayList<gov.cqaudit.finance.database.model.DataCorePublicCustomBase> pcbs=pcbdao.getArrayListViewByHqlSql(session, "from VDataCorePublicCustomBase where id.publicCustomName=\'"+bd.getSearch_par_value()+"\' and id.bankCode=\'"+bank_code+"\'");
         			
         			for (int i=0,len1=pcbs.size();i<len1;i++){
         				gov.cqaudit.finance.database.model.DataCorePublicCustomBase pcb=pcbs.get(i);
+        				System.out.println(pcb.getPublic_custom_id());
         				java.util.ArrayList<gov.cqaudit.finance.database.model.DataCorePublicAccountInfo> pas=padao.getArrayListViewByHqlSql(session, 
         						"from VDataCorePublicAccountInfo where id.publicCustomId=\'"+pcb.getPublic_custom_id()+"\' and id.bankCode=\'"+pcb.getBank_code()+"\'");
         				//明细记录
@@ -39,13 +40,13 @@ public final class AccountSearch {
         					gov.cqaudit.finance.database.model.DataCorePublicAccountInfo pa=pas.get(ii);
         					String count=patdao.getCountByHqlSql(session, "select count(*) from VDataCorePublicAccountTradeDetail where id.bankCode=\'"+pcb.getBank_code()
         					+"\' and id.publicAccountId='"+pa.getPublic_account_id()+"\' and id.publicTradeDat between \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getStart_dat())+
-        					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat()));
+        					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat())+"\'");
         					gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
         					bdb.setAccountName(pa.getPublic_account_name());
         					bdb.setCustomId(pcb.getPublic_custom_id());
         					bdb.setDetailCount(new java.math.BigDecimal(count));
         					bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bd.getBill_uuid(), bd.getDetail_uuid(), pa.getPublic_account_id()));
-        					session.saveOrUpdate(bdb);
+        					session.merge(bdb);
         					
         				}
         				
@@ -64,13 +65,13 @@ public final class AccountSearch {
         				gov.cqaudit.finance.database.model.DataCorePublicAccountInfo pa=pas.get(0);
         				String count=patdao.getCountByHqlSql(session, "select count(*) from VDataCorePublicAccountTradeDetail where id.bankCode=\'"+bd.getBank_code()
     					+"\' and id.publicAccountId='"+bd.getSearch_par_value()+"\' and id.publicTradeDat between \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getStart_dat())+
-    					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat()));
+    					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat())+"\'");
     					gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
     					bdb.setAccountName(pa.getPublic_account_name());
     					bdb.setCustomId(pa.getPublic_custom_id());
     					bdb.setDetailCount(new java.math.BigDecimal(count));
     					bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bd.getBill_uuid(), bd.getDetail_uuid(), pa.getPublic_account_id()));
-    					session.saveOrUpdate(bdb);
+    					session.merge(bdb);
         			}
         			
         		  break;
@@ -80,14 +81,14 @@ public final class AccountSearch {
         			for (int i=0,len1=prs.size();i<len1;i++){
         				gov.cqaudit.finance.database.model.DataCorePrivateAccountInfo pr=prs.get(i);
         				String count=prtdao.getCountByHqlSql(session, "select count(*) from VDataCorePrivateAccountTradeDetail where id.bankCode=\'"+bd.getBank_code()
-    					+"\' and id.publicAccountId='"+bd.getSearch_par_value()+"\' and id.privateTradeDat between \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getStart_dat())+
-    					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat()));
+    					+"\' and id.privateAccountId='"+bd.getSearch_par_value()+"\' and id.privateTradeDat between \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getStart_dat())+
+    					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat())+"\'");
     					gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
     					bdb.setAccountName(pr.getPrivate_account_name());
     					bdb.setCustomId(pr.getPrivate_custom_id());
     					bdb.setDetailCount(new java.math.BigDecimal(count));
     					bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bd.getBill_uuid(), bd.getDetail_uuid(), bd.getSearch_par_value()));
-    					session.saveOrUpdate(bdb);
+    					session.merge(bdb);
         			}
         			
         			
@@ -106,14 +107,14 @@ public final class AccountSearch {
             			for (int i=0,len1=prss.size();i<len1;i++){
             				gov.cqaudit.finance.database.model.DataCorePrivateAccountInfo pr=prss.get(i);
             				String count=prtdao.getCountByHqlSql(session, "select count(*) from VDataCorePrivateAccountTradeDetail where id.bankCode=\'"+bd.getBank_code()
-        					+"\' and id.publicAccountId='"+pr.getPrivate_account_id()+"\' and id.privateTradeDat between \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getStart_dat())+
-        					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat()));
+        					+"\' and id.privateAccountId='"+pr.getPrivate_account_id()+"\' and id.privateTradeDat between \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getStart_dat())+
+        					"\' and \'"+com.cqqyd2014.util.DateUtil.getPrintFullString(bd.getEnd_dat())+"\'");
         					gov.cqaudit.finance.hibernate.entities.BillDBack bdb=new gov.cqaudit.finance.hibernate.entities.BillDBack();
         					bdb.setAccountName(pr.getPrivate_account_name());
         					bdb.setCustomId(pr.getPrivate_custom_id());
         					bdb.setDetailCount(new java.math.BigDecimal(count));
         					bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bd.getBill_uuid(), bd.getDetail_uuid(), bd.getSearch_par_value()));
-        					session.saveOrUpdate(bdb);
+        					session.merge(bdb);
             			}
         				
         				
