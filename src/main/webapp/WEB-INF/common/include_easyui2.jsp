@@ -21,4 +21,4 @@
 <link rel="stylesheet" type="text/css" href="../js/fakeLoader.css" />
 <script type="text/javascript" src="../js/fakeLoader.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../js/qyd.css" />
-<script type="text/javascript" src="../js/qyd.js"></script>
+<script type="text/javascript" src="../js/qyd20180209.js"></script>

@@ -428,7 +428,7 @@ function center_load_ready(){
 								$('#room_' + bill.bill_uuid)
 										.linkbutton('disable');
 								$('#del_bill_' + bill.bill_uuid)
-								.linkbutton('disable');
+								.linkbutton('enable');
 										break;
 									case '等待返回':
 										$('#permit_bill_' + bill.bill_uuid)

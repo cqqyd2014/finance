@@ -49,6 +49,7 @@
 					singleSelect : true,
 					title : '分类统计结果',
 					rownumbers : true,
+					showFooter: true,
 					columns : [ [
 
 

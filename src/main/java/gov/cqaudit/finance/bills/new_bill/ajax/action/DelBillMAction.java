@@ -58,6 +58,20 @@ public class DelBillMAction   extends LoginedAjaxAction {
 				java.util.Date now=new java.util.Date();
 				bm.setUneffective_dat(now);
 				vbdao.save(session, bm);
+				gov.cqaudit.finance.hibernate.dao.VBillMessageDAO messagedao=new gov.cqaudit.finance.hibernate.dao.VBillMessageDAO();
+				gov.cqaudit.finance.bills.model.BillMessage message=new gov.cqaudit.finance.bills.model.BillMessage();
+				message.setBill_uuid(bill_uuid);
+				message.setCreate_dat(now);
+				message.setDept_id(dept_id);
+				message.setIp_addr(ip_addr);
+				message.setMessage("订单作废");
+				message.setType_id("0001");
+				message.setUser_id(user_id);
+				message.setMessage_uuid(com.cqqyd2014.util.StringUtil.getUUID());
+				messagedao.save(session, message);
+				
+				
+				
 				tx.commit();
 				
 				

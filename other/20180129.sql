@@ -116,6 +116,23 @@ insert into sys_code values('message_type','消息类型','0001','流程日志')
 insert into sys_code values('message_type','消息类型','0002','审核日志');
 insert into sys_code values('message_type','消息类型','0003','查看日志');
 
+
+CREATE TABLE bill_message
+(
+  message_uuid character(36) NOT NULL,
+  bill_uuid character(36),
+  message_type character(4),
+  create_dat timestamp with time zone,
+  ip_addr character varying(32),
+  dept_id character(36),
+  message character varying(1024),
+  create_message_user_id character(36),
+  CONSTRAINT pk_bill_message PRIMARY KEY (message_uuid)
+)
+WITH (
+  OIDS=FALSE
+);
+
 create view v_bill_message as
 select t1.*,t2.user_name,t3.dept_name,t4.s_value message_type_name from bill_message t1,sys_user t2,sys_dept t3,sys_code t4
 where t1.create_message_user_id=t2.user_id and t1.dept_id=t3.dept_uuid and t4.s_id='message_type' and t4.s_code=t1.message_type;
@@ -212,3 +229,18 @@ CREATE OR REPLACE VIEW v_statistics_bills_result_by_type AS
    FROM v_statistics_bills_result
   GROUP BY to_date(to_char(v_statistics_bills_result.create_dat, 'YYYY-MM-DD'::text), 'YYYY-MM-DD'::text), v_statistics_bills_result.dept_type, v_statistics_bills_result.type_name, v_statistics_bills_result.dept_name;
 
+create view v_trans_not_back as
+ SELECT t4.bank_code, t4.bill_uuid
+   FROM ( SELECT bill_d.bank_code, bill_d.bill_uuid
+           FROM bill_d
+          GROUP BY bill_d.bank_code, bill_d.bill_uuid) t4
+   LEFT JOIN ( SELECT t1.bank_code, t2.bill_uuid
+           FROM data_trans_back t1, data_trans_d t2
+          WHERE t1.trans_uuid = t2.trans_uuid
+          GROUP BY t1.bank_code, t2.bill_uuid) t3 ON (t4.bill_uuid = t3.bill_uuid and t4.bank_code=t3.bank_code)
+  WHERE t3.bank_code IS NULL;
+
+  update sys_par set value='重庆市地方金融数据查询管理系统',select_items='重庆市地方金融数据查询管理系统' where code='app_name';
+  insert into sys_role_menu_d values('manager','0003','0001');
+
+  

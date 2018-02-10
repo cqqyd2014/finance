@@ -1,5 +1,5 @@
 package gov.cqaudit.finance.hibernate.entities;
-// Generated 2018-2-2 15:03:25 by Hibernate Tools 5.2.3.Final
+// Generated 2018-2-9 12:39:57 by Hibernate Tools 5.2.3.Final
 
 import java.math.BigDecimal;
 import javax.persistence.Column;

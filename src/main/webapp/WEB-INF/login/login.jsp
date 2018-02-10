@@ -63,9 +63,9 @@
 
 		<table style="width: 100%">
 			<tr>
-				<td width="30%"><img alt="" src="../img/audit.jpg"
+				<td width="25%"><img alt="" src="../img/audit.jpg"
 					width="100px"></td>
-				<td width="70%"><h1><s:property value="#application.app_name"/></h1></td>
+				<td width="75%"><h2><s:property value="#application.app_name"/></h2></td>
 			</tr>
 			<tr>
 				<td colspan='2' align="right">2017.12</td>

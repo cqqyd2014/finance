@@ -2,6 +2,7 @@ package gov.cqaudit.finance.datatrans.upload_reslut;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Calendar;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -59,13 +60,13 @@ public final class XmlDataTools {
 				}  
 				Method method = null;
 				try {
-					method = threadClazz.getDeclaredMethod(ct.getTableEName(), Session.class,Element.class,String.class);
+					method = threadClazz.getDeclaredMethod(ct.getTableEName(), Session.class,Element.class,String.class,java.util.Date.class);
 				} catch (NoSuchMethodException | SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}  
 				try {
-					java.math.BigDecimal back_count=(java.math.BigDecimal)(method.invoke(null, session,table_node,bank_code));
+					java.math.BigDecimal back_count=(java.math.BigDecimal)(method.invoke(null, session,table_node,bank_code,op_dat_dat));
 					XmlDataToolsResult r=new XmlDataToolsResult();
 					r.setBank_code(bank_code);
 					r.setRows_count(back_count);
@@ -75,7 +76,7 @@ public final class XmlDataTools {
 					
 					//保存到数据库
 					gov.cqaudit.finance.datatrans.model.DataTransBack db=new gov.cqaudit.finance.datatrans.model.DataTransBack();
-					db.setBank_code(table_code);
+					db.setBank_code(bank_code);
 					db.setRows_count(back_count);
 					db.setTable_code(table_code);
 					db.setTrans_uuid(trans_uuid);
@@ -110,7 +111,7 @@ public final class XmlDataTools {
 	}
 	//解析对公客户基本信息表
 	@SuppressWarnings("unused")
-	private static java.math.BigDecimal data_core_public_custom_base(Session session,Element e,String bank_code){
+	private static java.math.BigDecimal data_core_public_custom_base(Session session,Element e,String bank_code,java.util.Date op_dat_dat){
 		
 		@SuppressWarnings("unchecked")
 		java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
@@ -135,7 +136,7 @@ public final class XmlDataTools {
 	}
 	//解析对公客户分户账表
 	@SuppressWarnings("unused")
-	private static java.math.BigDecimal data_core_public_account_info(Session session,Element e,String bank_code){
+	private static java.math.BigDecimal data_core_public_account_info(Session session,Element e,String bank_code,java.util.Date op_dat_dat){
 		@SuppressWarnings("unchecked")
 		java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 		int flag=0;
@@ -151,6 +152,8 @@ public final class XmlDataTools {
 			
 			m.setPublic_custom_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pub_Leg_CustNo")));
 			m.setPublic_close_dat(com.cqqyd2014.util.StringUtil.cleanToDate(row.attributeValue("Pub_Leg_CancelDate")+" 00:00:00"));
+			m.setTimepoint(op_dat_dat);
+			
 			
 			gov.cqaudit.finance.hibernate.dao.VDataCorePublicAccountInfoDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePublicAccountInfoDAO();
 			vdao.save(session, m);
@@ -159,7 +162,7 @@ public final class XmlDataTools {
 		return new java.math.BigDecimal(flag);
 		}
 		//解析对公客户明细账
-		public static java.math.BigDecimal data_core_public_account_trade_detail(Session session,Element e,String bank_code){
+		public static java.math.BigDecimal data_core_public_account_trade_detail(Session session,Element e,String bank_code,java.util.Date op_dat_dat){
 		@SuppressWarnings("unchecked")
 		java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 		int flag=0;
@@ -192,7 +195,7 @@ public final class XmlDataTools {
 	}
 		//解析对私基本信息表
 		@SuppressWarnings("unused")
-		private static java.math.BigDecimal data_core_private_custom_base(Session session,Element e,String bank_code){
+		private static java.math.BigDecimal data_core_private_custom_base(Session session,Element e,String bank_code,java.util.Date op_dat_dat){
 			@SuppressWarnings("unchecked")
 			java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 			int flag=0;
@@ -215,7 +218,7 @@ public final class XmlDataTools {
 		}
 		//解析对私分户账
 		@SuppressWarnings("unused")
-		private static java.math.BigDecimal data_core_private_account_info(Session session,Element e,String bank_code){
+		private static java.math.BigDecimal data_core_private_account_info(Session session,Element e,String bank_code,java.util.Date op_dat_dat){
 			@SuppressWarnings("unchecked")
 			java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 			int flag=0;
@@ -231,7 +234,7 @@ public final class XmlDataTools {
 				m.setPrivate_card_no(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Leg_CardNo")));
 				m.setPrivate_custom_id(com.cqqyd2014.util.StringUtil.cleanToString(row.attributeValue("Pri_Leg_CustNo")));
 				m.setPrivate_close_dat(com.cqqyd2014.util.StringUtil.cleanToDate(row.attributeValue("Pri_Leg_CancelDate")+" 00:00:00"));
-				
+				m.setTimepoint(op_dat_dat);
 				gov.cqaudit.finance.hibernate.dao.VDataCorePrivateAccountInfoDAO vdao=new gov.cqaudit.finance.hibernate.dao.VDataCorePrivateAccountInfoDAO();
 				vdao.save(session, m);
 				flag++;
@@ -240,7 +243,7 @@ public final class XmlDataTools {
 		}
 		//解析对私明细账
 		@SuppressWarnings("unused")
-		private static java.math.BigDecimal data_core_private_account_trade_detail(Session session,Element e,String bank_code){
+		private static java.math.BigDecimal data_core_private_account_trade_detail(Session session,Element e,String bank_code,java.util.Date op_dat_dat){
 			@SuppressWarnings("unchecked")
 			java.util.ArrayList<Element> rows=(java.util.ArrayList<Element>)e.elements();
 			int flag=0;

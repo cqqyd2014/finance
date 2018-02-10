@@ -50,6 +50,7 @@
 					singleSelect : true,
 					title : '明细统计结果',
 					rownumbers : true,
+					showFooter: true,
 					columns : [ [
 							{
 								field : 'create_date_print',
@@ -117,6 +118,7 @@ function date_statistic(){
 	
 	var gridOpts = $('#date_statistic_table').datagrid('options');   
 	gridOpts.url="../statistic/get_date_statistic.action";
+	gridOpts.showFooter=true;
 	
 	gridOpts.queryParams=$('#date_statistic_form').serializeObject();
 	//console.log(gridOpts.queryParams);

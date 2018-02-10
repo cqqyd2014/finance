@@ -183,7 +183,7 @@ try {
 		            Element head=root.element("Head");
 		    		String trans_uuid=head.attributeValue("trans_id");
 		    		session.flush();
-		    		gov.cqaudit.finance.datatrans.upload_reslut.after.AccountSearch.afterToDo(session, trans_uuid);
+		    		gov.cqaudit.finance.datatrans.upload_reslut.after.AccountSearch.afterToDo(session, trans_uuid,dept_id,user_id,ip_addr);
 		    		
 					
 				} catch (IOException | DocumentException e) {

@@ -59,13 +59,20 @@ sm.setAuth_success(true);
 			java.util.Date end_date=com.cqqyd2014.util.DateUtil.FullStringToJDate(end_dat+" 23:59:59");
 			gov.cqaudit.finance.hibernate.dao.VStatisticsBillsResultDAO stdao=new gov.cqaudit.finance.hibernate.dao.VStatisticsBillsResultDAO();
 			java.util.ArrayList<gov.cqaudit.finance.statistics.model.StatisticsBillsResult> ms=stdao.getArrayListModelBetweenCreateDate(session, start_date, end_date);
-			
-			
+			gov.cqaudit.finance.statistics.model.StatisticsBillsResultTotal to=new gov.cqaudit.finance.statistics.model.StatisticsBillsResultTotal();
+			to.setPro_name("合计");
+			to.setPrivate_account_count(com.cqqyd2014.util.ArrayListTools.sumFields(ms, "getPrivate_account_count"));
+			to.setPrivate_detail_count(com.cqqyd2014.util.ArrayListTools.sumFields(ms, "getPrivate_detail_count"));
+			to.setPublic_account_count(com.cqqyd2014.util.ArrayListTools.sumFields(ms, "getPublic_account_count"));
+			to.setPublic_detail_count(com.cqqyd2014.util.ArrayListTools.sumFields(ms, "getPublic_detail_count"));
+			java.util.ArrayList<gov.cqaudit.finance.statistics.model.StatisticsBillsResultTotal> tos=new java.util.ArrayList<>();
+			tos.add(to);
 			
 			
 			msg=new java.util.HashMap<String,Object>();
 			msg.put("total", String.valueOf(ms.size()));
 			msg.put("rows", ms);
+			msg.put("footer", tos);
 			
 		}
 

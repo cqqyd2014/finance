@@ -61,7 +61,7 @@ public class PostAddOnAction   extends LoginedAjaxAction {
 					message.setType_id("0001");
 					message.setUser_id(user_id);
 					mdao.save(session, message);
-					
+					sm.setSuccess(true);
 					
 				}
 				
@@ -72,7 +72,7 @@ public class PostAddOnAction   extends LoginedAjaxAction {
 				sm.setBoolean_flag(true);
 				
 				
-			sm.setSuccess(true);
+			
 			tx.commit();
 			
 		}
@@ -93,7 +93,7 @@ public class PostAddOnAction   extends LoginedAjaxAction {
 		 finally {
 				HibernateSessionFactory.closeSession();
 			}
-		sm.setSuccess(true);
+		
 		msg=sm.toMap();
 		return SUCCESS;
 	}

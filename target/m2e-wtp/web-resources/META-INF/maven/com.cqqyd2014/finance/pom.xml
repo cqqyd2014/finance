@@ -33,12 +33,7 @@
 
 	</distributionManagement>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
-		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>core</artifactId>
-			<version>3.3.1</version>
-		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/net.sf.barcode4j/barcode4j -->
 		<dependency>
 			<groupId>net.sf.barcode4j</groupId>
@@ -62,11 +57,7 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.9</version>
 		</dependency>
-		<dependency>
-			<groupId>net.sourceforge.javacsv</groupId>
-			<artifactId>javacsv</artifactId>
-			<version>2.0</version>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
@@ -272,13 +263,7 @@
 			<artifactId>spring-orm</artifactId>
 			<version>4.3.13.RELEASE</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.9.4</version>
-</dependency>
-		
+
 
 	</dependencies>
 	<properties>
