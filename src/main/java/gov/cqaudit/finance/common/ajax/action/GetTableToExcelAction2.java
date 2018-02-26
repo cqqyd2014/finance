@@ -20,7 +20,7 @@ import org.hibernate.Session;
 import com.cqqyd2014.common.action.DownloadFromServerAbstractAction;
 
 import gov.cqaudit.finance.annotation.Export;
-import gov.cqaudit.finance.database.model.DataCorePrivateAccountTradeDetail;
+
 import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 
 @SuppressWarnings("serial")

@@ -1,13 +1,8 @@
 package gov.cqaudit.finance.bills.new_bill.ajax.action;
 
-import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import javax.servlet.http.HttpServletRequest;
 

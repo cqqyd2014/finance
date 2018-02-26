@@ -121,7 +121,7 @@ public final class AccountSearch {
         					bdb.setAccountName(pr.getPrivate_account_name());
         					bdb.setCustomId(pr.getPrivate_custom_id());
         					bdb.setDetailCount(new java.math.BigDecimal(count));
-        					bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bd.getBill_uuid(), bd.getDetail_uuid(), bd.getSearch_par_value()));
+        					bdb.setId(new gov.cqaudit.finance.hibernate.entities.BillDBackId(bd.getBill_uuid(), bd.getDetail_uuid(), pr.getPrivate_account_id()));
         					session.merge(bdb);
             			}
         				

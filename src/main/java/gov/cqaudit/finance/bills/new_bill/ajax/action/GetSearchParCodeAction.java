@@ -1,6 +1,6 @@
 package gov.cqaudit.finance.bills.new_bill.ajax.action;
 
-import java.util.Map;
+
 
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.InterceptorRef;
@@ -8,8 +8,7 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 
 import com.cqqyd2014.annotation.Authority;
 

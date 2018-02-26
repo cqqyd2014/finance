@@ -1,20 +1,20 @@
 package gov.cqaudit.finance.bills.my_bill.ajax.action;
 
 import com.cqqyd2014.annotation.Authority;
-import com.cqqyd2014.util.AjaxSuccessMessage;
+
 import gov.cqaudit.finance.bills.model.BillDBack;
 import gov.cqaudit.finance.common.LoginedAjaxAction;
 import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
 import gov.cqaudit.finance.hibernate.dao.VBillDBackDAO;
-import java.io.PrintStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.hibernate.HibernateException;
-import org.hibernate.Transaction;
+
 
 @ParentPackage("bfkjs-json-default")
 @Namespace("/bills")

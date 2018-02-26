@@ -7,13 +7,13 @@ import org.apache.struts2.convention.annotation.InterceptorRef;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-import org.hibernate.HibernateException;
+
 
 import com.cqqyd2014.annotation.Authority;
 
 import gov.cqaudit.finance.common.LoginedAjaxAction;
 import gov.cqaudit.finance.data.common.action.LogicItem;
-import gov.cqaudit.finance.hibernate.HibernateSessionFactory;
+
 import net.sf.json.JSONArray;
 @SuppressWarnings("serial")
 @ParentPackage("bfkjs-json-default")
