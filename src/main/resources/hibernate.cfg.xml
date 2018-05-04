@@ -54,6 +54,7 @@
         <mapping class="gov.cqaudit.finance.hibernate.entities.CatalogTable"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VBillM"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.DataTransBack"/>
+        <mapping class="gov.cqaudit.finance.hibernate.entities.VTransNotBack"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.BillM"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.VDataCorePublicCustomBase"/>
         <mapping class="gov.cqaudit.finance.hibernate.entities.BillD"/>
