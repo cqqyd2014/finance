@@ -68,7 +68,7 @@ public final class AccountSearch {
         		case "0002":
         		  //企业账号查询
         			java.util.ArrayList<gov.cqaudit.finance.database.model.DataCorePublicAccountInfo> pas=padao.getArrayListViewByHqlSql(session,
-        					"from VDataCorePublicAccountInfo where id.publicCustomId=\'"+bd.getSearch_par_value()+"\' and id.bankCode=\'"+bd.getBank_code()+"\'");
+        					"from VDataCorePublicAccountInfo where id.publicAccountId=\'"+bd.getSearch_par_value()+"\' and id.bankCode=\'"+bd.getBank_code()+"\'");
         			if (pas.size()==1){
         				gov.cqaudit.finance.database.model.DataCorePublicAccountInfo pa=pas.get(0);
         				String count=patdao.getCountByHqlSql(session, "select count(*) from VDataCorePublicAccountTradeDetail where id.bankCode=\'"+bd.getBank_code()

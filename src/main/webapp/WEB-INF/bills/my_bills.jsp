@@ -204,7 +204,7 @@ function center_load_ready(){
 								var cc = [];
 
 								cc
-										.push('<td  style="padding:10px;border:0;width:1000px;"><div style=\'box-shadow:5px 2px 6px #000;margin:20px 30px 0px 0px; width:100%\'><table width=\'100%\' border=\'1\' class=\'box\'><tr><td colspan=\'8\' bgcolor=\'#cccccc\'><span style=\'color:white;background-color:');
+										.push('<td  style="padding:10px;border:0;width:1000px;"><div style=\'box-shadow:5px 2px 6px #000;margin:20px 30px 0px 0px; width:100%\'><table width=\'100%\' border=\'1\' class=\'box\'><tr><td colspan=\'10\' bgcolor=\'#cccccc\'><span style=\'color:white;background-color:');
 								switch (rowData.bill_status) {
 								case '起草申请':
 									cc.push('#CC99CC');
@@ -273,8 +273,11 @@ function center_load_ready(){
 												+ '参数类型'
 												+ '</td><td width=\'17%\' bgcolor=\'#cccccc\'>'
 												+ '查询参数'
-
-												+ '</td><td width=\'21%\' rowspan=\''
+												+ '</td><td width=\'5\' bgcolor=\'#cccccc\'>'
+												+ '开始时间'
+												+ '</td><td width=\'5%\' bgcolor=\'#cccccc\'>'
+												+ '结束时间'
+												+ '</td><td width=\'11%\' rowspan=\''
 												+ row_len + '\'>图片附件：'
 												+ rowData.pics_num + '<br>');
 
@@ -310,11 +313,18 @@ function center_load_ready(){
 												+ field.search_par_code_name
 												+ '</td><td width=\'17%\' >'
 												+ field.search_par_value
+												+ '</td><td width=\'5%\' >'
+												+ field.start_dat_print
+												+ '</td><td width=\'5%\' >'
+												+ field.end_dat_print
 												+ '</td></tr>');
+
+
+										
 
 									});
 								}
-								var temp_b='<tr><td colspan=\'8\'>'
+								var temp_b='<tr><td colspan=\'10\'>'
 									+ '<div>操作：<a	class="edit" href="javascript:void(0)" id=\"edit_bill_'
 									+ rowData.bill_uuid
 									+ '\" class="easyui-linkbutton"	onclick="javascript:edit(\''
@@ -352,7 +362,7 @@ function center_load_ready(){
 
 								if (rowData.messages != null) {
 									var messages = rowData.messages;
-									cc.push('<tr><td colspan=\'8\'>');
+									cc.push('<tr><td colspan=\'10\'>');
 
 									$.each(messages, function(i, field) {
 
